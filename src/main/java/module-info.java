@@ -3,5 +3,7 @@ module com.se206.g11 {
     requires javafx.fxml;
     requires javafx.media;
     opens com.se206.g11 to javafx.fxml;
+    opens com.se206.g11.Controllers to javafx.fxml;
     exports com.se206.g11;
+    exports com.se206.g11.Controllers;
 }

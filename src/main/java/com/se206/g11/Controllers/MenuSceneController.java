@@ -1,6 +1,8 @@
-package com.se206.g11;
+package com.se206.g11.Controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.se206.g11.ApplicationController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

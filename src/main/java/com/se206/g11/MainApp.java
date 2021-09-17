@@ -18,10 +18,6 @@ public class MainApp extends Application {
         setRoot("primary","");
     }
 
-    static void setRoot(String fxml) throws IOException {
-        setRoot(fxml,stage.getTitle());
-    }
-
     static void setRoot(String fxml, String title) throws IOException {
         Scene scene = new Scene(loadFXML(fxml));
         stage.setTitle(title);
