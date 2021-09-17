@@ -3,8 +3,8 @@
 ## Instructions
 
 ```bash
-git clone git@github.com:se206-A3/A3.git
-cd A3
+git clone git@github.com:SOFTENG206-2021/assignment-3-and-project-team-11.git
+cd assignment-3-and-project-team-11
 code . # This will open a code editor, eventually we should provide a ./start.sh
 ```
 

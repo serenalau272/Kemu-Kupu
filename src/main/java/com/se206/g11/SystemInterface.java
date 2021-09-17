@@ -102,7 +102,7 @@ public class SystemInterface {
         List<Word> res = new ArrayList<Word>();
         for(int i=0; i < numWords; i++) {
             if (w.size() == 0) return res; //We are out of words to add!
-            res.add(w.remove(r.nextInt(w.size()-1)));
+            res.add(w.remove(r.nextInt(w.size())));
         }
         return res;
     }
@@ -112,13 +112,22 @@ public class SystemInterface {
      * @return List of spelling topics.
      * @throws IOException
      */
-    //TODO validate that a topic actually has at least 1 word to test on with.
     public static List<SpellingTopic> getTopics() throws IOException {
+        return getTopics(wordDir);
+    }
+
+    /**
+     * Returns a list of available word topics to choose from. If no topics are available, returns an empty list.
+     * @return List of spelling topics.
+     * @throws IOException
+     */
+    //TODO validate that a topic actually has at least 1 word to test on with.
+    public static List<SpellingTopic> getTopics(String path) throws IOException {
         List<SpellingTopic> result = new ArrayList<SpellingTopic>();
-        File dir = new File(wordDir);
+        File dir = new File(path);
         for (String name : dir.list()) {
-            result.add(new SpellingTopic(name, wordDir + "/" + name));
+            result.add(new SpellingTopic(name, path + "/" + name));
         }
         return result;
-    } 
+    }
 }

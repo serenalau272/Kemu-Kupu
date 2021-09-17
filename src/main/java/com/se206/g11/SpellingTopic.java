@@ -20,17 +20,24 @@ public class SpellingTopic {
     /**
      * @return Get the path to this word list
      */
-    public String path() {
+    public String getPath() {
         return this.path;
     }
 
     /**
      * @return Get the topic of this word list in title case
      */    
-    public String nameTitleCase() {
+    public String getNameTitleCase() {
         String s1 = this.name.substring(0, 1).toUpperCase(); //capatalize first letter
         return s1 + this
             .name.substring(1)
-            .replaceAll("([^_])([A-Z])", "$1 $2"); //convert from camel case
+            .replaceAll("(\\p{Ll})(\\p{Lu})","$1 $2"); //convert from camel case
+    }
+
+    /**
+     * @return Get the name of this word list - raw as from disk.
+     */
+    public String getName() {
+        return this.name;
     }
 }
