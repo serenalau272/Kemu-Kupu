@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 import java.util.Random;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.se206.g11.models.SpellingTopic;
+import com.se206.g11.models.Word;
 
 /*
     This class is entirely made up of static functions, and is designed to handle all operations 

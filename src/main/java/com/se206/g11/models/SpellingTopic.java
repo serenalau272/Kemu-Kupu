@@ -1,4 +1,4 @@
-package com.se206.g11;
+package com.se206.g11.models;
 
 /**
  * A topic that can be selected by the user for a quiz
@@ -12,7 +12,7 @@ public class SpellingTopic {
      * @param name the name of the spelling topic, should be provided in camelCase format (same name as the file).
      * @param path the path to the file containing the words
      */
-    SpellingTopic(String name, String path) {
+    public SpellingTopic(String name, String path) {
         this.name = name;
         this.path = path;
     }

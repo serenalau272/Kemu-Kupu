@@ -2,6 +2,8 @@ package com.se206.g11;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.se206.g11.models.SpellingTopic;
+
 import org.junit.jupiter.api.Test;
 
 public class SpellingTopicTest {

@@ -1,4 +1,4 @@
-package com.se206.g11.Controllers;
+package com.se206.g11.scenes;
 import java.net.URL;
 import java.util.ResourceBundle;
 

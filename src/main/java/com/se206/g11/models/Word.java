@@ -1,4 +1,4 @@
-package com.se206.g11;
+package com.se206.g11.models;
 
 import java.text.Collator;
 import com.opencsv.bean.CsvBindByPosition;
