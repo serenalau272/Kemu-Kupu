@@ -1,4 +1,4 @@
-package com.se206.g11.scenes;
+package com.se206.g11.screens;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class MenuSceneController extends ApplicationController implements Initializable {
+public class MenuScreenController extends ApplicationController implements Initializable {
     
     @FXML
     private Label lblOut;
