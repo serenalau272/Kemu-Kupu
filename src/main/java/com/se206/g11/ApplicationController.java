@@ -22,7 +22,7 @@ public class ApplicationController {
 	private Scene scene;
 	private Parent root;
 
-    protected SpellingTopic topic;
+    protected SpellingTopic chosenTopic;
     protected int score;
     protected Word[] wordList;
     //etc.
