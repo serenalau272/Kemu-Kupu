@@ -2,9 +2,10 @@
 **<font size="5">SE206-A3 Group 11</font>**
 *John Chen.</br>upi: jche428*
 
-For the purpose of documenting the progression of A3 / Project
+*For the purpose of documenting the progression of A3 / Project*
 - - - -
 **<font size="5">Meeting: Team Dynamic + Project Direction</font>**
+
 *16-Sep, 2021.*
 
 * Collaboration:
@@ -27,6 +28,7 @@ For the purpose of documenting the progression of A3 / Project
 
 - - - -
 **<font size="5">Code restructuring</font>**
+
 *17 ~ 18-Sep, 2021.*
 * Code heirarchy established with controllers
   * `ApplicationController` as the root controller with scene controllers extending from such controller for each respective scene
@@ -40,6 +42,7 @@ For the purpose of documenting the progression of A3 / Project
   * FXML files created
 - - - -
 **<font size="5">Code restructuring</font>**
+
 *19-Sep, 2021.*
 * Wiki folders established
   * Wiki files created to track progress
