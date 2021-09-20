@@ -41,10 +41,23 @@
   * Design worked on and near finished.
   * FXML files created
 - - - -
-**<font size="5">Code restructuring</font>**
+**<font size="5">Menu Screen Progress + Design Iteration</font>**
 
 *19-Sep, 2021.*
 * Wiki folders established
   * Wiki files created to track progress
+* Menu/Topic/Exit Screens
+  * Branch created to sort out simple navigation and topic selection.
+  * Functionality complete but yet to be tested on FXML files
 * Other work done by members:
-  * TBD
+  * Design on Figma iteratively worked upon with collaborative effort. Making heaps of progress there!
+- - - -
+**<font size="5">Revisiting Workflow and Collaboration Methodology</font>**
+
+*20-Sep, 2021.*
+* Questions collated for client meeting tomorrow including the use of copyrighted assets, as well as the use of backend API calls for the project scope. Document attached on Notion.
+* We recognise that working on delegated tasks and coordinating who codes what might not be the best practice going forward, both for code quality and collaboration.
+* We plan to meet tomorrow to sort out how we are to deliver the MVP in a collaborative manner as well as incorporate client interests. Doing so will be difficult given the rather busy schedules this week with many internship interviews taking place.
+* Other work done by members:
+  * Design asset-ised and added to codebase.
+  * Refactoring on `assets` directory required.
