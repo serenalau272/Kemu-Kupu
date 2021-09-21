@@ -4,46 +4,81 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="284.0" maxWidth="434.0" prefHeight="284.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.TopicScreenController">
+<AnchorPane id="AnchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.TopicScreenController">
     <children>
-      <ImageView fx:id="backgroundImg" fitHeight="373.0" fitWidth="527.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="735.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="257.0" layoutX="143.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="124.0" fitWidth="521.0" layoutX="340.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Wordcount-labels/Word%201%20of%205_.png" />
+            <Image url="@../assets/Topic-choices/Pick%20a%20Topic!.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="257.0" layoutX="100.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/Group%2023.png" />
+            <Image url="@../assets/Topic-choices/Group%205.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="257.0" layoutX="132.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="116.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/Group%201.png" />
+            <Image url="@../assets/Topic-choices/Group%206.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="257.0" layoutX="217.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="colours" fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/Group%2024.png" />
+            <Image url="@../assets/Topic-choices/Group%207.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="257.0" layoutX="346.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/Group%2025.png" />
+            <Image url="@../assets/Topic-choices/Group%208.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="257.0" layoutX="446.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="367.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/Vector.png" />
+            <Image url="@../assets/Topic-choices/Group%209.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="216.0" fitWidth="57.0" layoutX="14.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Progress-bar/Group%2050.png" />
+            <Image url="@../assets/Topic-choices/Group%2011.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="compassPoints" fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2012.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2014.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2015.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="498.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2016.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="886.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2017.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="886.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2018.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="babies" fitHeight="98.0" fitWidth="234.0" layoutX="116.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Topic-choices/Group%2010.png" />
          </image>
       </ImageView>
     </children>

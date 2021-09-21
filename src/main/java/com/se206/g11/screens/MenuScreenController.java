@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
+import com.se206.g11.MainApp;
 
 import javafx.scene.input.MouseEvent;
 import javafx.application.Platform;
@@ -14,19 +15,18 @@ public class MenuScreenController extends ApplicationController implements Initi
     @FXML
     private ImageView exitGame;
     @FXML
-    private ImageView enterGameMode;    
+    private ImageView enterTopicSelect;    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         exitGame.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            System.out.println("Exiting Game!");
-            transitScene("exit", event);
-            // event.consume(); Perhaps Thread.sleep()
+            MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
+            event.consume();
             Platform.exit();
         });
-        enterGameMode.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            System.out.println("Entering Topic!");
-            transitScene("topic", event);
+
+        enterTopicSelect.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MainApp.setRoot("TopicScreen", "Kemu Kupu - Choose a Topic!");
             event.consume();
         });
     }    

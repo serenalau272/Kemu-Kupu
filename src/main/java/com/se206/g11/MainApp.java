@@ -13,16 +13,23 @@ public class MainApp extends Application {
     private static Stage stage;
 
     @Override
-    public void start(@SuppressWarnings("exports") Stage s) throws IOException {
-        stage=s;
-        setRoot("MenuScreen","Main Menu");
+    public void start(@SuppressWarnings("exports") Stage s) {
+        stage = s;
+        stage.setResizable(false);
+        stage.setHeight(730);
+        stage.setWidth(1200);
+        setRoot("MenuScreen","Kemu Kupu");
     }
 
-    public static void setRoot(String fxml, String title) throws IOException {
-        Scene scene = new Scene(loadFXML(fxml));
-        stage.setTitle(title);
-        stage.setScene(scene);
-        stage.show();
+    public static void setRoot(String fxml, String title) {
+        try {
+            Scene scene = new Scene(loadFXML(fxml));
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException exception){
+            System.err.println("Unable to load FXML file: " + fxml);
+        }
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -33,5 +40,4 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }
