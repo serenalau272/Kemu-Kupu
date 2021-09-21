@@ -29,8 +29,8 @@ public class SpellingTopic {
      */    
     public String getNameTitleCase() {
         String s1 = this.name.substring(0, 1).toUpperCase(); //capatalize first letter
-        return s1 + this
-            .name.substring(1)
+        return s1 + this.name
+            .substring(1)
             .replaceAll("(\\p{Ll})(\\p{Lu})","$1 $2"); //convert from camel case
     }
 

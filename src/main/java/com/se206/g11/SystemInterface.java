@@ -26,7 +26,7 @@ public class SystemInterface {
     // Note that these can easily be migrated to a .env file or similar for configuration purposes.
 
     // Location of word files on the system.
-    private static String wordDir = "./words";
+    private static final String wordDir = "./words";
 
     //// Private Methods (helper functions) ////
 
