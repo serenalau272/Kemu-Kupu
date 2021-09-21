@@ -16,8 +16,8 @@ public class MainApp extends Application {
     public void start(@SuppressWarnings("exports") Stage s) {
         stage = s;
         stage.setResizable(false);
-        stage.setHeight(730);
-        stage.setWidth(1200);
+        stage.setHeight(365);
+        stage.setWidth(600);
         setRoot("MenuScreen","Kemu Kupu");
     }
 
@@ -27,6 +27,24 @@ public class MainApp extends Application {
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
+        } catch (IOException exception){
+            System.err.println("Unable to load FXML file: " + fxml);
+        }
+    }
+
+    public static void setRoot(String fxml, String title, Boolean isDelay) {
+        try {
+            Scene scene = new Scene(loadFXML(fxml));
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.show();
+            if (isDelay) {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+
+                };
+            }
         } catch (IOException exception){
             System.err.println("Unable to load FXML file: " + fxml);
         }

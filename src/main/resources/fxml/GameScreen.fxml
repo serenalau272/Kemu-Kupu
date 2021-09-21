@@ -4,13 +4,91 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
+<AnchorPane id="AnchorPane" maxHeight="365.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
     <children>
-      <ImageView fitHeight="735.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="372.0" fitWidth="608.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="307.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="inputTxtField" fitHeight="105.0" fitWidth="406.0" layoutX="112.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/Group%201.png" />
+         </image></ImageView>
+      <ImageView fx:id="skipBtn" fitHeight="80.0" fitWidth="144.0" layoutX="112.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/Group%2023.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="hearBtn" fitHeight="80.0" fitWidth="144.0" layoutX="241.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/Group%2024.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="submitBtn" fitHeight="80.0" fitWidth="144.0" layoutX="370.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/Group%2025.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="settingsBtn" fitHeight="44.0" fitWidth="43.0" layoutX="553.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/Vector.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="wordCountLabel1" fitHeight="53.0" fitWidth="242.0" layoutX="186.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Wordcount-labels/Word%201%20of%205_.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="progressbar0" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Progress-bar/Group%2050.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="wordCountLabel2" fitHeight="53.0" fitWidth="242.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Wordcount-labels/Word%202%20of%205_.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="wordCountLabel3" fitHeight="53.0" fitWidth="242.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Wordcount-labels/Word%203%20of%205_.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="wordCountLabel4" fitHeight="53.0" fitWidth="242.0" layoutX="186.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Wordcount-labels/Word%204%20of%205_.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="wordCountLabel5" fitHeight="53.0" fitWidth="242.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Wordcount-labels/Word%205%20of%205_.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="progressbar20" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Progress-bar/Group%2056.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="progressbar40" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Progress-bar/Group%2051.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="progressbar60" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Progress-bar/Group%2052.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="progressbar80" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Progress-bar/Group%2053.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="progressbar100" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/Progress-bar/Group%2055.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
