@@ -16,8 +16,6 @@ public class MainApp extends Application {
     public void start(@SuppressWarnings("exports") Stage s) {
         stage = s;
         stage.setResizable(false);
-        stage.setHeight(365);
-        stage.setWidth(600);
         setRoot("MenuScreen","Kemu Kupu");
     }
 

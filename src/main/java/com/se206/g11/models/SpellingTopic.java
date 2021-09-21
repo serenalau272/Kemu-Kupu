@@ -40,4 +40,14 @@ public class SpellingTopic {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        
+        if (obj.getClass() == this.getClass()){
+            SpellingTopic otherTopic = (SpellingTopic) obj;
+            return this.getPath().equals(otherTopic.getPath()) && this.getName().equals(otherTopic.getName());
+        }
+        return false;
+    }
 }

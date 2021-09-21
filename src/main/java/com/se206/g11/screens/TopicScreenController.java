@@ -26,16 +26,11 @@ public class TopicScreenController extends ApplicationController implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // try {
-        //     TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
-        // } catch (IOException exception){
-        //     System.out.println("Unable to retrieve spelling word topics");
-        // }
-
-        // for (SpellingTopic t : TOPICS){
-        //     System.out.println("Name: "+ t.getName());
-        //     System.out.println("Path: "+t.getPath());
-        // }
+        try {
+            TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
+        } catch (IOException exception){
+            System.err.println("Unable to retrieve spelling word topics");
+        }
 
         initiliseSelectableTopic(babies);
     }
@@ -43,18 +38,14 @@ public class TopicScreenController extends ApplicationController implements Init
     private void initiliseSelectableTopic(ImageView id){
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             SpellingTopic topic = new SpellingTopic(id.getId(), "./words/" + id.getId());
-            chosenTopic = topic;
 
-            MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
-
-            // if (TOPICS.contains(topic)){
-            //     chosenTopic = topic;
-            //     System.out.println("Entering Game! with topic: " + topic);
-
-            //     // MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
-            // } else {
-            //     System.err.println("Could not initialise listview with id: " + id.toString());
-            // }
+            if (TOPICS.contains(topic)){
+                chosenTopic = topic;
+                // System.out.println("Entering Game! with topic: " + topic);
+                MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
+            } else {
+                System.err.println("Could not initialise listview with id: " + id.toString());
+            }
         });
     }
 
