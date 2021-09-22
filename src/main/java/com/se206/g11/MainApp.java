@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.List;
+import java.util.ArrayList;
 import java.io.IOException;
+
+import com.se206.g11.models.Language;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
@@ -15,15 +17,31 @@ public class MainApp extends Application {
 
     private static SpellingTopic chosenTopic;
     private static int score;
-    private static List<Word> wordList;
+    private static ArrayList<Word> wordList;
 
     public static void setTopic(SpellingTopic topic) throws IOException {
         chosenTopic = topic;
-        wordList = SystemInterface.getWords(5, chosenTopic.getPath());
+        wordList = (ArrayList<Word>) SystemInterface.getWords(5, chosenTopic.getPath());
     }
 
-    public static List<Word> getWordList() {
+    public static ArrayList<Word> getWordList() {
         return wordList;
+    }
+
+    public static String popWord(Language language){
+        Word word = wordList.get(0);
+        wordList.remove(0);
+        if (language == Language.ENGLISH){
+            return word.getEnglish();
+        } else {
+            return word.getMaori();
+        }
+    }
+
+    public static Word popWord(){
+        Word word = wordList.get(0);
+        wordList.remove(0);
+        return word;
     }
 
     @Override

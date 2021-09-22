@@ -42,7 +42,7 @@
             <Image url="@../assets/Wordcount-labels/Word%201%20of%205_.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="progressbar0" fitHeight="635.0" fitWidth="163.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressbar0" fitHeight="635.0" fitWidth="163.0" layoutX="38.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Progress-bar/Group%2050.png" />
          </image>
