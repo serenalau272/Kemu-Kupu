@@ -16,12 +16,12 @@
             <Image url="@../assets/Topic-choices/Pick%20a%20Topic!.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="daysOfWeek" fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%205.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="116.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="daysOfWeekLoanWords" fitHeight="98.0" fitWidth="234.0" layoutX="116.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%206.png" />
          </image>
@@ -31,17 +31,17 @@
             <Image url="@../assets/Topic-choices/Group%207.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monthsOfYear" fitHeight="98.0" fitWidth="234.0" layoutX="373.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%208.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="367.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monthsOfYearLoanWords" fitHeight="98.0" fitWidth="234.0" layoutX="367.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%209.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="weather" fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%2011.png" />
          </image>
@@ -51,27 +51,27 @@
             <Image url="@../assets/Topic-choices/Group%2012.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="work" fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%2014.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="feelings" fitHeight="98.0" fitWidth="234.0" layoutX="637.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%2015.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="498.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="engineering" fitHeight="98.0" fitWidth="234.0" layoutX="498.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%2016.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="886.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="software" fitHeight="98.0" fitWidth="234.0" layoutX="886.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%2017.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="234.0" layoutX="886.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="uniLife" fitHeight="98.0" fitWidth="234.0" layoutX="886.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Topic-choices/Group%2018.png" />
          </image>

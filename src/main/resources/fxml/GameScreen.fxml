@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="365.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
+<AnchorPane id="AnchorPane" maxHeight="730.0" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
     <children>
       <ImageView fitHeight="372.0" fitWidth="608.0" pickOnBounds="true" preserveRatio="true">
          <image>
