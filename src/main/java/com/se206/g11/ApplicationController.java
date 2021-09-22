@@ -23,7 +23,7 @@ public class ApplicationController {
         return elm;
     }
 
-    protected void initialize() {
+    public void initialize() {
         // Add resizing to all buttons on the page
         List<ImageView> imgs = findElms(anchorPane, ImageView.class);
         imgs.forEach(i -> {

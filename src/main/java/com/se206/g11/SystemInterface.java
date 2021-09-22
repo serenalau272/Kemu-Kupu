@@ -1,5 +1,6 @@
 package com.se206.g11;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,7 +10,6 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.util.Random;
-import com.opencsv.bean.CsvToBeanBuilder;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
@@ -56,6 +56,27 @@ public class SystemInterface {
         t.start();
     }
 
+    /**
+     * A simple function to parse csv.
+     * WARNING: LIMITED!
+     * - Unable to parse lines that contain `"` - they will be stripped.
+     * - Unable to parse csv that goes across multi lines
+     * - Can only parse csv with 2 columnns
+     * @param l the line to parse
+     * @return a parsed word
+     * @throws IOException
+     */
+    private static Word __parse_csv_line(String l) throws IOException {
+        String curr = "";
+        Boolean quoted = false;
+        for (int i = 0; i < l.length(); i++) {
+            if (l.charAt(i) == '\"') quoted = !quoted;
+            else if (l.charAt(i) == ',' && !quoted) return new Word(curr, l.substring(i+1).replaceAll("\"", ""));
+            else curr += l.charAt(i);
+        }
+        throw new IOException("Unable to parse string to csv: " + l);
+    }
+
     //// Public Methods ////    
 
     /** 
@@ -86,31 +107,28 @@ public class SystemInterface {
      * Note that this function relies on the third party package OpenCSV: http://opencsv.sourceforge.net/
      * 
      * @param numWords number of words to read from file.
-     * @param filePath path to the file to read wors from.
+     * @param path path to the file to read wors from.
      * @return a list of word
      * @throws IOException
      * 
      * If the file does not have enough words to meet the number of words requested, it will
      * return all words available in a randomised order.
     */
-    public static List<Word> getWords(int numWords, String filePath) {
+    public static List<Word> getWords(int numWords, String path) throws IOException {
+        //Read and parse csv
+        List<Word> w = new ArrayList<Word>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        for(String l; (l = br.readLine()) != null;)  {
+            w.add(__parse_csv_line(l));
+        }
+        br.close();
+        //Generate random lines
+        Random r = new Random();
         List<Word> res = new ArrayList<Word>();
-        try {
-            Path file = Paths.get(filePath);
-            if (!Files.exists(file)) throw new IOException("File does not exist!");
-            List<Word> wordList = new CsvToBeanBuilder<Word>(new FileReader(filePath))
-                .withType(Word.class)
-                .build()
-                .parse();
-            Random r = new Random();
-            
-            for(int i=0; i < numWords; i++) {
-                if (wordList.size() == 0) return res; //We are out of words to add!
-                res.add(wordList.remove(r.nextInt(wordList.size())));
-            }
-        } catch (IOException e) {
-            System.err.println("File does not exist!");
-        };
+        for(int i=0; i < numWords; i++) {
+            if (w.size() == 0) return res; //We are out of words to add!
+            res.add(w.remove(r.nextInt(w.size())));
+        }
         return res;
     }
 

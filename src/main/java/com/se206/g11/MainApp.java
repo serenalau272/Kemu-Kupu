@@ -5,8 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
@@ -16,23 +15,14 @@ public class MainApp extends Application {
 
     private static SpellingTopic chosenTopic;
     private static int score;
-    private static ArrayList<Word> wordList;
+    private static List<Word> wordList;
 
-    public static void setTopic(SpellingTopic topic) {
+    public static void setTopic(SpellingTopic topic) throws IOException {
         chosenTopic = topic;
-        // wordList = (ArrayList<Word>) SystemInterface.getWords(5, chosenTopic.getPath());
-
-        //Temporary dummy data
-        wordList = new ArrayList<Word>();
-        wordList.add(new Word("yeet", "trans"));
-        wordList.add(new Word("nice", "trans"));
-        wordList.add(new Word("hello", "trans"));
-        wordList.add(new Word("apple", "trans"));
-        wordList.add(new Word("orange", "trans"));
-        wordList.add(new Word("dinner", "trans"));
+        wordList = SystemInterface.getWords(5, chosenTopic.getPath());
     }
 
-    public static ArrayList<Word> getWordList() {
+    public static List<Word> getWordList() {
         return wordList;
     }
 

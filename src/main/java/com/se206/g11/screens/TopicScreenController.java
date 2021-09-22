@@ -49,9 +49,14 @@ public class TopicScreenController extends ApplicationController implements Init
 
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             SpellingTopic topic = new SpellingTopic(listName, "./words/" + listName);
-
+            System.out.println("Topic " + topic.getName());
             if (TOPICS.contains(topic)){
-                MainApp.setTopic(topic);
+                try {
+                    MainApp.setTopic(topic);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 System.out.println("Entering Game! with topic: " + topic.getName());
                 MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
             } else {

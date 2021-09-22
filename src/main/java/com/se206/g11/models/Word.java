@@ -1,15 +1,12 @@
 package com.se206.g11.models;
 
 import java.text.Collator;
-import com.opencsv.bean.CsvBindByPosition;
 
 /**
  * A word the user may be tested on. Has english and maori representations stored internally.
  */
 public class Word {
-    @CsvBindByPosition(position = 0)
     private String maori;
-    @CsvBindByPosition(position = 1)
     private String english;
 
     //// Constructors ////
@@ -75,23 +72,5 @@ public class Word {
      */
     public String getMaori() {
         return this.maori;
-    }
-
-    /**
-     * Set the english word to a provided String.
-     * NOTE: Unlike the constructor, does not strip and lowercase the string.
-     * @param s the english word to set
-     */
-    public void setEnglish(String s) {
-        this.english = s;
-    }
-
-    /**
-     * Set the maori word to a provided String.
-     * NOTE: Unlike the constructor, does not strip and lowercase the string.
-     * @param s the maori word to set
-     */
-    public void setMaori(String s) {
-        this.maori = s;
     }
 }
