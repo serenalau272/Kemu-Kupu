@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
     <children>
-      <ImageView fitHeight="372.0" fitWidth="608.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="730.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="inputTxtField" fitHeight="105.0" fitWidth="406.0" layoutX="112.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="162.0" fitWidth="540.0" layoutX="317.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%201.png" />
          </image></ImageView>
-      <ImageView fx:id="skipBtn" fitHeight="80.0" fitWidth="144.0" layoutX="112.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="skipBtn" fitHeight="104.0" fitWidth="163.0" layoutX="319.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2023.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hearBtn" fitHeight="80.0" fitWidth="144.0" layoutX="241.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hearBtn" fitHeight="104.0" fitWidth="163.0" layoutX="514.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2024.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="submitBtn" fitHeight="80.0" fitWidth="144.0" layoutX="370.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="submitBtn" fitHeight="104.0" fitWidth="163.0" layoutX="694.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2025.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settingsBtn" fitHeight="44.0" fitWidth="43.0" layoutX="553.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settingsBtn" fitHeight="80.0" fitWidth="80.0" layoutX="1108.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="wordCountLabel1" fitHeight="53.0" fitWidth="242.0" layoutX="186.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="wordCountLabel1" fitHeight="243.0" fitWidth="588.0" layoutX="303.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Wordcount-labels/Word%201%20of%205_.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="progressbar0" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressbar0" fitHeight="635.0" fitWidth="163.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Progress-bar/Group%2050.png" />
          </image>
@@ -90,5 +92,10 @@
             <Image url="@../assets/Progress-bar/Group%2055.png" />
          </image>
       </ImageView>
+      <TextField alignment="CENTER" layoutX="336.0" layoutY="328.0" onAction="#inputTextField" prefHeight="66.0" prefWidth="502.0" promptText="Type what your hear ..." style="-fx-background-color: #9FE8DC;">
+         <font>
+            <Font name="Open Sans" size="35.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>
