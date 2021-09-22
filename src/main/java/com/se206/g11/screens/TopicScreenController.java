@@ -45,15 +45,17 @@ public class TopicScreenController extends ApplicationController implements Init
     private ImageView work_button;
 
     private void initiliseSelectableTopic(ImageView id){
+        String listName = id.getId().replace("_button", "");
+
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SpellingTopic topic = new SpellingTopic(id.getId(), "./words/" + id.getId());
+            SpellingTopic topic = new SpellingTopic(listName, "./words/" + listName);
 
             if (TOPICS.contains(topic)){
-                chosenTopic = topic;
+                MainApp.setTopic(topic);
                 System.out.println("Entering Game! with topic: " + topic.getName());
-                // MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
+                MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
             } else {
-                System.err.println("Could not select topic with id: " + id.getId());
+                System.err.println("Could not select topic with id: " + listName);
             }
         });
     }

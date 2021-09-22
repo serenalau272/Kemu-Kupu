@@ -87,25 +87,30 @@ public class SystemInterface {
      * 
      * @param numWords number of words to read from file.
      * @param filePath path to the file to read wors from.
-     * @return a list of words
+     * @return a list of word
      * @throws IOException
      * 
      * If the file does not have enough words to meet the number of words requested, it will
      * return all words available in a randomised order.
     */
-    public static List<Word> getWords(int numWords, String filePath) throws IOException {
-        Path file = Paths.get(filePath);
-        if (!Files.exists(file)) throw new IOException("File does not exist!");
-        List<Word> w = new CsvToBeanBuilder<Word>(new FileReader(filePath))
-            .withType(Word.class)
-            .build()
-            .parse();
-        Random r = new Random();
+    public static List<Word> getWords(int numWords, String filePath) {
         List<Word> res = new ArrayList<Word>();
-        for(int i=0; i < numWords; i++) {
-            if (w.size() == 0) return res; //We are out of words to add!
-            res.add(w.remove(r.nextInt(w.size())));
-        }
+        try {
+            Path file = Paths.get(filePath);
+            if (!Files.exists(file)) throw new IOException("File does not exist!");
+            List<Word> wordList = new CsvToBeanBuilder<Word>(new FileReader(filePath))
+                .withType(Word.class)
+                .build()
+                .parse();
+            Random r = new Random();
+            
+            for(int i=0; i < numWords; i++) {
+                if (wordList.size() == 0) return res; //We are out of words to add!
+                res.add(wordList.remove(r.nextInt(wordList.size())));
+            }
+        } catch (IOException e) {
+            System.err.println("File does not exist!");
+        };
         return res;
     }
 

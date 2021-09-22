@@ -13,10 +13,6 @@ public class ApplicationController {
     @FXML
     private Pane anchorPane;
 
-    protected SpellingTopic chosenTopic;
-    protected int score;
-    protected Word[] wordList;
-
     /// Function using generics to find elements of a certain type
     protected <T> List<T> findElms(Pane p, Class<T> t) {
         List<T> elm = new ArrayList<T>();
