@@ -25,8 +25,8 @@ public class MainApp extends Application {
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException exception){
-            System.err.println("Unable to load FXML file: " + fxml);
+        } catch (IOException e){
+            System.err.println("Unable to load FXML file: " + fxml + "Error: " + e);
         }
     }
 

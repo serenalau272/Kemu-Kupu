@@ -1,51 +1,46 @@
 package com.se206.g11;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.Node;
-
-import java.io.IOException;
-/*
-Put header here
-
-
- */
-
+import javafx.scene.layout.Pane;
+import java.util.ArrayList;
+import java.util.List;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
 public class ApplicationController {
-    // private Stage stage;
-	// private Scene scene;
-	// private Parent root;
+    @FXML
+    private Pane anchorPane;
 
     protected SpellingTopic chosenTopic;
     protected int score;
     protected Word[] wordList;
-    //etc.
 
-    // protected void transitScene(String fxml, MouseEvent event){
-    //     setRoot(fxml);
-    //     setStage(event);
-    //     scene = new Scene(root);
-    //     stage.setScene(scene);
-    //     stage.show();
-    // }
+    /// Function using generics to find elements of a certain type
+    protected <T> List<T> findElms(Pane p, Class<T> t) {
+        List<T> elm = new ArrayList<T>();
+        p.getChildren().forEach(c -> {
+            if (c instanceof Pane) elm.addAll(findElms((Pane) c, t));
+            else if (t.isAssignableFrom(c.getClass())) elm.add((T) c); //The compiler lies, this is checked
+        });
+        return elm;
+    }
 
-    // private void setRoot(String fxml){
-    //     try {
-    //         root = FXMLLoader.load((this.getClass().getResource("/fxml/"+fxml + ".fxml")));            
-    //     } catch (IOException exception){
-    //         System.out.println("Unable to load fxml file: " + fxml);
-    //     }
-    // }
-
-    // private void setStage(MouseEvent event) {
-    //     stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-    // }
+    protected void initialize() {
+        // Add resizing to all buttons on the page
+        List<ImageView> imgs = findElms(anchorPane, ImageView.class);
+        imgs.forEach(i -> {
+            if (i.getId() != null && i.getId().contains("_button")) {
+                i.addEventHandler(MouseEvent.MOUSE_ENTERED, _e -> {
+                    i.setScaleX(1.1);
+                    i.setScaleY(1.1);
+                });
+                i.addEventHandler(MouseEvent.MOUSE_EXITED, _e -> {
+                    i.setScaleX(1);
+                    i.setScaleY(1);
+                });
+            }
+        });
+    }
 }
-
-

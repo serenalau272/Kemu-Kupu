@@ -18,54 +18,31 @@ public class TopicScreenController extends ApplicationController implements Init
     ArrayList<SpellingTopic> TOPICS;
 
     @FXML
-    private ImageView babies;
+    private ImageView babies_button;
     @FXML
-    private ImageView compassPoints;
+    private ImageView compassPoints_button;
     @FXML
-    private ImageView colours;
+    private ImageView colours_button;
     @FXML
-    private ImageView daysOfWeek;
+    private ImageView daysOfWeek_button;
     @FXML
-    private ImageView daysOfWeekLoanWords;
+    private ImageView daysOfWeekLoanWords_button;
     @FXML
-    private ImageView engineering;
+    private ImageView engineering_button;
     @FXML
-    private ImageView feelings;
+    private ImageView feelings_button;
     @FXML
-    private ImageView monthsOfYear;
+    private ImageView monthsOfYear_button;
     @FXML
-    private ImageView monthsOfYearLoanWords;
+    private ImageView monthsOfYearLoanWords_button;
     @FXML
-    private ImageView software;
+    private ImageView software_button;
     @FXML
-    private ImageView uniLife;
+    private ImageView uniLife_button;
     @FXML
-    private ImageView weather;
+    private ImageView weather_button;
     @FXML
-    private ImageView work;
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
-            TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
-        } catch (IOException exception){
-            System.err.println("Unable to retrieve spelling word topics");
-        }
-
-        initiliseSelectableTopic(babies);
-        initiliseSelectableTopic(compassPoints);
-        initiliseSelectableTopic(colours);
-        initiliseSelectableTopic(daysOfWeek);
-        initiliseSelectableTopic(daysOfWeekLoanWords);
-        initiliseSelectableTopic(engineering);
-        initiliseSelectableTopic(feelings);
-        initiliseSelectableTopic(monthsOfYear);
-        initiliseSelectableTopic(monthsOfYearLoanWords);
-        initiliseSelectableTopic(software);
-        initiliseSelectableTopic(uniLife);
-        initiliseSelectableTopic(weather);
-        initiliseSelectableTopic(work);
-    }
+    private ImageView work_button;
 
     private void initiliseSelectableTopic(ImageView id){
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -81,4 +58,28 @@ public class TopicScreenController extends ApplicationController implements Init
         });
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        super.initialize();
+        
+        try {
+            TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
+        } catch (IOException exception){
+            System.err.println("Unable to retrieve spelling word topics");
+        }
+
+        initiliseSelectableTopic(babies_button);
+        initiliseSelectableTopic(compassPoints_button);
+        initiliseSelectableTopic(colours_button);
+        initiliseSelectableTopic(daysOfWeek_button);
+        initiliseSelectableTopic(daysOfWeekLoanWords_button);
+        initiliseSelectableTopic(engineering_button);
+        initiliseSelectableTopic(feelings_button);
+        initiliseSelectableTopic(monthsOfYear_button);
+        initiliseSelectableTopic(monthsOfYearLoanWords_button);
+        initiliseSelectableTopic(software_button);
+        initiliseSelectableTopic(uniLife_button);
+        initiliseSelectableTopic(weather_button);
+        initiliseSelectableTopic(work_button);
+    }
 }
