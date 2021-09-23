@@ -16,14 +16,34 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class GameScreenController extends ApplicationController implements Initializable {
     private int wordIndex;
 
     @FXML
-    TextField inputTextField;
+    private TextField inputTextField;
     @FXML
-    ImageView wordIndexBanner;
+    private ImageView wordIndexBanner;
+    @FXML
+    private ImageView progressbar;
+
+    @FXML
+    private ImageView hear_button;
+
+    /**
+     * Set the progress bar to a % value.
+     * @param v a integer between 0 and 5 indicating where the user is up to
+     */
+    private void setProgressBar(Integer v) {
+        if (v < 0 || v > 5) {
+            System.err.print("Index provided was out of range! Got '" + v + "' expected 0-5");
+            return;
+        }
+        //HACK this could fail on build as we are statically typing the path!
+        Image i = new Image("file:src/main/resources/assets/progressBar/" + v + ".png");
+        progressbar.setImage(i);
+    }
 
     public void inputTextField(){
 
@@ -31,7 +51,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
     private void updateWordIndexBanner() {
         try {
-            Image img = new Image(new FileInputStream("src/main/resources/assets/Wordcount-labels/Word "+wordIndex+" of 5_.png"));
+            Image img = new Image(new FileInputStream("src/main/resources/assets/Wordcount-labels/Word " + wordIndex + " of 5_.png"));
 
             wordIndexBanner.setImage(img);
         } catch (FileNotFoundException exception){
@@ -49,13 +69,8 @@ public class GameScreenController extends ApplicationController implements Initi
 
             //retrieve word
             String word;
-            try {
-                word = MainApp.popWord(Language.MAORI);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return;
-            }
+            
+            word = MainApp.popWord(Language.MAORI);
             System.out.println(word);
             
             //attempt to test next word
@@ -66,15 +81,10 @@ public class GameScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        super.initialize();
         //retrieve word
         String word;
-        try {
-            word = MainApp.popWord(Language.MAORI);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return;
-        }
+        word = MainApp.popWord(Language.MAORI);
         System.out.println(word);
         SystemInterface.readWord("Please spell:");
         SystemInterface.readWord(word, Language.MAORI);  

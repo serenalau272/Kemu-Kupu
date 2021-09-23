@@ -46,14 +46,14 @@ public class MainApp extends Application {
         return wordList;
     }
 
-    public static String popWord(Language language) throws Exception {
-        if (wordList.size() < 1) throw new Exception("Attempted to pop word when no words available!");
+    public static String popWord(Language language) {
+        if (wordList.size() < 1) System.err.println("Attempted to pop word when no words available!");
         Word word = wordList.remove(0);
         return (language == Language.ENGLISH) ? word.getEnglish() : word.getMaori();
     }
     
     public static Word popWord() throws Exception {
-        if (wordList.size() < 1) throw new Exception("Attempted to pop word when no words available!");
+        if (wordList.size() < 1) System.err.println("Attempted to pop word when no words available!");
         return wordList.remove(0);
     }
 
@@ -84,7 +84,7 @@ public class MainApp extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

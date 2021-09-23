@@ -17,22 +17,22 @@
          <image>
             <Image url="@../assets/Game-screen/Group%201.png" />
          </image></ImageView>
-      <ImageView fx:id="skipBtn" fitHeight="104.0" fitWidth="163.0" layoutX="319.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="skip_button" fitHeight="104.0" fitWidth="163.0" layoutX="319.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2023.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hearBtn" fitHeight="104.0" fitWidth="163.0" layoutX="514.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hear_button" fitHeight="104.0" fitWidth="163.0" layoutX="514.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2024.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="submitBtn" fitHeight="104.0" fitWidth="163.0" layoutX="694.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="submit_button" fitHeight="104.0" fitWidth="163.0" layoutX="694.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2025.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settingsBtn" fitHeight="80.0" fitWidth="80.0" layoutX="1108.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settings_button" fitHeight="80.0" fitWidth="80.0" layoutX="1108.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
@@ -40,11 +40,6 @@
       <ImageView fx:id="wordIndexBanner" fitHeight="243.0" fitWidth="588.0" layoutX="303.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Wordcount-labels/Word%201%20of%205_.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="progressbar0" fitHeight="635.0" fitWidth="163.0" layoutX="38.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/Progress-bar/Group%2050.png" />
          </image>
       </ImageView>
       <ImageView fx:id="wordCountLabel2" fitHeight="53.0" fitWidth="242.0" layoutX="184.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -67,31 +62,13 @@
             <Image url="@../assets/Wordcount-labels/Word%205%20of%205_.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="progressbar20" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      
+      <ImageView fx:id="progressbar" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Progress-bar/Group%2056.png" />
+            <Image url="@../assets/progressBar/0.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="progressbar40" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../assets/Progress-bar/Group%2051.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="progressbar60" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../assets/Progress-bar/Group%2052.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="progressbar80" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../assets/Progress-bar/Group%2053.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="progressbar100" fitHeight="277.0" fitWidth="75.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../assets/Progress-bar/Group%2055.png" />
-         </image>
-      </ImageView>
+
       <TextField alignment="CENTER" layoutX="336.0" layoutY="328.0" onAction="#inputTextField" prefHeight="66.0" prefWidth="502.0" promptText="Type what your hear ..." style="-fx-background-color: #9FE8DC;">
          <font>
             <Font name="Open Sans" size="35.0" />

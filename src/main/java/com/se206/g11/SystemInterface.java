@@ -36,7 +36,6 @@ public class SystemInterface {
      * @param language the language to which words are read out
      */
     //TODO - Implement speaking speed adjustment
-    //TODO - Implement language selection (use an enum, to select between Maori and English)
     //TODO - return a handle which can be modified by an API to end execution early.
     // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
     private static void __readWord(String word, int repeats, Language language) {
@@ -45,7 +44,7 @@ public class SystemInterface {
         String wordCommand = "\"(SayText \\\"" + word +"\\\")\"";
         Thread t = new Thread(() -> {
             try {
-                for (int i =0; i<= repeats; i++) {
+                for (int i = 0; i<= repeats; i++) {
                     ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + wordCommand + " | festival");  
                     Process p = c.start();
                     p.waitFor();
