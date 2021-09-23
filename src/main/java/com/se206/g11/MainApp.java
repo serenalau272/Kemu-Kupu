@@ -22,7 +22,7 @@ public class MainApp extends Application {
     //// Private (helper) methods ////
     private static void __setRoot(String fxml, String title, Integer delay) {
         //HACK this delay is bad, it's a blocking call which will freeze the entire ui.
-        //I'd really like to not be delaying actions in this way, do we need this?
+        //I'd really like to not be delaying actions in this way, is there a better solution?
         try {
             if (delay != null) Thread.sleep(delay);
             Scene scene = new Scene(loadFXML(fxml));
