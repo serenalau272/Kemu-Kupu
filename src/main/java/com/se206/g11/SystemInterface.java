@@ -6,9 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.nio.file.Files;
 import java.util.Random;
 
 import com.se206.g11.models.Language;
@@ -44,21 +41,12 @@ public class SystemInterface {
     // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
     private static void __readWord(String word, int repeats, Language language) {
         //This thread prevents any lockup of the front end.
-        String langCommand;
-
-        if (language == Language.MAORI){
-            langCommand = "\"(voice_akl_mi_pk06_cg)\"";
-        } else {
-            langCommand = "\"(voice_akl_nz_cw_cg_cg)\"";
-        }
-
+        String langCommand = (language == Language.MAORI) ? "voice_akl_mi_pk06_cg" : "voice_akl_nz_cw_cg_cg" ;        
         String wordCommand = "\"(SayText \\\"" + word +"\\\")\"";
-
         Thread t = new Thread(() -> {
             try {
                 for (int i =0; i<= repeats; i++) {
-                    System.out.println("here");
-                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo " + langCommand + " " + wordCommand + " | festival");  
+                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + wordCommand + " | festival");  
                     Process p = c.start();
                     p.waitFor();
                 }
@@ -66,7 +54,6 @@ public class SystemInterface {
                 e.printStackTrace();
             }
         });
-
         t.start();
     }
 

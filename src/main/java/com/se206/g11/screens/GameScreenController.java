@@ -48,7 +48,14 @@ public class GameScreenController extends ApplicationController implements Initi
             updateWordIndexBanner();
 
             //retrieve word
-            String word = MainApp.popWord(Language.MAORI);
+            String word;
+            try {
+                word = MainApp.popWord(Language.MAORI);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return;
+            }
             System.out.println(word);
             
             //attempt to test next word
@@ -60,7 +67,14 @@ public class GameScreenController extends ApplicationController implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //retrieve word
-        String word = MainApp.popWord(Language.MAORI);
+        String word;
+        try {
+            word = MainApp.popWord(Language.MAORI);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return;
+        }
         System.out.println(word);
         SystemInterface.readWord("Please spell:");
         SystemInterface.readWord(word, Language.MAORI);  

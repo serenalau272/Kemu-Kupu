@@ -19,6 +19,24 @@ public class MainApp extends Application {
     private static int score;
     private static ArrayList<Word> wordList;
 
+    //// Private (helper) methods ////
+    private static void __setRoot(String fxml, String title, Integer delay) {
+        //HACK this delay is bad, it's a blocking call which will freeze the entire ui.
+        //I'd really like to not be delaying actions in this way, do we need this?
+        try {
+            if (delay != null) Thread.sleep(delay);
+            Scene scene = new Scene(loadFXML(fxml));
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.show();                    
+        } catch (InterruptedException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    //// Public Methods ////
+
     public static void setTopic(SpellingTopic topic) throws IOException {
         chosenTopic = topic;
         wordList = (ArrayList<Word>) SystemInterface.getWords(5, chosenTopic.getPath());
@@ -28,20 +46,15 @@ public class MainApp extends Application {
         return wordList;
     }
 
-    public static String popWord(Language language){
-        Word word = wordList.get(0);
-        wordList.remove(0);
-        if (language == Language.ENGLISH){
-            return word.getEnglish();
-        } else {
-            return word.getMaori();
-        }
+    public static String popWord(Language language) throws Exception {
+        if (wordList.size() < 1) throw new Exception("Attempted to pop word when no words available!");
+        Word word = wordList.remove(0);
+        return (language == Language.ENGLISH) ? word.getEnglish() : word.getMaori();
     }
-
-    public static Word popWord(){
-        Word word = wordList.get(0);
-        wordList.remove(0);
-        return word;
+    
+    public static Word popWord() throws Exception {
+        if (wordList.size() < 1) throw new Exception("Attempted to pop word when no words available!");
+        return wordList.remove(0);
     }
 
     @Override
@@ -51,33 +64,23 @@ public class MainApp extends Application {
         setRoot("MenuScreen","Kemu Kupu");
     }
 
+    /**
+     * Change which scene the user is looking at.
+     * @param fxml the name of the scene to load
+     * @param title the title of the window to set
+     */
     public static void setRoot(String fxml, String title) {
-        try {
-            Scene scene = new Scene(loadFXML(fxml));
-            stage.setTitle(title);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e){
-            System.err.println("Unable to load FXML file: " + fxml + "Error: " + e);
-        }
+        __setRoot(fxml, title, null);
     }
 
+    /**
+     * Change which scene the user is looking at.
+     * @param fxml the name of the scene to load
+     * @param title the title of the window to set
+     * @param isDelay delay the page change for a number of seconds.
+     */
     public static void setRoot(String fxml, String title, Boolean isDelay) {
-        try {
-            Scene scene = new Scene(loadFXML(fxml));
-            stage.setTitle(title);
-            stage.setScene(scene);
-            stage.show();
-            if (isDelay) {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-
-                };
-            }
-        } catch (IOException exception){
-            System.err.println("Unable to load FXML file: " + fxml);
-        }
+        __setRoot(fxml, title, 5000);
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

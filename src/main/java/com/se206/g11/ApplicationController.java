@@ -6,8 +6,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;
-import com.se206.g11.models.SpellingTopic;
-import com.se206.g11.models.Word;
+
+@SuppressWarnings("unchecked")
 
 public class ApplicationController {
     @FXML
@@ -18,7 +18,7 @@ public class ApplicationController {
         List<T> elm = new ArrayList<T>();
         p.getChildren().forEach(c -> {
             if (c instanceof Pane) elm.addAll(findElms((Pane) c, t));
-            else if (t.isAssignableFrom(c.getClass())) elm.add((T) c); //The compiler lies, this is checked
+            else if (t.isAssignableFrom(c.getClass())) elm.add((T) c);
         });
         return elm;
     }

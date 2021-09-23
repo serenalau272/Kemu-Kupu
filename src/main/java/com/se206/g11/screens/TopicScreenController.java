@@ -71,10 +71,10 @@ public class TopicScreenController extends ApplicationController implements Init
         
         try {
             TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
-        } catch (IOException exception){
-            System.err.println("Unable to retrieve spelling word topics");
+        } catch (IOException e){
+            System.err.println("Unable to retrieve spelling word topics " + e);
         }
-
+        //Pssst, could we use `List<ImageView> imgs = findElms(anchorPane, ImageView.class);` with a loop here?
         initiliseSelectableTopic(babies_button);
         initiliseSelectableTopic(compassPoints_button);
         initiliseSelectableTopic(colours_button);
