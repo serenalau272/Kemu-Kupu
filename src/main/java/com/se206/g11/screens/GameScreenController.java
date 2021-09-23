@@ -50,7 +50,6 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     private void __loadNextWord() {
         this.faulted = false;
-        Word currWord = this.words.get(this.wordIndex);
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
             this.wordIndex++;

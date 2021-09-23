@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,5 +96,26 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    /**
+     * Load and show a modal to the user
+     * @param fxml the name of the fxml to load in a modal
+     * @param title the title of the modal window
+     */
+    //TODO avoid duplicate code here, merge functionality __setRoot. This should improve readability & extendability of code. For MVP is fine though.
+    public static void showModal(String fxml, String title) {
+        Stage d = new Stage();
+        Scene s;
+        try {
+            s = new Scene(loadFXML(fxml));
+        } catch (Exception e) {
+            System.err.println("Unable to load modal " + fxml + " due to error " + e.toString());
+            return;
+        }
+        d.setScene(s);
+        d.setTitle(title);
+        d.initModality(Modality.APPLICATION_MODAL);
+        d.showAndWait();
     }
 }
