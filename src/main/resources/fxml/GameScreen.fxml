@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
     <children>
       <!-- Background -->
       <ImageView fitHeight="730.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
@@ -14,12 +14,13 @@
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <!-- Action Buttons -->
+      <!-- TODO replace this image with one that doesn't have any text! -->
       <ImageView fitHeight="162.0" fitWidth="540.0" layoutX="317.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%201.png" />
          </image>
       </ImageView>
+      <!-- Action Buttons -->
       <ImageView fx:id="skip_button" fitHeight="104.0" fitWidth="163.0" layoutX="319.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Group%2023.png" />
@@ -53,7 +54,7 @@
          </image>
       </ImageView>
       <!-- Input Text Field -->
-      <TextField alignment="CENTER" layoutX="336.0" layoutY="328.0" onAction="#inputTextField" prefHeight="66.0" prefWidth="502.0" promptText="Type what your hear ..." style="-fx-background-color: #9FE8DC;">
+      <TextField fx:id="inputTextField" alignment="CENTER" layoutX="336.0" layoutY="328.0" prefHeight="66.0" prefWidth="502.0" promptText="Type what your hear ..." style="-fx-background-color: #9FE8DC;">
          <font>
             <Font name="Open Sans" size="35.0" />
          </font>
