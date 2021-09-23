@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.util.Random;
+
+import com.se206.g11.models.Language;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
@@ -34,17 +36,21 @@ public class SystemInterface {
      * Internal function to read word a word to the user using festival
      * @param word the word to read
      * @param repeats the number of times to repeat the word
+     * @param language the language to which words are read out
      */
     //TODO - Implement speaking speed adjustment
     //TODO - Implement language selection (use an enum, to select between Maori and English)
     //TODO - return a handle which can be modified by an API to end execution early.
     // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
-    private static void __readWord(String word, int repeats) {
+    private static void __readWord(String word, int repeats, Language language) {
         //This thread prevents any lockup of the front end.
         Thread t = new Thread(() -> {
             try {
-                for (int i =0; i< repeats; i++) {
-                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"" +  word + "\" | festival --tts");
+                for (int i =0; i<= repeats; i++) {
+                    System.out.println("here");
+                    // ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"" +  word + "\" | festival --tts");
+                    // ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "festival; (SayText \"Good morning, welcome to Festival\"); (quit)");
+                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "festival -b src/main/java/com/se206/g11/trial.scm");  
                     Process p = c.start();
                     p.waitFor();
                 }
@@ -84,7 +90,16 @@ public class SystemInterface {
     *    @param word The word or phrase to be read to the user
     */
     public static void readWord(String word) {
-        __readWord(word, 0);
+        __readWord(word, 0, Language.MAORI);
+    }
+
+    /** 
+    *    Reads a word to a user utilising festival
+    *    @param word The word or phrase to be read to the user
+    *    @param language The language to which words are read out using
+    */
+    public static void readWord(String word, Language language) {
+        __readWord(word, 0, language);
     }
 
     /**
@@ -96,7 +111,7 @@ public class SystemInterface {
         high values will repeat for a very long time, as this is asynchronously threaded).
     */
     public static void readWord(String word, int repeats) {
-        __readWord(word, repeats);
+        __readWord(word, repeats, Language.MAORI);
     }
 
     /**

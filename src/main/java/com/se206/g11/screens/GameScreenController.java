@@ -9,6 +9,7 @@ import com.se206.g11.ApplicationController;
 import com.se206.g11.models.Language;
 import com.se206.g11.models.Word;
 import com.se206.g11.MainApp;
+import com.se206.g11.SystemInterface;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,6 +59,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SystemInterface.readWord("Yeet");
         wordIndex = 1;
         testWord();
     }    
