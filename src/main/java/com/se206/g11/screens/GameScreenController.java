@@ -50,7 +50,7 @@ public class GameScreenController extends ApplicationController implements Initi
             //retrieve word
             String word = MainApp.popWord(Language.MAORI);
             System.out.println(word);
-
+            
             //attempt to test next word
             wordIndex++;
             testWord();
@@ -59,7 +59,12 @@ public class GameScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SystemInterface.readWord("Yeet");
+        //retrieve word
+        String word = MainApp.popWord(Language.MAORI);
+        System.out.println(word);
+        SystemInterface.readWord("Please spell:");
+        SystemInterface.readWord(word, Language.MAORI);  
+
         wordIndex = 1;
         testWord();
     }    

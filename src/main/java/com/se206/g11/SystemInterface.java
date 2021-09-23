@@ -44,13 +44,21 @@ public class SystemInterface {
     // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
     private static void __readWord(String word, int repeats, Language language) {
         //This thread prevents any lockup of the front end.
+        String langCommand;
+
+        if (language == Language.MAORI){
+            langCommand = "\"(voice_akl_mi_pk06_cg)\"";
+        } else {
+            langCommand = "\"(voice_akl_nz_cw_cg_cg)\"";
+        }
+
+        String wordCommand = "\"(SayText \\\"" + word +"\\\")\"";
+
         Thread t = new Thread(() -> {
             try {
                 for (int i =0; i<= repeats; i++) {
                     System.out.println("here");
-                    // ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"" +  word + "\" | festival --tts");
-                    // ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "festival; (SayText \"Good morning, welcome to Festival\"); (quit)");
-                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "festival -b src/main/java/com/se206/g11/trial.scm");  
+                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo " + langCommand + " " + wordCommand + " | festival");  
                     Process p = c.start();
                     p.waitFor();
                 }
@@ -90,7 +98,7 @@ public class SystemInterface {
     *    @param word The word or phrase to be read to the user
     */
     public static void readWord(String word) {
-        __readWord(word, 0, Language.MAORI);
+        __readWord(word, 0, Language.ENGLISH);
     }
 
     /** 
