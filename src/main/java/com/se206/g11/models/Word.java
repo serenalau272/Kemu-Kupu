@@ -15,8 +15,8 @@ public class Word {
      * Create an empty Word class
      */
     public Word() {
-        this.english = "";
-        this.maori = "";
+        this.english = null;
+        this.maori = null;
     }
 
     /**

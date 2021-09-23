@@ -55,6 +55,7 @@ public class GameScreenController extends ApplicationController implements Initi
         if (this.wordIndex < this.words.size() -1) {
             this.wordIndex++;
             this.inputTextField.clear();
+            this.__updateWordIndexBanner();
             this.__hearAgain(1);
         } else {
             this.__disableQuiz();
@@ -90,9 +91,9 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     private void __updateWordIndexBanner() {
         try {
-            setImage(wordIndex, wordIndexBanner);
+            setImage(this.wordIndex, wordIndexBanner);
         } catch (FileNotFoundException exception){
-            System.err.println("Unable to load banner for index: " + wordIndex);
+            System.err.println("Unable to load banner for index: " + this.wordIndex);
         }
     }
 
@@ -101,7 +102,8 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     private void __disableQuiz() {
         this.disabled = true;
-        inputTextField.setDisable(true);
+        this.inputTextField.setText("Quiz Disabled");
+        this.inputTextField.setDisable(true);
     }
 
     //// Button Handlers ////
@@ -113,16 +115,18 @@ public class GameScreenController extends ApplicationController implements Initi
         if (this.disabled) return;
         //check if they got the word right
         Word input = new Word();
-        String t = inputTextField.getText();
-        System.out.println("User wrote: " + t);
-        input.setMaori(inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
+        input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
 
         if (this.words.get(this.wordIndex).isEqualLazy(input)) {
             //Correct
             int score = MainApp.getScore() + 1;
             this.__updateProgressBar(score);
             MainApp.setScore(score);
+
             //TODO specific actions for faulted words?
+            // if (this.faulted) {}
+
+            this.__loadNextWord();
         } else {
             if (!this.faulted) {
                 //First attempt wrong
