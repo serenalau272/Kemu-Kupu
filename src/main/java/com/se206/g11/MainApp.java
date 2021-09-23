@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 
 import com.se206.g11.models.Language;
@@ -17,7 +18,7 @@ public class MainApp extends Application {
 
     private static SpellingTopic chosenTopic;
     private static int score;
-    private static ArrayList<Word> wordList;
+    private static List<Word> wordList;
 
     //// Private (helper) methods ////
     private static void __setRoot(String fxml, String title, Integer delay) {
@@ -36,25 +37,29 @@ public class MainApp extends Application {
     }
 
     //// Public Methods ////
-
     public static void setTopic(SpellingTopic topic) throws IOException {
         chosenTopic = topic;
-        wordList = (ArrayList<Word>) SystemInterface.getWords(5, chosenTopic.getPath());
+        wordList = SystemInterface.getWords(5, chosenTopic.getPath());
     }
 
-    public static ArrayList<Word> getWordList() {
+    public static List<Word> getWordList() {
         return wordList;
     }
 
-    public static String popWord(Language language) {
-        if (wordList.size() < 1) System.err.println("Attempted to pop word when no words available!");
-        Word word = wordList.remove(0);
-        return (language == Language.ENGLISH) ? word.getEnglish() : word.getMaori();
+    /**
+     * Set the current score of the player to a new value
+     * @param i score to be set
+     */
+    public static void setScore(int i) {
+        score = i;
     }
-    
-    public static Word popWord() throws Exception {
-        if (wordList.size() < 1) System.err.println("Attempted to pop word when no words available!");
-        return wordList.remove(0);
+
+    /**
+     * Get the current score of the player.
+     * @return
+     */
+    public static int getScore() {
+        return score;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class SystemInterface {
         String wordCommand = "\"(SayText \\\"" + word +"\\\")\"";
         Thread t = new Thread(() -> {
             try {
-                for (int i = 0; i<= repeats; i++) {
+                for (int i = 0; i < Integer.max(repeats, 1); i++) {
                     ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + wordCommand + " | festival");  
                     Process p = c.start();
                     p.waitFor();
@@ -84,16 +84,16 @@ public class SystemInterface {
     *    @param word The word or phrase to be read to the user
     */
     public static void readWord(String word) {
-        __readWord(word, 0, Language.ENGLISH);
+        __readWord(word, 1, Language.ENGLISH);
     }
 
     /** 
     *    Reads a word to a user utilising festival
     *    @param word The word or phrase to be read to the user
-    *    @param language The language to which words are read out using
+    *    @param i The language to which words are read out using
     */
     public static void readWord(String word, Language language) {
-        __readWord(word, 0, language);
+        __readWord(word, 1, language);
     }
 
     /**

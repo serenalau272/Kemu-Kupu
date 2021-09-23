@@ -73,4 +73,20 @@ public class Word {
     public String getMaori() {
         return this.maori;
     }
+
+    /**
+     * Set the english word translation for this word
+     * @param s the word to set
+     */
+    public void setEnglish(String s) {
+        this.english = s.strip().toLowerCase();
+    }
+
+    /**
+     * Set the maori word translation for this word
+     * @param s the word to set
+     */
+    public void setMaori(String s) {
+        this.maori = s.strip().toLowerCase();
+    }
 }
