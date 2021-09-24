@@ -76,7 +76,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.showModal("RewardScreen", "Well Done!");
+            MainApp.showModal("RewardScreen", "Settings");
         }
     }
     
@@ -96,7 +96,8 @@ public class GameScreenController extends ApplicationController implements Initi
         skip_button.setVisible(false);
         hear_button.setVisible(false);
 
-        System.out.println(status);
+        this.inputTextField.clear();
+
         //setup response image
         switch (status) {
             case SKIPPED:
@@ -104,22 +105,22 @@ public class GameScreenController extends ApplicationController implements Initi
                 break;
             case FAULTED:
                 responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_2.png"));
-                addSubTextIncorrect();
                 break;
             case FAILED:
                 responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_3.png"));
-                addSubTextIncorrect();
                 break;
             default:
                 //mastered or none
                 responseImg.setImage( new Image("file:src/main/resources/assets/CORRECT.png"));
                 break;
         }
- 
+
+        addSubTextIncorrect();
 
         //show continue and response
         responseImg.setVisible(true);
         continue_button.setVisible(true);
+        hintLabel.setVisible(true);
     }
 
 
@@ -137,15 +138,18 @@ public class GameScreenController extends ApplicationController implements Initi
 
     private void addSubTextIncorrect() {
         String word = this.words.get(this.wordIndex).getMaori();
+        System.out.println(this.status);
         switch (this.status) {
-            case FAULTED :
+            case FAULTED:
                 hintLabel.setText("Hint: Second letter is '" + word.charAt(1) + "'");
-            case FAILED : 
+                break;
+            case FAILED: 
                 hintLabel.setText("Correct answer: " + word);
-            default : 
+                break;
+            default: 
                 {};
+                break;
         }
-        hintLabel.setVisible(true);
     }
 
     /**
@@ -240,7 +244,7 @@ public class GameScreenController extends ApplicationController implements Initi
     public void continueClick(){
         if (this.disabled) return;
         toggleLabels();
-        this.inputTextField.clear();
+        inputTextField.setEditable(true);
 
         if (status == Status.FAULTED){
             this.__hearWord(2);
@@ -268,7 +272,7 @@ public class GameScreenController extends ApplicationController implements Initi
      * Handler for the settings button
      */
     public void settingsClick() {
-        MainApp.showModal("SettingsScreen", "Settings");
+        MainApp.showModal("SettingScreen", "Settings");
     }
 
     public void onEnter(){
@@ -301,11 +305,22 @@ public class GameScreenController extends ApplicationController implements Initi
         //initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> settingsClick());
+
         continue_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> continueClick());
-        submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> checkInput());
-        skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
+
+        submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            inputTextField.setEditable(false);
+            checkInput();
+        });
+
+        skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            inputTextField.setEditable(false);
+            skipWordClick();
+        });
+        
         inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
+                inputTextField.setEditable(false);
                 onEnter();
             }
         });
