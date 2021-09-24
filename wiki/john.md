@@ -84,3 +84,12 @@
 
 *23-Sep, 2021.*
 * I had a go at refactoring the readWords() function to accommodate different languages. This is finished in implementation. The changes of the word index banner is also implemented. A lot more still to be done in hopefully one more collaborative session tomorrow and Saturday.
+
+- - - -
+**<font size="5">Gamescreen + modals</font>**
+
+*24-Sep, 2021.*
+* Big strides were made today as we very very near completed the MVP (with only a few bugs to be fixed). Gamescreen finished implementation and modals setup.
+* Collaboration was done well all in all; and again via Live Share and Zoom.
+* Tomorrow we need to fix up the hint labels, check and implement the settings modal, and refactor the rewards modal. We also need macron integration and checking words for proper macron display. Other stretch goals are adding sound effects, adding fonts, and changing image assets.
+* Reports also need to start being written.
