@@ -18,7 +18,7 @@ public class MenuScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initalize();
+        super.initialize();
 
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MainApp.showModal("RewardScreen", "title");

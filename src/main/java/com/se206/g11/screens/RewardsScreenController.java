@@ -34,7 +34,7 @@ public class RewardsScreenController extends ApplicationController implements In
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initalize();
+        super.initialize();
         this.score = MainApp.getScore();
         for (int i = 0; i < 3; i++) {
             if (score >= this.starThreshold[i]) this.anchorPane.lookup("#star" + i).setVisible(true); 

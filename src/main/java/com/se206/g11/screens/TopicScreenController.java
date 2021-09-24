@@ -67,7 +67,7 @@ public class TopicScreenController extends ApplicationController implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initalize();
+        super.initialize();
         try {
             TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
         } catch (IOException e){

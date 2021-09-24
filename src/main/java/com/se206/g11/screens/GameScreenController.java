@@ -28,6 +28,7 @@ public class GameScreenController extends ApplicationController implements Initi
     //The words the user is to be tested on
     private List<Word> words;
     private boolean disabled = false;
+    private boolean awaitingResponse = true;
 
     @FXML
     private TextField inputTextField;
@@ -61,7 +62,7 @@ public class GameScreenController extends ApplicationController implements Initi
         // this.faulted = false;
         // Word currWord = this.words.get(this.wordIndex);
 
-        this.faulted = false;
+        status = Status.NONE;
 
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
@@ -73,10 +74,20 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.setRoot("Rewards", "Kemu Kupu - Well done!");
+            MainApp.showModal("RewardScreen", "Settings");
         }
     }
     
+    private void toggleLabels(){
+        if (awaitingResponse){
+            showOnResponse();
+        } else {
+            showOffResponse();
+        }
+
+        awaitingResponse = !awaitingResponse;
+    }
+
     private void showOnResponse(){
         //remove buttons visibility
         submit_button.setVisible(false);
@@ -206,12 +217,12 @@ public class GameScreenController extends ApplicationController implements Initi
             }
         }
 
-        showOnResponse();
+        toggleLabels();
     }
 
     public void continueClick(){
         if (this.disabled) return;
-        showOffResponse();
+        toggleLabels();
 
         if (status == Status.FAILED || status == Status.MASTERED || status == Status.SKIPPED){
             //load next word
@@ -227,7 +238,7 @@ public class GameScreenController extends ApplicationController implements Initi
     public void skipWordClick() {
         if (this.disabled) return;
         this.status = Status.SKIPPED;
-        showOnResponse();
+        toggleLabels();
         // this.__loadNextWord();
     }
 
@@ -238,12 +249,13 @@ public class GameScreenController extends ApplicationController implements Initi
         MainApp.showModal("SettingScreen", "Settings");
     }
 
+    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         super.initialize();       
         showOffResponse();      //no response given
-
 
         //Load words from the MainApp
         this.words = MainApp.getWordList();

@@ -82,7 +82,7 @@ public class ApplicationController {
     /**
      * Initalize a regular stage
      */
-    protected void initalize() {
+    protected void initialize() {
         // Add resizing to all buttons on the page
         List<ImageView> imgs = findElms(anchorPane, ImageView.class);
         imgs.forEach(i -> {
