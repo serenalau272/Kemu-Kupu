@@ -46,7 +46,7 @@ public class GameScreenController extends ApplicationController implements Initi
      * Loads the next word for a user ot be tested on, simplifying the code elsewhere.
      * Functions:
      * - Resets variable for checking a fault
-     * - Lodas the next word, clearing the textbox and relevant labels
+     * - Loads the next word, clearing the textbox and relevant labels
      * - If no words are left, go to next screen.
      */
     private void __loadNextWord() {
@@ -152,12 +152,12 @@ public class GameScreenController extends ApplicationController implements Initi
      * Handler for the settings button
      */
     public void settingsClick() {
-        //TODO, not sure how we want to implement this? Modals?
+        MainApp.showModal("SettingScreen", "Settings");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.stageInit();      
+        super.initalize();      
 
         //Load words from the MainApp
         this.words = MainApp.getWordList();

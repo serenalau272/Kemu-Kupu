@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 import java.util.List;
 import java.io.IOException;
 
+import com.se206.g11.models.Settings;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
@@ -23,6 +24,7 @@ public class MainApp extends Application {
     private static SpellingTopic chosenTopic;
     private static int score;
     private static List<Word> wordList;
+    // private static Settings settings;
 
     //// Private (helper) methods ////
     /**
@@ -80,6 +82,21 @@ public class MainApp extends Application {
     public static int getScore() {
         return score;
     }
+    
+    // /**
+    //  * @param s the new settings to set for this user
+    //  */
+    // public static void setSettings(Settings s) {
+    //     settings = s;
+    //     s.save("/.data/settings"); //TODO
+    // }
+
+    // /**
+    //  * @return the current settings configuration
+    //  */
+    // public static Settings getSettings() {
+    //     return settings;
+    // }
 
     /**
      * Change which scene the user is looking at.
@@ -135,6 +152,7 @@ public class MainApp extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage s) {
         stage = s;
+        // settings = new Settings();
         stage.setResizable(false);
         setRoot("MenuScreen","Kemu Kupu");
     }

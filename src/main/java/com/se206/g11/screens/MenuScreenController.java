@@ -18,11 +18,13 @@ public class MenuScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.stageInit();
+        super.initalize();
 
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
-            event.consume();
+            MainApp.showModal("RewardScreen", "title");
+
+            // MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
+            // event.consume();
             // Platform.exit();
         });
 

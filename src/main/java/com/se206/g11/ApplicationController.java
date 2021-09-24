@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class ApplicationController {
     @FXML
-    private Pane anchorPane;
+    protected Pane anchorPane;
 
     //The stage of this window.
     private Stage stage = null; 
@@ -62,7 +62,7 @@ public class ApplicationController {
      * Initalize a modal - Should only be called from MainApp, do not call from internal function
      * @param s
      */
-    protected void modalInit(Stage s) {
+    protected final void modalInit(Stage s) {
         this.stage = s;
         //Allow the modal to be clicked and dragged
         this.stage.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
@@ -82,7 +82,7 @@ public class ApplicationController {
     /**
      * Initalize a regular stage
      */
-    protected void stageInit() {
+    protected void initalize() {
         // Add resizing to all buttons on the page
         List<ImageView> imgs = findElms(anchorPane, ImageView.class);
         imgs.forEach(i -> {
