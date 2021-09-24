@@ -6,9 +6,6 @@ import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -24,13 +21,10 @@ public class MenuScreenController extends ApplicationController implements Initi
         super.initialize();
 
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //MainApp.showModal("RewardScreen", "title");
-
-            MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
-            event.consume();
-            PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(e -> Platform.exit());
-            pause.play();
+            MainApp.showModal("SettingScreen", "testing");
+            // MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
+            // event.consume();
+            // Platform.exit();
         });
 
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
