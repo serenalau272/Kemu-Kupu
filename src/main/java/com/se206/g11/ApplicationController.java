@@ -3,6 +3,8 @@ package com.se206.g11;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -12,11 +14,20 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.stage.Stage;
+
 @SuppressWarnings("unchecked")
 
 public class ApplicationController {
     @FXML
-    private Pane anchorPane;
+    protected Pane anchorPane;
+
+    //The stage of this window.
+    private Stage stage = null; 
+
+    //Offsets, used when dragging an undecorated window
+    private double yOffset = 0;
+    private double xOffset = 0;
 
     /// Function using generics to find elements of a certain type
     protected <T> List<T> findElms(Pane p, Class<T> t) {
@@ -47,7 +58,31 @@ public class ApplicationController {
         view.setImage(new Image(String.join("/", s)));
     }
 
-    public void initialize() {
+    /**
+     * Initalize a modal - Should only be called from MainApp, do not call from internal function
+     * @param s
+     */
+    protected final void modalInit(Stage s) {
+        this.stage = s;
+        //Allow the modal to be clicked and dragged
+        this.stage.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+            this.xOffset = this.stage.getX() - event.getScreenX();
+            this.yOffset = this.stage.getY() - event.getScreenY();
+        });
+        this.stage.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+            this.stage.setX(event.getScreenX() + this.xOffset);
+            this.stage.setY(event.getScreenY() + this.yOffset);
+        });
+        //Close the modal on esc
+        this.stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ESCAPE) this.stage.close();
+        });
+    }
+
+    /**
+     * Initalize a regular stage
+     */
+    protected void initalize() {
         // Add resizing to all buttons on the page
         List<ImageView> imgs = findElms(anchorPane, ImageView.class);
         imgs.forEach(i -> {

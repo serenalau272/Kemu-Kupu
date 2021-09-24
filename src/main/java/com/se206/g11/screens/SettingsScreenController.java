@@ -7,10 +7,12 @@ import com.se206.g11.ApplicationController;
 import javafx.fxml.Initializable;
 
 public class SettingsScreenController extends ApplicationController implements Initializable {
+
     
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initialize();
+        
         // TODO
     }    
 }
