@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.GameScreenController">
     <children>
       <!-- Background -->
       <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
@@ -65,7 +65,7 @@
             <Image url="@../assets/CORRECT.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="continue_button" fitHeight="68.0" fitWidth="187.0" layoutX="493.0" layoutY="659.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="continue_button" fitHeight="68.0" fitWidth="187.0" layoutX="492.0" layoutY="629.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/CONTINUE.png" />
          </image>
@@ -73,6 +73,56 @@
       <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="462.0" prefHeight="31.0" prefWidth="700.0" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="26.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="a_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/vowel.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1145.0" layoutY="176.0" text="ā" textFill="WHITE">
+         <font>
+            <Font name="Roboto Regular" size="41.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="e_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/vowel.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="i_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/vowel.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="o_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/vowel.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="u_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game-screen/vowel.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1145.0" layoutY="235.0" text="ē" textFill="WHITE">
+         <font>
+            <Font name="Roboto Regular" size="41.0" />
+         </font>
+      </Label>
+      <Label layoutX="1152.0" layoutY="291.0" text="ī" textFill="WHITE">
+         <font>
+            <Font name="Roboto Regular" size="41.0" />
+         </font>
+      </Label>
+      <Label layoutX="1145.0" layoutY="351.0" text="ō" textFill="WHITE">
+         <font>
+            <Font name="Roboto Regular" size="41.0" />
+         </font>
+      </Label>
+      <Label layoutX="1145.0" layoutY="408.0" text="ū" textFill="WHITE">
+         <font>
+            <Font name="Roboto Regular" size="41.0" />
          </font>
       </Label>
     </children>

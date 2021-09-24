@@ -17,21 +17,13 @@
             <Image url="@../assets/MainTitle.png" />
          </image>
       </ImageView>
-<<<<<<< Updated upstream
-      <ImageView fitHeight="47.0" fitWidth="83.0" layoutX="1077.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
-=======
       <ImageView fx:id="exitGame_button" fitHeight="81.0" fitWidth="95.0" layoutX="1084.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
->>>>>>> Stashed changes
          <image>
             <Image url="@../assets/EXIT_CROSS.png" />
          </image>
       </ImageView>
-<<<<<<< Updated upstream
-      <ImageView fx:id="exitGame_button" fitHeight="83.0" fitWidth="87.0" layoutX="1075.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
-=======
       <!-- Buttons -->
       <ImageView fitHeight="62.0" fitWidth="106.0" layoutX="1072.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
->>>>>>> Stashed changes
          <image>
             <Image url="@../assets/EXIT.png" />
          </image>
