@@ -54,7 +54,7 @@ public class GameScreenController extends ApplicationController implements Initi
      * Loads the next word for a user ot be tested on, simplifying the code elsewhere.
      * Functions:
      * - Resets variable for checking a fault
-     * - Loads the next word, clearing the textbox and relevant labels
+     * - Loads the next word, and relevant labels
      * - If no words are left, go to next screen.
      */
     private void __loadNextWord() {
@@ -67,7 +67,6 @@ public class GameScreenController extends ApplicationController implements Initi
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
             this.wordIndex++;
-            this.inputTextField.clear();
             this.__updateWordIndexBanner();
             this.__hearWord(1);
         } else {
@@ -183,7 +182,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
         //check if they got the word right
         Word input = new Word();
-        if (this.inputTextField.getText() == null) {
+        if (this.inputTextField.getText().isEmpty()) {
             return;
         } else {
             input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
@@ -205,7 +204,7 @@ public class GameScreenController extends ApplicationController implements Initi
         } else {
             if (status == Status.NONE || status == Status.SKIPPED) {
                 //First attempt wrong
-                this.__hearWord(2);
+                
                 this.status = Status.FAULTED;
                 // this.faulted = true;
                 //TODO show them second letter
@@ -223,6 +222,11 @@ public class GameScreenController extends ApplicationController implements Initi
     public void continueClick(){
         if (this.disabled) return;
         toggleLabels();
+        this.inputTextField.clear();
+
+        if (status == Status.FAULTED){
+            this.__hearWord(2);
+        }
 
         if (status == Status.FAILED || status == Status.MASTERED || status == Status.SKIPPED){
             //load next word
@@ -249,6 +253,13 @@ public class GameScreenController extends ApplicationController implements Initi
         MainApp.showModal("SettingScreen", "Settings");
     }
 
+    public void onEnter(){
+        if (awaitingResponse){
+            checkInput();
+        } else {
+            continueClick();
+        }
+    }
     
 
     @Override
@@ -277,7 +288,7 @@ public class GameScreenController extends ApplicationController implements Initi
         skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
         inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                checkInput();
+                onEnter();
             }
         });
 
