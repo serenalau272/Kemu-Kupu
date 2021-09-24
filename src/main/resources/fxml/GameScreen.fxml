@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -56,7 +57,7 @@
       <!-- Input Text Field -->
       <TextField fx:id="inputTextField" alignment="CENTER" layoutX="336.0" layoutY="328.0" prefHeight="66.0" prefWidth="502.0" promptText="Type what your hear ..." style="-fx-background-color: #9FE8DC;">
          <font>
-            <Font name="Open Sans" size="35.0" />
+            <Font name="Roboto Regular" size="35.0" />
          </font>
       </TextField>
       <ImageView fx:id="responseImg" fitHeight="154.0" fitWidth="532.0" layoutX="322.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
@@ -69,5 +70,15 @@
             <Image url="@../assets/CONTINUE.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="responseImg1" fitHeight="154.0" fitWidth="532.0" layoutX="321.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/INCORRECT_2.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="448.0" layoutY="508.0" prefHeight="31.0" prefWidth="295.0" text="Hint: Second letter is 'a'" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Roboto Regular" size="19.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
