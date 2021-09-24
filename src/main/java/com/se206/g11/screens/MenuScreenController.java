@@ -4,6 +4,8 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
+import com.se206.g11.SystemInterface;
+import com.se206.g11.models.Language;
 
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -28,7 +30,8 @@ public class MenuScreenController extends ApplicationController implements Initi
 
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             event.consume();
-            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            SystemInterface.readWord("Thanks for playing.", Language.ENGLISH);
+            PauseTransition pause = new PauseTransition(Duration.seconds(5));
             pause.setOnFinished(e -> Platform.exit());
             pause.play();
         });

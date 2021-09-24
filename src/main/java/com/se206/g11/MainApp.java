@@ -67,6 +67,14 @@ public class MainApp extends Application {
         return wordList;
     }
 
+    public static void onKeyPress(KeyCode key){
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == key){
+                //Todo: make callable?
+            }
+        });
+    }
+
     /**
      * Set the current score of the player to a new value
      * @param i score to be set
