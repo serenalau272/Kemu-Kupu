@@ -190,8 +190,9 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     private void __disableQuiz() {
         this.disabled = true;
-        this.inputTextField.setText("Quiz Disabled");
         this.inputTextField.setDisable(true);
+        MainApp.showModal("RewardScreen", "Reward Screen");
+    
     }
 
     //// Button Handlers ////
