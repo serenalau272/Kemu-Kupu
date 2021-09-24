@@ -14,6 +14,7 @@ import com.se206.g11.SystemInterface;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,8 @@ public class GameScreenController extends ApplicationController implements Initi
 
     @FXML
     private TextField inputTextField;
+    @FXML
+    private Label hintLabel;
     @FXML
     private ImageView wordIndexBanner;
     @FXML
@@ -101,9 +104,11 @@ public class GameScreenController extends ApplicationController implements Initi
                 break;
             case FAULTED:
                 responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_2.png"));
+                addSubTextIncorrect();
                 break;
             case FAILED:
                 responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_3.png"));
+                addSubTextIncorrect();
                 break;
             default:
                 //mastered or none
@@ -127,8 +132,21 @@ public class GameScreenController extends ApplicationController implements Initi
         //show continue and response
         responseImg.setVisible(false);
         continue_button.setVisible(false);
+        hintLabel.setVisible(false);
     }
 
+    private void addSubTextIncorrect() {
+        String word = this.words.get(this.wordIndex).getMaori();
+        switch (this.status) {
+            case FAULTED :
+                hintLabel.setText("Hint: Second letter is '" + word.charAt(1) + "'");
+            case FAILED : 
+                hintLabel.setText("Correct answer: " + word);
+            default : 
+                {};
+        }
+        hintLabel.setVisible(true);
+    }
 
     /**
      * Read a word to the user. Does not support language selection as this is not needed for A3.
