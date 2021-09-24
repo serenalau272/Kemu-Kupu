@@ -2,11 +2,12 @@ package com.se206.g11.screens;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.models.Language;
+import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.MainApp;
 import com.se206.g11.SystemInterface;
@@ -14,15 +15,16 @@ import com.se206.g11.SystemInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class GameScreenController extends ApplicationController implements Initializable {
     //Index of current word
     private int wordIndex = 0;
+    private Status status = Status.NONE;
     //The words the user is to be tested on
     private List<Word> words;
-    private boolean faulted = false;
     private boolean disabled = false;
 
     @FXML
@@ -53,7 +55,7 @@ public class GameScreenController extends ApplicationController implements Initi
      * - If no words are left, go to next screen.
      */
     private void __loadNextWord() {
-        this.faulted = false;
+        // this.faulted = false;
         // Word currWord = this.words.get(this.wordIndex);
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
@@ -65,6 +67,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
+            MainApp.setRoot("Rewards", "Kemu Kupu - Well done!");
         }
     }
     
@@ -73,6 +76,25 @@ public class GameScreenController extends ApplicationController implements Initi
         submit_button.setVisible(false);
         skip_button.setVisible(false);
         hear_button.setVisible(false);
+
+        System.out.println(status);
+        //setup response image
+        switch (status) {
+            case SKIPPED:
+                responseImg.setImage(new Image("file:src/main/resources/assets/SKIPPED.png"));
+                break;
+            case FAULTED:
+                responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_2.png"));
+                break;
+            case FAILED:
+                responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_3.png"));
+                break;
+            default:
+                //mastered or none
+                responseImg.setImage( new Image("file:src/main/resources/assets/CORRECT.png"));
+                break;
+        }
+ 
 
         //show continue and response
         responseImg.setVisible(true);
@@ -99,7 +121,7 @@ public class GameScreenController extends ApplicationController implements Initi
     private void __hearWord(int repeats) {
         if (this.disabled) return;
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
-        SystemInterface.readWord(this.words.get(this.wordIndex).getMaori(), 1);
+        SystemInterface.readWord(this.words.get(this.wordIndex).getMaori(), repeats);
     }
 
     /**
@@ -141,9 +163,14 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     public void submitWordClick() {
         if (this.disabled) return;
+
         //check if they got the word right
         Word input = new Word();
-        input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
+        if (this.inputTextField.getText() == null) {
+            return;
+        } else {
+            input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
+        }
 
         if (this.words.get(this.wordIndex).isEqualLazy(input)) {
             //Correct
@@ -152,24 +179,40 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__updateProgressBar(score / 20);
             MainApp.setScore(score);
 
+            this.status = Status.MASTERED;
+
             //TODO specific actions for faulted words?
             // if (this.faulted) {}
 
-            this.__loadNextWord();
+            // this.__loadNextWord();
         } else {
-            if (!this.faulted) {
+            if (status == Status.NONE || status == Status.SKIPPED) {
                 //First attempt wrong
                 this.__hearWord(2);
-                this.faulted = true;
+                this.status = Status.FAULTED;
+                // this.faulted = true;
                 //TODO show them second letter
 
             } else {
                 //Second attempt wrong
-                this.__loadNextWord();
+                this.status = Status.FAILED;
+                // this.__loadNextWord();
             }
         }
 
         showOnResponse();
+    }
+
+    public void continueClick(){
+        if (this.disabled) return;
+        showOffResponse();
+
+        if (status == Status.FAILED || status == Status.MASTERED || status == Status.SKIPPED){
+            //load next word
+            __loadNextWord();
+        }
+
+
     }
 
     /**
@@ -177,7 +220,9 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     public void skipWordClick() {
         if (this.disabled) return;
-        this.__loadNextWord();
+        this.status = Status.SKIPPED;
+        showOnResponse();
+        // this.__loadNextWord();
     }
 
     /**
@@ -209,5 +254,6 @@ public class GameScreenController extends ApplicationController implements Initi
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> settingsClick());
         submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> submitWordClick());
         skip_button.addEventFilter(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
+        continue_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> continueClick());
     }    
 }

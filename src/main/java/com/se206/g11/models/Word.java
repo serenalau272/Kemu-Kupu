@@ -8,7 +8,6 @@ import java.text.Collator;
 public class Word {
     private String maori;
     private String english;
-
     //// Constructors ////
 
     /**
