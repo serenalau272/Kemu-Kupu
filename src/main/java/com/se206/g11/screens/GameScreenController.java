@@ -76,7 +76,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.showModal("RewardScreen", "Settings");
+            MainApp.showModal("RewardScreen", "Well Done!");
         }
     }
     
@@ -268,7 +268,7 @@ public class GameScreenController extends ApplicationController implements Initi
      * Handler for the settings button
      */
     public void settingsClick() {
-        MainApp.showModal("SettingScreen", "Settings");
+        MainApp.showModal("SettingsScreen", "Settings");
     }
 
     public void onEnter(){
