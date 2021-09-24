@@ -8,6 +8,9 @@ import com.se206.g11.SystemInterface;
 import com.se206.g11.models.Language;
 
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
