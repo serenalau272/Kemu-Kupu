@@ -147,7 +147,7 @@ public class GameScreenController extends ApplicationController implements Initi
                 hintLabel.setText("Correct answer: " + word);
                 break;
             default: 
-                {};
+                hintLabel.setText("");
                 break;
         }
     }
@@ -205,6 +205,7 @@ public class GameScreenController extends ApplicationController implements Initi
         //check if they got the word right
         Word input = new Word();
         if (this.inputTextField.getText().isEmpty()) {
+            inputTextField.setEditable(true);
             return;
         } else {
             input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
@@ -243,6 +244,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
     public void continueClick(){
         if (this.disabled) return;
+
         toggleLabels();
         inputTextField.setEditable(true);
 
@@ -275,14 +277,6 @@ public class GameScreenController extends ApplicationController implements Initi
         MainApp.showModal("SettingScreen", "Settings");
     }
 
-    public void onEnter(){
-        if (awaitingResponse){
-            checkInput();
-        } else {
-            continueClick();
-        }
-    }
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -319,9 +313,11 @@ public class GameScreenController extends ApplicationController implements Initi
         });
         
         inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                inputTextField.setEditable(false);
-                onEnter();
+            if (awaitingResponse) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    inputTextField.setEditable(false);
+                    checkInput();
+                }
             }
         });
 
