@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class GameScreenController extends ApplicationController implements Initializable {
@@ -109,7 +111,7 @@ public class GameScreenController extends ApplicationController implements Initi
     /**
      * Handler for the submit button
      */
-    public void submitWordClick() {
+    public void checkInput() {
         if (this.disabled) return;
         //check if they got the word right
         Word input = new Word();
@@ -171,7 +173,12 @@ public class GameScreenController extends ApplicationController implements Initi
         //initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearAgain(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> settingsClick());
-        submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> submitWordClick());
-        skip_button.addEventFilter(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
+        submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> checkInput());
+        skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
+        inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                checkInput();
+            }
+        });
     }    
 }
