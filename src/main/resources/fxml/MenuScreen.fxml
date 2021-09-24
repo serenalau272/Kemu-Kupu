@@ -4,29 +4,29 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.MenuScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.MenuScreenController">
     <children>
       <ImageView fitHeight="735.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="306.0" fitWidth="705.0" layoutX="248.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="314.0" fitWidth="719.0" layoutX="241.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MainTitle.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="106.0" layoutX="1072.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="47.0" fitWidth="83.0" layoutX="1077.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/EXIT.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitGame_button" fitHeight="81.0" fitWidth="95.0" layoutX="1084.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitGame_button" fitHeight="83.0" fitWidth="87.0" layoutX="1075.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/EXIT_CROSS.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="enterTopicSelect_button" fitHeight="186.0" fitWidth="313.0" layoutX="443.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="enterTopicSelect_button" fitHeight="146.0" fitWidth="249.0" layoutX="477.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MENU_PLAY.png" />
          </image>

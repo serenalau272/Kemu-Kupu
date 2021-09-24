@@ -4,19 +4,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.ExitScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.ExitScreenController">
     <children>
       <ImageView fitHeight="735.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="300.0" fitWidth="527.0" layoutX="325.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="393.0" fitWidth="707.0" layoutX="247.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Thank%20you%20for%20playing!.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="162.0" fitWidth="494.0" layoutX="341.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="162.0" fitWidth="494.0" layoutX="353.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Mauruuru%20koe%20mo%20te%20purei!.png" />
          </image>
