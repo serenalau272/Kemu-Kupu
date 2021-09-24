@@ -26,8 +26,6 @@ public class MenuScreenController extends ApplicationController implements Initi
         super.initialize();
 
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //MainApp.showModal("RewardScreen", "title");
-
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             event.consume();
             SystemInterface.readWord("Thanks for playing.", Language.ENGLISH);
