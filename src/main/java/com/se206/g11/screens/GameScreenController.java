@@ -69,7 +69,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.showModal("RewardsScreen", "Settings");
+            MainApp.showModal("RewardScreen", "Settings");
         }
     }
     
@@ -183,7 +183,7 @@ public class GameScreenController extends ApplicationController implements Initi
     private void __disableQuiz() {
         this.disabled = true;
         this.inputTextField.setDisable(true);
-        MainApp.showModal("RewardScreen", "Reward Screen");
+        // MainApp.showModal("RewardScreen", "Reward Screen");
     
     }
 

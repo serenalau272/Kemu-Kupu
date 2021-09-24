@@ -28,8 +28,8 @@ public class MenuScreenController extends ApplicationController implements Initi
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             event.consume();
-            SystemInterface.readWord("Thanks for playing.", Language.ENGLISH);
-            PauseTransition pause = new PauseTransition(Duration.seconds(5));
+            SystemInterface.readWord("Thanks for playing", Language.ENGLISH);
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(e -> Platform.exit());
             pause.play();
         });
