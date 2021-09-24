@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
-import com.se206.g11.models.Language;
 import com.se206.g11.models.Word;
 import com.se206.g11.MainApp;
 import com.se206.g11.SystemInterface;
@@ -50,7 +49,6 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     private void __loadNextWord() {
         this.faulted = false;
-        Word currWord = this.words.get(this.wordIndex);
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
             this.wordIndex++;
@@ -157,7 +155,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initialize();       
+        super.stageInit();      
 
         //Load words from the MainApp
         this.words = MainApp.getWordList();

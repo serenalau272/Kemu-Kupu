@@ -4,12 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.util.ArrayList;
+import javafx.stage.StageStyle;
+
 import java.util.List;
 import java.io.IOException;
 
-import com.se206.g11.models.Language;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
@@ -21,27 +25,42 @@ public class MainApp extends Application {
     private static List<Word> wordList;
 
     //// Private (helper) methods ////
-    private static void __setRoot(String fxml, String title, Integer delay) {
-        //HACK this delay is bad, it's a blocking call which will freeze the entire ui.
-        //I'd really like to not be delaying actions in this way, is there a better solution?
+    /**
+     * set a new root application pane
+     * @param fxml the name of the fxml file to load
+     * @param title the title of the window to be spawned
+     * @return a stage which can be set or spawned as a modal
+     */
+    private static void __setRoot(String fxml, String title) {
         try {
-            if (delay != null) Thread.sleep(delay);
-            Scene scene = new Scene(loadFXML(fxml));
+            Scene scene = new Scene(new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml")).load());
             stage.setTitle(title);
             stage.setScene(scene);
+            stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+                if (event.getCode() == KeyCode.ESCAPE) MainApp.setRoot("MenuScreen", "Kemu Kupu");
+            });
             stage.show();                    
-        } catch (InterruptedException | IOException e) {
+        } catch (IOException e) {//Note this is a blocking call and will prevent other actions on the thread until the modal is closed {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
     //// Public Methods ////
+    /**
+     * Set the current spelling topic
+     * @param topic Spelling topic to get
+     * @throws IOException throws if we are unable to read the topic file
+     */
     public static void setTopic(SpellingTopic topic) throws IOException {
         chosenTopic = topic;
         wordList = SystemInterface.getWords(5, chosenTopic.getPath());
     }
 
+    /**
+     * Get the list of words
+     * @return a list of words, can be null
+     */
     public static List<Word> getWordList() {
         return wordList;
     }
@@ -62,20 +81,13 @@ public class MainApp extends Application {
         return score;
     }
 
-    @Override
-    public void start(@SuppressWarnings("exports") Stage s) {
-        stage = s;
-        stage.setResizable(false);
-        setRoot("MenuScreen","Kemu Kupu");
-    }
-
     /**
      * Change which scene the user is looking at.
      * @param fxml the name of the scene to load
      * @param title the title of the window to set
      */
     public static void setRoot(String fxml, String title) {
-        __setRoot(fxml, title, null);
+        __setRoot(fxml, title);
     }
 
     /**
@@ -85,12 +97,46 @@ public class MainApp extends Application {
      * @param isDelay delay the page change for a number of seconds.
      */
     public static void setRoot(String fxml, String title, Boolean isDelay) {
-        __setRoot(fxml, title, 5000);
+        __setRoot(fxml, title);
+    }
+    
+    /**
+     * Load and show a modal to the user
+     * @param fxml the name of the fxml to load in a modal
+     * @param title the title of the modal window
+     */
+    //TODO avoid duplicate code here, merge functionality with __setRoot. This should improve readability & extendability of code. For MVP is fine though.
+    public static void showModal(String fxml, String title) {
+        Stage dialog = new Stage();
+        Scene scene;
+        try {
+            //Duplicate code should be refactored at some point, but we need this in order to pass the 
+            //stage into the modal initalisation, which allows us to enable dragging among other things
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            ApplicationController controller = fxmlLoader.getController();
+            controller.modalInit(dialog);
+            scene = new Scene(root);
+        } catch (Exception e) {
+            System.err.println("Unable to load modal " + fxml + " due to error " + e.toString());
+            return;
+        }
+        scene.getStylesheets().add(MainApp.class.getResource("/styles/modal.css").toExternalForm());
+        scene.setFill(Color.TRANSPARENT);
+        dialog.initStyle(StageStyle.TRANSPARENT);
+        dialog.setScene(scene);
+        dialog.setTitle(title);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        //Note this is a blocking call and will prevent other actions on the thread until the modal is closed
+        //We'll need to find a different solution to enable clicking on the main screen to go back 
+        dialog.showAndWait(); 
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+    @Override
+    public void start(@SuppressWarnings("exports") Stage s) {
+        stage = s;
+        stage.setResizable(false);
+        setRoot("MenuScreen","Kemu Kupu");
     }
 
     public static void main(String[] args) {

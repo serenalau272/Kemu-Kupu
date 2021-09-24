@@ -5,8 +5,15 @@ import java.util.ResourceBundle;
 import com.se206.g11.ApplicationController;
 
 import javafx.fxml.Initializable;
-import javafx.application.Platform;
 
-public class ExitScreenController extends ApplicationController{
-    
+public class ExitScreenController extends ApplicationController implements Initializable {
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        
+        // TODO
+    }    
 }
