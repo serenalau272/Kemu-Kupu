@@ -39,6 +39,10 @@ public class GameScreenController extends ApplicationController implements Initi
     private ImageView submit_button;
     @FXML
     private ImageView skip_button;
+    @FXML
+    private ImageView responseImg;
+    @FXML
+    private ImageView continue_button;
 
     //// Helper Functions ////
     /**
@@ -50,13 +54,13 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     private void __loadNextWord() {
         this.faulted = false;
-        Word currWord = this.words.get(this.wordIndex);
+        // Word currWord = this.words.get(this.wordIndex);
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
             this.wordIndex++;
             this.inputTextField.clear();
             this.__updateWordIndexBanner();
-            this.__hearAgain(1);
+            this.__hearWord(1);
         } else {
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
@@ -64,11 +68,35 @@ public class GameScreenController extends ApplicationController implements Initi
         }
     }
     
+    private void showOnResponse(){
+        //remove buttons visibility
+        submit_button.setVisible(false);
+        skip_button.setVisible(false);
+        hear_button.setVisible(false);
+
+        //show continue and response
+        responseImg.setVisible(true);
+        continue_button.setVisible(true);
+    }
+
+
+    private void showOffResponse(){
+        //remove buttons visibility
+        submit_button.setVisible(true);
+        skip_button.setVisible(true);
+        hear_button.setVisible(true);
+
+        //show continue and response
+        responseImg.setVisible(false);
+        continue_button.setVisible(false);
+    }
+
+
     /**
      * Read a word to the user. Does not support language selection as this is not needed for A3.
      * @param repeats number of times to repeat the word to the user, minimum is 1.
      */
-    private void __hearAgain(int repeats) {
+    private void __hearWord(int repeats) {
         if (this.disabled) return;
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
         SystemInterface.readWord(this.words.get(this.wordIndex).getMaori(), 1);
@@ -119,8 +147,9 @@ public class GameScreenController extends ApplicationController implements Initi
 
         if (this.words.get(this.wordIndex).isEqualLazy(input)) {
             //Correct
-            int score = MainApp.getScore() + 1;
-            this.__updateProgressBar(score);
+            System.out.println("Correct");
+            int score = MainApp.getScore() + 20;
+            this.__updateProgressBar(score / 20);
             MainApp.setScore(score);
 
             //TODO specific actions for faulted words?
@@ -130,14 +159,17 @@ public class GameScreenController extends ApplicationController implements Initi
         } else {
             if (!this.faulted) {
                 //First attempt wrong
-                this.__hearAgain(2);
+                this.__hearWord(2);
                 this.faulted = true;
                 //TODO show them second letter
+
             } else {
                 //Second attempt wrong
                 this.__loadNextWord();
             }
         }
+
+        showOnResponse();
     }
 
     /**
@@ -158,6 +190,7 @@ public class GameScreenController extends ApplicationController implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();       
+        showOffResponse();      //no response given
 
         //Load words from the MainApp
         this.words = MainApp.getWordList();
@@ -166,12 +199,13 @@ public class GameScreenController extends ApplicationController implements Initi
             System.err.println("Unable to load words! Cannot start quiz");
             //TODO add popup
         } else {
-            this.__hearAgain(1);
+            MainApp.setScore(0);
+            this.__hearWord(1);
             this.__updateWordIndexBanner();
         }
 
         //initalize event handlers for buttons
-        hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearAgain(1));
+        hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> settingsClick());
         submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> submitWordClick());
         skip_button.addEventFilter(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
