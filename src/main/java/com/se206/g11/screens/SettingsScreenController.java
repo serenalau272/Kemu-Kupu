@@ -10,7 +10,8 @@ public class SettingsScreenController extends ApplicationController implements I
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initialize();
+
+        
         // TODO
     }    
 }

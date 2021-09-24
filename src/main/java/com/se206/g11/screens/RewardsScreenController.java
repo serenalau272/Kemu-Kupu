@@ -10,7 +10,7 @@ public class RewardsScreenController extends ApplicationController implements In
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        super.initialize();
+
         // TODO
     }    
 }
