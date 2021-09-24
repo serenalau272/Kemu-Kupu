@@ -25,7 +25,7 @@ public class SettingsScreenController extends ApplicationController implements I
      * Update display elements with the current settings configuration.
      */
     private void __updateDisplay() {
-        
+
     }
 
     @Override

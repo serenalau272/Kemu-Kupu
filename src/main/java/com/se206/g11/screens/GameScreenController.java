@@ -69,7 +69,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.showModal("RewardScreen", "Settings");
+            MainApp.showModal("RewardsScreen", "Settings");
         }
     }
     
@@ -131,7 +131,6 @@ public class GameScreenController extends ApplicationController implements Initi
 
     private void addSubTextIncorrect() {
         String word = this.words.get(this.wordIndex).getMaori();
-        System.out.println(this.status);
         switch (this.status) {
             case FAULTED:
                 hintLabel.setText("Hint: Second letter is '" + word.charAt(1) + "'");
@@ -207,7 +206,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
         if (this.words.get(this.wordIndex).isEqualLazy(input)) {
             //Correct
-            System.out.println("Correct");
+            SystemInterface.readWord("Ka pai");
             int score = MainApp.getScore() + 20;
             this.__updateProgressBar(score / 20);
             MainApp.setScore(score);
@@ -217,19 +216,15 @@ public class GameScreenController extends ApplicationController implements Initi
             //TODO specific actions for faulted words?
             // if (this.faulted) {}
 
-            // this.__loadNextWord();
         } else {
             if (status == Status.NONE || status == Status.SKIPPED) {
                 //First attempt wrong
-                
                 this.status = Status.FAULTED;
-                // this.faulted = true;
                 //TODO show them second letter
 
             } else {
                 //Second attempt wrong
                 this.status = Status.FAILED;
-                // this.__loadNextWord();
             }
         }
 
@@ -261,7 +256,6 @@ public class GameScreenController extends ApplicationController implements Initi
         if (this.disabled) return;
         this.status = Status.SKIPPED;
         toggleLabels();
-        // this.__loadNextWord();
     }
 
     /**
@@ -320,6 +314,8 @@ public class GameScreenController extends ApplicationController implements Initi
                 }
             }
         });
+
+        
 
     }    
 }
