@@ -24,7 +24,7 @@ public class MainApp extends Application {
     private static SpellingTopic chosenTopic;
     private static int score;
     private static List<Word> wordList;
-    // private static Settings settings;
+    private static Settings settings;
 
     //// Private (helper) methods ////
     /**
@@ -91,20 +91,20 @@ public class MainApp extends Application {
         return score;
     }
     
-    // /**
-    //  * @param s the new settings to set for this user
-    //  */
-    // public static void setSettings(Settings s) {
-    //     settings = s;
-    //     s.save("/.data/settings"); //TODO
-    // }
+    /**
+     * @param s the new settings to set for this user
+     */
+    public static void setSettings(Settings s) {
+        settings = s;
+        s.save("/.data/settings"); //TODO
+    }
 
-    // /**
-    //  * @return the current settings configuration
-    //  */
-    // public static Settings getSettings() {
-    //     return settings;
-    // }
+    /**
+     * @return the current settings configuration
+     */
+    public static Settings getSettings() {
+        return settings;
+    }
 
     /**
      * Change which scene the user is looking at.
@@ -139,11 +139,11 @@ public class MainApp extends Application {
             //stage into the modal initalisation, which allows us to enable dragging among other things
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
             Parent root = (Parent) fxmlLoader.load();
-            // ApplicationController controller = fxmlLoader.getController();
-            // controller.modalInit(dialog);
+            ApplicationController controller = fxmlLoader.getController();
+            controller.modalInit(dialog);
             scene = new Scene(root);
         } catch (Exception e) {
-            System.err.println("Unable to load modal " + fxml + " due to error " + e.toString());
+            System.err.println("Unable to load modal " + fxml + " due to error " + e.toString()); 
             return;
         }
         scene.getStylesheets().add(MainApp.class.getResource("/styles/modal.css").toExternalForm());
@@ -160,7 +160,7 @@ public class MainApp extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage s) {
         stage = s;
-        // settings = new Settings();
+        settings = new Settings();
         stage.setResizable(false);
         setRoot("MenuScreen","Kemu Kupu");
     }

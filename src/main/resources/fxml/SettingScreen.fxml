@@ -8,29 +8,31 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.SettingsScreenController">
     <children>
+      <!-- Static Images -->
       <ImageView fitHeight="760.0" fitWidth="1048.0" layoutX="76.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Settings-modal/SETTINGS.png" />
+            <Image url="@../assets/settings/background.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="music_toggle" fitHeight="150.0" fitWidth="200.0" layoutX="811.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+      <!-- Buttons -->
+      <ImageView fx:id="music_toggle_button" fitHeight="150.0" fitWidth="200.0" layoutX="811.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Settings-modal/ON.png" />
+            <Image url="@../assets/settings/on.png" />
          </image>
       </ImageView>
       <ImageView fx:id="exit_button" fitHeight="81.0" fitWidth="80.0" layoutX="971.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Settings-modal/BACK.png" />
+            <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="plus" fitHeight="67.0" fitWidth="68.0" layoutX="937.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="plus_button" fitHeight="67.0" fitWidth="68.0" layoutX="937.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Settings-modal/+.png" />
+            <Image url="@../assets/settings/+.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="minus" fitHeight="67.0" fitWidth="68.0" layoutX="790.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="minus_button" fitHeight="67.0" fitWidth="68.0" layoutX="790.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Settings-modal/-.png" />
+            <Image url="@../assets/settings/-.png" />
          </image>
       </ImageView>
       <Label fx:id="speedVal" layoutX="858.0" layoutY="328.0" text="1.0x" textFill="WHITE">

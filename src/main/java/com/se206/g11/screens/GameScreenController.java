@@ -2,11 +2,9 @@ package com.se206.g11.screens;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
-import com.se206.g11.models.Language;
 import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.MainApp;
@@ -61,8 +59,7 @@ public class GameScreenController extends ApplicationController implements Initi
      * - If no words are left, go to next screen.
      */
     private void __loadNextWord() {
-        status = Status.NONE;
-
+        this.status = Status.NONE;
         //Check if we have words left
         if (this.wordIndex < this.words.size() -1) {
             this.wordIndex++;
@@ -268,10 +265,16 @@ public class GameScreenController extends ApplicationController implements Initi
         MainApp.showModal("SettingScreen", "Settings");
     }
 
+    public void onEnter() {
+        if (awaitingResponse){
+            checkInput();
+        } else {
+            continueClick();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         super.initialize();       
         showOffResponse();      //no response given
 
