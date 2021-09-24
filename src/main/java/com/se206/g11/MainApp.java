@@ -131,8 +131,8 @@ public class MainApp extends Application {
             //stage into the modal initalisation, which allows us to enable dragging among other things
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
             Parent root = (Parent) fxmlLoader.load();
-            ApplicationController controller = fxmlLoader.getController();
-            controller.modalInit(dialog);
+            // ApplicationController controller = fxmlLoader.getController();
+            // controller.modalInit(dialog);
             scene = new Scene(root);
         } catch (Exception e) {
             System.err.println("Unable to load modal " + fxml + " due to error " + e.toString());

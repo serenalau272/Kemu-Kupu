@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.SettingScreenController">
     <children>
-      <ImageView fitHeight="881.0" fitWidth="1347.0" layoutX="-119.0" layoutY="-51.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/Reward-screen/background.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="760.0" fitWidth="1048.0" layoutX="143.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="760.0" fitWidth="1048.0" layoutX="76.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Settings-modal/SETTINGS.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="music_toggle" fitHeight="150.0" fitWidth="200.0" layoutX="811.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="music_toggle" fitHeight="150.0" fitWidth="200.0" layoutX="811.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Settings-modal/ON.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit_button" fitHeight="81.0" fitWidth="80.0" layoutX="1001.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit_button" fitHeight="81.0" fitWidth="80.0" layoutX="971.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Settings-modal/BACK.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="plus" fitHeight="67.0" fitWidth="68.0" layoutX="937.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Settings-modal/+.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="minus" fitHeight="67.0" fitWidth="68.0" layoutX="790.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Settings-modal/-.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="speedVal" layoutX="858.0" layoutY="328.0" text="1.0x" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold" size="43.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
