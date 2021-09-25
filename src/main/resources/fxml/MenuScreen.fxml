@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.MenuScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.MenuScreenController">
     <children>
       <!-- Static Images & Labels -->
       <ImageView fitHeight="735.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
@@ -31,6 +31,11 @@
       <ImageView fx:id="enterTopicSelect_button" fitHeight="146.0" fitWidth="249.0" layoutX="477.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MENU_PLAY.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="info_button" fitHeight="81.0" fitWidth="95.0" layoutX="1084.0" layoutY="626.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/EXIT_CROSS.png" />
          </image>
       </ImageView>
     </children>
