@@ -77,7 +77,7 @@ public class GameScreenController extends ApplicationController implements Initi
             //Quiz finished, go to rewards screen?
             //TODO
             MainApp.addBlur();
-            MainApp.showModal("RewardsScreen", "Reward Screen");
+            MainApp.showModal("RewardScreen", "Reward Screen");
         }
     }
     
