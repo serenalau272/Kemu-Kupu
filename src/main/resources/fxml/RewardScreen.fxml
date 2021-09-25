@@ -16,7 +16,7 @@
             <Image url="@../assets/rewardScreen/wood.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="honeyPot" fitHeight="374.0" fitWidth="420.0" layoutX="698.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pot_button" fitHeight="374.0" fitWidth="420.0" layoutX="698.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/honey-pot.png" />
          </image>

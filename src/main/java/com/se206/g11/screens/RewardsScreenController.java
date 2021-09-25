@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
+import com.se206.g11.SystemInterface;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +19,7 @@ public class RewardsScreenController extends ApplicationController implements In
 
     @FXML private ImageView again_button;
     @FXML private ImageView menu_button;
+    @FXML private ImageView pot_button;
 
     //// Private (helper) methods ////
     /**
@@ -41,5 +43,8 @@ public class RewardsScreenController extends ApplicationController implements In
         }
         menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("MenuScreen", "Kemu Kupu"));
         again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("TopicScreen", "Kemu Kupu - Choose a Topic!"));
+        pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+            SystemInterface.readWord("Ka Pai");
+        });
     }    
 }

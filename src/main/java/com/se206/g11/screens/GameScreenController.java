@@ -50,6 +50,13 @@ public class GameScreenController extends ApplicationController implements Initi
     @FXML
     private ImageView continue_button;
 
+    //macron buttons
+    @FXML private ImageView a_button;
+    @FXML private ImageView e_button;
+    @FXML private ImageView i_button;
+    @FXML private ImageView o_button;
+    @FXML private ImageView u_button;
+
     //// Helper Functions ////
     /**
      * Loads the next word for a user ot be tested on, simplifying the code elsewhere.
@@ -69,7 +76,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.showModal("RewardsScreen", "Settings");
+            MainApp.showModal("RewardScreen", "Settings");
         }
     }
     
@@ -183,7 +190,7 @@ public class GameScreenController extends ApplicationController implements Initi
     private void __disableQuiz() {
         this.disabled = true;
         this.inputTextField.setDisable(true);
-        MainApp.showModal("RewardScreen", "Reward Screen");
+        // MainApp.showModal("RewardScreen", "Reward Screen");
     
     }
 
@@ -265,12 +272,10 @@ public class GameScreenController extends ApplicationController implements Initi
         MainApp.showModal("SettingScreen", "Settings");
     }
 
-    public void onEnter() {
-        if (awaitingResponse){
-            checkInput();
-        } else {
-            continueClick();
-        }
+    private void insertMacron(String macron){
+        String newInput = inputTextField.getText() + macron;
+        inputTextField.setText(newInput);
+        inputTextField.positionCaret(newInput.length());
     }
 
     @Override
@@ -314,6 +319,13 @@ public class GameScreenController extends ApplicationController implements Initi
                 }
             }
         });
+
+        a_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ā"));
+        e_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ē"));
+        i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ī"));
+        o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ō"));
+        u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ū"));
+
 
         
 
