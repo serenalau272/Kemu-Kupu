@@ -55,6 +55,10 @@ public class MainApp extends Application {
         }
     }
 
+    private static void disableScreenNodes(boolean isDisable) {
+        stackPane.getChildren().get(0).setDisable(isDisable);
+    }
+
     //// Public Methods ////
     /**
      * Set the current spelling topic
@@ -121,16 +125,6 @@ public class MainApp extends Application {
     public static void setRoot(String fxml, String title) {
         __setRoot(fxml, title);
     }
-
-    /**
-     * Change which scene the user is looking at.
-     * @param fxml the name of the scene to load
-     * @param title the title of the window to set
-     * @param isDelay delay the page change for a number of seconds.
-     */
-    public static void setRoot(String fxml, String title, Boolean isDelay) {
-        __setRoot(fxml, title);
-    }
     
     /**
      * Load and show a modal to the user
@@ -142,6 +136,7 @@ public class MainApp extends Application {
         try {
             //Duplicate code should be refactored at some point, but we need this in order to pass the 
             //stage into the modal initalisation, which allows us to enable dragging among other things
+            disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
             stackPane.getChildren().add(modal);
@@ -155,6 +150,7 @@ public class MainApp extends Application {
     public static void closeModal() {
         stackPane.getChildren().remove(1);
         removeBlur();
+        disableScreenNodes(false);
 
     }
 
@@ -162,7 +158,7 @@ public class MainApp extends Application {
         // ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
         // GaussianBlur blur = new GaussianBlur(55);
         // adj.setInput(blur);
-        stackPane.getChildren().get(0).setEffect(new GaussianBlur(50));
+        stackPane.getChildren().get(0).setEffect(new GaussianBlur(10));
     }
 
     public static void removeBlur() {
