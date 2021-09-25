@@ -1,4 +1,6 @@
 package com.se206.g11.screens;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -2,8 +2,10 @@ package com.se206.g11;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +13,9 @@ import java.util.Random;
 import com.se206.g11.models.Language;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /*
     This class is entirely made up of static functions, and is designed to handle all operations 
@@ -35,7 +40,6 @@ public class SystemInterface {
      * @param repeats the number of times to repeat the word
      * @param language the language to which words are read out
      */
-    //TODO - Implement speaking speed adjustment
     //TODO - return a handle which can be modified by an API to end execution early.
     // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
     private static void __readWord(String word, int repeats, Language language) {
@@ -164,5 +168,17 @@ public class SystemInterface {
             result.add(new SpellingTopic(name, path + "/" + name));
         }
         return result;
+    }
+
+    /**
+     * Play a sound from the resources/sound folder.
+     * SAFTEY: As this is a built-in javafx method execution is ended automatically upon termination of the main thread.
+     * WARNING: Will fail if an unknown sound is provided (full thread crash). //TODO add file validation
+     * @param sound the name of the sound to play
+     */
+    public static void play_sound(String sound) throws URISyntaxException {
+        String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
+        //Play sound
+        new MediaPlayer(new Media(path)).play();
     }
 }
