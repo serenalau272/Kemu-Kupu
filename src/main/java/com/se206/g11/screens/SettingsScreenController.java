@@ -45,7 +45,7 @@ public class SettingsScreenController extends ApplicationController implements I
      * Close this modal
      */
     private void __close() {
-        ((Stage) this.anchorPane.getScene().getWindow()).close();
+        MainApp.closeModal();
     }
 
     /**

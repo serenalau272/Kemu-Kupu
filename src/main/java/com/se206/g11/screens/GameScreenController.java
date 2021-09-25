@@ -66,7 +66,10 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__hearWord(1);
         } else {
             this.__disableQuiz();
-            MainApp.showModal("RewardScreen", "Settings");
+            //Quiz finished, go to rewards screen?
+            //TODO
+            MainApp.addBlur();
+            MainApp.showModal("RewardScreen", "Reward Screen");
         }
     }
     

@@ -29,7 +29,8 @@ public class RewardsScreenController extends ApplicationController implements In
      */
     private void __changeClose(String fxml, String title) {
         MainApp.setRoot(fxml, title);
-        ((Stage) this.anchorPane.getScene().getWindow()).close();
+        MainApp.closeModal();
+
     }
 
     //// Public Methods ////

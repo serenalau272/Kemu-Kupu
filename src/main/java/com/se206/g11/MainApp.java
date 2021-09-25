@@ -2,14 +2,18 @@ package com.se206.g11;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 
 import java.util.List;
 import java.io.IOException;
@@ -20,7 +24,7 @@ import com.se206.g11.models.Word;
 
 public class MainApp extends Application {
     private static Stage stage;
-    
+    private static StackPane stackPane;
     private static SpellingTopic chosenTopic;
     private static int score;
     private static List<Word> wordList;
@@ -35,7 +39,9 @@ public class MainApp extends Application {
      */
     private static void __setRoot(String fxml, String title) {
         try {
-            Scene scene = new Scene(new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml")).load());
+            stackPane = new StackPane();
+            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml")).load());
+            Scene scene = new Scene(stackPane);
             stage.setTitle(title);
             stage.setScene(scene);
             stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
@@ -46,6 +52,10 @@ public class MainApp extends Application {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    private static void disableScreenNodes(boolean isDisable) {
+        stackPane.getChildren().get(0).setDisable(isDisable);
     }
 
     //// Public Methods ////
@@ -114,16 +124,6 @@ public class MainApp extends Application {
     public static void setRoot(String fxml, String title) {
         __setRoot(fxml, title);
     }
-
-    /**
-     * Change which scene the user is looking at.
-     * @param fxml the name of the scene to load
-     * @param title the title of the window to set
-     * @param isDelay delay the page change for a number of seconds.
-     */
-    public static void setRoot(String fxml, String title, Boolean isDelay) {
-        __setRoot(fxml, title);
-    }
     
     /**
      * Load and show a modal to the user
@@ -132,30 +132,39 @@ public class MainApp extends Application {
      */
     //TODO avoid duplicate code here, merge functionality with __setRoot. This should improve readability & extendability of code. For MVP is fine though.
     public static void showModal(String fxml, String title) {
-        Stage dialog = new Stage();
-        Scene scene;
         try {
             //Duplicate code should be refactored at some point, but we need this in order to pass the 
             //stage into the modal initalisation, which allows us to enable dragging among other things
+            disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            ApplicationController controller = fxmlLoader.getController();
-            controller.modalInit(dialog);
-            scene = new Scene(root);
+            Node modal = (Node) fxmlLoader.load();
+            stackPane.getChildren().add(modal);
+            addBlur();
         } catch (Exception e) {
             System.err.println("Unable to load modal " + fxml + " due to error " + e.toString()); 
             return;
         }
-        scene.getStylesheets().add(MainApp.class.getResource("/styles/modal.css").toExternalForm());
-        scene.setFill(Color.TRANSPARENT);
-        dialog.initStyle(StageStyle.TRANSPARENT);
-        dialog.setScene(scene);
-        dialog.setTitle(title);
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        //Note this is a blocking call and will prevent other actions on the thread until the modal is closed
-        //We'll need to find a different solution to enable clicking on the main screen to go back 
-        dialog.showAndWait(); 
     }
+
+    public static void closeModal() {
+        stackPane.getChildren().remove(1);
+        removeBlur();
+        disableScreenNodes(false);
+
+    }
+
+    public static void addBlur() {
+        // ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
+        // GaussianBlur blur = new GaussianBlur(55);
+        // adj.setInput(blur);
+        stackPane.getChildren().get(0).setEffect(new GaussianBlur(10));
+    }
+
+    public static void removeBlur() {
+        stackPane.getChildren().get(0).setEffect(null);
+    }
+
+
 
     @Override
     public void start(Stage s) {

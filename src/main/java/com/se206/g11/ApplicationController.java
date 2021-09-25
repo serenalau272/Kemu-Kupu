@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class ApplicationController {
     @FXML
-    protected Pane anchorPane;
+    protected Pane stackPane;
 
     //The stage of this window.
     private Stage stage = null; 
@@ -91,29 +91,29 @@ public class ApplicationController {
      * Initalize a modal - Should only be called from MainApp, do not call from internal function
      * @param s
      */
-    protected final void modalInit(Stage s) {
-        this.stage = s;
-        //Allow the modal to be clicked and dragged
-        this.stage.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-            this.xOffset = this.stage.getX() - event.getScreenX();
-            this.yOffset = this.stage.getY() - event.getScreenY();
-        });
-        this.stage.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-            this.stage.setX(event.getScreenX() + this.xOffset);
-            this.stage.setY(event.getScreenY() + this.yOffset);
-        });
-        //Close the modal on esc
-        this.stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode() == KeyCode.ESCAPE) this.stage.close();
-        });
-    }
+    // protected final void modalInit(Stage s) {
+    //     this.stage = s;
+    //     //Allow the modal to be clicked and dragged
+    //     this.stage.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+    //         this.xOffset = this.stage.getX() - event.getScreenX();
+    //         this.yOffset = this.stage.getY() - event.getScreenY();
+    //     });
+    //     this.stage.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+    //         this.stage.setX(event.getScreenX() + this.xOffset);
+    //         this.stage.setY(event.getScreenY() + this.yOffset);
+    //     });
+    //     //Close the modal on esc
+    //     this.stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+    //         if (event.getCode() == KeyCode.ESCAPE) this.stage.close();
+    //     });
+    // }
 
     /**
      * Initalize a regular stage
      */
     protected void initialize() {
         // Add resizing to all buttons on the page
-        List<ImageView> imgs = findElms(anchorPane, ImageView.class);
+        List<ImageView> imgs = findElms(stackPane, ImageView.class);
         imgs.forEach(i -> {
             if (i.getId() != null && i.getId().contains("_button")) {
                 i.addEventHandler(MouseEvent.MOUSE_ENTERED, _e -> {
