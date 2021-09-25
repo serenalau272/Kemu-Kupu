@@ -55,10 +55,6 @@ public class MainApp extends Application {
         }
     }
 
-    private static void addPane(Node pane) {
-        stackPane.getChildren().add(pane);
-    }
-
     //// Public Methods ////
     /**
      * Set the current spelling topic
@@ -148,21 +144,18 @@ public class MainApp extends Application {
             //stage into the modal initalisation, which allows us to enable dragging among other things
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
-            ApplicationController controller = fxmlLoader.getController();
-          //  controller.modalInit(dialog);
-            addPane(modal);
-        //    scene = new Scene(root);
+            stackPane.getChildren().add(modal);
+            addBlur();
         } catch (Exception e) {
             System.err.println("Unable to load modal " + fxml + " due to error " + e.toString()); 
             return;
         }
-    //    scene.getStylesheets().add(MainApp.class.getResource("/styles/modal.css").toExternalForm());
+    }
 
+    public static void closeModal() {
+        stackPane.getChildren().remove(1);
+        removeBlur();
 
-      //  dialog.initModality(Modality.APPLICATION_MODAL);
-        //Note this is a blocking call and will prevent other actions on the thread until the modal is closed
-        //We'll need to find a different solution to enable clicking on the main screen to go back 
-   //     dialog.showAndWait(); 
     }
 
     public static void addBlur() {
