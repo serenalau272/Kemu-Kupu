@@ -158,7 +158,7 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(@SuppressWarnings("exports") Stage s) {
+    public void start(Stage s) {
         stage = s;
         settings = new Settings();
         stage.setResizable(false);

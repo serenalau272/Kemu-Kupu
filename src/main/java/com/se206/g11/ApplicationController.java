@@ -29,6 +29,31 @@ public class ApplicationController {
     private double yOffset = 0;
     private double xOffset = 0;
 
+    //// Private (Helper) Functions ////
+
+    //// Public API (to be used by child classes internally) ////
+
+    /**
+     * Update an imageview with another imageview in the same folder (makes things much simpler)
+     * Note that this can fail if you provide a filename which doesn't exist!
+     * @param s the name of the image to switch to
+     * @param view the view to attach the image on
+     * @throws FileNotFoundException fails when s is an invalid image
+     */
+    private void __setImage(String s, ImageView view) throws FileNotFoundException {
+        if (s.contains(".png")) System.err.println("Warning! Path included `.png`, this is already added " + s);
+        //Parse the current location and set the new value
+        String[] ex = view.getImage().getUrl().split("/");
+        ex[ex.length-1] = s + ".png";
+
+        //Check the file exists
+        URI uri = URI.create(String.join("/", ex));
+        if (!new File(uri).isFile()) throw new FileNotFoundException("Index was set out of bounds! Unable to find image file " + uri);
+
+        //Set the image on the frontend
+        view.setImage(new Image(String.join("/", ex)));
+    }
+
     /// Function using generics to find elements of a certain type
     protected <T> List<T> findElms(Pane p, Class<T> t) {
         List<T> elm = new ArrayList<T>();
@@ -44,18 +69,22 @@ public class ApplicationController {
      * I'd recommend placing a call to this behind a calling function which will throw an error in the event i is out of bounds
      * (or clamp it to a certain value)
      * @param i an integer indicating which image we need to load
+     * @param view the view to attach the image on
+     * @throws FileNotFoundException
      */
     protected void setImage(Integer i, ImageView view) throws FileNotFoundException {     
-        //Parse the current location, and set it's new value
-        String[] s = view.getImage().getUrl().split("/");
-        s[s.length-1] = i + ".png";
+        __setImage(i.toString(), view);
+    }
 
-        //Check the file exists
-        URI uri = URI.create(String.join("/", s));
-        if (!new File(uri).isFile()) throw new FileNotFoundException("Index was set out of bounds! Unable to find image file " + uri);
-
-        //Set the image on the frontend
-        view.setImage(new Image(String.join("/", s)));
+    /**
+     * Update an imageview with another imageview in the same folder
+     * Note that this can fail if you provide a filename which doesn't exist!
+     * @param s the name of the image to switch to
+     * @param view the view to attach the image on
+     * @throws FileNotFoundException
+     */
+    protected void setImage(String s, ImageView view) throws FileNotFoundException {
+        __setImage(s, view);
     }
 
     /**
