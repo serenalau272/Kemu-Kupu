@@ -75,29 +75,34 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <ImageView fx:id="a_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="a_button1" fitHeight="348.0" fitWidth="80.0" layoutX="1131.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/a.png" />
+            <Image url="@../assets/macronKeys/key-background.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="e_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="a_button" fitHeight="68.0" fitWidth="77.0" layoutX="1137.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/e.png" />
+            <Image url="@../assets/macronKeys/a.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="i_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="e_button" fitHeight="68.0" fitWidth="68.0" layoutX="1138.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/i.png" />
+            <Image url="@../assets/macronKeys/e.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="o_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="i_button" fitHeight="68.0" fitWidth="77.0" layoutX="1137.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/o.png" />
+            <Image url="@../assets/macronKeys/i.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="u_button" fitHeight="52.0" fitWidth="63.0" layoutX="1128.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="o_button" fitHeight="68.0" fitWidth="80.0" layoutX="1137.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/u.png" />
+            <Image url="@../assets/macronKeys/o.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="u_button" fitHeight="68.0" fitWidth="77.0" layoutX="1137.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/macronKeys/u.png" />
          </image>
       </ImageView>
     </children>

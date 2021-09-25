@@ -1,52 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.screens.AttributionsScreenController">
     <children>
-      <ImageView fitHeight="732.0" fitWidth="561.0" layoutX="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="attributionModal" fitHeight="627.0" fitWidth="793.0" layoutX="218.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/rewardScreen/wood.png" />
+            <Image url="@../assets/attribution/AttributionsModal.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit_button" fitHeight="81.0" fitWidth="80.0" layoutX="1029.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit_button" fitHeight="82.0" fitWidth="68.0" layoutX="1101.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="731.0" fitWidth="561.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/rewardScreen/wood.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="376.0" layoutY="59.0" text="Asset Attributions" textFill="WHITE">
-         <font>
-            <Font name="Roboto Regular" size="59.0" />
-         </font>
-      </Label>
-      <Label layoutX="206.0" layoutY="242.0" text="Background - " textFill="WHITE">
-         <font>
-            <Font name="Roboto Regular" size="40.0" />
-         </font>
-      </Label>
-      <Label layoutX="316.0" layoutY="297.0" text="Wood - " textFill="WHITE">
-         <font>
-            <Font name="Roboto Regular" size="40.0" />
-         </font>
-      </Label>
-      <Label layoutX="306.0" layoutY="352.0" text="Honey - " textFill="WHITE">
-         <font>
-            <Font name="Roboto Regular" size="40.0" />
-         </font>
-      </Label>
-      <Label layoutX="359.0" layoutY="396.0" text="Pot - " textFill="WHITE">
-         <font>
-            <Font name="Roboto Regular" size="40.0" />
-         </font>
-      </Label>
     </children>
 </AnchorPane>
