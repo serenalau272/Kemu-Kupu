@@ -76,7 +76,8 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__disableQuiz();
             //Quiz finished, go to rewards screen?
             //TODO
-            MainApp.showModal("RewardScreen", "Settings");
+            MainApp.addBlur();
+            MainApp.showModal("RewardScreen", "Reward Screen");
         }
     }
     
