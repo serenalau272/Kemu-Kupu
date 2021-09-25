@@ -40,7 +40,7 @@ public class RewardsScreenController extends ApplicationController implements In
         super.initialize();
         this.score = MainApp.getScore();
         for (int i = 0; i < 3; i++) {
-            if (score >= this.starThreshold[i]) this.anchorPane.lookup("star" + i).setVisible(true); 
+            // if (score >= this.starThreshold[i]) this.stackPane.lookup("star" + i).setVisible(true); 
         }
         menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("MenuScreen", "Kemu Kupu"));
         again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("TopicScreen", "Kemu Kupu - Choose a Topic!"));

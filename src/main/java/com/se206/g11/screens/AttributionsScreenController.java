@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
+import com.se206.g11.MainApp;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +21,7 @@ public class AttributionsScreenController extends ApplicationController implemen
      * Close this modal
      */
     private void __close() {
-        ((Stage) this.anchorPane.getScene().getWindow()).close();
+        MainApp.closeModal();
     }
     //// Public Methods ////
 

@@ -176,9 +176,13 @@ public class SystemInterface {
      * WARNING: Will fail if an unknown sound is provided (full thread crash). //TODO add file validation
      * @param sound the name of the sound to play
      */
-    public static void play_sound(String sound) throws URISyntaxException {
-        String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
-        //Play sound
-        new MediaPlayer(new Media(path)).play();
+    public static void play_sound(String sound) {
+        try {
+            String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
+            //Play sound
+            new MediaPlayer(new Media(path)).play();
+        } catch (URISyntaxException exception){
+            System.err.println("Unable to load sound file: " + sound);
+        }
     }
 }

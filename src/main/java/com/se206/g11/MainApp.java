@@ -147,6 +147,7 @@ public class MainApp extends Application {
     }
 
     public static void closeModal() {
+        SystemInterface.play_sound("pop");
         stackPane.getChildren().remove(1);
         removeBlur();
         disableScreenNodes(false);

@@ -28,7 +28,9 @@ public class MenuScreenController extends ApplicationController implements Initi
         super.initialize();
 
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            SystemInterface.play_sound("pop");
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
+            
             event.consume();
             SystemInterface.readWord("Thanks for playing", Language.ENGLISH);
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
@@ -37,7 +39,9 @@ public class MenuScreenController extends ApplicationController implements Initi
         });
 
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            SystemInterface.play_sound("pop");
             MainApp.setRoot("TopicScreen", "Kemu Kupu - Choose a Topic!");
+            
             event.consume();
         });
     }    
