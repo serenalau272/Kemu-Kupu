@@ -99,20 +99,24 @@ public class GameScreenController extends ApplicationController implements Initi
         this.inputTextField.clear();
 
         //setup response image
-        switch (status) {
-            case SKIPPED:
-                responseImg.setImage(new Image("file:src/main/resources/assets/SKIPPED.png"));
-                break;
-            case FAULTED:
-                responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_2.png"));
-                break;
-            case FAILED:
-                responseImg.setImage( new Image("file:src/main/resources/assets/INCORRECT_3.png"));
-                break;
-            default:
-                //mastered or none
-                responseImg.setImage( new Image("file:src/main/resources/assets/CORRECT.png"));
-                break;
+        try {
+            switch (status) {
+                case SKIPPED:
+                    setImage("SKIPPED", responseImg);
+                    break;
+                case FAULTED:
+                    setImage("INCORRECT_2", responseImg);
+                    break;
+                case FAILED:
+                    setImage("INCORRECT_3", responseImg);
+                    break;
+                default:
+                    //mastered or none
+                    setImage("CORRECT", responseImg);
+                    break;
+            }
+        } catch (FileNotFoundException exception){
+            System.err.println("File not found");
         }
 
         addSubTextIncorrect();
@@ -211,7 +215,7 @@ public class GameScreenController extends ApplicationController implements Initi
             input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
         }
 
-        if (this.words.get(this.wordIndex).isEqualLazy(input)) {
+        if (this.words.get(this.wordIndex).isEqualStrict(input)) {
             //Correct
             SystemInterface.readWord("Ka pai");
             int score = MainApp.getScore() + 20;
