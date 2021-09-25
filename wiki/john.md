@@ -93,3 +93,11 @@
 * Collaboration was done well all in all; and again via Live Share and Zoom.
 * Tomorrow we need to fix up the hint labels, check and implement the settings modal, and refactor the rewards modal. We also need macron integration and checking words for proper macron display. Other stretch goals are adding sound effects, adding fonts, and changing image assets.
 * Reports also need to start being written.
+
+- - - -
+**<font size="5">MVP + still a few bugs :(</font>**
+
+*25-Sep, 2021.*
+* Fixed up labelling, added voice speed modulation, and refactored modals. Macron integration and sound effects also added
+* Much polishing of the codebase needs to be undertaken. Bugs exist in the rewards modal, festival callback needs implementation, and attribution modal needs to be finalised.
+* Plan tomorrow/tonight is to address those areas and spend some time polishing the codebase + checking for errors. We should submit by tomorrow evening.
