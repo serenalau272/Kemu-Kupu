@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class ApplicationController {
     @FXML
-    protected Pane stackPane;
+    protected Pane anchorPane;
 
     //The stage of this window.
     private Stage stage = null; 
@@ -113,7 +113,7 @@ public class ApplicationController {
      */
     protected void initialize() {
         // Add resizing to all buttons on the page
-        List<ImageView> imgs = findElms(stackPane, ImageView.class);
+        List<ImageView> imgs = findElms(anchorPane, ImageView.class);
         imgs.forEach(i -> {
             if (i.getId() != null && i.getId().contains("_button")) {
                 i.addEventHandler(MouseEvent.MOUSE_ENTERED, _e -> {
