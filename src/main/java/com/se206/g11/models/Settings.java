@@ -54,6 +54,7 @@ public class Settings {
      * @param s
      */
     public void setSpeechSpeed(Double s) {
+        if (s < 0.1) return;
         this.speechSpeed = s;
     }
 }
