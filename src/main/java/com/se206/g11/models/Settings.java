@@ -42,6 +42,13 @@ public class Settings {
     }
 
     /**
+     * @return the duration speed factor for Festival
+     */
+    public Double getSpeedFactor(){
+        return 1.0 / this.speechSpeed;
+    }
+
+    /**
      * Set whether music is available or not
      * @param e
      */
@@ -54,7 +61,7 @@ public class Settings {
      * @param s
      */
     public void setSpeechSpeed(Double s) {
-        if (s < 0.1) return;
+        if (s < 0.5 || s > 2) return;
         this.speechSpeed = s;
     }
 }

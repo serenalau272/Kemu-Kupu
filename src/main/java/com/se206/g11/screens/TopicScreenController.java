@@ -24,15 +24,9 @@ public class TopicScreenController extends ApplicationController implements Init
     @FXML
     private ImageView colours_button;
     @FXML
-    private ImageView daysOfWeek_button;
-    @FXML
     private ImageView daysOfWeekLoanWords_button;
     @FXML
     private ImageView engineering_button;
-    @FXML
-    private ImageView feelings_button;
-    @FXML
-    private ImageView monthsOfYear_button;
     @FXML
     private ImageView monthsOfYearLoanWords_button;
     @FXML
@@ -75,11 +69,8 @@ public class TopicScreenController extends ApplicationController implements Init
         initiliseSelectableTopic(babies_button);
         initiliseSelectableTopic(compassPoints_button);
         initiliseSelectableTopic(colours_button);
-        initiliseSelectableTopic(daysOfWeek_button);
         initiliseSelectableTopic(daysOfWeekLoanWords_button);
         initiliseSelectableTopic(engineering_button);
-        initiliseSelectableTopic(feelings_button);
-        initiliseSelectableTopic(monthsOfYear_button);
         initiliseSelectableTopic(monthsOfYearLoanWords_button);
         initiliseSelectableTopic(software_button);
         initiliseSelectableTopic(uniLife_button);

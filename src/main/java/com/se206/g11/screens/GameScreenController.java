@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,12 +28,9 @@ public class GameScreenController extends ApplicationController implements Initi
     private boolean disabled = false;
     private boolean awaitingResponse = true;
 
-    @FXML
-    private TextField inputTextField;
-    @FXML
-    private Label hintLabel;
-    @FXML
-    private ImageView wordIndexBanner;
+    @FXML private TextField inputTextField;
+    @FXML private Label hintLabel;
+    @FXML private ImageView wordIndexBanner;
     @FXML
     private ImageView progressBar;
     @FXML
@@ -51,11 +47,7 @@ public class GameScreenController extends ApplicationController implements Initi
     private ImageView continue_button;
 
     //macron buttons
-    @FXML private ImageView a_button;
-    @FXML private ImageView e_button;
-    @FXML private ImageView i_button;
-    @FXML private ImageView o_button;
-    @FXML private ImageView u_button;
+    @FXML private ImageView a_button, e_button, i_button, o_button, u_button;
 
     //// Helper Functions ////
     /**
@@ -206,16 +198,16 @@ public class GameScreenController extends ApplicationController implements Initi
      */
     public void checkInput() {
         if (this.disabled) return;
-
-        //check if they got the word right
-        Word input = new Word();
+        
         if (this.inputTextField.getText().isEmpty()) {
             inputTextField.setEditable(true);
             return;
-        } else {
-            input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
         }
 
+        //check if they got the word right
+        Word input = new Word();
+        input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
+        
         if (this.words.get(this.wordIndex).isEqualStrict(input)) {
             //Correct
             SystemInterface.readWord("Ka pai");
@@ -224,16 +216,10 @@ public class GameScreenController extends ApplicationController implements Initi
             MainApp.setScore(score);
 
             this.status = Status.MASTERED;
-
-            //TODO specific actions for faulted words?
-            // if (this.faulted) {}
-
         } else {
             if (status == Status.NONE || status == Status.SKIPPED) {
                 //First attempt wrong
                 this.status = Status.FAULTED;
-                //TODO show them second letter
-
             } else {
                 //Second attempt wrong
                 this.status = Status.FAILED;
@@ -330,9 +316,5 @@ public class GameScreenController extends ApplicationController implements Initi
         i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ī"));
         o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ō"));
         u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ū"));
-
-
-        
-
     }    
 }

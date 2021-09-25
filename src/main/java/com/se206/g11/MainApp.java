@@ -25,7 +25,6 @@ import com.se206.g11.models.Word;
 public class MainApp extends Application {
     private static Stage stage;
     private static StackPane stackPane;
-
     private static SpellingTopic chosenTopic;
     private static int score;
     private static List<Word> wordList;
@@ -69,7 +68,7 @@ public class MainApp extends Application {
         chosenTopic = topic;
         wordList = SystemInterface.getWords(5, chosenTopic.getPath());
     }
-
+    
     /**
      * Get the list of words
      * @return a list of words, can be null
