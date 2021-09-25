@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 public class MenuScreenController extends ApplicationController implements Initializable {
     @FXML private ImageView exitGame_button;
     @FXML private ImageView enterTopicSelect_button;
-    @FXML private ImageView info_button;
+    @FXML private ImageView infoBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -37,7 +37,7 @@ public class MenuScreenController extends ApplicationController implements Initi
             pause.play();
         });
 
-        info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        infoBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             SystemInterface.play_sound("pop");
             MainApp.showModal("AttributionScreen", "Kemu Kupu - Asset Attributions");
         });
