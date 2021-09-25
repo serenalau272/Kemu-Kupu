@@ -32,7 +32,7 @@ public class SettingsScreenController extends ApplicationController implements I
      * Update display elements with the current settings configuration.
      */
     private void __update() {
-        this.speedVal.setText(String.format("%.1f", this.settings.getSpeechSpeed()));
+        this.speedVal.setText(String.format("%.2f", this.settings.getSpeechSpeed()));
         try {
             this.setImage((this.settings.getMusic()) ? "on" : "off", this.music_toggle_button);
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class SettingsScreenController extends ApplicationController implements I
             this.settings.setMusic(!this.settings.getMusic());
             this.__update();
         });
-        this.minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.1));
-        this.plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.1));
+        this.minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));
+        this.plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
     }
 }

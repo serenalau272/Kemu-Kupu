@@ -40,12 +40,13 @@ public class SystemInterface {
     // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
     private static void __readWord(String word, int repeats, Language language) {
         //This thread prevents any lockup of the front end.
+        String speedCommand = "\"(Parameter.set 'Duration_Stretch "+  MainApp.getSettings().getSpeedFactor() + ")\"";
         String langCommand = (language == Language.MAORI) ? "voice_akl_mi_pk06_cg" : "voice_akl_nz_cw_cg_cg" ;        
         String wordCommand = "\"(SayText \\\"" + word +"\\\")\"";
         Thread t = new Thread(() -> {
             try {
                 for (int i = 0; i < Integer.max(repeats, 1); i++) {
-                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + wordCommand + " | festival");  
+                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + speedCommand + " " + wordCommand + " | festival");  
                     Process p = c.start();
                     p.waitFor();
                 }
