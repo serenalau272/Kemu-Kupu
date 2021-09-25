@@ -62,12 +62,12 @@
       </TextField>
       <ImageView fx:id="responseImg" fitHeight="133.0" fitWidth="749.0" layoutX="221.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/CORRECT.png" />
+            <Image url="@../assets/Game-screen/CORRECT.png" />
          </image>
       </ImageView>
       <ImageView fx:id="continue_button" fitHeight="68.0" fitWidth="187.0" layoutX="492.0" layoutY="629.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/CONTINUE.png" />
+            <Image url="@../assets/Game-screen/CONTINUE.png" />
          </image>
       </ImageView>
       <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="462.0" prefHeight="31.0" prefWidth="700.0" textAlignment="CENTER" textFill="WHITE">
