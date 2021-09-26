@@ -235,7 +235,7 @@ public class GameScreenController extends ApplicationController implements Initi
         inputTextField.setEditable(true);
 
         if (status == Status.FAULTED){
-            this.__hearWord(2);
+            this.__hearWord(1);
         }
 
         if (status == Status.FAILED || status == Status.MASTERED || status == Status.SKIPPED){
