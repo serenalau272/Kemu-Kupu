@@ -1,6 +1,7 @@
 package com.se206.g11.screens;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -14,8 +15,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 
+/**
+ * This class is the controller for the topic screen
+ */
 public class TopicScreenController extends ApplicationController implements Initializable {
-    //List of imorted topics
+    //List of imported topics
     private ArrayList<SpellingTopic> TOPICS;
 
     @FXML private ImageView babies_button;
@@ -32,15 +36,17 @@ public class TopicScreenController extends ApplicationController implements Init
     //// Private Methods ////
 
     private void __initiliseSelectableTopic(ImageView id){
+        //get topic name from button
         String listName = id.getId().replace("_button", "");
 
+        //add handler
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             SpellingTopic topic = new SpellingTopic(listName, "./words/" + listName);
             if (TOPICS.contains(topic)){
+                //if it is a valid topic
                 try {
                     MainApp.setTopic(topic);
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 SystemInterface.playSound("pop");
@@ -55,13 +61,20 @@ public class TopicScreenController extends ApplicationController implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Inital setup & loading of data
         super.initialize();
         try {
             TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
         } catch (IOException e){
             System.err.println("Unable to retrieve spelling word topics " + e);
         }
-        //Pssst, could we use `List<ImageView> imgs = findElms(anchorPane, ImageView.class);` with a loop here?
+
+        // List<ImageView> imgs = findElms(anchorPane, ImageView.class);
+
+        // for (ImageView img : imgs){
+        //     __initiliseSelectableTopic(img);
+        // }
+
         __initiliseSelectableTopic(babies_button);
         __initiliseSelectableTopic(compassPoints_button);
         __initiliseSelectableTopic(colours_button);

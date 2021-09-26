@@ -1,16 +1,15 @@
 package com.se206.g11;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("unchecked")
 

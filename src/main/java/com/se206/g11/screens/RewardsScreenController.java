@@ -12,6 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This class is the controller for the rewards modal.
+ */
 public class RewardsScreenController extends ApplicationController implements Initializable {
     private int scoreNum;
     //The threshold of score for each star to appear
@@ -35,10 +38,12 @@ public class RewardsScreenController extends ApplicationController implements In
         MainApp.closeModal();
         MainApp.setRoot(fxml, title);
         hideStars();
-        
-
     }
 
+    /**
+     * Set visibility of stars based on score
+     * @param score the score for the game
+     */
     private void setStars(int score) {
         if (score >= this.starThreshold[0]) {
             star1.setVisible(true);
@@ -51,6 +56,9 @@ public class RewardsScreenController extends ApplicationController implements In
         }
     }
 
+    /**
+     * Hide all stars
+     */
     private void hideStars() {
         star1.setVisible(false);
         star2.setVisible(false);
@@ -61,8 +69,10 @@ public class RewardsScreenController extends ApplicationController implements In
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Inital setup & loading of data
         super.initialize();
         this.scoreNum = MainApp.getScore();
+
         setStars(this.scoreNum);
         try {
             setImage(this.scoreNum, score);
@@ -70,11 +80,10 @@ public class RewardsScreenController extends ApplicationController implements In
             System.err.println(e);
         }
         
-        //if (score >= this.starThreshold[i]) this.anchorPane.lookup("star" + i).setVisible(true); 
+        //Set event handlers
         menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("MenuScreen", "Kemu Kupu"));
         again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("TopicScreen", "Kemu Kupu - Choose a Topic!"));
-        pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
-            SystemInterface.readWord("Ka Pai");
-        });
+        pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> SystemInterface.readWord("Ka Pai"));
+
     }    
 }

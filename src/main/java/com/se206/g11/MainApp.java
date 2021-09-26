@@ -1,4 +1,10 @@
 package com.se206.g11;
+import java.util.List;
+import java.io.IOException;
+
+import com.se206.g11.models.Settings;
+import com.se206.g11.models.SpellingTopic;
+import com.se206.g11.models.Word;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
-
-import java.util.List;
-import java.io.IOException;
-
-import com.se206.g11.models.Settings;
-import com.se206.g11.models.SpellingTopic;
-import com.se206.g11.models.Word;
 
 public class MainApp extends Application {
     private static Stage stage;

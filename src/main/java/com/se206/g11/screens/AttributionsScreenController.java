@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * This class is the controller for the settings modal.
+ * This class is the controller for the attributions modal.
  */
 public class AttributionsScreenController extends ApplicationController implements Initializable {
     @FXML ImageView exit_button;

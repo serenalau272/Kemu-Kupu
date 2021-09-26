@@ -1,5 +1,4 @@
 package com.se206.g11;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -196,6 +195,7 @@ public class SystemInterface {
      * @param sound the name of the sound to play
      */
     public static void playSound(String sound) {
+        // if ()
         try {
             String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound

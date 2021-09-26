@@ -40,7 +40,7 @@ public class SettingsScreenController extends ApplicationController implements I
         try {
             this.setImage((this.settings.getMusic()) ? "on" : "off", this.music_toggle_button);
         } catch (FileNotFoundException e) {
-            System.err.println("");
+            System.err.println("Unable to load image for music toggling");
             e.printStackTrace();
         }
     }
@@ -76,7 +76,6 @@ public class SettingsScreenController extends ApplicationController implements I
         //Set event handlers
         this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
         this.music_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            SystemInterface.playSound("pop");
             this.settings.setMusic(!this.settings.getMusic());
             SystemInterface.playSound("pop");
             this.__update();
