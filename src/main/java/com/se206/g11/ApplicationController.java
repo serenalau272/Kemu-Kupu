@@ -1,7 +1,5 @@
 package com.se206.g11;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +35,6 @@ public class ApplicationController {
         //Parse the current location and set the new value
         String[] ex = view.getImage().getUrl().split("/");
         ex[ex.length-1] = s + ".png";
-
-        //Check the file exists
-        URI uri = URI.create(String.join("/", ex));
-        if (!new File(uri).isFile()) throw new FileNotFoundException("Index was set out of bounds! Unable to find image file " + uri);
 
         //Set the image on the frontend
         view.setImage(new Image(String.join("/", ex)));

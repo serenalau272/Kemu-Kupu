@@ -41,7 +41,11 @@ public class GameScreenController extends ApplicationController implements Initi
     @FXML private ImageView progressMsg;
 
     //macron buttons
-    @FXML private ImageView a_button, e_button, i_button, o_button, u_button;
+    @FXML private ImageView a_button;
+    @FXML private ImageView e_button;
+    @FXML private ImageView i_button;
+    @FXML private ImageView o_button;
+    @FXML private ImageView u_button;
 
     //// Helper Functions ////
     /**
@@ -295,7 +299,7 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__updateWordIndexBanner();
         }
 
-        //initalize event handlers for buttons
+        // initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             SystemInterface.playSound("pop");

@@ -40,6 +40,7 @@ public class MainApp extends Application {
             stage.show();                    
         } catch (IOException e) {
             System.err.println("Unable to set root for fxml: " + fxml);
+            e.printStackTrace();
         }
     }
 
