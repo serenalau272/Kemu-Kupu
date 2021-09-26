@@ -75,7 +75,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <ImageView fx:id="a_button1" fitHeight="348.0" fitWidth="80.0" layoutX="1131.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="348.0" fitWidth="80.0" layoutX="1131.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/macronKeys/key-background.png" />
          </image>

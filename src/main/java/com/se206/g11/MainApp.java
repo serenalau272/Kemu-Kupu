@@ -43,9 +43,6 @@ public class MainApp extends Application {
             Scene scene = new Scene(stackPane);
             stage.setTitle(title);
             stage.setScene(scene);
-            stage.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-                if (event.getCode() == KeyCode.ESCAPE) MainApp.setRoot("MenuScreen", "Kemu Kupu");
-            });
             stage.show();                    
         } catch (IOException e) {//Note this is a blocking call and will prevent other actions on the thread until the modal is closed {
             // TODO Auto-generated catch block
