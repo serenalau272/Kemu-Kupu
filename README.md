@@ -1,31 +1,33 @@
-# SE206-A3 Group 11 
+# SOFTENG 206 Assignment 3: Quiz Platform Kemu Kupu
 
-## Instructions
+## Spelling Wiz GUI
 
-```bash
-git clone git@github.com:SOFTENG206-2021/assignment-3-and-project-team-11.git
-cd assignment-3-and-project-team-11
-code . # This will open a code editor, eventually we should provide a ./start.sh
-```
+### Getting Started
+Ensure that the required files are all available
+- In one directory, there should be `runQuiz.sh`, `quiz.jar`, and `words/` directory.
+- Within `words/` there should be a selection of csv files, *named* and stored in *identical format* to that found at the GitHub repository https://github.com/SOFTENG206-2021/assignment-3-and-project-team-11
 
-## Code Guidelines
-**Please write tests** if we have good test coverage we can avoid any bugs down the line.
+To get started, ensure that executable permissions are given to the shell scripts `runQuiz.sh`
+> chmod +x runQuiz.sh
 
+Ensure that `JavaFX` external jar files are located at `/home/student/javafx-sdk-11.0.2/javafx`
 
-Outside of this we use standard Java formatting for code. `camelCase` for variables and so on, as taught in class.
+Error warnings that `libcanberra and pixbuf don't exist` may be present. To get rid of these, run the following commands:
+> sudo apt-get install gtk2-engines-pixbuf
 
-## Commit Guidelines
+> sudo apt-get install libcanberra-gtk-module
 
-In all commits, please try to follow the [convention for commits](https://www.conventionalcommits.org/en/v1.0.0/#specification).
+Run the code by executing the shell script `runQuiz.sh`
+> ./runQuiz.sh
 
-Ideally aim to push every commit you make, rather than accumulating a large number of commits before pushing, this helps to keep everyone on the same
-codebase when collaborating. 
+#### User Flow
 
-The exception for this is that you should not commit non-compiling code to the main branch. Open a new branch and 
-commit to that instead.
+Menu
+- TBD
 
-## Use of Pull Requests
-The use of pull requests is generally not required, but if you are going to be making breaking changes where the code may not compile as you are working on it 
-please create a branch and execute a pull request to merge your changes back in once you have finished.
+Game Mode
+- TBD
 
-If you would prefer not to use branches, that is fine but ensure your code *always* compiles before committing.
+#### Limitations
+Please note that we assume:
+- TBD
