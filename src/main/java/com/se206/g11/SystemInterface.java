@@ -113,7 +113,7 @@ public class SystemInterface {
     /** 
     *    Reads a word to a user utilising festival
     *    @param word The word or phrase to be read to the user
-    *    @param i The language to which words are read out using
+    *    @param language The language to which words are read out using
     */
     public static void readWord(String word, Language language) {
         __readWord(word, 1, language);
