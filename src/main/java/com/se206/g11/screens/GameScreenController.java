@@ -311,6 +311,8 @@ public class GameScreenController extends ApplicationController implements Initi
                     inputTextField.setEditable(false);
                     checkInput();
                 }
+            } else if (continue_button.isVisible() && !continue_button.isDisabled()) {
+                continueClick();
             }
         });
 
