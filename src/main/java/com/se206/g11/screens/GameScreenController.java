@@ -44,7 +44,7 @@ public class GameScreenController extends ApplicationController implements Initi
     @FXML
     private ImageView responseImg;
     @FXML
-    private ImageView continue_button;
+    private ImageView continueLabel;
 
     //macron buttons
     @FXML private ImageView a_button, e_button, i_button, o_button, u_button;
@@ -116,7 +116,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
         //show continue and response
         responseImg.setVisible(true);
-        continue_button.setVisible(true);
+        continueLabel.setVisible(true);
         hintLabel.setVisible(true);
     }
 
@@ -129,7 +129,7 @@ public class GameScreenController extends ApplicationController implements Initi
 
         //show continue and response
         responseImg.setVisible(false);
-        continue_button.setVisible(false);
+        continueLabel.setVisible(false);
         hintLabel.setVisible(false);
     }
 
@@ -229,9 +229,8 @@ public class GameScreenController extends ApplicationController implements Initi
         toggleLabels();
     }
 
-    public void continueClick(){
+    public void onEnterContinue(){
         if (this.disabled) return;
-
         toggleLabels();
         inputTextField.setEditable(true);
 
@@ -243,7 +242,6 @@ public class GameScreenController extends ApplicationController implements Initi
             //load next word
             __loadNextWord();
         }
-
 
     }
 
@@ -293,8 +291,6 @@ public class GameScreenController extends ApplicationController implements Initi
             settingsClick();
         });
 
-        continue_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> continueClick());
-
         submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             inputTextField.setEditable(false);
             checkInput();
@@ -311,8 +307,8 @@ public class GameScreenController extends ApplicationController implements Initi
                     inputTextField.setEditable(false);
                     checkInput();
                 }
-            } else if (continue_button.isVisible() && !continue_button.isDisabled()) {
-                continueClick();
+            } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
+                onEnterContinue();
             }
         });
 
