@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 public class MenuScreenController extends ApplicationController implements Initializable {
     @FXML private ImageView exitGame_button;
     @FXML private ImageView enterTopicSelect_button;
-    @FXML private ImageView infoBtn;
+    @FXML private ImageView info_button;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -31,13 +31,12 @@ public class MenuScreenController extends ApplicationController implements Initi
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             
             event.consume();
-            SystemInterface.readWord("Thanks for playing", Language.ENGLISH);
-            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(e -> Platform.exit());
             pause.play();
         });
 
-        infoBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             SystemInterface.play_sound("pop");
             MainApp.showModal("AttributionScreen", "Kemu Kupu - Asset Attributions");
         });
