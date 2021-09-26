@@ -35,9 +35,10 @@ public class RewardsScreenController extends ApplicationController implements In
      * @param title the title of the window to set
      */
     private void __changeClose(String fxml, String title) {
+        MainApp.closeModal();
         MainApp.setRoot(fxml, title);
         hideStars();
-        MainApp.closeModal();
+        
 
     }
 

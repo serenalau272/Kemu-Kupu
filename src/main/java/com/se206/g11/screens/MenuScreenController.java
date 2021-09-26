@@ -31,7 +31,6 @@ public class MenuScreenController extends ApplicationController implements Initi
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             
             event.consume();
-            SystemInterface.readWord("Thanks for playing", Language.ENGLISH);
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(e -> Platform.exit());
             pause.play();
