@@ -1,7 +1,6 @@
 package com.se206.g11.screens;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -69,12 +68,7 @@ public class TopicScreenController extends ApplicationController implements Init
             System.err.println("Unable to retrieve spelling word topics " + e);
         }
 
-        // List<ImageView> imgs = findElms(anchorPane, ImageView.class);
-
-        // for (ImageView img : imgs){
-        //     __initiliseSelectableTopic(img);
-        // }
-
+        //add handlers
         __initiliseSelectableTopic(babies_button);
         __initiliseSelectableTopic(compassPoints_button);
         __initiliseSelectableTopic(colours_button);
