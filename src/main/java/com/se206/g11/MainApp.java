@@ -45,6 +45,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Disable all screen nodes
+     */
     private static void disableScreenNodes(boolean isDisable) {
         stackPane.getChildren().get(0).setDisable(isDisable);
     }
@@ -78,7 +81,7 @@ public class MainApp extends Application {
 
     /**
      * Get the current score of the player.
-     * @return
+     * @return the score of the player
      */
     public static int getScore() {
         return score;
@@ -116,8 +119,7 @@ public class MainApp extends Application {
     //TODO avoid duplicate code here, merge functionality with __setRoot. This should improve readability & extendability of code. For MVP is fine though.
     public static void showModal(String fxml, String title) {
         try {
-            //Duplicate code should be refactored at some point, but we need this in order to pass the 
-            //stage into the modal initalisation, which allows us to enable dragging among other things
+            //Duplicate code should be refactored at some point
             disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
@@ -129,6 +131,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * closes modal
+     */
     public static void closeModal() {
         SystemInterface.playSound("pop");
         stackPane.getChildren().remove(1);
@@ -137,12 +142,18 @@ public class MainApp extends Application {
 
     }
 
+    /**
+     * adds blur from background pane
+     */
     public static void addBlur() {
         BoxBlur blur = new BoxBlur();
         blur.setIterations(2);
         stackPane.getChildren().get(0).setEffect(blur);
     }
 
+    /**
+     * removes blur from background pane
+     */
     public static void removeBlur() {
         stackPane.getChildren().get(0).setEffect(null);
     }
