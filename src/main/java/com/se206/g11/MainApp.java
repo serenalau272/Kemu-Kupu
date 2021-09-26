@@ -3,16 +3,11 @@ package com.se206.g11;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.BoxBlur;
 import java.util.List;
 import java.io.IOException;
@@ -44,9 +39,8 @@ public class MainApp extends Application {
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();                    
-        } catch (IOException e) {//Note this is a blocking call and will prevent other actions on the thread until the modal is closed {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Unable to set root for fxml: " + fxml);
         }
     }
 

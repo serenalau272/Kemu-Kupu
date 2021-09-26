@@ -1,4 +1,5 @@
 package com.se206.g11.screens;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 /**
  * This class is the controller for the settings modal.
@@ -39,8 +39,8 @@ public class SettingsScreenController extends ApplicationController implements I
 
         try {
             this.setImage((this.settings.getMusic()) ? "on" : "off", this.music_toggle_button);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
+        } catch (FileNotFoundException e) {
+            System.err.println("");
             e.printStackTrace();
         }
     }

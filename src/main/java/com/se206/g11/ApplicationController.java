@@ -3,8 +3,6 @@ package com.se206.g11;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -14,8 +12,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.stage.Stage;
-
 @SuppressWarnings("unchecked")
 
 public class ApplicationController {
@@ -23,11 +19,8 @@ public class ApplicationController {
     protected Pane anchorPane;
 
     //The stage of this window.
-    private Stage stage = null; 
 
     //Offsets, used when dragging an undecorated window
-    private double yOffset = 0;
-    private double xOffset = 0;
 
     //// Private (Helper) Functions ////
 

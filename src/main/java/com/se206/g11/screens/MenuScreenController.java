@@ -1,13 +1,11 @@
 package com.se206.g11.screens;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 import com.se206.g11.SystemInterface;
-import com.se206.g11.models.Language;
 
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;

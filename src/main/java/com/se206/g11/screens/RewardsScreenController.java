@@ -1,7 +1,6 @@
 package com.se206.g11.screens;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
@@ -12,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 public class RewardsScreenController extends ApplicationController implements Initializable {
     private int scoreNum;
