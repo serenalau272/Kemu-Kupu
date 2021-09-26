@@ -65,7 +65,7 @@
             <Image url="@../assets/Game-screen/CORRECT.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="continue_button" fitHeight="68.0" fitWidth="282.0" layoutX="461.0" layoutY="655.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="continueLabel" fitHeight="68.0" fitWidth="282.0" layoutX="461.0" layoutY="655.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/CONTINUE.png" />
          </image>
@@ -105,7 +105,7 @@
             <Image url="@../assets/macronKeys/u.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="progressMsg" fitHeight="80.0" fitWidth="307.0" layoutX="449.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressMsg" fitHeight="80.0" fitWidth="307.0" layoutX="449.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/Game-screen/progressMessage.png" />
          </image>
