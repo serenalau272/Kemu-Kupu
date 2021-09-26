@@ -21,14 +21,14 @@ Error warnings that `libcanberra and pixbuf don't exist` may be present. To get 
 Run the code by executing the shell script `runQuiz.sh`
 > ./runQuiz.sh
 
-#### User Flow
+### User Flow
 
-Menu
+#### Menu
 - TBD
 
-Game Mode
+#### Game Mode
 - TBD
 
-#### Limitations
+### Limitations
 Please note that we assume:
 - TBD
