@@ -15,3 +15,5 @@ Run the code by executing the shell script `runQuiz.sh`
 ```bash
 ./runQuiz.sh
 ```
+
+Note that for optimal results, please ensure Kemu Kupu is run on the VM image provided for SE206
