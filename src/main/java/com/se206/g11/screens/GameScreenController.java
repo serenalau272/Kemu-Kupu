@@ -95,7 +95,6 @@ public class GameScreenController extends ApplicationController implements Initi
             switch (status) {
                 case SKIPPED:
                     setImage("SKIPPED", responseImg);
-                    progressMsg.setVisible(true);
                     break;
                 case FAULTED:
                     setImage("INCORRECT_2", responseImg);
