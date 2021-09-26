@@ -45,6 +45,8 @@ public class GameScreenController extends ApplicationController implements Initi
     private ImageView responseImg;
     @FXML
     private ImageView continueLabel;
+    @FXML
+    private ImageView progressMsg;
 
     //macron buttons
     @FXML private ImageView a_button, e_button, i_button, o_button, u_button;
@@ -96,12 +98,14 @@ public class GameScreenController extends ApplicationController implements Initi
             switch (status) {
                 case SKIPPED:
                     setImage("SKIPPED", responseImg);
+                    progressMsg.setVisible(true);
                     break;
                 case FAULTED:
                     setImage("INCORRECT_2", responseImg);
                     break;
                 case FAILED:
                     setImage("INCORRECT_3", responseImg);
+                    progressMsg.setVisible(true);
                     break;
                 default:
                     //mastered or none
@@ -131,6 +135,7 @@ public class GameScreenController extends ApplicationController implements Initi
         responseImg.setVisible(false);
         continueLabel.setVisible(false);
         hintLabel.setVisible(false);
+        progressMsg.setVisible(false);
     }
 
     private void addSubTextIncorrect() {
