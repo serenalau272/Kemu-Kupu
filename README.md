@@ -1,4 +1,5 @@
-# SOFTENG 206 Assignment 3: Quiz Platform Kemu Kupu
+# SOFTENG 206 Assignment 3: Group 11
+# Quiz Platform Kemu Kupu
 
 ## Spelling Wiz GUI
 
