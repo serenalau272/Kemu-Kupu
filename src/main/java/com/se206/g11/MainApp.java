@@ -158,7 +158,7 @@ public class MainApp extends Application {
         // ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
         // GaussianBlur blur = new GaussianBlur(55);
         // adj.setInput(blur);
-        stackPane.getChildren().get(0).setEffect(new GaussianBlur(10));
+        stackPane.getChildren().get(0).setEffect(new GaussianBlur());
     }
 
     public static void removeBlur() {
