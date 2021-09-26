@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,12 +30,6 @@
       <ImageView fitHeight="56.0" fitWidth="236.0" layoutX="499.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/label-your-score.png" />
-         </image>
-      </ImageView>
-      <!-- Score Label -->
-      <ImageView fx:id="score" fitHeight="151.0" fitWidth="114.0" layoutX="543.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/rewardScreen/score/0.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="218.0" fitWidth="237.0" layoutX="495.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
@@ -77,6 +72,14 @@
          <image>
             <Image url="@../assets/rewardScreen/stars/star2.png" />
          </image>
+      </ImageView>
+      <ImageView fx:id="score" fitHeight="133.0" fitWidth="251.0" layoutX="544.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/rewardScreen/score/0.png" />
+         </image>
+         <viewport>
+            <Rectangle2D minX="489.0" />
+         </viewport>
       </ImageView>
     </children>
 </AnchorPane>
