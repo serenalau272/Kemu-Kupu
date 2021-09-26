@@ -33,7 +33,7 @@
             <Image url="@../assets/MENU_PLAY.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="infoBtn" fitHeight="81.0" fitWidth="95.0" layoutX="1085.0" layoutY="641.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="info_button" fitHeight="81.0" fitWidth="95.0" layoutX="1085.0" layoutY="641.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/attribution/personIcon.png" />
          </image>
