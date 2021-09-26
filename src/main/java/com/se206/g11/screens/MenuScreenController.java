@@ -1,5 +1,4 @@
 package com.se206.g11.screens;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,7 +24,7 @@ public class MenuScreenController extends ApplicationController implements Initi
         super.initialize();
 
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SystemInterface.play_sound("pop");
+            SystemInterface.playSound("pop");
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             
             event.consume();
@@ -35,12 +34,12 @@ public class MenuScreenController extends ApplicationController implements Initi
         });
 
         info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SystemInterface.play_sound("pop");
+            SystemInterface.playSound("pop");
             MainApp.showModal("AttributionScreen", "Kemu Kupu - Asset Attributions");
         });
 
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SystemInterface.play_sound("pop");
+            SystemInterface.playSound("pop");
             MainApp.setRoot("TopicScreen", "Kemu Kupu - Choose a Topic!");
             
             event.consume();

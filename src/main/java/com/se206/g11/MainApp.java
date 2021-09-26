@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
+
 import java.util.List;
 import java.io.IOException;
 
@@ -137,7 +138,7 @@ public class MainApp extends Application {
     }
 
     public static void closeModal() {
-        SystemInterface.play_sound("pop");
+        SystemInterface.playSound("pop");
         stackPane.getChildren().remove(1);
         removeBlur();
         disableScreenNodes(false);
@@ -154,14 +155,20 @@ public class MainApp extends Application {
         stackPane.getChildren().get(0).setEffect(null);
     }
 
-
-
     @Override
     public void start(Stage s) {
         stage = s;
         settings = new Settings();
         stage.setResizable(false);
         setRoot("MenuScreen","Kemu Kupu");
+    }
+
+    /**
+     * A cleanup method for when we close the application.
+     */
+    @Override
+    public void stop() {
+        SystemInterface.stopSpeech();
     }
 
     public static void main(String[] args) {

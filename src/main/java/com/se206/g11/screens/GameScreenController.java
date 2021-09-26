@@ -212,7 +212,7 @@ public class GameScreenController extends ApplicationController implements Initi
         
         if (this.words.get(this.wordIndex).isEqualStrict(input)) {
             //Correct
-            SystemInterface.play_sound("correct");
+            SystemInterface.playSound("correct");
             int score = MainApp.getScore() + 20;
             this.__updateProgressBar(score / 20);
             MainApp.setScore(score);
@@ -289,7 +289,7 @@ public class GameScreenController extends ApplicationController implements Initi
         //initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            SystemInterface.play_sound("pop");
+            SystemInterface.playSound("pop");
             settingsClick();
         });
 

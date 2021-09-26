@@ -25,7 +25,6 @@ public class RewardsScreenController extends ApplicationController implements In
     @FXML private ImageView star3;
     @FXML private ImageView score;
 
-
     //// Private (helper) methods ////
     /**
      * Change the mainapp to a new window, and close this modal

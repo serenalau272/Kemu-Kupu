@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +14,7 @@ import com.se206.g11.models.Language;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 
+import javafx.concurrent.Task;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -31,7 +33,34 @@ public class SystemInterface {
     // Location of word files on the system.
     private static final String wordDir = "./words";
 
+    //Queue of festival speaking threads
+    private static ArrayDeque<ProcessBuilder> festivalQueue = new ArrayDeque<ProcessBuilder>();
+    private static boolean isSpeaking = false;
+
     //// Private Methods (helper functions) ////
+
+    /**
+     * Pulls the next word from the quue and reads it.
+     */
+    private static void __speakNext() {
+        if (isSpeaking || festivalQueue.peek() == null) return;
+        isSpeaking = true;
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws Exception {
+                try {
+                    Process p = festivalQueue.poll().start();
+                    p.waitFor();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                isSpeaking = false;
+                __speakNext();
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
 
     /**
      * Internal function to read word a word to the user using festival
@@ -39,25 +68,16 @@ public class SystemInterface {
      * @param repeats the number of times to repeat the word
      * @param language the language to which words are read out
      */
-    //TODO - return a handle which can be modified by an API to end execution early.
-    // See: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
     private static void __readWord(String word, int repeats, Language language) {
         //This thread prevents any lockup of the front end.
         String speedCommand = "\"(Parameter.set 'Duration_Stretch "+  MainApp.getSettings().getSpeedFactor() + ")\"";
         String langCommand = (language == Language.MAORI) ? "voice_akl_mi_pk06_cg" : "voice_akl_nz_cw_cg_cg" ;        
         String wordCommand = "\"(SayText \\\"" + word +"\\\")\"";
-        Thread t = new Thread(() -> {
-            try {
-                for (int i = 0; i < Integer.max(repeats, 1); i++) {
-                    ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + speedCommand + " " + wordCommand + " | festival");  
-                    Process p = c.start();
-                    p.waitFor();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        t.start();
+        for (int i = 0; i < Integer.max(repeats, 1); i++) {
+            ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c", "echo \"(" + langCommand + ")\" " + speedCommand + " " + wordCommand + " | festival");  
+            festivalQueue.add(c);
+        }
+        if (!isSpeaking) __speakNext();
     }
 
     /**
@@ -175,9 +195,7 @@ public class SystemInterface {
      * WARNING: Will fail if an unknown sound is provided (full thread crash). //TODO add file validation
      * @param sound the name of the sound to play
      */
-    public static void play_sound(String sound) {
-        if (!MainApp.getSettings().getMusic()) return;
-
+    public static void playSound(String sound) {
         try {
             String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound
@@ -185,5 +203,12 @@ public class SystemInterface {
         } catch (URISyntaxException exception){
             System.err.println("Unable to load sound file: " + sound);
         }
+    }
+    
+    /**
+     * Stop all currently running festival threads
+     */
+    public static void stopSpeech() {
+        festivalQueue.clear();
     }
 }
