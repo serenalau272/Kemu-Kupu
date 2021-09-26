@@ -56,8 +56,7 @@ public class SettingsScreenController extends ApplicationController implements I
      * @param amt the amount to change by
      */
     private void __speed_change(double amt) {
-        SystemInterface.play_sound("pop");
-        this.settings.setSpeechSpeed(this.settings.getSpeechSpeed()+amt);
+        if (this.settings.setSpeechSpeed(this.settings.getSpeechSpeed()+amt)) SystemInterface.play_sound("pop");
         this.__update();
     }
 
@@ -73,8 +72,8 @@ public class SettingsScreenController extends ApplicationController implements I
         //Set event handlers
         this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
         this.music_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            SystemInterface.play_sound("pop");
             this.settings.setMusic(!this.settings.getMusic());
+            SystemInterface.play_sound("pop");
             this.__update();
         });
         this.minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));

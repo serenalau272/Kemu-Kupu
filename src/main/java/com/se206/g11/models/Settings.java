@@ -60,8 +60,9 @@ public class Settings {
      * Set the speaking speed of the tts implementation (festival)
      * @param s
      */
-    public void setSpeechSpeed(Double s) {
-        if (s < 0.5 || s > 2) return;
+    public Boolean setSpeechSpeed(Double s) {
+        if (s < 0.5 || s > 2) return false;
         this.speechSpeed = s;
+        return true;
     }
 }

@@ -13,7 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.BoxBlur;
 
 import java.util.List;
 import java.io.IOException;
@@ -158,7 +158,7 @@ public class MainApp extends Application {
         // ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
         // GaussianBlur blur = new GaussianBlur(55);
         // adj.setInput(blur);
-        stackPane.getChildren().get(0).setEffect(new GaussianBlur());
+        stackPane.getChildren().get(0).setEffect(new BoxBlur());
     }
 
     public static void removeBlur() {

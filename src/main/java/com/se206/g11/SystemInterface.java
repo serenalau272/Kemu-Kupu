@@ -177,6 +177,8 @@ public class SystemInterface {
      * @param sound the name of the sound to play
      */
     public static void play_sound(String sound) {
+        if (!MainApp.getSettings().getMusic()) return;
+
         try {
             String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound
