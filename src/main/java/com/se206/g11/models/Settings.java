@@ -1,18 +1,15 @@
 package com.se206.g11.models;
 
+/**
+ * Settings for the GUI application which can be altered in Game Mode. Allows settings for speed speed and enabling of music
+ */
 public class Settings {
     private boolean music = true;
     private Double speechSpeed = 1.0;
 
     /**
-     * Initalize settings with default values
-     */
-    public Settings() {
-        
-    }
-
-    /**
      * Serialize the settings from a file
+     * Note: unused in A3 implementation but may be useful for Project
      * @param p the path to the file
      */
     public void load(String p) {
@@ -21,6 +18,7 @@ public class Settings {
 
     /**
      * Save the settings to the path
+     * Note: unused in A3 implementation but may be useful for Project
      * @param p the path to save to
      */
     public void save(String p) {
@@ -59,9 +57,11 @@ public class Settings {
     /**
      * Set the speaking speed of the tts implementation (festival)
      * @param s
+     * @return whether speed successfully set
      */
     public Boolean setSpeechSpeed(Double s) {
         if (s < 0.5 || s > 2) return false;
+
         this.speechSpeed = s;
         return true;
     }

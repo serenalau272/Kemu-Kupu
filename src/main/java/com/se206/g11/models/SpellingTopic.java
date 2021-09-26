@@ -25,6 +25,7 @@ public class SpellingTopic {
     }
 
     /**
+     * Note: unused in A3 implementation but may be useful for Project
      * @return Get the topic of this word list in title case
      */    
     public String getNameTitleCase() {
@@ -41,13 +42,17 @@ public class SpellingTopic {
         return this.name;
     }
 
+    /**
+     * Overriden equals method
+     * @return whether two SpellingTopic are equal based on equivalent paths and names
+     */
     @Override
     public boolean equals(Object obj) {
-        
         if (obj.getClass() == this.getClass()){
             SpellingTopic otherTopic = (SpellingTopic) obj;
             return this.getPath().equals(otherTopic.getPath()) && this.getName().equals(otherTopic.getName());
         }
+
         return false;
     }
 }

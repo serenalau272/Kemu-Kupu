@@ -35,6 +35,7 @@ public class Word {
      * Checks if two words are equal, ignoring accents. I.e. "é" == "e" will return true.
      * If one provides a word with the english or maori set to null, then only this will be
      * compared against the original. Will not compare both if both are set.
+     * Note: unused in A3 implementation but may be useful for Project
      * @param word the word to compare against.
      * @return true if equal, false otherwise.
      */
