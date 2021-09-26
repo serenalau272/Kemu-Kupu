@@ -31,22 +31,14 @@ public class GameScreenController extends ApplicationController implements Initi
     @FXML private TextField inputTextField;
     @FXML private Label hintLabel;
     @FXML private ImageView wordIndexBanner;
-    @FXML
-    private ImageView progressBar;
-    @FXML
-    private ImageView hear_button;
-    @FXML
-    private ImageView settings_button;
-    @FXML
-    private ImageView submit_button;
-    @FXML
-    private ImageView skip_button;
-    @FXML
-    private ImageView responseImg;
-    @FXML
-    private ImageView continueLabel;
-    @FXML
-    private ImageView progressMsg;
+    @FXML private ImageView progressBar;
+    @FXML private ImageView hear_button;
+    @FXML private ImageView settings_button;
+    @FXML private ImageView submit_button;
+    @FXML private ImageView skip_button;
+    @FXML private ImageView responseImg;
+    @FXML private ImageView continueLabel;
+    @FXML private ImageView progressMsg;
 
     //macron buttons
     @FXML private ImageView a_button, e_button, i_button, o_button, u_button;
@@ -55,9 +47,8 @@ public class GameScreenController extends ApplicationController implements Initi
     /**
      * Loads the next word for a user ot be tested on, simplifying the code elsewhere.
      * Functions:
-     * - Resets variable for checking a fault
      * - Loads the next word, and relevant labels
-     * - If no words are left, go to next screen.
+     * - If no words are left, go to rewards screen.
      */
     private void __loadNextWord() {
         this.status = Status.NONE;
@@ -67,21 +58,27 @@ public class GameScreenController extends ApplicationController implements Initi
             this.__updateWordIndexBanner();
             this.__hearWord(1);
         } else {
+            //game ended, navigate to rewards screen
             this.__disableQuiz();
             MainApp.showModal("RewardScreen", "Reward Screen");
         }
     }
     
+    /**
+     * shows appropriate ImageViews based upon whether one is awaiting a response
+     */
     private void toggleLabels(){
         if (awaitingResponse){
             showOnResponse();
         } else {
             showOffResponse();
         }
-
         awaitingResponse = !awaitingResponse;
     }
 
+    /**
+     * shows appropriate ImageViews when response given, and awaiting 'continue'
+     */
     private void showOnResponse(){
         //remove buttons visibility
         submit_button.setVisible(false);
@@ -120,7 +117,9 @@ public class GameScreenController extends ApplicationController implements Initi
         hintLabel.setVisible(true);
     }
 
-
+    /**
+     * shows appropriate ImageViews when awaiting response
+     */
     private void showOffResponse(){
         //remove buttons visibility
         submit_button.setVisible(true);
@@ -134,6 +133,9 @@ public class GameScreenController extends ApplicationController implements Initi
         progressMsg.setVisible(false);
     }
 
+    /**
+     * Add subtext for faulted and failed responses
+     */
     private void addSubTextIncorrect() {
         String word = this.words.get(this.wordIndex).getMaori();
         switch (this.status) {
@@ -200,6 +202,7 @@ public class GameScreenController extends ApplicationController implements Initi
     public void checkInput() {
         if (this.disabled) return;
         
+        //return if empty textfield
         if (this.inputTextField.getText().isEmpty()) {
             inputTextField.setEditable(true);
             return;
@@ -210,7 +213,7 @@ public class GameScreenController extends ApplicationController implements Initi
         input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
         
         if (this.words.get(this.wordIndex).isEqualStrict(input)) {
-            //Correct
+            //Correct i.e. MASTERED. Increment score.
             SystemInterface.playSound("correct");
             int score = MainApp.getScore() + 20;
             this.__updateProgressBar(score / 20);
@@ -219,10 +222,10 @@ public class GameScreenController extends ApplicationController implements Initi
             this.status = Status.MASTERED;
         } else {
             if (status == Status.NONE || status == Status.SKIPPED) {
-                //First attempt wrong
+                //First attempt wrong i.e. FAULTED
                 this.status = Status.FAULTED;
             } else {
-                //Second attempt wrong
+                //Second attempt wrong. i.e. FAILED
                 this.status = Status.FAILED;
             }
         }
@@ -230,6 +233,9 @@ public class GameScreenController extends ApplicationController implements Initi
         toggleLabels();
     }
 
+    /**
+     * function to continue from response given for word, determined by status
+     */
     public void onEnterContinue(){
         if (this.disabled) return;
         toggleLabels();
@@ -262,6 +268,9 @@ public class GameScreenController extends ApplicationController implements Initi
         MainApp.showModal("SettingScreen", "Settings");
     }
 
+    /**
+     * insert macron to textfield
+     */
     private void insertMacron(String macron){
         String newInput = inputTextField.getText() + macron;
         inputTextField.setText(newInput);
@@ -270,8 +279,9 @@ public class GameScreenController extends ApplicationController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Inital setup & loading of data
         super.initialize();       
-        showOffResponse();      //no response given
+        showOffResponse();      //no response given initially
 
         //Load words from the MainApp
         this.words = MainApp.getWordList();
