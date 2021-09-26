@@ -33,6 +33,7 @@ public class MainApp extends Application {
      * @return a stage which can be set or spawned as a modal
      */
     private static void __setRoot(String fxml, String title) {
+        SystemInterface.stopSpeech(); //Clear the queue
         try {
             stackPane = new StackPane();
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml")).load());
