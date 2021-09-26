@@ -2,7 +2,7 @@
 # Quiz Platform Kemu Kupu
 Ensure that the required files are all available
 - There should be `runQuiz.sh`, `quiz.jar`, and `words/` directory available.
-- Within `words/` there should be a selection of csv files, *named* and stored in *identical format* to that found at the GitHub repository https://github.com/SOFTENG206-2021/assignment-3-and-project-team-11
+- Within `words/` there should be a selection of csv files, **named and stored in identical format** to that found at the GitHub repository https://github.com/SOFTENG206-2021/assignment-3-and-project-team-11
 
 To get started, ensure that executable permissions are given to the shell scripts `runQuiz.sh`
 ```bash

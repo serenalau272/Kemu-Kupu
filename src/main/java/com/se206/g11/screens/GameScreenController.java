@@ -303,13 +303,13 @@ public class GameScreenController extends ApplicationController implements Initi
         });
         
         inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if (awaitingResponse) {
-                if (event.getCode() == KeyCode.ENTER) {
+            if (event.getCode() == KeyCode.ENTER) {
+                if (awaitingResponse) {
                     inputTextField.setEditable(false);
                     checkInput();
+                } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
+                    onEnterContinue();
                 }
-            } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
-                onEnterContinue();
             }
         });
 
