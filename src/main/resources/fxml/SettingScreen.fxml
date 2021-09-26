@@ -45,5 +45,10 @@
             <Font size="23.0" />
          </font>
       </Label>
+      <Label fx:id="defaultLabel" layoutX="577.0" layoutY="365.0" text="(default)" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

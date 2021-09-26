@@ -22,6 +22,7 @@ public class SettingsScreenController extends ApplicationController implements I
     private Settings settings;
 
     @FXML Label speedVal;
+    @FXML Label defaultLabel;
     @FXML ImageView music_toggle_button;
     @FXML ImageView exit_button;
     @FXML ImageView minus_button;
@@ -34,6 +35,8 @@ public class SettingsScreenController extends ApplicationController implements I
      */
     private void __update() {
         this.speedVal.setText(String.format("%.2f", this.settings.getSpeechSpeed()));
+        defaultLabel.setVisible(this.settings.getSpeechSpeed() == 1.00);
+
         try {
             this.setImage((this.settings.getMusic()) ? "on" : "off", this.music_toggle_button);
         } catch (Exception e) {
