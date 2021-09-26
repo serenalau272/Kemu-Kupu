@@ -73,7 +73,7 @@
             <Image url="@../assets/rewardScreen/stars/star2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="score" fitHeight="133.0" fitWidth="251.0" layoutX="544.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="score" fitHeight="133.0" fitWidth="251.0" layoutX="489.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/score/0.png" />
          </image>
