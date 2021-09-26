@@ -13,22 +13,5 @@ To get started, ensure that executable permissions are given to the shell script
 
 Ensure that `JavaFX` external jar files are located at `/home/student/javafx-sdk-11.0.2/javafx`
 
-Error warnings that `libcanberra and pixbuf don't exist` may be present. To get rid of these, run the following commands:
-> sudo apt-get install gtk2-engines-pixbuf
-
-> sudo apt-get install libcanberra-gtk-module
-
 Run the code by executing the shell script `runQuiz.sh`
 > ./runQuiz.sh
-
-### User Flow
-
-#### Menu
-- TBD
-
-#### Game Mode
-- TBD
-
-### Limitations
-Please note that we assume:
-- TBD
