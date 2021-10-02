@@ -101,3 +101,33 @@
 * Fixed up labelling, added voice speed modulation, and refactored modals. Macron integration and sound effects also added
 * Much polishing of the codebase needs to be undertaken. Bugs exist in the rewards modal, festival callback needs implementation, and attribution modal needs to be finalised.
 * Plan tomorrow/tonight is to address those areas and spend some time polishing the codebase + checking for errors. We should submit by tomorrow evening.
+
+- - - -
+**<font size="5">Submission!</font>**
+
+*26-Sep, 2021.*
+* After a scary time with the jar file not compiling, we submitted woohoo! A few bugs were spotted and resulted. Monday's task will be ensuring it works well with the all the word lists.
+
+- - - -
+**<font size="5">Checking Submission</font>**
+
+*27-Sep, 2021.*
+* Submission checked with no concerns :))
+
+- - - -
+**<font size="5">Presentations</font>**
+
+*28 ~ 30-Sep, 2021.*
+* We met several times to construct our presentation, prepare our scripts, and present to our client (Nasser)
+* I presented on collaboration and improvements, Serena introduced and also talked about design decisions and Jo talked on the demo with error handling
+* We received very good feedback overall and suggestions for functional improvements have been documented on Notion. In addition, the discussion points from the client meeting have also been documented on Notion.
+
+- - - -
+**<font size="5">A4 Team Meeting</font>**
+
+*2-Oct, 2021.*
+* We met to break up tasks into what we are to fix for our A3 implemetation, what is needed to be done to satisfy the A4/Project brief, and the stretch goals we would like to achieve. We are conscious of the approximately one week we have to deliver our project.
+* We've set next Wednesday evening as the deadline to get all the mandatory features done. We're planning to have two collaborative sessions - one on Monday and one on Tuesday - to assist with this.
+* We use the 'trello-like' interface on Notion to assign responsibilities.
+* I've done some restructuring of existing QuizGameController today after lengthy conversation in our meeting. Design and codebase restructuring to be done by tomorrow preferably.
+
