@@ -49,7 +49,7 @@ public class TopicScreenController extends ApplicationController implements Init
                     e.printStackTrace();
                 }
                 SystemInterface.playSound("pop");
-                MainApp.setRoot("GameScreen", "Kemu Kupu - Let's Play!");
+                MainApp.setRoot("QuizScreen", "Kemu Kupu - Let's Play!");
             } else {
                 System.err.println("Could not select topic with id: " + listName);
             }

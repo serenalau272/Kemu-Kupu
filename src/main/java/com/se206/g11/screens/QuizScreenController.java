@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
+import com.se206.g11.models.QuizMode;
 import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.MainApp;
@@ -19,14 +20,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class GameScreenController extends ApplicationController implements Initializable {
+public class QuizScreenController extends ApplicationController implements Initializable {
     //Index of current word
     private int wordIndex = 0;
     private Status status = Status.NONE;
+
+    //TODO: change this to be set on practice/play model and stored in GameData class.
+    private QuizMode mode = QuizMode.GAME;
+
     //The words the user is to be tested on
     private List<Word> words;
     private boolean disabled = false;
-    private boolean awaitingResponse = true;
+    private boolean awaitingInput = true;
 
     @FXML private TextField inputTextField;
     @FXML private Label hintLabel;
@@ -41,6 +46,7 @@ public class GameScreenController extends ApplicationController implements Initi
     @FXML private ImageView progressMsg;
 
     //macron buttons
+    @FXML private ImageView macron_bg;
     @FXML private ImageView a_button;
     @FXML private ImageView e_button;
     @FXML private ImageView i_button;
@@ -72,26 +78,66 @@ public class GameScreenController extends ApplicationController implements Initi
      * shows appropriate ImageViews based upon whether one is awaiting a response
      */
     private void toggleLabels(){
-        if (awaitingResponse){
-            showOnResponse();
+        awaitingInput = !awaitingInput;
+
+        if (awaitingInput){
+            showElementsForInput();
         } else {
-            showOffResponse();
+            showElementsForResponse();
         }
-        awaitingResponse = !awaitingResponse;
     }
 
     /**
      * shows appropriate ImageViews when response given, and awaiting 'continue'
      */
-    private void showOnResponse(){
-        //remove buttons visibility
+    private void showElementsForResponse(){
+        this.inputTextField.clear();
+
+        setResponseImageView();
+        addSubTextIncorrect();
+
+        //hide elements
         submit_button.setVisible(false);
         skip_button.setVisible(false);
         hear_button.setVisible(false);
+        setMacronVisibility(false);
 
-        this.inputTextField.clear();
+        //show elements
+        responseImg.setVisible(true);
+        continueLabel.setVisible(true);
+        hintLabel.setVisible(true);
+    }
 
-        //setup response image
+    /**
+     * shows appropriate ImageViews when awaiting response
+     */
+    private void showElementsForInput(){
+        //show elements
+        submit_button.setVisible(true);
+        skip_button.setVisible(true);
+        hear_button.setVisible(true);
+        setMacronVisibility(true);
+
+        //hide elements
+        responseImg.setVisible(false);
+        continueLabel.setVisible(false);
+        hintLabel.setVisible(false);
+        progressMsg.setVisible(false);
+    }
+
+    private void setMacronVisibility(boolean isVisible){
+        a_button.setVisible(isVisible);
+        e_button.setVisible(isVisible);
+        i_button.setVisible(isVisible);
+        o_button.setVisible(isVisible);
+        u_button.setVisible(isVisible);
+        macron_bg.setVisible(isVisible);
+    }
+
+    /**
+     * replaces response image with appropriate image based upon status
+     */
+    private void setResponseImageView(){
         try {
             switch (status) {
                 case SKIPPED:
@@ -112,42 +158,19 @@ public class GameScreenController extends ApplicationController implements Initi
         } catch (FileNotFoundException exception){
             System.err.println("File not found");
         }
-
-        addSubTextIncorrect();
-
-        //show continue and response
-        responseImg.setVisible(true);
-        continueLabel.setVisible(true);
-        hintLabel.setVisible(true);
-    }
-
-    /**
-     * shows appropriate ImageViews when awaiting response
-     */
-    private void showOffResponse(){
-        //remove buttons visibility
-        submit_button.setVisible(true);
-        skip_button.setVisible(true);
-        hear_button.setVisible(true);
-
-        //show continue and response
-        responseImg.setVisible(false);
-        continueLabel.setVisible(false);
-        hintLabel.setVisible(false);
-        progressMsg.setVisible(false);
     }
 
     /**
      * Add subtext for faulted and failed responses
      */
     private void addSubTextIncorrect() {
-        String word = this.words.get(this.wordIndex).getMaori();
+        Word word = this.words.get(this.wordIndex);
         switch (this.status) {
             case FAULTED:
-                hintLabel.setText("Hint: Second letter is '" + word.charAt(1) + "'");
+                hintLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
                 break;
             case FAILED: 
-                hintLabel.setText("Correct answer: " + word);
+                hintLabel.setText("Correct answer: " + word.getMaori());
                 break;
             default: 
                 hintLabel.setText("");
@@ -285,7 +308,7 @@ public class GameScreenController extends ApplicationController implements Initi
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();       
-        showOffResponse();      //no response given initially
+        showElementsForInput();      //no response given initially
 
         //Load words from the MainApp
         this.words = MainApp.getWordList();
@@ -318,7 +341,7 @@ public class GameScreenController extends ApplicationController implements Initi
         
         inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if (awaitingResponse) {
+                if (awaitingInput) {
                     inputTextField.setEditable(false);
                     checkInput();
                 } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
