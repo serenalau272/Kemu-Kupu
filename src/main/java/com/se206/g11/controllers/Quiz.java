@@ -223,8 +223,6 @@ public class Quiz extends ApplicationController implements Initializable {
     private void __disableQuiz() {
         this.disabled = true;
         this.inputTextField.setDisable(true);
-        // MainApp.showModal("Rewad", "Reward");
-    
     }
 
     //// Button Handlers ////
@@ -238,6 +236,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //return if empty textfield
         if (this.inputTextField.getText().isEmpty()) {
             inputTextField.setEditable(true);
+            __hearWord(1);
             return;
         }
 
@@ -249,7 +248,7 @@ public class Quiz extends ApplicationController implements Initializable {
             //Correct i.e. MASTERED. Increment score.
             Sounds.playSoundEffect("correct");
             int score = MainApp.getScore() + 20;
-            this.__updateProgressBar(score / 20);
+            this.__updateProgressBar(score);
             MainApp.setScore(score);
 
             this.status = Status.MASTERED;

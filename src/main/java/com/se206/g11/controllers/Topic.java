@@ -26,7 +26,6 @@ public class Topic extends ApplicationController implements Initializable {
     @FXML private ImageView compassPoints_button;
     @FXML private ImageView colours_button;
     @FXML private ImageView daysOfWeekLoanWords_button;
-    @FXML private ImageView engineering_button;
     @FXML private ImageView monthsOfYearLoanWords_button;
     @FXML private ImageView software_button;
     @FXML private ImageView uniLife_button;
@@ -74,7 +73,6 @@ public class Topic extends ApplicationController implements Initializable {
         __initiliseSelectableTopic(compassPoints_button);
         __initiliseSelectableTopic(colours_button);
         __initiliseSelectableTopic(daysOfWeekLoanWords_button);
-        __initiliseSelectableTopic(engineering_button);
         __initiliseSelectableTopic(monthsOfYearLoanWords_button);
         __initiliseSelectableTopic(software_button);
         __initiliseSelectableTopic(uniLife_button);
