@@ -5,6 +5,9 @@ import java.io.IOException;
 import com.se206.g11.models.Settings;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
+import com.se206.g11.util.Sounds;
+import com.se206.g11.util.SystemIO;
+import com.se206.g11.util.TTS;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +24,7 @@ public class MainApp extends Application {
     private static int score;
     private static List<Word> wordList;
     private static Settings settings;
+    public static TTS tts;
 
     //// Private (helper) methods ////
     /**
@@ -30,14 +34,14 @@ public class MainApp extends Application {
      * @return a stage which can be set or spawned as a modal
      */
     private static void __setRoot(String fxml, String title) {
-        SystemInterface.stopSpeech(); //Clear the queue
+        tts.stopSpeech(); //Clear the queue
         try {
             stackPane = new StackPane();
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml")).load());
             Scene scene = new Scene(stackPane);
             stage.setTitle(title);
             stage.setScene(scene);
-            stage.show();                    
+            stage.show();              
         } catch (IOException e) {
             System.err.println("Unable to set root for fxml: " + fxml);
             e.printStackTrace();
@@ -59,7 +63,7 @@ public class MainApp extends Application {
      */
     public static void setTopic(SpellingTopic topic) throws IOException {
         chosenTopic = topic;
-        wordList = SystemInterface.getWords(5, chosenTopic.getPath());
+        wordList = SystemIO.getWords(5, chosenTopic.getPath());
     }
     
     /**
@@ -91,6 +95,7 @@ public class MainApp extends Application {
      */
     public static void setSettings(Settings s) {
         settings = s;
+        tts.setSpeechSpeed(s.getSpeechSpeed());
         s.save("/.data/settings"); //TODO
     }
 
@@ -134,7 +139,7 @@ public class MainApp extends Application {
      * closes modal
      */
     public static void closeModal() {
-        SystemInterface.playSound("pop");
+        Sounds.playSoundEffect("pop");
         stackPane.getChildren().remove(1);
         removeBlur();
         disableScreenNodes(false);
@@ -162,6 +167,7 @@ public class MainApp extends Application {
         stage = s;
         settings = new Settings();
         stage.setResizable(false);
+        tts = new TTS();
         setRoot("MenuScreen","Kemu Kupu");
     }
 
@@ -170,7 +176,7 @@ public class MainApp extends Application {
      */
     @Override
     public void stop() {
-        SystemInterface.stopSpeech();
+        tts.stopSpeech();
     }
 
     public static void main(String[] args) {

@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
+import com.se206.g11.util.SystemIO;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -47,7 +49,7 @@ public class SystemInterfaceTest {
     @Test
     public void testGetTopics() throws IOException {
         //Check that we read all file names correctly
-        List<SpellingTopic> t = SystemInterface.getTopics(p);
+        List<SpellingTopic> t = SystemIO.getTopics(p);
         List<String> f = Arrays.asList(new File(p).list());
         List<String> s = new ArrayList<String>();
         t.forEach(x -> s.add(x.getName()));
@@ -61,10 +63,10 @@ public class SystemInterfaceTest {
     @Test
     public void testGetWords() throws IOException {
         SpellingTopic t = new SpellingTopic("testFile2", p + "/testFile2");    
-        List<Word> w1 = SystemInterface.getWords(2, t.getPath());
-        List<Word> w2 = SystemInterface.getWords(1, t.getPath());
-        List<Word> w3 = SystemInterface.getWords(100, t.getPath());
-        List<Word> w4 = SystemInterface.getWords(100, new SpellingTopic("singleFile", p + "/singleFile").getPath());
+        List<Word> w1 = SystemIO.getWords(2, t.getPath());
+        List<Word> w2 = SystemIO.getWords(1, t.getPath());
+        List<Word> w3 = SystemIO.getWords(100, t.getPath());
+        List<Word> w4 = SystemIO.getWords(100, new SpellingTopic("singleFile", p + "/singleFile").getPath());
         assertEquals(2, w1.size());
         assertEquals(1, w2.size());
         assertEquals(2, w3.size());

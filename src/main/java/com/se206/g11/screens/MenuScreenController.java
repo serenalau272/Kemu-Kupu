@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
-import com.se206.g11.SystemInterface;
+import com.se206.g11.util.Sounds;
 
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -30,7 +30,7 @@ public class MenuScreenController extends ApplicationController implements Initi
         //Set event handlers
         //exiting
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SystemInterface.playSound("pop");
+            Sounds.playSoundEffect("pop");
             MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
             event.consume();
 
@@ -42,13 +42,13 @@ public class MenuScreenController extends ApplicationController implements Initi
 
         //open attributions modal
         info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SystemInterface.playSound("pop");
+            Sounds.playSoundEffect("pop");
             MainApp.showModal("AttributionScreen", "Kemu Kupu - Asset Attributions");
         });
 
         //enter topic selection
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            SystemInterface.playSound("pop");
+            Sounds.playSoundEffect("pop");
             MainApp.setRoot("TopicScreen", "Kemu Kupu - Choose a Topic!");
             event.consume();
         });

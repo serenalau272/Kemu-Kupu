@@ -5,11 +5,12 @@ import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
+import com.se206.g11.models.Language;
 import com.se206.g11.models.QuizMode;
 import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
+import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
-import com.se206.g11.SystemInterface;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -185,7 +186,12 @@ public class QuizScreenController extends ApplicationController implements Initi
     private void __hearWord(int repeats) {
         if (this.disabled) return;
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
-        SystemInterface.readWord(this.words.get(this.wordIndex).getMaori(), repeats);
+        try {
+            MainApp.tts.readWord(this.words.get(this.wordIndex), repeats, Language.MAORI);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -241,7 +247,7 @@ public class QuizScreenController extends ApplicationController implements Initi
         
         if (this.words.get(this.wordIndex).isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
-            SystemInterface.playSound("correct");
+            Sounds.playSoundEffect("correct");
             int score = MainApp.getScore() + 20;
             this.__updateProgressBar(score / 20);
             MainApp.setScore(score);
@@ -325,7 +331,7 @@ public class QuizScreenController extends ApplicationController implements Initi
         // initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            SystemInterface.playSound("pop");
+            Sounds.playSoundEffect("pop");
             settingsClick();
         });
 

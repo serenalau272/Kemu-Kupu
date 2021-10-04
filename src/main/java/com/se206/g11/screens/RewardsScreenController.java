@@ -5,7 +5,8 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
-import com.se206.g11.SystemInterface;
+import com.se206.g11.models.Language;
+import com.se206.g11.models.Word;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -83,7 +84,14 @@ public class RewardsScreenController extends ApplicationController implements In
         //Set event handlers
         menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("MenuScreen", "Kemu Kupu"));
         again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("TopicScreen", "Kemu Kupu - Choose a Topic!"));
-        pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> SystemInterface.readWord("Ka Pai"));
+        pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+            try {
+                MainApp.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
 
     }    
 }

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 import com.se206.g11.models.Settings;
-import com.se206.g11.SystemInterface;
+import com.se206.g11.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,7 +59,7 @@ public class SettingsScreenController extends ApplicationController implements I
      * @param amt the amount to change by
      */
     private void __speed_change(double amt) {
-        SystemInterface.playSound("pop");
+        Sounds.playSoundEffect("pop");
         this.settings.setSpeechSpeed(this.settings.getSpeechSpeed()+amt);
         this.__update();
     }
@@ -77,7 +77,7 @@ public class SettingsScreenController extends ApplicationController implements I
         this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
         this.music_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
-            SystemInterface.playSound("pop");
+            Sounds.playSoundEffect("pop");
             this.__update();
         });
         this.minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.se206.g11.models.SpellingTopic;
+import com.se206.g11.util.Sounds;
+import com.se206.g11.util.SystemIO;
 import com.se206.g11.ApplicationController;
-import com.se206.g11.SystemInterface;
 import com.se206.g11.MainApp;
 
 import javafx.scene.input.MouseEvent;
@@ -48,7 +49,7 @@ public class TopicScreenController extends ApplicationController implements Init
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                SystemInterface.playSound("pop");
+                Sounds.playSoundEffect("pop");
                 MainApp.setRoot("QuizScreen", "Kemu Kupu - Let's Play!");
             } else {
                 System.err.println("Could not select topic with id: " + listName);
@@ -63,7 +64,7 @@ public class TopicScreenController extends ApplicationController implements Init
         //Inital setup & loading of data
         super.initialize();
         try {
-            TOPICS = (ArrayList<SpellingTopic>) SystemInterface.getTopics();
+            TOPICS = (ArrayList<SpellingTopic>) SystemIO.getTopics();
         } catch (IOException e){
             System.err.println("Unable to retrieve spelling word topics " + e);
         }
