@@ -131,3 +131,12 @@
 * We use the 'trello-like' interface on Notion to assign responsibilities.
 * I've done some restructuring of existing QuizGameController today after lengthy conversation in our meeting. Design and codebase restructuring to be done by tomorrow preferably.
 
+- - - -
+**<font size="5">Collaborative Session + Timer + Ambitious Goals!</font>**
+
+*4-Oct, 2021.*
+* We met today in a collaborative session to review the new design and give feedback. We're taking an ambition stance with trying to animate a timer and also creating a 'skribblio-like' input approach instead of one textfield.
+* Design to be finalised today and FXML to be added
+* Many modals need to be made and implemented still.
+* Timer implementation and colour interpolation finished.
+* Planning to meet again tomorrow in yet another collaborative session
