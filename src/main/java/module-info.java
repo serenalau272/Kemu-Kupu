@@ -1,5 +1,5 @@
 module com.se206.g11 {
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
     requires transitive javafx.graphics;

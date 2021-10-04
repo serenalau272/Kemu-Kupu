@@ -35,6 +35,7 @@ public class Quiz extends ApplicationController implements Initializable {
     private List<Word> words;
     private boolean disabled = false;
     private boolean awaitingInput = true;
+    ClockWork timer;
 
     @FXML private TextField inputTextField;
     @FXML private Label hintLabel;
@@ -48,6 +49,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView continueLabel;
     @FXML private ImageView progressMsg;
     @FXML private Arc arc;
+    @FXML private Label timerLabel;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -224,6 +226,7 @@ public class Quiz extends ApplicationController implements Initializable {
      * Disable the quiz, due to an error or completion
      */
     private void __disableQuiz() {
+        timer.stop();
         this.disabled = true;
         this.inputTextField.setDisable(true);
     }
@@ -234,6 +237,8 @@ public class Quiz extends ApplicationController implements Initializable {
      * Handler for the submit button
      */
     public void checkInput() {
+        timer.stop();
+        
         if (this.disabled) return;
         
         //return if empty textfield
@@ -250,7 +255,7 @@ public class Quiz extends ApplicationController implements Initializable {
         if (this.words.get(this.wordIndex).isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
             Sounds.playSoundEffect("correct");
-            int score = MainApp.getScore() + 20;
+            int score = MainApp.getScore() + (timer.getScoreMultiplier() * 5);
             this.__updateProgressBar(score);
             MainApp.setScore(score);
 
@@ -273,8 +278,10 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     public void onEnterContinue(){
         if (this.disabled) return;
+        
         toggleLabels();
         inputTextField.setEditable(true);
+        timer.start();
 
         if (status == Status.FAULTED){
             this.__hearWord(1);
@@ -292,6 +299,8 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     public void skipWordClick() {
         if (this.disabled) return;
+
+        timer.stop();
         this.status = Status.SKIPPED;
         toggleLabels();
     }
@@ -330,7 +339,8 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__updateWordIndexBanner();
         }
         
-        ClockWork timer = new ClockWork(arc);
+        timer = new ClockWork(arc, timerLabel);
+        timer.start();
 
         // initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));

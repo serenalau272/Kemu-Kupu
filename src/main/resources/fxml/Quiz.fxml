@@ -112,5 +112,9 @@
          </image>
       </ImageView>
       <Arc fx:id="arc" fill="DODGERBLUE" layoutX="918.0" layoutY="265.0" length="270.0" radiusX="100.0" radiusY="100.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Label fx:id="timerLabel" layoutX="875.0" layoutY="237.0" text="30" textFill="WHITE">
+         <font>
+            <Font size="50.0" />
+         </font></Label>
     </children>
 </AnchorPane>

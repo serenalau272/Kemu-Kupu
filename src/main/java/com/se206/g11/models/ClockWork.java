@@ -11,23 +11,50 @@ import javafx.util.Duration;
 
 public class ClockWork {
     private Arc sector;
-    private float angle = 0.0f;
+    private float angle;
     private Color startColor = Color.GREEN;
     private Color endColor = Color.RED;
     private Color color = startColor;
-
-    //https://docs.oracle.com/javafx/2/api/javafx/animation/FillTransition.html
+    private Label timerLabel;
+    private int duration;
+    private MyTimer timer;
     
-    public ClockWork(Arc sector) {
+    public ClockWork(Arc sector, Label timerLabel) {
         this.sector = sector;
+        this.timerLabel = timerLabel;
         configureArc();
-        AnimationTimer timer = new MyTimer(30);
+        timer = new MyTimer(duration);
+    }
+
+    public void stop(){
+        timer.close();
+    }
+
+    public void start(){
+        angle = 0.0f;
+        duration = 15;
+        timer = new MyTimer(duration);
         timer.start();
+    }
+
+    /**
+     * 
+     * @return the score multiplier based upon time. 4 is maximum and 1 is minimum
+     */
+    public int getScoreMultiplier(){
+        int multiplier = (int) Math.ceil((360 - angle) * 4 / 360);
+        return (multiplier == 0) ? 1 : multiplier; 
     }
 
     private void updateColor(){
         double ratio = angle / 360.0f;
         color = startColor.interpolate(endColor, ratio);
+        sector.setFill(color);
+    }
+
+    private void updateLabel(){
+        int display = duration - (int) (angle * duration / 360);
+        timerLabel.setText(String.valueOf(display));
     }
     
     private void configureArc(){
@@ -36,7 +63,7 @@ public class ClockWork {
         sector.setStrokeWidth(0.0f);
     }
 
-    private class MyTimer extends AnimationTimer {
+    public class MyTimer extends AnimationTimer {
         private long lastUpdate = 0;
         private long durationTick;
 
@@ -44,9 +71,12 @@ public class ClockWork {
             this.durationTick = durationSec * 1000_000_000 / 720;
         }
 
+        public void close(){
+            stop();
+        }
+
         @Override
         public void handle(long now) {
-            // System.out.println(now);
             if (now - lastUpdate >= durationTick) {
                 lastUpdate = now ;
                 doHandle();
@@ -57,11 +87,11 @@ public class ClockWork {
             angle += 0.5f;
             sector.setLength(angle);
             updateColor();
-            sector.setFill(color);
+            updateLabel();
+            
 
             if (angle >= 360.0f) {
                 stop();
-                System.out.println("Animation stopped");
             }
         }
     }
