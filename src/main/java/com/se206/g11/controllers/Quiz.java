@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
+import com.se206.g11.models.ClockWork;
 import com.se206.g11.models.Language;
 import com.se206.g11.models.QuizMode;
 import com.se206.g11.models.Status;
@@ -20,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Arc;
 
 public class Quiz extends ApplicationController implements Initializable {
     //Index of current word
@@ -45,6 +47,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView responseImg;
     @FXML private ImageView continueLabel;
     @FXML private ImageView progressMsg;
+    @FXML private Arc arc;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -326,6 +329,8 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__hearWord(1);
             this.__updateWordIndexBanner();
         }
+        
+        ClockWork timer = new ClockWork(arc);
 
         // initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
