@@ -15,15 +15,15 @@ public class WordTest {
         assertEquals(word.getEnglish(), "world");
     }
 
-    @Test
-    public void testIsEqualLazy() {
-        Word word1 = new Word("hello", "world");
-        Word word2 = new Word("héllo", null);
-        Word word3 = new Word(null, "something");
+    // @Test
+    // public void testIsEqualLazy() {
+    //     Word word1 = new Word("hello", "world");
+    //     Word word2 = new Word("héllo", null);
+    //     Word word3 = new Word(null, "something");
 
-        assertTrue(word1.isEqualLazy(word2));
-        assertFalse(word1.isEqualLazy(word3));
-    }
+    //     assertTrue(word1.isEqualLazy(word2));
+    //     assertFalse(word1.isEqualLazy(word3));
+    // }
 
     @Test
     public void testIsEqualStrict() {

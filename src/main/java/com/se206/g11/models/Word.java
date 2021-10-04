@@ -1,13 +1,13 @@
 package com.se206.g11.models;
 
-import java.text.Collator;
-
 /**
  * A word the user may be tested on. Has english and maori representations stored internally.
  */
 public class Word {
     private String maori;
     private String english;
+    private Status status;
+    private int time;
     //// Constructors ////
 
     /**
@@ -16,6 +16,8 @@ public class Word {
     public Word() {
         this.english = null;
         this.maori = null;
+        this.status = Status.SKIPPED;
+        this.time = 0;
     }
 
     /**
@@ -27,25 +29,11 @@ public class Word {
     public Word(String maori, String english) {
         if (english != null) this.english = english.strip().toLowerCase();
         if (maori != null) this.maori = maori.strip().toLowerCase();
+        this.status = Status.SKIPPED;
+        this.time = 0;
     }
 
     //// Public Methods ////
-
-    /**
-     * Checks if two words are equal, ignoring accents. I.e. "é" == "e" will return true.
-     * If one provides a word with the english or maori set to null, then only this will be
-     * compared against the original. Will not compare both if both are set.
-     * Note: unused in A3 implementation but may be useful for Project
-     * @param word the word to compare against.
-     * @return true if equal, false otherwise.
-     */
-    public Boolean isEqualLazy(Word word) {
-        final Collator i = Collator.getInstance();
-        i.setStrength(Collator.NO_DECOMPOSITION);
-        if (word.getEnglish() != null) return i.compare(word.getEnglish(), this.getEnglish()) == 0;
-        if (word.getMaori() != null) return i.compare(word.getMaori(), this.getMaori()) == 0;
-        return false;
-    }
 
     /**
      * Checks if two words are equal, strictly checking accents. I.e. "é" == "e" will return false.
@@ -54,10 +42,46 @@ public class Word {
      * @param word the word to compare against.
      * @return true if equal, false otherwise.
      */
-    public Boolean isEqualStrict(Word word) {
-        if (word.getEnglish() != null) return word.getEnglish().equals(this.getEnglish());
-        if (word.getMaori() != null) return word.getMaori().equals(this.getMaori());
-        return false;
+    public Boolean isEqualStrict(Word word) throws NullPointerException {
+        if (word.getEnglish() == null && word.getMaori() == null) throw new NullPointerException("both english and maori are null");
+        if (this.getEnglish() == null && this.getMaori() == null) throw new NullPointerException("both english and maori are null");
+
+        //Carry out comparison
+        boolean comparison = false;
+        if (word.getEnglish() != null) comparison = word.getEnglish().equals(this.getEnglish());
+        if (word.getMaori() != null) comparison =  word.getMaori().equals(this.getMaori());
+
+        // Update the status
+        if (comparison) {
+            //Correct!
+            switch (this.status) {
+                case NOT_TESTED:
+                    this.status = Status.MASTERED;
+                    break;
+                case SKIPPED:
+                    this.status = Status.MASTERED;
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            //Incorrect
+            switch (this.status) {
+                case NOT_TESTED:
+                    this.status = Status.FAULTED;
+                    break;
+                case FAULTED:
+                    this.status = Status.FAILED;
+                    break;
+                case SKIPPED: 
+                    this.status = Status.FAULTED;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        return comparison;
     }
 
     /** 
@@ -88,5 +112,37 @@ public class Word {
      */
     public void setMaori(String s) {
         this.maori = s.strip().toLowerCase();
+    }
+
+    /**
+     * Get the spelling status of this word.
+     * @return
+     */
+    public Status getStatus() {
+        return this.status;
+    }
+
+    /**
+     * Manually set the status of this word, note that it is automagically set when you use the comparison methods.
+     * @param s
+     */
+    public void setStatus(Status s) {
+        this.status = s;
+    }
+
+    /**
+     * Get the time the student took to answer this question!
+     * @return
+     */
+    public int getTimeMultiplier() {
+        return this.time;
+    }
+
+    /**
+     * Set the time the student took to answer this question correctly!
+     * @param time
+     */
+    public void setTimeMultiplier(int time) {
+        this.time = time;
     }
 }

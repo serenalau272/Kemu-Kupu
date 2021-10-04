@@ -1,12 +1,9 @@
 package com.se206.g11;
-import java.util.List;
 import java.io.IOException;
 
+import com.se206.g11.models.Game;
 import com.se206.g11.models.Setting;
-import com.se206.g11.models.SpellingTopic;
-import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
-import com.se206.g11.util.SystemIO;
 import com.se206.g11.util.TTS;
 
 import javafx.application.Application;
@@ -20,10 +17,8 @@ import javafx.scene.effect.BoxBlur;
 public class MainApp extends Application {
     private static Stage stage;
     private static StackPane stackPane;
-    private static SpellingTopic chosenTopic;
-    private static int score;
-    private static List<Word> wordList;
-    private static Setting settings;
+    private static Game state;
+    private static Setting setting;
     public static TTS tts;
 
     //// Private (helper) methods ////
@@ -56,54 +51,37 @@ public class MainApp extends Application {
     }
 
     //// Public Methods ////
+
     /**
-     * Set the current spelling topic
-     * @param topic Spelling topic to get
-     * @throws IOException throws if we are unable to read the topic file
+     * Get the current gamestate
+     * @return
      */
-    public static void setTopic(SpellingTopic topic) throws IOException {
-        chosenTopic = topic;
-        wordList = SystemIO.getWords(5, chosenTopic.getPath());
-    }
-    
-    /**
-     * Get the list of words
-     * @return a list of words, can be null
-     */
-    public static List<Word> getWordList() {
-        return wordList;
+    public static Game getGameState() {
+        return state;
     }
 
     /**
-     * Set the current score of the player to a new value
-     * @param i score to be set
+     * Update the game state
+     * @param newState
      */
-    public static void setScore(int i) {
-        score = i;
+    public static void setGameState(Game newState) {
+        state = newState;
     }
 
     /**
-     * Get the current score of the player.
-     * @return the score of the player
+     * Get the current settings.
+     * @return
      */
-    public static int getScore() {
-        return score;
-    }
-    
-    /**
-     * @param s the new settings to set for this user
-     */
-    public static void setSettings(Setting s) {
-        settings = s;
-        tts.setSpeechSpeed(s.getSpeechSpeed());
-        s.save("/.data/settings"); //TODO
+    public static Setting getSetting() {
+        return setting;
     }
 
     /**
-     * @return the current settings configuration
+     * Update the settings for this application
+     * @param newSetting
      */
-    public static Setting getSettings() {
-        return settings;
+    public static void setSetting(Setting newSetting) {
+        setting = newSetting;
     }
 
     /**
@@ -165,7 +143,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage s) {
         stage = s;
-        settings = new Setting();
+        setting = new Setting();
         stage.setResizable(false);
         tts = new TTS();
         setRoot("Menu","Kemu Kupu");

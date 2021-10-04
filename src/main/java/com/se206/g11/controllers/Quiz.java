@@ -1,13 +1,12 @@
 package com.se206.g11.controllers;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.models.ClockWork;
+import com.se206.g11.models.Game;
 import com.se206.g11.models.Language;
-import com.se206.g11.models.QuizMode;
 import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
@@ -26,13 +25,8 @@ import javafx.scene.shape.Arc;
 public class Quiz extends ApplicationController implements Initializable {
     //Index of current word
     private int wordIndex = 0;
-    private Status status = Status.NONE;
+    private Game game;
 
-    //TODO: change this to be set on practice/play model and stored in GameData class.
-    private QuizMode mode = QuizMode.GAME;
-
-    //The words the user is to be tested on
-    private List<Word> words;
     private boolean disabled = false;
     private boolean awaitingInput = true;
     ClockWork timer;
@@ -67,9 +61,8 @@ public class Quiz extends ApplicationController implements Initializable {
      * - If no words are left, go to rewards screen.
      */
     private void __loadNextWord() {
-        this.status = Status.NONE;
         //Check if we have words left
-        if (this.wordIndex < this.words.size() -1) {
+        if (this.wordIndex < this.game.getWordListSize() -1) {
             this.wordIndex++;
             this.__updateWordIndexBanner();
             this.__hearWord(1);
@@ -145,7 +138,7 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void setResponseImageView(){
         try {
-            switch (status) {
+            switch (this.game.getWord(this.wordIndex).getStatus()) {
                 case SKIPPED:
                     setImage("SKIPPED", responseImg);
                     break;
@@ -170,8 +163,8 @@ public class Quiz extends ApplicationController implements Initializable {
      * Add subtext for faulted and failed responses
      */
     private void addSubTextIncorrect() {
-        Word word = this.words.get(this.wordIndex);
-        switch (this.status) {
+        Word word = this.game.getWord(this.wordIndex);
+        switch (word.getStatus()) {
             case FAULTED:
                 hintLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
                 break;
@@ -192,7 +185,7 @@ public class Quiz extends ApplicationController implements Initializable {
         if (this.disabled) return;
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
         try {
-            MainApp.tts.readWord(this.words.get(this.wordIndex), repeats, Language.MAORI);
+            MainApp.tts.readWord(this.game.getWord(this.wordIndex), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -252,22 +245,11 @@ public class Quiz extends ApplicationController implements Initializable {
         Word input = new Word();
         input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
         
-        if (this.words.get(this.wordIndex).isEqualStrict(input)) {
+        if (this.game.getWord(this.wordIndex).isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
+            this.game.getWord(this.wordIndex).setTimeMultiplier(timer.getScoreMultiplier());
             Sounds.playSoundEffect("correct");
-            int score = MainApp.getScore() + (timer.getScoreMultiplier() * 5);
-            this.__updateProgressBar(score);
-            MainApp.setScore(score);
-
-            this.status = Status.MASTERED;
-        } else {
-            if (status == Status.NONE || status == Status.SKIPPED) {
-                //First attempt wrong i.e. FAULTED
-                this.status = Status.FAULTED;
-            } else {
-                //Second attempt wrong. i.e. FAILED
-                this.status = Status.FAILED;
-            }
+            this.__updateProgressBar(this.game.getScore());
         }
 
         toggleLabels();
@@ -283,15 +265,11 @@ public class Quiz extends ApplicationController implements Initializable {
         inputTextField.setEditable(true);
         timer.start();
 
-        if (status == Status.FAULTED){
+        if (this.game.getWord(this.wordIndex).getStatus() == Status.FAULTED) {
             this.__hearWord(1);
-        }
-
-        if (status == Status.FAILED || status == Status.MASTERED || status == Status.SKIPPED){
-            //load next word
+        } else {
             __loadNextWord();
         }
-
     }
 
     /**
@@ -301,7 +279,6 @@ public class Quiz extends ApplicationController implements Initializable {
         if (this.disabled) return;
 
         timer.stop();
-        this.status = Status.SKIPPED;
         toggleLabels();
     }
 
@@ -323,21 +300,15 @@ public class Quiz extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.game = MainApp.getGameState();
         //Inital setup & loading of data
         super.initialize();       
         showElementsForInput();      //no response given initially
 
         //Load words from the MainApp
-        this.words = MainApp.getWordList();
-        if (this.words.size() == 0) {
-            this.__disableQuiz();
-            System.err.println("Unable to load words! Cannot start quiz");
-            //TODO add popup
-        } else {
-            MainApp.setScore(0);
-            this.__hearWord(1);
-            this.__updateWordIndexBanner();
-        }
+        this.__hearWord(1);
+        this.__updateWordIndexBanner();
+        
         
         timer = new ClockWork(arc, timerLabel);
         timer.start();

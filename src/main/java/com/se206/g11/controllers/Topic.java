@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.se206.g11.models.Game;
+import com.se206.g11.models.Gamemode;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.util.SystemIO;
@@ -44,7 +46,8 @@ public class Topic extends ApplicationController implements Initializable {
             if (TOPICS.contains(topic)){
                 //if it is a valid topic
                 try {
-                    MainApp.setTopic(topic);
+                    Game game = new Game(Gamemode.RANKED, topic); //TODO - ranked vs practise selection
+                    MainApp.setGameState(game);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

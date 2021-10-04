@@ -1,6 +1,7 @@
 package com.se206.g11;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -74,6 +75,20 @@ public class SystemInterfaceTest {
         Word w = w4.get(0);
         assertEquals("hello", w.getMaori());
         assertEquals("world", w.getEnglish());
+    }
+
+    @Test
+    public void checkWordLengths() throws IOException {
+        String path = "./words";
+        List<SpellingTopic> topics = SystemIO.getTopics(path);
+        for (SpellingTopic topic : topics) {
+            List<Word> words = SystemIO.getWords(100, topic.getPath());
+            words.forEach(x -> {
+                if (x.getMaori().length() > 12) {
+                    fail("Word " + x.getEnglish() + " from list " + topic.getName() + " was more than 12 chars!");
+                }
+            });
+        }
     }
 
     @AfterAll

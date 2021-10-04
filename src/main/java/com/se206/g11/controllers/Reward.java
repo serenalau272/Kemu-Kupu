@@ -7,6 +7,7 @@ import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 import com.se206.g11.models.Language;
 import com.se206.g11.models.Word;
+import com.se206.g11.models.Game;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +18,7 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the rewards modal.
  */
 public class Reward extends ApplicationController implements Initializable {
-    private int scoreNum;
+    private Game game;
     //The threshold of score for each star to appear
     private final int[] starThreshold = {20, 60, 100};
 
@@ -72,11 +73,11 @@ public class Reward extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();
-        this.scoreNum = MainApp.getScore();
+        this.game = MainApp.getGameState();
 
-        setStars(this.scoreNum);
+        setStars(this.game.getScore());
         try {
-            setImage(this.scoreNum, score);
+            setImage(this.game.getScore(), score);
         } catch (FileNotFoundException e) {
             System.err.println(e);
         }

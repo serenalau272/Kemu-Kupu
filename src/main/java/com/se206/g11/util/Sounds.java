@@ -20,7 +20,7 @@ public class Sounds {
      * @param sound the name of the sound to play
      */
     public static void playSoundEffect(String sound) {
-        if (!MainApp.getSettings().getMusic()) return;
+        if (!MainApp.getSetting().getMusic()) return;
         try {
             String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound

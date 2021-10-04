@@ -69,7 +69,7 @@ public class Setting extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();
-        this.settings = MainApp.getSettings();
+        this.settings = MainApp.getSetting();
         this.__update();
         
         //Set event handlers
