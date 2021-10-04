@@ -1,19 +1,18 @@
 package com.se206.g11.models;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.FillTransition;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class ClockWork {
     private Arc sector;
     private float angle;
-    private Color startColor = Color.GREEN;
-    private Color endColor = Color.RED;
+    private Color startColor = Color.rgb(172, 249, 75);
+    private Color midColor1 = Color.rgb(238, 255, 132);
+    private Color midColor2 = Color.rgb(255, 198, 132);
+    private Color endColor = Color.rgb(255, 111, 116);
     private Color color = startColor;
     private Label timerLabel;
     private int duration;
@@ -47,8 +46,23 @@ public class ClockWork {
     }
 
     private void updateColor(){
-        double ratio = angle / 360.0f;
-        color = startColor.interpolate(endColor, ratio);
+        double ratio;
+        if (angle <= 120.0f){
+            //between start and mid1
+            ratio = angle / 120.0f;
+            color = startColor.interpolate(midColor1, ratio);
+
+        } else if (angle <= 240.0f){
+            //between mid1 and mid2
+            ratio = (angle - 120.0f) / 120.0f;
+            color = midColor1.interpolate(midColor2, ratio);
+
+        } else {
+            //between mid2 and end
+            ratio = (angle - 240.0f) / 120.0f;
+            color = midColor2.interpolate(endColor, ratio);
+        }
+        
         sector.setFill(color);
     }
 
