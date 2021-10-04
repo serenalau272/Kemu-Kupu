@@ -1,4 +1,4 @@
-package com.se206.g11.screens;
+package com.se206.g11.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * This class is the controller for the attributions modal.
  */
-public class AttributionsScreenController extends ApplicationController implements Initializable {
+public class Attribution extends ApplicationController implements Initializable {
     @FXML ImageView exit_button;
 
     /**

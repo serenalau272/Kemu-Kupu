@@ -1,4 +1,4 @@
-package com.se206.g11.screens;
+package com.se206.g11.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 /**
  * This class is the controller for the menu screen
  */
-public class MenuScreenController extends ApplicationController implements Initializable {
+public class Menu extends ApplicationController implements Initializable {
     @FXML private ImageView exitGame_button;
     @FXML private ImageView enterTopicSelect_button;
     @FXML private ImageView info_button;
@@ -31,7 +31,7 @@ public class MenuScreenController extends ApplicationController implements Initi
         //exiting
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.setRoot("ExitScreen", "Kemu Kupu - Goodbye!");
+            MainApp.setRoot("Exit", "Kemu Kupu - Goodbye!");
             event.consume();
 
             //pause and exit
@@ -43,13 +43,13 @@ public class MenuScreenController extends ApplicationController implements Initi
         //open attributions modal
         info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.showModal("AttributionScreen", "Kemu Kupu - Asset Attributions");
+            MainApp.showModal("Attribution", "Kemu Kupu - Asset Attributions");
         });
 
         //enter topic selection
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.setRoot("TopicScreen", "Kemu Kupu - Choose a Topic!");
+            MainApp.setRoot("Topic", "Kemu Kupu - Choose a Topic!");
             event.consume();
         });
     }    

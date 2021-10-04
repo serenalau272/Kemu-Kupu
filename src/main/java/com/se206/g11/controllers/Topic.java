@@ -1,4 +1,4 @@
-package com.se206.g11.screens;
+package com.se206.g11.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 /**
  * This class is the controller for the topic screen
  */
-public class TopicScreenController extends ApplicationController implements Initializable {
+public class Topic extends ApplicationController implements Initializable {
     //List of imported topics
     private ArrayList<SpellingTopic> TOPICS;
 
@@ -50,7 +50,7 @@ public class TopicScreenController extends ApplicationController implements Init
                     e.printStackTrace();
                 }
                 Sounds.playSoundEffect("pop");
-                MainApp.setRoot("QuizScreen", "Kemu Kupu - Let's Play!");
+                MainApp.setRoot("Quiz", "Kemu Kupu - Let's Play!");
             } else {
                 System.err.println("Could not select topic with id: " + listName);
             }

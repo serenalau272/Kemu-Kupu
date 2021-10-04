@@ -1,11 +1,10 @@
-package com.se206.g11.screens;
+package com.se206.g11.controllers;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
-import com.se206.g11.models.Settings;
 import com.se206.g11.util.Sounds;
 
 import javafx.fxml.FXML;
@@ -17,9 +16,9 @@ import javafx.scene.input.MouseEvent;
 /**
  * This class is the controller for the settings modal.
  */
-public class SettingsScreenController extends ApplicationController implements Initializable {
+public class Setting extends ApplicationController implements Initializable {
     //The users current settings Selection
-    private Settings settings;
+    private com.se206.g11.models.Setting settings;
 
     @FXML Label speedVal;
     @FXML Label defaultLabel;

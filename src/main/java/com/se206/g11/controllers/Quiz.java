@@ -1,4 +1,4 @@
-package com.se206.g11.screens;
+package com.se206.g11.controllers;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,7 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class QuizScreenController extends ApplicationController implements Initializable {
+public class Quiz extends ApplicationController implements Initializable {
     //Index of current word
     private int wordIndex = 0;
     private Status status = Status.NONE;
@@ -71,7 +71,7 @@ public class QuizScreenController extends ApplicationController implements Initi
         } else {
             //game ended, navigate to rewards screen
             this.__disableQuiz();
-            MainApp.showModal("RewardScreen", "Reward Screen");
+            MainApp.showModal("Reward", "Reward");
         }
     }
     
@@ -223,7 +223,7 @@ public class QuizScreenController extends ApplicationController implements Initi
     private void __disableQuiz() {
         this.disabled = true;
         this.inputTextField.setDisable(true);
-        // MainApp.showModal("RewardScreen", "Reward Screen");
+        // MainApp.showModal("Rewad", "Reward");
     
     }
 
@@ -298,7 +298,7 @@ public class QuizScreenController extends ApplicationController implements Initi
      * Handler for the settings button
      */
     public void settingsClick() {
-        MainApp.showModal("SettingScreen", "Settings");
+        MainApp.showModal("Setting", "Settings");
     }
 
     /**

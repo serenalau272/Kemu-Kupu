@@ -1,4 +1,4 @@
-package com.se206.g11.screens;
+package com.se206.g11.controllers;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * This class is the controller for the rewards modal.
  */
-public class RewardsScreenController extends ApplicationController implements Initializable {
+public class Reward extends ApplicationController implements Initializable {
     private int scoreNum;
     //The threshold of score for each star to appear
     private final int[] starThreshold = {20, 60, 100};
@@ -82,8 +82,8 @@ public class RewardsScreenController extends ApplicationController implements In
         }
         
         //Set event handlers
-        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("MenuScreen", "Kemu Kupu"));
-        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("TopicScreen", "Kemu Kupu - Choose a Topic!"));
+        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("Menu", "Kemu Kupu"));
+        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("Topic", "Kemu Kupu - Choose a Topic!"));
         pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
                 MainApp.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);

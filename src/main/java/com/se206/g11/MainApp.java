@@ -2,7 +2,7 @@ package com.se206.g11;
 import java.util.List;
 import java.io.IOException;
 
-import com.se206.g11.models.Settings;
+import com.se206.g11.models.Setting;
 import com.se206.g11.models.SpellingTopic;
 import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
@@ -23,7 +23,7 @@ public class MainApp extends Application {
     private static SpellingTopic chosenTopic;
     private static int score;
     private static List<Word> wordList;
-    private static Settings settings;
+    private static Setting settings;
     public static TTS tts;
 
     //// Private (helper) methods ////
@@ -93,7 +93,7 @@ public class MainApp extends Application {
     /**
      * @param s the new settings to set for this user
      */
-    public static void setSettings(Settings s) {
+    public static void setSettings(Setting s) {
         settings = s;
         tts.setSpeechSpeed(s.getSpeechSpeed());
         s.save("/.data/settings"); //TODO
@@ -102,7 +102,7 @@ public class MainApp extends Application {
     /**
      * @return the current settings configuration
      */
-    public static Settings getSettings() {
+    public static Setting getSettings() {
         return settings;
     }
 
@@ -165,10 +165,10 @@ public class MainApp extends Application {
     @Override
     public void start(Stage s) {
         stage = s;
-        settings = new Settings();
+        settings = new Setting();
         stage.setResizable(false);
         tts = new TTS();
-        setRoot("MenuScreen","Kemu Kupu");
+        setRoot("Menu","Kemu Kupu");
     }
 
     /**

@@ -3,7 +3,7 @@ package com.se206.g11.models;
 /**
  * Settings for the GUI application which can be altered in Game Mode. Allows settings for speed speed and enabling of music
  */
-public class Settings {
+public class Setting {
     private boolean music = true;
     private Double speechSpeed = 1.0;
 
