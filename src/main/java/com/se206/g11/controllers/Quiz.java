@@ -12,16 +12,21 @@ import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
 import com.se206.g11.components.Clock;
+import com.se206.g11.components.InputTile;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Arc;
+import javafx.stage.Stage;
 
 public class Quiz extends ApplicationController implements Initializable {
     //Index of current word
@@ -308,9 +313,15 @@ public class Quiz extends ApplicationController implements Initializable {
         this.__hearWord(1);
         this.__updateWordIndexBanner();
         
-        
+        //configure timer
         timer = new Clock(arc, timerLabel);
         timer.start();
+
+        //create textfield
+        Scene stage = messageLabel.getScene();
+        StackPane r = (StackPane) stage.getRoot();
+        InputTile t = new InputTile(20, 30);
+        // r.getChildren().addAll(t);
 
         // initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
