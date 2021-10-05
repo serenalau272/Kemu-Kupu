@@ -11,7 +11,7 @@ import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
-import com.se206.g11.components.ClockWork;
+import com.se206.g11.components.Clock;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +30,7 @@ public class Quiz extends ApplicationController implements Initializable {
 
     private boolean disabled = false;
     private boolean awaitingInput = true;
-    ClockWork timer;
+    Clock timer;
 
     @FXML private TextField inputTextField;
     @FXML private Label messageLabel;
@@ -309,7 +309,7 @@ public class Quiz extends ApplicationController implements Initializable {
         this.__updateWordIndexBanner();
         
         
-        timer = new ClockWork(arc, timerLabel);
+        timer = new Clock(arc, timerLabel);
         timer.start();
 
         // initalize event handlers for buttons
