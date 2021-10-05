@@ -4,13 +4,14 @@ import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
-import com.se206.g11.models.ClockWork;
 import com.se206.g11.models.Game;
 import com.se206.g11.models.Language;
+import com.se206.g11.models.Modals;
 import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
+import com.se206.g11.components.ClockWork;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -69,7 +70,7 @@ public class Quiz extends ApplicationController implements Initializable {
         } else {
             //game ended, navigate to rewards screen
             this.__disableQuiz();
-            MainApp.showModal("Reward", "Reward");
+            MainApp.showModal(Modals.REWARD);
         }
     }
     
@@ -286,7 +287,7 @@ public class Quiz extends ApplicationController implements Initializable {
      * Handler for the settings button
      */
     public void settingsClick() {
-        MainApp.showModal("Setting", "Settings");
+        MainApp.showModal(Modals.SETTING);
     }
 
     /**

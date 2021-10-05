@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 import com.se206.g11.models.Language;
+import com.se206.g11.models.View;
 import com.se206.g11.models.Word;
 import com.se206.g11.models.Game;
 
@@ -33,12 +34,11 @@ public class Reward extends ApplicationController implements Initializable {
     //// Private (helper) methods ////
     /**
      * Change the mainapp to a new window, and close this modal
-     * @param fxml the name of the file to open
-     * @param title the title of the window to set
+     * @param v the view to switch to
      */
-    private void __changeClose(String fxml, String title) {
+    private void __changeClose(View v) {
         MainApp.closeModal();
-        MainApp.setRoot(fxml, title);
+        MainApp.setRoot(v);
         hideStars();
     }
 
@@ -83,8 +83,8 @@ public class Reward extends ApplicationController implements Initializable {
         }
         
         //Set event handlers
-        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("Menu", "Kemu Kupu"));
-        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose("Topic", "Kemu Kupu - Choose a Topic!"));
+        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose(View.MENU));
+        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose(View.TOPIC));
         pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
                 MainApp.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);

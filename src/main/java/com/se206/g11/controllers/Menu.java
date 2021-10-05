@@ -4,6 +4,8 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
+import com.se206.g11.models.Modals;
+import com.se206.g11.models.View;
 import com.se206.g11.util.Sounds;
 
 import javafx.scene.input.MouseEvent;
@@ -31,7 +33,7 @@ public class Menu extends ApplicationController implements Initializable {
         //exiting
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.setRoot("Exit", "Kemu Kupu - Goodbye!");
+            MainApp.setRoot(View.EXIT);
             event.consume();
 
             //pause and exit
@@ -43,13 +45,13 @@ public class Menu extends ApplicationController implements Initializable {
         //open attributions modal
         info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.showModal("Attribution", "Kemu Kupu - Asset Attributions");
+            MainApp.showModal(Modals.ATTRIBUTION);
         });
 
         //enter topic selection
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.setRoot("Topic", "Kemu Kupu - Choose a Topic!");
+            MainApp.setRoot(View.TOPIC);
             event.consume();
         });
     }    

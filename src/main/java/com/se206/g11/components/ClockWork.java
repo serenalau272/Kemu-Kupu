@@ -1,4 +1,4 @@
-package com.se206.g11.models;
+package com.se206.g11.components;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;

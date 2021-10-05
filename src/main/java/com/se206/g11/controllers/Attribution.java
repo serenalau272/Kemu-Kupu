@@ -22,6 +22,7 @@ public class Attribution extends ApplicationController implements Initializable 
     private void __close() {
         MainApp.closeModal();
     }
+    
     //// Public Methods ////
 
     @Override

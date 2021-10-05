@@ -2,7 +2,9 @@ package com.se206.g11;
 import java.io.IOException;
 
 import com.se206.g11.models.Game;
+import com.se206.g11.models.Modals;
 import com.se206.g11.models.Setting;
+import com.se206.g11.models.View;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.util.TTS;
 
@@ -28,17 +30,17 @@ public class MainApp extends Application {
      * @param title the title of the window to be spawned
      * @return a stage which can be set or spawned as a modal
      */
-    private static void __setRoot(String fxml, String title) {
+    private static void __setRoot(View view) {
         tts.stopSpeech(); //Clear the queue
         try {
             stackPane = new StackPane();
-            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml")).load());
+            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());
             Scene scene = new Scene(stackPane);
-            stage.setTitle(title);
+            stage.setTitle(view.getFileName());
             stage.setScene(scene);
             stage.show();              
         } catch (IOException e) {
-            System.err.println("Unable to set root for fxml: " + fxml);
+            System.err.println("Unable to set root for fxml: " + view.getFileName());
             e.printStackTrace();
         }
     }
@@ -86,29 +88,26 @@ public class MainApp extends Application {
 
     /**
      * Change which scene the user is looking at.
-     * @param fxml the name of the scene to load
-     * @param title the title of the window to set
+     * @param view to load
      */
-    public static void setRoot(String fxml, String title) {
-        __setRoot(fxml, title);
+    public static void setRoot(View view) {
+        __setRoot(view);
     }
     
     /**
      * Load and show a modal to the user
-     * @param fxml the name of the fxml to load in a modal
-     * @param title the title of the modal window
+     * @param m the modal to load
      */
-    //TODO avoid duplicate code here, merge functionality with __setRoot. This should improve readability & extendability of code. For MVP is fine though.
-    public static void showModal(String fxml, String title) {
+    public static void showModal(Modals m) {
         try {
             //Duplicate code should be refactored at some point
             disableScreenNodes(true);
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxml + ".fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
             stackPane.getChildren().add(modal);
             addBlur();
         } catch (Exception e) {
-            System.err.println("Unable to load modal " + fxml + " due to error " + e.toString()); 
+            System.err.println("Unable to load modal " + m.getFileName() + " due to error " + e.toString()); 
             return;
         }
     }
@@ -146,7 +145,7 @@ public class MainApp extends Application {
         setting = new Setting();
         stage.setResizable(false);
         tts = new TTS();
-        setRoot("Menu","Kemu Kupu");
+        setRoot(View.MENU);
     }
 
     /**

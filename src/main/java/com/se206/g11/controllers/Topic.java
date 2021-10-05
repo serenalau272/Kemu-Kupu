@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.se206.g11.models.Game;
 import com.se206.g11.models.Gamemode;
 import com.se206.g11.models.SpellingTopic;
+import com.se206.g11.models.View;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.util.SystemIO;
 import com.se206.g11.ApplicationController;
@@ -52,7 +53,7 @@ public class Topic extends ApplicationController implements Initializable {
                     e.printStackTrace();
                 }
                 Sounds.playSoundEffect("pop");
-                MainApp.setRoot("Quiz", "Kemu Kupu - Let's Play!");
+                MainApp.setRoot(View.QUIZ);
             } else {
                 System.err.println("Could not select topic with id: " + listName);
             }

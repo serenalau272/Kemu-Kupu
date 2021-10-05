@@ -16,12 +16,12 @@
             <Image url="@../assets/MainTitle.png" />
          </image>
       </ImageView>
+      <!-- Buttons -->
       <ImageView fx:id="exitGame_button" fitHeight="81.0" fitWidth="95.0" layoutX="1084.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/EXIT_CROSS.png" />
          </image>
       </ImageView>
-      <!-- Buttons -->
       <ImageView fitHeight="62.0" fitWidth="106.0" layoutX="1072.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/EXIT.png" />

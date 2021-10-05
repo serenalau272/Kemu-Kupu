@@ -48,6 +48,7 @@ public class Setting extends ApplicationController implements Initializable {
      * Close this modal
      */
     private void __close() {
+        MainApp.setSetting(this.settings);
         MainApp.closeModal();
     }
 
