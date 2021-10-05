@@ -33,7 +33,7 @@ public class Quiz extends ApplicationController implements Initializable {
     ClockWork timer;
 
     @FXML private TextField inputTextField;
-    @FXML private Label hintLabel;
+    @FXML private Label messageLabel;
     @FXML private ImageView wordIndexBanner;
     @FXML private ImageView progressBar;
     @FXML private ImageView hear_button;
@@ -42,7 +42,6 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView skip_button;
     @FXML private ImageView responseImg;
     @FXML private ImageView continueLabel;
-    @FXML private ImageView progressMsg;
     @FXML private Arc arc;
     @FXML private Label timerLabel;
 
@@ -105,7 +104,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //show elements
         responseImg.setVisible(true);
         continueLabel.setVisible(true);
-        hintLabel.setVisible(true);
+        messageLabel.setVisible(true);
     }
 
     /**
@@ -121,8 +120,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //hide elements
         responseImg.setVisible(false);
         continueLabel.setVisible(false);
-        hintLabel.setVisible(false);
-        progressMsg.setVisible(false);
+        messageLabel.setVisible(false);
     }
 
     private void setMacronVisibility(boolean isVisible){
@@ -148,7 +146,6 @@ public class Quiz extends ApplicationController implements Initializable {
                     break;
                 case FAILED:
                     setImage("INCORRECT_3", responseImg);
-                    progressMsg.setVisible(true);
                     break;
                 default:
                     //mastered or none
@@ -167,13 +164,13 @@ public class Quiz extends ApplicationController implements Initializable {
         Word word = this.game.getWord(this.wordIndex);
         switch (word.getStatus()) {
             case FAULTED:
-                hintLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
+                messageLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
                 break;
             case FAILED: 
-                hintLabel.setText("Correct answer: " + word.getMaori());
+                messageLabel.setText("Correct answer: " + word.getMaori());
                 break;
             default: 
-                hintLabel.setText("");
+                messageLabel.setText("");
                 break;
         }
     }
@@ -186,6 +183,7 @@ public class Quiz extends ApplicationController implements Initializable {
         if (this.disabled) return;
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
         try {
+            
             MainApp.tts.readWord(this.game.getWord(this.wordIndex), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
