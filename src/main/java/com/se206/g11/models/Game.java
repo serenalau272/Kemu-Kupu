@@ -55,7 +55,7 @@ public class Game {
         for (Word word : this.words)         {
             Status status = word.getStatus();
             if (status == Status.MASTERED || status == Status.FAULTED) {
-                score += word.getTimeMultiplier() * 5;
+                score += word.getScoreMultiplier() * 5;
             }
         }
         return score;

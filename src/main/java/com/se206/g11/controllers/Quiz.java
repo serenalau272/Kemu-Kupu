@@ -246,7 +246,7 @@ public class Quiz extends ApplicationController implements Initializable {
         
         if (this.game.getWord(this.wordIndex).isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
-            this.game.getWord(this.wordIndex).setTimeMultiplier(timer.getScoreMultiplier());
+            this.game.getWord(this.wordIndex).setScoreMultiplier(timer.getScoreMultiplier());
             Sounds.playSoundEffect("correct");
             this.__updateProgressBar(this.game.getScore());
         }

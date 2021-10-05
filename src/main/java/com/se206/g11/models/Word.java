@@ -123,18 +123,10 @@ public class Word {
     }
 
     /**
-     * Manually set the status of this word, note that it is automagically set when you use the comparison methods.
-     * @param s
-     */
-    public void setStatus(Status s) {
-        this.status = s;
-    }
-
-    /**
      * Get the time the student took to answer this question!
      * @return
      */
-    public int getTimeMultiplier() {
+    public int getScoreMultiplier() {
         return this.time;
     }
 
@@ -142,7 +134,7 @@ public class Word {
      * Set the time the student took to answer this question correctly!
      * @param time
      */
-    public void setTimeMultiplier(int time) {
+    public void setScoreMultiplier(int time) {
         this.time = time;
     }
 }
