@@ -26,7 +26,7 @@ public class Game {
     }
 
     public Game(Gamemode mode, SpellingTopic topic) throws IOException {
-        new Game(mode, topic, 5);
+        this(mode, topic, 5);
     }
 
     /**

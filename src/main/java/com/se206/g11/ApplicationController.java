@@ -15,10 +15,6 @@ public class ApplicationController {
     @FXML
     protected Pane anchorPane;
 
-    //The stage of this window.
-
-    //Offsets, used when dragging an undecorated window
-
     //// Private (Helper) Functions ////
 
     //// Public API (to be used by child classes internally) ////
