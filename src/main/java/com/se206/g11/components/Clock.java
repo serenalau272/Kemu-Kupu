@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 
-public class ClockWork {
+public class Clock {
     private Arc sector;
     private float angle;
     private Color startColor = Color.rgb(172, 249, 75);
@@ -18,7 +18,7 @@ public class ClockWork {
     private int duration;
     private MyTimer timer;
     
-    public ClockWork(Arc sector, Label timerLabel) {
+    public Clock(Arc sector, Label timerLabel) {
         this.sector = sector;
         this.timerLabel = timerLabel;
         configureArc();

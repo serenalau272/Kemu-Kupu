@@ -61,6 +61,9 @@ public class Word {
                 case SKIPPED:
                     this.status = Status.MASTERED;
                     break;
+                case FAULTED:
+                    this.status = Status.MASTERED;
+                    break;
                 default:
                     break;
             }
