@@ -47,17 +47,17 @@
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="help_label" fitHeight="62.0" fitWidth="106.0" layoutX="118.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="help_label" fitHeight="62.0" fitWidth="106.0" layoutX="118.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/HELP-Label.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="profile_label" fitHeight="62.0" fitWidth="156.0" layoutX="117.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profile_label" fitHeight="62.0" fitWidth="156.0" layoutX="117.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/PROFILE-Label.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settings_label" fitHeight="62.0" fitWidth="204.0" layoutX="118.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settings_label" fitHeight="62.0" fitWidth="204.0" layoutX="118.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/SETTINGS-Label.png" />
          </image>

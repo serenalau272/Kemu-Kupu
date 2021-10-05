@@ -1,9 +1,11 @@
 package com.se206.g11;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +46,30 @@ public class ApplicationController {
             else if (t.isAssignableFrom(c.getClass())) elm.add((T) c);
         });
         return elm;
+    }
+
+    protected Node findNodesByID(Pane p, String id) {
+        List<Node> nodes = new ArrayList<Node>();
+        Node specificNode = null;
+        nodes = findElms(p, Node.class);
+        for (Node i : nodes) {
+            if (i.getId() != null && i.getId().contains(id)) {
+                return i;
+            }
+        }
+        return specificNode;
+    }
+
+    protected <T> List<Node> findNodesByID(Pane p, String[] id) {
+        List<Node> nodes = new ArrayList<Node>();
+        List<Node> specificNodes = new ArrayList<Node>();
+        nodes = findElms(p, Node.class);
+        nodes.forEach(i -> {
+            if (i.getId() != null && Arrays.stream(id).anyMatch(i.getId()::contains)) {
+                specificNodes.add(i);
+            }
+        });
+        return specificNodes;
     }
 
     /**
