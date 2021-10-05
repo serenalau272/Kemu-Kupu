@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <ImageView fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/cartoon-landscape.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="572.0" fitWidth="1071.0" layoutX="68.0" layoutY="94.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/Results/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="116.0" fitWidth="371.0" layoutX="441.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Results/Results.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="enter_button" fitHeight="73.0" fitWidth="283.0" layoutX="463.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Results/enter.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="word_background" fitHeight="74.0" fitWidth="902.0" layoutX="154.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Results/green.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="word_label" layoutX="178.0" layoutY="197.0" prefHeight="47.0" prefWidth="264.0" text="Kohitatea" textFill="WHITE">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="result_icon" fitHeight="66.0" fitWidth="74.0" layoutX="975.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Results/tick.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>
