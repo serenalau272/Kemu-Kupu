@@ -18,7 +18,7 @@ public class Game {
     private List<Word> words;
     private SpellingTopic topic;
     private int wordIndex = 0;
-    private Node inputField; 
+    public Node inputField; 
 
     /**
      * Create a new game instance
