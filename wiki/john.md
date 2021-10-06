@@ -148,3 +148,10 @@
 * We met today in a collaborative session to review the work that has been done. Major strides in refactoring and design implementation have been performed.
 * A few bugs were fixed. The custom input field is proving to be a pain but we hope to resolve this tomorrow or the day after. Many modals are yet to be implemented.
 * Will need to confirm with team on the next collaborative session.
+
+- - - -
+**<font size="5">Collaborative Session + Custom Input Field Progress</font>**
+
+*6-Oct, 2021.*
+* We met today in a collaborative session to review the work that has been done. Major strides in the custom input field / with much of the functionality working! In terms of technical feasibility, it should be sufficient. All that is left to do is just smash out all the rest of the work as fast as possible.
+* Again, will meet tomorrow for another collaborative session where we will hopefully get all modals done and the basic functionality sorted. Then, Friday can focus on fixing bugs and starting stretch goals.
