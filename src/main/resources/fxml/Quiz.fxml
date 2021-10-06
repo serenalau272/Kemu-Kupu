@@ -89,9 +89,9 @@
             <Image url="@../assets/wordCount/0.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="topicBanner" fitHeight="89.0" fitWidth="329.0" layoutX="6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="topicBanner" fitHeight="89.0" fitWidth="329.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Game-screen/Months%20of%20the%20year.png" />
+            <Image url="@../assets/Game-screen/topicBanners/Babies.png" />
          </image>
       </ImageView>
       <ImageView fx:id="settings_button" fitHeight="63.0" fitWidth="60.0" layoutX="1138.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
