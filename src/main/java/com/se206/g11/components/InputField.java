@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class InputField extends TextField{
-    private static Node[] inputs;
+    private static TextField[] inputs;
     private static StackPane root;
     private static int offset = 10;
     private static int inputTileWidth = 60;
@@ -25,7 +25,7 @@ public class InputField extends TextField{
         removeAll();
         
         wordSize = word.getMaori().length();
-        inputs = new Node[wordSize];
+        inputs = new TextField[wordSize];
         createInputFields(word);
 
         addAll();
@@ -45,15 +45,23 @@ public class InputField extends TextField{
         inputItem.setTranslateX(((inputTileWidth + offset) * num) - leftMargin);
         inputItem.setTranslateY(-1 * bottomMargin);
 
-        inputItem.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
                 String in = inputItem.getText();
                 if (in.length() != 0){
-                    String c = Character.toString(in.charAt(in.length() - 1));
+                    String c = Character.toString(in.charAt(0));
                     System.out.println(c);
                     inputItem.clear();
                     inputItem.setText(c);
                     inputItem.positionCaret(1);
+
+                    if (in.length() > 1){
+                        String e = Character.toString(in.charAt(1));
+                        if (num + 1 < wordSize) {
+                            inputs[num + 1].setText(e);
+                            inputs[num + 1].positionCaret(1);
+                        }
+                    }
                 }
 
                 if (!inputItem.getText().equals("")) {
@@ -61,12 +69,15 @@ public class InputField extends TextField{
                         inputs[num + 1].requestFocus();
                     }
                 }
-            } else {
+            } else if (event.getCode() == KeyCode.BACK_SPACE) {
                 if (inputItem.getText().equals("")) {
                     if (num - 1 >= 0) {
                         inputs[num - 1].requestFocus();
+                        inputs[num - 1].positionCaret(1);
                     }
                 }
+            } else {
+                inputItem.clear();
             }
         });
 
