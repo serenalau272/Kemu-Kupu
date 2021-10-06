@@ -53,7 +53,6 @@ public class Reward extends ApplicationController implements Initializable {
         List<Node> stars = findNodesByID(anchorPane, star);
         for (Node s : stars) {
             int num = Integer.parseInt(s.getId().substring(4));
-            System.out.println(num);
             if (score >= this.starThreshold[num-1]) {
                 s.setVisible(true);
             }

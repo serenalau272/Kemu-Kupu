@@ -12,21 +12,17 @@ import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
 import com.se206.g11.components.Clock;
-import com.se206.g11.components.InputTile;
+import com.se206.g11.components.InputField;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Arc;
-import javafx.stage.Stage;
 
 public class Quiz extends ApplicationController implements Initializable {
     //Index of current word
@@ -72,7 +68,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //Check if we have words left
         if (this.game.getWordIndex() < this.game.getWordListSize() -1) {
             this.game.setWordIndex(this.game.getWordIndex() + 1);
-            this.game.configureInputField();
+            InputField.configureInputField(this.game.getWord());
             this.__updateWordIndexBanner();
             this.__hearWord(1);
         } else {
@@ -326,15 +322,11 @@ public class Quiz extends ApplicationController implements Initializable {
         timer = new Clock(arc, timerLabel);
         timer.start();
 
-        
-
         // initalize event handlers for buttons
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
         });
-
-
 
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
     

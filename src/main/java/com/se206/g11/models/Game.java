@@ -52,18 +52,7 @@ public class Game {
         wordIndex = index;
     }
 
-    public void configureInputField(){
-        StackPane root = MainApp.getStackPane();
-
-        if (inputField != null){
-            root.getChildren().remove(inputField);
-        }
-        
-        inputField = new Label(this.getWord().getEnglish());
-        inputField.setLayoutX(200);
-        inputField.setLayoutY(200);
-        root.getChildren().addAll(inputField);
-    }
+    
     /**
      * Get the number of words in the word list
      * @return

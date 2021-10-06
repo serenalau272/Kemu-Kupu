@@ -1,6 +1,7 @@
 package com.se206.g11;
 import java.io.IOException;
 
+import com.se206.g11.components.InputField;
 import com.se206.g11.models.Game;
 import com.se206.g11.models.Modals;
 import com.se206.g11.models.Setting;
@@ -41,8 +42,9 @@ public class MainApp extends Application {
             stage.show();              
 
             if (view == View.QUIZ){
-                state.configureInputField();
+                InputField.configureInputField(state.getWord());
             }
+            
         } catch (IOException e) {
             System.err.println("Unable to set root for fxml: " + view.getFileName());
             e.printStackTrace();

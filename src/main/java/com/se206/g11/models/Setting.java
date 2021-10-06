@@ -77,7 +77,6 @@ public class Setting {
     }
 
     public int getTimerDuration() {
-        System.out.println(this.timerDuration);
         return this.timerDuration;
     }
 
