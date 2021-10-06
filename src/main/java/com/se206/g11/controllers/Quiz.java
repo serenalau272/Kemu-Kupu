@@ -39,12 +39,15 @@ public class Quiz extends ApplicationController implements Initializable {
 
     @FXML private TextField inputTextField;
     @FXML private Label messageLabel;
+    @FXML private ImageView topicBanner; 
     @FXML private ImageView wordIndexBanner;
     @FXML private ImageView progressBar;
     @FXML private ImageView hear_button;
-    @FXML private ImageView settings_button;
     @FXML private ImageView submit_button;
     @FXML private ImageView skip_button;
+    @FXML private ImageView settings_button;
+    @FXML private ImageView pause_button;
+    @FXML private ImageView help_button;
     @FXML private ImageView responseImg;
     @FXML private ImageView continueLabel;
     @FXML private Arc arc;
@@ -220,6 +223,14 @@ public class Quiz extends ApplicationController implements Initializable {
         }
     }
 
+    private void setTopicBanner() {
+        try {
+            setImage(this.game.getTopic().getName(), topicBanner);
+        } catch (FileNotFoundException exception) {
+            System.err.println("Unable to load banner for topic: " + this.game.getTopic().getName());
+        }
+    }
+
     /**
      * Disable the quiz, due to an error or completion
      */
@@ -301,6 +312,8 @@ public class Quiz extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.game = MainApp.getGameState();
         game.setWordIndex(0);
+        setTopicBanner();
+
         //Inital setup & loading of data
         super.initialize();       
         showElementsForInput();      //no response given initially
@@ -316,12 +329,15 @@ public class Quiz extends ApplicationController implements Initializable {
         
 
         // initalize event handlers for buttons
-        hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
         });
 
+
+
+        hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
+    
         submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             inputTextField.setEditable(false);
             checkInput();
