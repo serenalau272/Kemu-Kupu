@@ -45,23 +45,30 @@ public class InputField extends TextField{
         inputItem.setTranslateX(((inputTileWidth + offset) * num) - leftMargin);
         inputItem.setTranslateY(-1 * bottomMargin);
 
+        addHandler(inputItem, num);
+        
+        return inputItem;
+    }
+
+    private static String getInput(){
+        String input = "";
+        for (TextField t : inputs){
+            input += t.getText();
+        }
+        return input;
+    }
+
+    private static void addHandler(TextField inputItem, int num){
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
+            if (event.getCode() == KeyCode.ENTER){
+                System.out.println(getInput());
+            } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
                 String in = inputItem.getText();
                 if (in.length() != 0){
                     String c = Character.toString(in.charAt(0));
-                    System.out.println(c);
                     inputItem.clear();
                     inputItem.setText(c);
                     inputItem.positionCaret(1);
-
-                    if (in.length() > 1){
-                        String e = Character.toString(in.charAt(1));
-                        if (num + 1 < wordSize) {
-                            inputs[num + 1].setText(e);
-                            inputs[num + 1].positionCaret(1);
-                        }
-                    }
                 }
 
                 if (!inputItem.getText().equals("")) {
@@ -72,6 +79,7 @@ public class InputField extends TextField{
             } else if (event.getCode() == KeyCode.BACK_SPACE) {
                 if (inputItem.getText().equals("")) {
                     if (num - 1 >= 0) {
+                        inputs[num - 1].clear();
                         inputs[num - 1].requestFocus();
                         inputs[num - 1].positionCaret(1);
                     }
@@ -80,9 +88,8 @@ public class InputField extends TextField{
                 inputItem.clear();
             }
         });
-
-        return inputItem;
     }
+    
 
     private static void removeAll(){
         if (inputs == null ) return;
@@ -102,7 +109,5 @@ public class InputField extends TextField{
             }       
         }
     }
-
-    // private static void 
 
 }
