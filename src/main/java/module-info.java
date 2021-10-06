@@ -6,8 +6,11 @@ module com.se206.g11 {
     opens com.se206.g11 to javafx.fxml;
     opens com.se206.g11.controllers to javafx.fxml;
     opens com.se206.g11.models to javafx.fxml;
+    opens com.se206.g11.components to javafx.fxml;
+    opens com.se206.g11.util to javafx.fxml;
     exports com.se206.g11;
     exports com.se206.g11.models;
     exports com.se206.g11.controllers;
     exports com.se206.g11.util;
+    exports com.se206.g11.components;
 }

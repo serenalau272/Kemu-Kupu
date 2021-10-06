@@ -4,12 +4,10 @@ import com.se206.g11.MainApp;
 import com.se206.g11.models.Word;
 
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 public class InputField extends TextField{
     private static TextField[] inputs;

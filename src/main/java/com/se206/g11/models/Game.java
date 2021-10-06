@@ -7,8 +7,6 @@ import com.se206.g11.components.Clock;
 import com.se206.g11.util.SystemIO;
 
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 
 /**
  * This class handles the storing and retriving of the current gamestate.

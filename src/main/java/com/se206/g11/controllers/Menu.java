@@ -1,12 +1,10 @@
 package com.se206.g11.controllers;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
-import com.se206.g11.models.Modals;
 import com.se206.g11.models.View;
 import com.se206.g11.util.Sounds;
 

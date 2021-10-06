@@ -3,6 +3,7 @@ package com.se206.g11.util;
 import java.io.IOException;
 import java.util.ArrayDeque;
 
+import com.se206.g11.MainApp;
 import com.se206.g11.models.Language;
 import com.se206.g11.models.Word;
 
@@ -14,7 +15,6 @@ import javafx.concurrent.Task;
 public class TTS {
     private ArrayDeque<ProcessBuilder> festivalQueue;
     private boolean speaking;
-    private double speechSpeed;
 
     //// Private (Helper) Methods ////
 
@@ -46,7 +46,6 @@ public class TTS {
     public TTS() {
         this.festivalQueue = new ArrayDeque<>();
         this.speaking = false;
-        this.speechSpeed = 1.0;
     }
 
     /** 
@@ -59,7 +58,7 @@ public class TTS {
         if (word == null) throw new Exception("param `word` may not be null");
         if (language == null) throw new Exception("param `language` may not be null");
         if (repeats < 1 || repeats > 20) throw new Exception("repeats should be between 1 and 20 (inclusive)");
-        String speedCommand = "\"(Parameter.set 'Duration_Stretch "+  speechSpeed + ")\"";
+        String speedCommand = "\"(Parameter.set 'Duration_Stretch "+ MainApp.getSetting().getSpeechSpeed() + ")\"";
         String langCommand = (language == Language.MAORI) ? "voice_akl_mi_pk06_cg" : "voice_akl_nz_cw_cg_cg" ;        
         String wordRaw = (language == Language.MAORI) ? word.getMaori() : word.getEnglish();
         if (wordRaw == null) throw new Exception("Attempted to read " + ((language == Language.MAORI) ? "maori" : "english") + " word, which was null!");
@@ -74,21 +73,5 @@ public class TTS {
 
     public void stopSpeech() {
         festivalQueue.clear();
-    }
-
-    /**
-     * 
-     * @param s
-     */
-    public void setSpeechSpeed(Double s) {
-        this.speechSpeed = s;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public Double getSpeechSpeed() {
-        return this.speechSpeed;
     }
 }
