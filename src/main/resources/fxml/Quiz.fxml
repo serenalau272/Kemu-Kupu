@@ -17,17 +17,17 @@
          </image>
       </ImageView>
       <!-- Action Buttons -->
-      <ImageView fx:id="skip_button" fitHeight="138.0" fitWidth="245.0" layoutX="272.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="skip_button" fitHeight="138.0" fitWidth="245.0" layoutX="292.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/dont-know.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hear_button" fitHeight="138.0" fitWidth="253.0" layoutX="501.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hear_button" fitHeight="138.0" fitWidth="253.0" layoutX="521.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/hear-again.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="submit_button" fitHeight="138.0" fitWidth="253.0" layoutX="730.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="submit_button" fitHeight="138.0" fitWidth="253.0" layoutX="750.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/submit.png" />
          </image>
@@ -48,32 +48,32 @@
             <Image url="@../assets/Game-screen/CONTINUE.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="macron_bg" fitHeight="70.0" fitWidth="908.0" layoutX="158.0" layoutY="360.0" pickOnBounds="true">
+      <ImageView fx:id="macron_bg" fitHeight="70.0" fitWidth="908.0" layoutX="178.0" layoutY="367.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/macronKeys/key-background.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="a_button" fitHeight="68.0" fitWidth="68.0" layoutX="454.0" layoutY="360.0" pickOnBounds="true">
+      <ImageView fx:id="a_button" fitHeight="68.0" fitWidth="68.0" layoutX="474.0" layoutY="367.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/macronKeys/a.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="e_button" fitHeight="68.0" fitWidth="68.0" layoutX="516.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="e_button" fitHeight="68.0" fitWidth="68.0" layoutX="536.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/macronKeys/e.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="i_button" fitHeight="68.0" fitWidth="68.0" layoutX="578.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="i_button" fitHeight="68.0" fitWidth="68.0" layoutX="598.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/macronKeys/i.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="o_button" fitHeight="68.0" fitWidth="68.0" layoutX="640.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="o_button" fitHeight="68.0" fitWidth="68.0" layoutX="660.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/macronKeys/o.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="u_button" fitHeight="68.0" fitWidth="68.0" layoutX="702.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="u_button" fitHeight="68.0" fitWidth="68.0" layoutX="722.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/macronKeys/u.png" />
          </image>
@@ -84,7 +84,7 @@
          </image>
       </ImageView>
       <!-- Displays the current word the user is on (:word of 5) -->
-      <ImageView fx:id="wordIndexBanner" fitHeight="68.0" fitWidth="204.0" layoutX="510.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="wordIndexBanner" fitHeight="68.0" fitWidth="204.0" layoutX="530.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/wordCount/0.png" />
          </image>
@@ -99,23 +99,23 @@
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pause_button" fitHeight="47.0" fitWidth="51.0" layoutX="1088.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pause_button" fitHeight="66.0" fitWidth="68.0" layoutX="1078.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/pause.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pause_button1" fitHeight="65.0" fitWidth="60.0" layoutX="1024.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="help_button" fitHeight="65.0" fitWidth="60.0" layoutX="1024.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/help.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="clock" fitHeight="200.0" fitWidth="240.0" layoutX="524.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clock" fitHeight="181.0" fitWidth="156.0" layoutX="554.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/clock.png" />
          </image>
       </ImageView>
-      <Arc fx:id="arc" fill="DODGERBLUE" layoutX="611.0" layoutY="195.0" length="270.0" radiusX="52.0" radiusY="52.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
-      <Label fx:id="timerLabel" layoutX="582.0" layoutY="164.0" text="30" textFill="WHITE">
+      <Arc fx:id="arc" fill="DODGERBLUE" layoutX="632.0" layoutY="189.0" length="270.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
+      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="602.0" layoutY="158.0" text="30" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="50.0" />
          </font></Label>
@@ -129,6 +129,7 @@
             <Image url="@../assets/Game-screen/Practice.png" />
          </image>
       </ImageView>
-      <TextField fx:id="inputTextField" layoutX="132.0" layoutY="132.0" />
+      <TextField layoutX="158.0" layoutY="290.0" prefHeight="55.0" prefWidth="60.0" visible="false" />
+      <TextField fx:id="inputTextField" layoutX="525.0" layoutY="290.0" prefHeight="55.0" prefWidth="204.0" />
     </children>
 </AnchorPane>

@@ -140,3 +140,11 @@
 * Many modals need to be made and implemented still.
 * Timer implementation and colour interpolation finished.
 * Planning to meet again tomorrow in yet another collaborative session
+
+- - - -
+**<font size="5">Collaborative Session + FXML + Custom Input Field Pain</font>**
+
+*5-Oct, 2021.*
+* We met today in a collaborative session to review the work that has been done. Major strides in refactoring and design implementation have been performed.
+* A few bugs were fixed. The custom input field is proving to be a pain but we hope to resolve this tomorrow or the day after. Many modals are yet to be implemented.
+* Will need to confirm with team on the next collaborative session.

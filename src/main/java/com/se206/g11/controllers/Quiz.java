@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 
 public class Quiz extends ApplicationController implements Initializable {
     //Index of current word
-    private int wordIndex = 0;
+    
     private Game game;
 
     private boolean disabled = false;
@@ -67,8 +67,9 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void __loadNextWord() {
         //Check if we have words left
-        if (this.wordIndex < this.game.getWordListSize() -1) {
-            this.wordIndex++;
+        if (this.game.getWordIndex() < this.game.getWordListSize() -1) {
+            this.game.setWordIndex(this.game.getWordIndex() + 1);
+            this.game.configureInputField();
             this.__updateWordIndexBanner();
             this.__hearWord(1);
         } else {
@@ -142,7 +143,7 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void setResponseImageView(){
         try {
-            switch (this.game.getWord(this.wordIndex).getStatus()) {
+            switch (this.game.getWord().getStatus()) {
                 case SKIPPED:
                     setImage("SKIPPED", responseImg);
                     break;
@@ -166,7 +167,7 @@ public class Quiz extends ApplicationController implements Initializable {
      * Add subtext for faulted and failed responses
      */
     private void addSubTextIncorrect() {
-        Word word = this.game.getWord(this.wordIndex);
+        Word word = this.game.getWord();
         switch (word.getStatus()) {
             case FAULTED:
                 messageLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
@@ -189,7 +190,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
         try {
             
-            MainApp.tts.readWord(this.game.getWord(this.wordIndex), repeats, Language.MAORI);
+            MainApp.tts.readWord(this.game.getWord(), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -213,9 +214,9 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void __updateWordIndexBanner() {
         try {
-            setImage(this.wordIndex, wordIndexBanner);
+            setImage(this.game.getWordIndex(), wordIndexBanner);
         } catch (FileNotFoundException exception){
-            System.err.println("Unable to load banner for index: " + this.wordIndex);
+            System.err.println("Unable to load banner for index: " + this.game.getWordIndex());
         }
     }
 
@@ -249,9 +250,9 @@ public class Quiz extends ApplicationController implements Initializable {
         Word input = new Word();
         input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
         
-        if (this.game.getWord(this.wordIndex).isEqualStrict(input)) {
+        if (this.game.getWord().isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
-            this.game.getWord(this.wordIndex).setScoreMultiplier(timer.getScoreMultiplier());
+            this.game.getWord().setScoreMultiplier(timer.getScoreMultiplier());
             Sounds.playSoundEffect("correct");
             this.__updateProgressBar(this.game.getScore());
         }
@@ -269,7 +270,7 @@ public class Quiz extends ApplicationController implements Initializable {
         inputTextField.setEditable(true);
         timer.start();
 
-        if (this.game.getWord(this.wordIndex).getStatus() == Status.FAULTED) {
+        if (this.game.getWord().getStatus() == Status.FAULTED) {
             this.__hearWord(1);
         } else {
             __loadNextWord();
@@ -286,12 +287,6 @@ public class Quiz extends ApplicationController implements Initializable {
         toggleLabels();
     }
 
-    /**
-     * Handler for the settings button
-     */
-    public void settingsClick() {
-        MainApp.showModal(Modals.SETTING);
-    }
 
     /**
      * insert macron to textfield
@@ -305,6 +300,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.game = MainApp.getGameState();
+        game.setWordIndex(0);
         //Inital setup & loading of data
         super.initialize();       
         showElementsForInput();      //no response given initially
@@ -317,17 +313,13 @@ public class Quiz extends ApplicationController implements Initializable {
         timer = new Clock(arc, timerLabel);
         timer.start();
 
-        //create textfield
-        Scene stage = messageLabel.getScene();
-        StackPane r = (StackPane) stage.getRoot();
-        InputTile t = new InputTile(20, 30);
-        // r.getChildren().addAll(t);
+        
 
         // initalize event handlers for buttons
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            settingsClick();
+            super.settingsClick();
         });
 
         submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

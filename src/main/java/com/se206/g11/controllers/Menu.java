@@ -65,6 +65,11 @@ public class Menu extends ApplicationController implements Initializable {
             });
         });
 
+        settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
+            super.settingsClick();
+        });
+
         //open attributions modal
         // info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
         //     Sounds.playSoundEffect("pop");

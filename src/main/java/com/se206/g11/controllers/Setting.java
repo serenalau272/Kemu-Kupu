@@ -21,11 +21,15 @@ public class Setting extends ApplicationController implements Initializable {
     private com.se206.g11.models.Setting settings;
 
     @FXML Label speedVal;
-    @FXML Label defaultLabel;
+    @FXML Label timeVal;
     @FXML ImageView music_toggle_button;
+    @FXML ImageView sound_toggle_button;
     @FXML ImageView exit_button;
-    @FXML ImageView minus_button;
-    @FXML ImageView plus_button;
+    @FXML ImageView speed_minus_button;
+    @FXML ImageView speed_plus_button;
+    @FXML ImageView time_minus_button;
+    @FXML ImageView time_plus_button;
+    @FXML ImageView reset_button;
 
     //// Private Methods ////
 
@@ -34,10 +38,10 @@ public class Setting extends ApplicationController implements Initializable {
      */
     private void __update() {
         this.speedVal.setText(String.format("%.2f", this.settings.getSpeechSpeed()));
-        defaultLabel.setVisible(this.settings.getSpeechSpeed() == 1.00);
-
+        this.timeVal.setText(this.settings.getTimerDuration() + "s");
         try {
             this.setImage((this.settings.getMusic()) ? "on" : "off", this.music_toggle_button);
+            this.setImage((this.settings.getSounds()) ? "on" : "off", this.sound_toggle_button);
         } catch (FileNotFoundException e) {
             System.err.println("Unable to load image for music toggling");
             e.printStackTrace();
@@ -64,6 +68,12 @@ public class Setting extends ApplicationController implements Initializable {
         this.__update();
     }
 
+    private void __time_change(int amt) {
+        Sounds.playSoundEffect("pop");
+        this.settings.setTimerDuration(this.settings.getTimerDuration()+amt);
+        this.__update();
+    }
+
     //// Public Methods ////
 
     @Override
@@ -80,7 +90,14 @@ public class Setting extends ApplicationController implements Initializable {
             Sounds.playSoundEffect("pop");
             this.__update();
         });
-        this.minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));
-        this.plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
+        this.sound_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            this.settings.setSounds(!this.settings.getSounds());
+            Sounds.playSoundEffect("pop");
+            this.__update();
+        });
+        this.speed_minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));
+        this.speed_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
+        this.time_minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(-5));
+        this.time_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
     }
 }

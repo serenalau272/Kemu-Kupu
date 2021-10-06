@@ -5,7 +5,9 @@ package com.se206.g11.models;
  */
 public class Setting {
     private boolean music = true;
+    private boolean sounds = true;
     private Double speechSpeed = 1.0;
+    private int timerDuration = 30;
 
     /**
      * Serialize the settings from a file
@@ -33,6 +35,22 @@ public class Setting {
     }
 
     /**
+     * Set whether music is available or not
+     * @param e
+     */
+    public void setMusic(boolean e) {
+        this.music = e;
+    }
+
+    public boolean getSounds() {
+        return this.sounds;
+    }
+
+    public void setSounds(boolean e) {
+        this.sounds = e;
+    }
+
+    /**
      * @return the speed speed
      */
     public Double getSpeechSpeed() {
@@ -45,14 +63,6 @@ public class Setting {
     public Double getSpeedFactor(){
         return 1.0 / this.speechSpeed;
     }
-
-    /**
-     * Set whether music is available or not
-     * @param e
-     */
-    public void setMusic(boolean e) {
-        this.music = e;
-    }
     
     /**
      * Set the speaking speed of the tts implementation (festival)
@@ -63,6 +73,18 @@ public class Setting {
         if (s < 0.5 || s > 2) return false;
 
         this.speechSpeed = s;
+        return true;
+    }
+
+    public int getTimerDuration() {
+        System.out.println(this.timerDuration);
+        return this.timerDuration;
+    }
+
+    public Boolean setTimerDuration(int s) {
+        if (s < 15 || s > 60) return false;
+
+        this.timerDuration = s;
         return true;
     }
 }

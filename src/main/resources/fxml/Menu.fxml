@@ -37,7 +37,7 @@
             <Image url="@../assets/profile.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="info_button" fitHeight="90.0" fitWidth="95.0" layoutX="29.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="help_button" fitHeight="90.0" fitWidth="95.0" layoutX="29.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/help.png" />
          </image>

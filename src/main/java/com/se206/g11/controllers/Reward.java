@@ -1,6 +1,7 @@
 package com.se206.g11.controllers;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
@@ -12,6 +13,7 @@ import com.se206.g11.models.Game;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -47,13 +49,13 @@ public class Reward extends ApplicationController implements Initializable {
      * @param score the score for the game
      */
     private void setStars(int score) {
-        if (score >= this.starThreshold[0]) {
-            star1.setVisible(true);
-            if (score >= this.starThreshold[1]) {
-                star2.setVisible(true);
-                if (score >= this.starThreshold[2]) {
-                    star3.setVisible(true);
-                }
+        String[] star = {"star"};
+        List<Node> stars = findNodesByID(anchorPane, star);
+        for (Node s : stars) {
+            int num = Integer.parseInt(s.getId().substring(4));
+            System.out.println(num);
+            if (score >= this.starThreshold[num-1]) {
+                s.setVisible(true);
             }
         }
     }

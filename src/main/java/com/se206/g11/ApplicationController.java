@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.se206.g11.models.Modals;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -94,6 +96,15 @@ public class ApplicationController {
     protected void setImage(String s, ImageView view) throws FileNotFoundException {
         __setImage(s, view);
     }
+
+    /**
+     * Handler for the settings button
+     */
+    public void settingsClick() {
+        MainApp.showModal(Modals.SETTING);
+    }
+
+    
 
     /**
      * Initalize a regular stage

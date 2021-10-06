@@ -9,13 +9,13 @@
 <AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.controllers.Setting">
     <children>
       <!-- Static Images -->
-      <ImageView fitHeight="462.0" fitWidth="658.0" layoutX="281.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="519.0" fitWidth="623.0" layoutX="303.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/background.png" />
          </image>
       </ImageView>
       <!-- Buttons -->
-      <ImageView fx:id="music_toggle_button" fitHeight="77.0" fitWidth="150.0" layoutX="696.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="music_toggle_button" fitHeight="67.0" fitWidth="136.0" layoutX="680.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/on.png" />
          </image>
@@ -25,30 +25,45 @@
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="160.0" layoutX="691.0" layoutY="307.0" pickOnBounds="true">
-         <image>
-            <Image url="@../assets/settings/rectangle.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="plus_button" fitHeight="53.0" fitWidth="52.0" layoutX="782.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="speed_plus_button" fitHeight="33.0" fitWidth="38.0" layoutX="763.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/+.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="minus_button" fitHeight="29.0" fitWidth="45.0" layoutX="707.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="speedVal" layoutX="731.0" layoutY="239.0" text="1.0x" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="speed_minus_button" fitHeight="33.0" fitWidth="38.0" layoutX="691.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/-.png" />
          </image>
       </ImageView>
-      <Label fx:id="speedVal" layoutX="751.0" layoutY="322.0" text="1.0x" textFill="WHITE">
+      <ImageView fx:id="sound_toggle_button" fitHeight="68.0" fitWidth="136.0" layoutX="680.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/on.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="time_plus_button" fitHeight="33.0" fitWidth="38.0" layoutX="763.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/+.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="timeVal" layoutX="732.0" layoutY="449.0" text="60s" textFill="WHITE">
          <font>
-            <Font size="23.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="defaultLabel" layoutX="577.0" layoutY="365.0" text="(default)" textFill="WHITE">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
+      <ImageView fx:id="time_minus_button" fitHeight="33.0" fitWidth="38.0" layoutX="691.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/-.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="music_toggle_button11" fitHeight="68.0" fitWidth="221.0" layoutX="490.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/reset-default.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

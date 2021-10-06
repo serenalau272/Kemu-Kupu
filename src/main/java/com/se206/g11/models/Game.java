@@ -3,15 +3,22 @@ package com.se206.g11.models;
 import java.io.IOException;
 import java.util.List;
 
+import com.se206.g11.MainApp;
 import com.se206.g11.util.SystemIO;
+
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 
 /**
  * This class handles the storing and retriving of the current gamestate.
  */
 public class Game {
-    public Gamemode gamemode;
-    public List<Word> words;
-    public SpellingTopic topic;
+    private Gamemode gamemode;
+    private List<Word> words;
+    private SpellingTopic topic;
+    private int wordIndex = 0;
+    private Node inputField; 
 
     /**
      * Create a new game instance
@@ -31,13 +38,32 @@ public class Game {
 
     /**
      * Get a word from the wordlist
-     * @param index
      * @return
      */
-    public Word getWord(int index) {
-        return this.words.get(index);
+    public Word getWord() {
+        return this.words.get(wordIndex);
     }
 
+    public int getWordIndex(){
+        return wordIndex;
+    }
+
+    public void setWordIndex(int index){
+        wordIndex = index;
+    }
+
+    public void configureInputField(){
+        StackPane root = MainApp.getStackPane();
+
+        if (inputField != null){
+            root.getChildren().remove(inputField);
+        }
+        
+        inputField = new Label(this.getWord().getEnglish());
+        inputField.setLayoutX(200);
+        inputField.setLayoutY(200);
+        root.getChildren().addAll(inputField);
+    }
     /**
      * Get the number of words in the word list
      * @return

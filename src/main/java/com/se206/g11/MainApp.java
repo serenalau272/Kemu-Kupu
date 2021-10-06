@@ -34,11 +34,15 @@ public class MainApp extends Application {
         tts.stopSpeech(); //Clear the queue
         try {
             stackPane = new StackPane();
-            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());
+            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
             stage.setTitle(view.getFileName());
             stage.setScene(scene);
             stage.show();              
+
+            if (view == View.QUIZ){
+                state.configureInputField();
+            }
         } catch (IOException e) {
             System.err.println("Unable to set root for fxml: " + view.getFileName());
             e.printStackTrace();
@@ -76,6 +80,14 @@ public class MainApp extends Application {
      */
     public static Setting getSetting() {
         return setting;
+    }
+
+    /**
+     * Get the stackpane.
+     * @return
+     */
+    public static StackPane getStackPane() {
+        return stackPane;
     }
 
     /**

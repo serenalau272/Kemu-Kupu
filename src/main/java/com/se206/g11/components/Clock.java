@@ -1,5 +1,7 @@
 package com.se206.g11.components;
 
+import com.se206.g11.MainApp;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -7,6 +9,7 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 
 public class Clock {
+
     private Arc sector;
     private float angle;
     private Color startColor = Color.rgb(172, 249, 75);
@@ -15,7 +18,7 @@ public class Clock {
     private Color endColor = Color.rgb(255, 111, 116);
     private Color color = startColor;
     private Label timerLabel;
-    private int duration;
+    private int duration = MainApp.getSetting().getTimerDuration();
     private MyTimer timer;
     
     public Clock(Arc sector, Label timerLabel) {
@@ -31,8 +34,7 @@ public class Clock {
 
     public void start(){
         angle = 0.0f;
-        duration = 15;
-        timer = new MyTimer(duration);
+        timer = new MyTimer(this.duration);
         timer.start();
     }
 
