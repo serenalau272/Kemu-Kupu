@@ -18,7 +18,7 @@ public class Clock {
     private Color endColor = Color.rgb(255, 111, 116);
     private Color color = startColor;
     private Label timerLabel;
-    private int duration = MainApp.getSetting().getTimerDuration();
+    private int duration;
     private MyTimer timer;
     
     public Clock(Arc sector, Label timerLabel) {
@@ -34,9 +34,16 @@ public class Clock {
 
     public void start(){
         angle = 0.0f;
+        resume();
+    }
+
+    public void resume() {
+        duration = MainApp.getSetting().getTimerDuration();
         timer = new MyTimer(this.duration);
         timer.start();
     }
+
+
 
     /**
      * 
