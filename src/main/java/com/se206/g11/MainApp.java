@@ -119,6 +119,7 @@ public class MainApp extends Application {
     public static void showModal(Modals m) {
         try {
             //Duplicate code should be refactored at some point
+            state.getClock().stop();
             disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
@@ -139,6 +140,8 @@ public class MainApp extends Application {
         stackPane.getChildren().remove(size-1);
         removeBlur();
         disableScreenNodes(false);
+        state.getClock().resume();
+
     }
 
     /**

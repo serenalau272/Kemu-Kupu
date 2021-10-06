@@ -3,7 +3,7 @@ package com.se206.g11.models;
 import java.io.IOException;
 import java.util.List;
 
-import com.se206.g11.MainApp;
+import com.se206.g11.components.Clock;
 import com.se206.g11.util.SystemIO;
 
 import javafx.scene.Node;
@@ -18,7 +18,8 @@ public class Game {
     private List<Word> words;
     private SpellingTopic topic;
     private int wordIndex = 0;
-    public Node inputField; 
+    private Clock timer;
+    public Node inputField;
 
     /**
      * Create a new game instance
@@ -82,5 +83,13 @@ public class Game {
      */
     public SpellingTopic getTopic() {
         return this.topic;
+    }
+
+    public Clock getClock() {
+        return this.timer;
+    }
+
+    public void setClock(Clock timer) {
+        this.timer = timer;
     }
 }
