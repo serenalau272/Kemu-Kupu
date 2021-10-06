@@ -37,6 +37,7 @@ public class MainApp extends Application {
             stackPane = new StackPane();
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
+            scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
             stage.setTitle(view.getFileName());
             stage.setScene(scene);
             stage.show();              
@@ -56,6 +57,9 @@ public class MainApp extends Application {
      */
     private static void disableScreenNodes(boolean isDisable) {
         stackPane.getChildren().get(0).setDisable(isDisable);
+        for (int i=0; i<stackPane.getChildren().size()-2; i++) {
+            stackPane.getChildren().get(i).setDisable(isDisable);
+        }
     }
 
     //// Public Methods ////
@@ -131,10 +135,10 @@ public class MainApp extends Application {
      */
     public static void closeModal() {
         Sounds.playSoundEffect("pop");
-        stackPane.getChildren().remove(1);
+        int size = stackPane.getChildren().size();
+        stackPane.getChildren().remove(size-1);
         removeBlur();
         disableScreenNodes(false);
-
     }
 
     /**
