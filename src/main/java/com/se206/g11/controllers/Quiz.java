@@ -320,6 +320,7 @@ public class Quiz extends ApplicationController implements Initializable {
         
         //configure timer
         timer = new Clock(arc, timerLabel);
+        game.setClock(timer);
         timer.start();
 
         // initalize event handlers for buttons
