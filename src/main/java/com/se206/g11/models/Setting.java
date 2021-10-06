@@ -42,9 +42,11 @@ public class Setting {
         this.music = e;
     }
 
+
     public boolean getSounds() {
         return this.sounds;
     }
+
 
     public void setSounds(boolean e) {
         this.sounds = e;
@@ -57,13 +59,6 @@ public class Setting {
         return this.speechSpeed;
     }
 
-    /**
-     * @return the duration speed factor for Festival
-     */
-    public Double getSpeedFactor(){
-        return 1.0 / this.speechSpeed;
-    }
-    
     /**
      * Set the speaking speed of the tts implementation (festival)
      * @param s

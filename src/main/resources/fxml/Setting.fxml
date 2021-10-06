@@ -60,7 +60,7 @@
             <Image url="@../assets/settings/-.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="music_toggle_button11" fitHeight="68.0" fitWidth="221.0" layoutX="490.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="reset_button" fitHeight="68.0" fitWidth="221.0" layoutX="490.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/reset-default.png" />
          </image>

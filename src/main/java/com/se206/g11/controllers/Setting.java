@@ -99,5 +99,9 @@ public class Setting extends ApplicationController implements Initializable {
         this.speed_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
         this.time_minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(-5));
         this.time_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
+        this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            this.settings = new com.se206.g11.models.Setting();
+            this.__update();
+        });
     }
 }
