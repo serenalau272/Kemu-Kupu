@@ -155,3 +155,10 @@
 *6-Oct, 2021.*
 * We met today in a collaborative session to review the work that has been done. Major strides in the custom input field / with much of the functionality working! In terms of technical feasibility, it should be sufficient. All that is left to do is just smash out all the rest of the work as fast as possible.
 * Again, will meet tomorrow for another collaborative session where we will hopefully get all modals done and the basic functionality sorted. Then, Friday can focus on fixing bugs and starting stretch goals.
+
+- - - -
+**<font size="5">Results Screen Implementation Started</font>**
+
+*7-Oct, 2021.*
+* Was a difficult day to get collaboration as assignments loomed for all of us. Results screen dynamic generation has been started and is newar completion (just needs onEnter press and some shifting of assets)
+* We do need a lot of work still to be done. Gamescreen input field functionality requires conversation within team as there are issues with calling onEnterContinue from within a handler of a static class.
