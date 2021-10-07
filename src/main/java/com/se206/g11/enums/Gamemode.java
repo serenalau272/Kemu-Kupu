@@ -1,4 +1,4 @@
-package com.se206.g11.models;
+package com.se206.g11.enums;
 
 /**
  * An enum to represent the gamemodes of Kemu Kupu

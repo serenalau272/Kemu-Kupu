@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import com.se206.g11.components.Clock;
+import com.se206.g11.enums.Gamemode;
+import com.se206.g11.enums.Status;
 import com.se206.g11.util.SystemIO;
 
 import javafx.scene.Node;
@@ -42,6 +44,11 @@ public class Game {
     public Word getWord() {
         return this.words.get(wordIndex);
     }
+
+    public List<Word> getWords() {
+        return this.words;
+    }
+
 
     public int getWordIndex(){
         return wordIndex;

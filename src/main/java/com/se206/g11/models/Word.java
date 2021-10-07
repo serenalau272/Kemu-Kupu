@@ -1,5 +1,7 @@
 package com.se206.g11.models;
 
+import com.se206.g11.enums.Status;
+
 /**
  * A word the user may be tested on. Has english and maori representations stored internally.
  */
@@ -123,6 +125,10 @@ public class Word {
      */
     public Status getStatus() {
         return this.status;
+    }
+
+    public void setStatus(Status s){
+        this.status = s;
     }
 
     /**

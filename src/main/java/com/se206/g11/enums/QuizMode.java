@@ -1,4 +1,4 @@
-package com.se206.g11.models;
+package com.se206.g11.enums;
 
 /**
  * An enum to represent the mode of the quiz screen, whether the user is playing in Game Mode or Practice Mode

@@ -1,4 +1,4 @@
-package com.se206.g11.models;
+package com.se206.g11.enums;
 
 /**
  * Represents the different views that may be loaded as fxml pages, to limit the bugs that may appear

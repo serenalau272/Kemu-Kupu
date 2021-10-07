@@ -2,10 +2,11 @@ package com.se206.g11;
 import java.io.IOException;
 
 import com.se206.g11.components.InputField;
+import com.se206.g11.components.ResultsList;
+import com.se206.g11.enums.Modals;
+import com.se206.g11.enums.View;
 import com.se206.g11.models.Game;
-import com.se206.g11.models.Modals;
 import com.se206.g11.models.Setting;
-import com.se206.g11.models.View;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.util.TTS;
 
@@ -38,12 +39,14 @@ public class MainApp extends Application {
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
             scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
-            stage.setTitle(view.getFileName());
+            stage.setTitle(view.getWindowName());
             stage.setScene(scene);
             stage.show();              
 
             if (view == View.QUIZ){
                 InputField.configureInputField(state.getWord());
+            } else if (view == View.RESULTS){
+                ResultsList.configureEntries();
             }
             
         } catch (IOException e) {

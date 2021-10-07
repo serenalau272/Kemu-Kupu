@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.se206.g11.models.Modals;
+import com.se206.g11.enums.Modals;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;

@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.se206.g11.models.Modals;
-import com.se206.g11.models.View;
+import com.se206.g11.enums.Modals;
+import com.se206.g11.enums.View;
 
 import org.junit.jupiter.api.Test;
 

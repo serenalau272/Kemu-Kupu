@@ -5,14 +5,15 @@ import java.io.FileNotFoundException;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.models.Game;
-import com.se206.g11.models.Language;
-import com.se206.g11.models.Modals;
-import com.se206.g11.models.Status;
 import com.se206.g11.models.Word;
 import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
 import com.se206.g11.components.Clock;
 import com.se206.g11.components.InputField;
+import com.se206.g11.enums.Language;
+import com.se206.g11.enums.Modals;
+import com.se206.g11.enums.Status;
+import com.se206.g11.enums.View;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,7 +75,7 @@ public class Quiz extends ApplicationController implements Initializable {
         } else {
             //game ended, navigate to rewards screen
             this.__disableQuiz();
-            MainApp.showModal(Modals.REWARD);
+            MainApp.setRoot(View.RESULTS);
         }
     }
     
@@ -289,6 +290,9 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     public void skipWordClick() {
         if (this.disabled) return;
+
+        //required to prevent bug
+        this.game.getWord().setStatus(Status.SKIPPED);
 
         timer.stop();
         toggleLabels();
