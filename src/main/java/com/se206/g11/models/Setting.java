@@ -60,6 +60,13 @@ public class Setting {
     }
 
     /**
+     * @return the duration factor for festival
+     */
+    public Double getDurationFactor() {
+        return 1.0 / this.speechSpeed;
+    }
+
+    /**
      * Set the speaking speed of the tts implementation (festival)
      * @param s
      * @return whether speed successfully set

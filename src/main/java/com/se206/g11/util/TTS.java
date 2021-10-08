@@ -58,7 +58,7 @@ public class TTS {
         if (word == null) throw new Exception("param `word` may not be null");
         if (language == null) throw new Exception("param `language` may not be null");
         if (repeats < 1 || repeats > 20) throw new Exception("repeats should be between 1 and 20 (inclusive)");
-        String speedCommand = "\"(Parameter.set 'Duration_Stretch "+ MainApp.getSetting().getSpeechSpeed() + ")\"";
+        String speedCommand = "\"(Parameter.set 'Duration_Stretch "+ MainApp.getSetting().getDurationFactor() + ")\"";
         String langCommand = (language == Language.MAORI) ? "voice_akl_mi_pk06_cg" : "voice_akl_nz_cw_cg_cg" ;        
         String wordRaw = (language == Language.MAORI) ? word.getMaori() : word.getEnglish();
         if (wordRaw == null) throw new Exception("Attempted to read " + ((language == Language.MAORI) ? "maori" : "english") + " word, which was null!");
