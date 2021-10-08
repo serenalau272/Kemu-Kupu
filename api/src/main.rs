@@ -281,15 +281,40 @@ async fn delete_student(user_id: i32, conn: UsersDbConn) -> (Status, String) {
     )
 }
 
-#[get("/api/v1/highscores")]
-async fn get_highscores(conn: UsersDbConn) {
-    //TODO allow params here for pagination
+#[get("/api/v1/highscores", format = "application/json")]
+async fn get_highscores(conn: UsersDbConn) -> (Status, String) {
+    //TODO allow params for pagination
+    use crate::schema::scores::dsl::*;
+    let r: Result<Vec<models::Score>, diesel::result::Error> = conn.run(move |c| {
+        scores
+            .limit(50)
+            .load::<crate::models::Score>(c)
+    }).await;
+    if let Err(e) = r {
+        return (
+            Status::InternalServerError,
+            models::Response {
+                data: format!("Failed to query the server due to error {}", e.to_string()),
+            }
+            .to_json()
+            .unwrap(),
+        )
+    }
+    return (
+        Status::Ok,
+        models::Response {
+            data: r.unwrap()
+        }
+        .to_json()
+        .unwrap()
+    )
 }
 
-#[post("/api/v1/highscores")]
-async fn add_score(conn: UsersDbConn) {
+#[post("/api/v1/highscores", data = "<new_score>", format = "application/json")]
+async fn add_score(new_score: Json<models::NewScore>, conn: UsersDbConn) {
     //TODO authentication
-    //Add score to db
+    
+    
 }
 
 /// Serve docs about the api
