@@ -24,7 +24,7 @@
             <Image url="@../assets/Results/Results.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="enter_button" fitHeight="73.0" fitWidth="283.0" layoutX="463.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="73.0" fitWidth="283.0" layoutX="463.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Results/enter.png" />
          </image>

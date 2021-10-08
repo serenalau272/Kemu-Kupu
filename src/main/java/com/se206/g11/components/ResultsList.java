@@ -42,10 +42,10 @@ public class ResultsList extends TextField{
         ImageView icon = createIcon(index, word);
         elements[1] = icon;
 
-        Label wordLabel = createWordLabel(index, word);
+        Label wordLabel = createInputLabel(index, word);
         elements[2] = wordLabel;
 
-        Label inputLabel = createInputLabel(index, word);
+        Label inputLabel = createWordLabel(index, word);
         elements[3] = inputLabel;
 
         inputs[index-1] = elements;
@@ -95,8 +95,9 @@ public class ResultsList extends TextField{
         return img;
     }
 
-    private static Label createWordLabel(int index, Word word){
-        Label l = new Label(capitaliseFirst(word.getMaori()));
+    private static Label createInputLabel(int index, Word word){
+        String txt = (word.getStatus() != Status.SKIPPED) ? capitaliseFirst(word.getResponse().getMaori()) : "-";
+        Label l = new Label(txt);
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(-290);
         l.setPrefSize(264.0, 47.0);
@@ -106,8 +107,8 @@ public class ResultsList extends TextField{
         return l;
     }
 
-    private static Label createInputLabel(int index, Word word){
-        String txt = (word.getStatus() == Status.FAILED) ? capitaliseFirst(word.getResponse().getMaori()) : "";
+    private static Label createWordLabel(int index, Word word){
+        String txt = (word.getStatus() == Status.FAILED || word.getStatus() == Status.SKIPPED) ? capitaliseFirst(word.getMaori()) : "";
         Label l = new Label(txt);
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(200);
