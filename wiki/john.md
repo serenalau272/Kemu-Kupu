@@ -162,3 +162,14 @@
 *7-Oct, 2021.*
 * Was a difficult day to get collaboration as assignments loomed for all of us. Results screen dynamic generation has been started and is newar completion (just needs onEnter press and some shifting of assets)
 * We do need a lot of work still to be done. Gamescreen input field functionality requires conversation within team as there are issues with calling onEnterContinue from within a handler of a static class.
+
+- - - -
+**<font size="5">Collaborative Session + Much Progress!</font>**
+
+*8-Oct, 2021.*
+* We met today in a collaborative session to review the work that has been done. Major strides in the custom input field again with just macrons, disabling the textfield, and hint values to be added.
+* Pause modal finished with timer integration.
+* Results screen finished. Needs to hide the text field :)
+* Backend started.
+* Tomorrow, we aim to have a very big collaborative session where we finish the inputfield, implement
+the ranked/practice modal and implement that, fix the numbering of the rewards screen and iron out any other bugs. If time permits, we will work on finishing the backend REST API and implementing user profile.
