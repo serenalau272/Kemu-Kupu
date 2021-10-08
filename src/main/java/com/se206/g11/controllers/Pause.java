@@ -10,7 +10,6 @@ import com.se206.g11.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -19,7 +18,6 @@ import javafx.scene.input.MouseEvent;
  */
 public class Pause extends ApplicationController implements Initializable {
     //The users current settings Selection
-    private com.se206.g11.models.Setting settings;
 
     @FXML ImageView menu_button;
     @FXML ImageView resume_button;
