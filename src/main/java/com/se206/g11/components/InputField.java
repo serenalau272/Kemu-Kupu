@@ -99,8 +99,11 @@ public class InputField extends TextField{
             int followingIndex = getNextValidIndex(num, true);
 
             if (event.getCode() == KeyCode.ENTER){
-                System.out.println(getInput());
-                controller.checkInput();
+                Word input = new Word();
+                input.setMaori(getInput());
+
+                controller.onEnter(input);
+                reset();
             } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
                 String in = inputItem.getText();
                 if (in.length() != 0){
@@ -123,7 +126,7 @@ public class InputField extends TextField{
                         inputs[previousIndex].positionCaret(1);
                     }
                 }
-            } else {
+            } else if (!event.getCode().isNavigationKey()) {
                 inputItem.clear();
             }
         });
@@ -137,6 +140,17 @@ public class InputField extends TextField{
                 root.getChildren().remove(n);
             }
         }     
+    }
+
+    private static void reset(){
+        if (inputs == null ) return;
+        for (TextField n : inputs){
+            if (n != null){
+                n.clear();
+            }
+        }
+        int ind = getNextValidIndex(-1, true);
+        inputs[ind].requestFocus();
     }
 
     private static void addAll(){

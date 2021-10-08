@@ -20,8 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
 
@@ -34,7 +32,6 @@ public class Quiz extends ApplicationController implements Initializable {
     private boolean awaitingInput = true;
     Clock timer;
 
-    @FXML private TextField inputTextField;
     @FXML private Label messageLabel;
     @FXML private ImageView topicBanner; 
     @FXML private ImageView wordIndexBanner;
@@ -75,7 +72,6 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__hearWord(1);
         } else {
             //game ended, navigate to rewards screen
-            this.__disableQuiz();
             MainApp.setRoot(View.RESULTS);
         }
     }
@@ -97,8 +93,6 @@ public class Quiz extends ApplicationController implements Initializable {
      * shows appropriate ImageViews when response given, and awaiting 'continue'
      */
     private void showElementsForResponse(){
-        this.inputTextField.clear();
-
         setResponseImageView();
         addSubTextIncorrect();
 
@@ -229,35 +223,20 @@ public class Quiz extends ApplicationController implements Initializable {
         }
     }
 
-    /**
-     * Disable the quiz, due to an error or completion
-     */
-    private void __disableQuiz() {
-        timer.stop();
-        this.disabled = true;
-        this.inputTextField.setDisable(true);
-    }
-
     //// Button Handlers ////
     
     /**
      * Handler for the submit button
      */
-    public void checkInput() {
+    public void checkInput(Word input) {
         timer.stop();
-        
         if (this.disabled) return;
         
         //return if empty textfield
-        if (this.inputTextField.getText().isEmpty()) {
-            inputTextField.setEditable(true);
+        if (input.getMaori().isEmpty()) {
             __hearWord(1);
             return;
         }
-
-        //check if they got the word right
-        Word input = new Word();
-        input.setMaori(this.inputTextField.getText()); //Note: our Word implementation automatically strips and lowercases input
         
         if (this.game.getWord().isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
@@ -276,7 +255,6 @@ public class Quiz extends ApplicationController implements Initializable {
         if (this.disabled) return;
         
         toggleLabels();
-        inputTextField.setEditable(true);
         timer.start();
 
         if (this.game.getWord().getStatus() == Status.FAULTED) {
@@ -303,14 +281,22 @@ public class Quiz extends ApplicationController implements Initializable {
     /**
      * insert macron to textfield
      */
-    private void insertMacron(String macron){
-        String newInput = inputTextField.getText() + macron;
-        inputTextField.setText(newInput);
-        inputTextField.positionCaret(newInput.length());
-    }
+    // private void insertMacron(String macron){
+    //     String newInput = inputTextField.getText() + macron;
+    //     inputTextField.setText(newInput);
+    //     inputTextField.positionCaret(newInput.length());
+    // }
 
     public void pauseClick() {
         MainApp.showModal(Modals.PAUSE);
+    }
+
+    public void onEnter(Word input){
+        if (awaitingInput) {
+            checkInput(input);
+        } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
+            onEnterContinue();
+        }
     }
 
     @Override
@@ -352,30 +338,17 @@ public class Quiz extends ApplicationController implements Initializable {
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
     
         submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            inputTextField.setEditable(false);
-            checkInput();
+            // checkInput();
+            // TODO: fix
         });
 
-        skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            inputTextField.setEditable(false);
-            skipWordClick();
-        });
-        
-        inputTextField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                if (awaitingInput) {
-                    inputTextField.setEditable(false);
-                    checkInput();
-                } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
-                    onEnterContinue();
-                }
-            }
-        });
+        skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
 
-        a_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ā"));
-        e_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ē"));
-        i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ī"));
-        o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ō"));
-        u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ū"));
+        // TODO: fix
+        // a_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ā"));
+        // e_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ē"));
+        // i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ī"));
+        // o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ō"));
+        // u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ū"));
     }    
 }
