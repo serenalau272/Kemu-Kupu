@@ -43,9 +43,7 @@ public class MainApp extends Application {
             stage.setScene(scene);
             stage.show();              
 
-            if (view == View.QUIZ){
-                InputField.configureInputField(state.getWord());
-            } else if (view == View.RESULTS){
+            if (view == View.RESULTS){
                 ResultsList.configureEntries();
             }
             

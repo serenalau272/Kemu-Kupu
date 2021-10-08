@@ -1,6 +1,7 @@
 package com.se206.g11.components;
 
 import com.se206.g11.MainApp;
+import com.se206.g11.controllers.Quiz;
 import com.se206.g11.models.Word;
 
 import javafx.scene.Node;
@@ -8,21 +9,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 public class InputField extends TextField{
     private static TextField[] inputs;
     private static StackPane root;
     private static int offset = 10;
-    private static int inputTileWidth = 60;
+    private static int inputTileWidth = 70;
     private static int leftMargin = 397;
     private static int bottomMargin = 50;
     private static int totalWidth = 908;
-
+    private static Quiz controller;
     private static int wordSize;
     
 
-    public static void configureInputField(Word word){
+    public static void configureInputField(Word word, Quiz quiz){
+        controller = quiz;
         root = MainApp.getStackPane();
         removeAll();
         
@@ -66,15 +67,40 @@ public class InputField extends TextField{
     private static String getInput(){
         String input = "";
         for (TextField t : inputs){
-            input += t.getText();
+            if (t != null){
+                input += t.getText();
+            } else {
+                input += " ";
+            }
         }
         return input;
     }
 
+    private static int getNextValidIndex(int num, boolean isForward){
+        int promptIndex = num;
+        boolean foundIndex = false;
+
+        while (!foundIndex){
+            promptIndex = (isForward) ? promptIndex + 1 : promptIndex - 1;
+
+            if (promptIndex == wordSize || promptIndex == -1){
+                foundIndex = true;
+            } else if (inputs[promptIndex] != null){
+                foundIndex = true;
+            }
+        }
+
+        return promptIndex;
+    }
+
     private static void addHandler(TextField inputItem, int num){
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            int previousIndex = getNextValidIndex(num, false);
+            int followingIndex = getNextValidIndex(num, true);
+
             if (event.getCode() == KeyCode.ENTER){
                 System.out.println(getInput());
+                controller.checkInput();
             } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
                 String in = inputItem.getText();
                 if (in.length() != 0){
@@ -85,16 +111,16 @@ public class InputField extends TextField{
                 }
 
                 if (!inputItem.getText().equals("")) {
-                    if (num + 1 < wordSize) {
-                        inputs[num + 1].requestFocus();
+                    if (followingIndex < wordSize) {
+                        inputs[followingIndex].requestFocus();
                     }
                 }
             } else if (event.getCode() == KeyCode.BACK_SPACE) {
                 if (inputItem.getText().equals("")) {
-                    if (num - 1 >= 0) {
-                        inputs[num - 1].clear();
-                        inputs[num - 1].requestFocus();
-                        inputs[num - 1].positionCaret(1);
+                    if (previousIndex >= 0) {
+                        inputs[previousIndex].clear();
+                        inputs[previousIndex].requestFocus();
+                        inputs[previousIndex].positionCaret(1);
                     }
                 }
             } else {

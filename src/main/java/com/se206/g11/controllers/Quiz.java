@@ -49,6 +49,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView continueLabel;
     @FXML private Arc arc;
     @FXML private Label timerLabel;
+    @FXML private ImageView play_button;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -69,7 +70,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //Check if we have words left
         if (this.game.getWordIndex() < this.game.getWordListSize() -1) {
             this.game.setWordIndex(this.game.getWordIndex() + 1);
-            InputField.configureInputField(this.game.getWord());
+            InputField.configureInputField(this.game.getWord(), this);
             this.__updateWordIndexBanner();
             this.__hearWord(1);
         } else {
@@ -332,6 +333,12 @@ public class Quiz extends ApplicationController implements Initializable {
         timer.start();
 
         // initalize event handlers for buttons
+        play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
+            play_button.setVisible(false);
+            InputField.configureInputField(game.getWord(), this);
+        });
+
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
