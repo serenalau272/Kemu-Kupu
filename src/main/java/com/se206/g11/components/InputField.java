@@ -16,7 +16,10 @@ public class InputField extends TextField{
     private static int inputTileWidth = 60;
     private static int leftMargin = 397;
     private static int bottomMargin = 50;
+    private static int totalWidth = 908;
+
     private static int wordSize;
+    
 
     public static void configureInputField(Word word){
         root = MainApp.getStackPane();
@@ -24,9 +27,17 @@ public class InputField extends TextField{
         
         wordSize = word.getMaori().length();
         inputs = new TextField[wordSize];
+
+        alterCentre();
         createInputFields(word);
 
         addAll();
+    }
+
+    private static void alterCentre(){
+        int widthOfField = (wordSize * inputTileWidth) + ((wordSize - 1) * offset);
+        int additionalOffset = (totalWidth - widthOfField) / 2;
+        leftMargin = 397 - additionalOffset;
     }
 
     private static void createInputFields(Word word){
