@@ -6,6 +6,7 @@ services:
     privileged: true
     depends_on:
       - api
+      - db
     command:
       - --api.insecure=true
       - --providers.docker=true
@@ -39,12 +40,33 @@ services:
     container_name: api
     build: ./
     restart: always
+    depends_on:
+      - db
     environment:
       - PORT=3000
       - HOST=0.0.0.0
+      - DB_ADDRESS=${DB_ADDRESS}
+      - DB_PASS=${DB_PASS}
+      - DB_USER=${DB_USER}
+      - DB_PORT=${DB_PORT}
       - BROWSER_BASE_URL=https://${DOMAIN}
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`${DOMAIN}`) && PathPrefix(`/api`)
       - traefik.http.routers.api.entrypoints=websecure
       - traefik.http.routers.api.middlewares=security-headers@file, api-headers@file
+
+  db:
+    container_name: db
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=api
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes:
+      - api-pgdata:/var/lib/postgresql/data
+
+volumes:
+  fsp-pgdata:
+    external: true

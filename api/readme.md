@@ -9,5 +9,7 @@ cd ./assignment-3-and-project-team-11/api
 cp .example.env .env
 nano .env #Update required configuration options
 
+docker volume create api-pgdata
+
 docker-compose --env-file .env up
 ```
