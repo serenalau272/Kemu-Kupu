@@ -20,6 +20,7 @@ import javafx.scene.effect.BoxBlur;
 
 public class MainApp extends Application {
     private static Stage stage;
+    private static View view;
     private static StackPane stackPane;
     private static Game state;
     private static Setting setting;
@@ -35,6 +36,7 @@ public class MainApp extends Application {
     private static void __setRoot(View view) {
         tts.stopSpeech(); //Clear the queue
         try {
+            MainApp.view = view;
             stackPane = new StackPane();
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
@@ -120,7 +122,7 @@ public class MainApp extends Application {
     public static void showModal(Modals m) {
         try {
             //Duplicate code should be refactored at some point
-            state.getClock().stop();
+            if (view == View.QUIZ) state.getClock().stop();
             disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
@@ -141,7 +143,7 @@ public class MainApp extends Application {
         stackPane.getChildren().remove(size-1);
         removeBlur();
         disableScreenNodes(false);
-        state.getClock().resume();
+        if (view == View.QUIZ) state.getClock().resume();
 
     }
 
