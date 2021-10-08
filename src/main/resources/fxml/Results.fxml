@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -43,5 +44,6 @@
             <Image url="@../assets/Results/tick.png" />
          </image>
       </ImageView>
+      <TextField fx:id="hiddenField" layoutX="163.0" layoutY="197.0" />
     </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ public class Word {
     private String english;
     private Status status;
     private int time;
+    private Word response;
     //// Constructors ////
 
     /**
@@ -37,6 +38,11 @@ public class Word {
 
     //// Public Methods ////
 
+    public Word getResponse(){
+        return this.response;
+    }
+
+
     /**
      * Checks if two words are equal, strictly checking accents. I.e. "é" == "e" will return false.
      * If one provides a word with the english or maori set to null, then only this will be
@@ -48,6 +54,7 @@ public class Word {
         if (word.getEnglish() == null && word.getMaori() == null) throw new NullPointerException("both english and maori are null");
         if (this.getEnglish() == null && this.getMaori() == null) throw new NullPointerException("both english and maori are null");
 
+        this.response = word;
         //Carry out comparison
         boolean comparison = false;
         if (word.getEnglish() != null) comparison = word.getEnglish().equals(this.getEnglish());
