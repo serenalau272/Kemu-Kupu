@@ -308,6 +308,10 @@ public class Quiz extends ApplicationController implements Initializable {
         inputTextField.positionCaret(newInput.length());
     }
 
+    public void pauseClick() {
+        MainApp.showModal(Modals.PAUSE);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.game = MainApp.getGameState();
@@ -331,6 +335,11 @@ public class Quiz extends ApplicationController implements Initializable {
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
+        });
+
+        pause_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
+            pauseClick();
         });
 
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));

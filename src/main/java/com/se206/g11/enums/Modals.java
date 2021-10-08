@@ -3,7 +3,9 @@ package com.se206.g11.enums;
 public enum Modals {
     REWARD,
     SETTING,
-    ATTRIBUTION;
+    ATTRIBUTION,
+    PAUSE,
+    HELP;
 
     public String getFileName() {
         switch (this) {
@@ -15,6 +17,12 @@ public enum Modals {
             }
             case ATTRIBUTION: {
                 return "Attribution";
+            }
+            case PAUSE: {
+                return "Pause";
+            }
+            case HELP: {
+                return "Help";
             }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
@@ -33,6 +41,12 @@ public enum Modals {
             }
             case ATTRIBUTION: {
                 return "Kemu Kupu - Asset Attributions";
+            }
+            case PAUSE: {
+                return "Game Paused";
+            }
+            case HELP: {
+                return "Help";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");
