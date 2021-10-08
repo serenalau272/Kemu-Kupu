@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 public class InputField extends TextField{
     private static TextField[] inputs;
@@ -42,7 +43,10 @@ public class InputField extends TextField{
 
     private static void createInputFields(Word word){
         for (int i = 0; i < inputs.length; i++){
-            TextField n = createInputItem(i);
+            TextField n = null;
+            if (!Character.toString(word.getMaori().charAt(i)).equals(" ")){
+                n = createInputItem(i);
+            }
             inputs[i] = n;
         }
     }
