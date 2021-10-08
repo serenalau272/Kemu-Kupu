@@ -67,7 +67,7 @@ public class Quiz extends ApplicationController implements Initializable {
         //Check if we have words left
         if (this.game.getWordIndex() < this.game.getWordListSize() -1) {
             this.game.setWordIndex(this.game.getWordIndex() + 1);
-            InputField.configureInputField(this.game.getWord(), this);
+            InputField.reconfigureInputField(this.game.getWord());
             this.__updateWordIndexBanner();
             this.__hearWord(1);
         } else {
@@ -277,16 +277,6 @@ public class Quiz extends ApplicationController implements Initializable {
         toggleLabels();
     }
 
-
-    /**
-     * insert macron to textfield
-     */
-    // private void insertMacron(String macron){
-    //     String newInput = inputTextField.getText() + macron;
-    //     inputTextField.setText(newInput);
-    //     inputTextField.positionCaret(newInput.length());
-    // }
-
     public void pauseClick() {
         MainApp.showModal(Modals.PAUSE);
     }
@@ -322,7 +312,7 @@ public class Quiz extends ApplicationController implements Initializable {
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
-            InputField.configureInputField(game.getWord(), this);
+            InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -336,19 +326,13 @@ public class Quiz extends ApplicationController implements Initializable {
         });
 
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
-    
-        submit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            // checkInput();
-            // TODO: fix
-        });
 
         skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
 
-        // TODO: fix
-        // a_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ā"));
-        // e_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ē"));
-        // i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ī"));
-        // o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ō"));
-        // u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> insertMacron("ū"));
+        a_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ā"));
+        e_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ē"));
+        i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ī"));
+        o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ō"));
+        u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ū"));
     }    
 }

@@ -6,8 +6,10 @@ import com.se206.g11.models.Word;
 
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 public class InputField extends TextField{
@@ -19,12 +21,20 @@ public class InputField extends TextField{
     private static int bottomMargin = 50;
     private static int totalWidth = 908;
     private static Quiz controller;
+    private static ImageView submit;
     private static int wordSize;
     
 
-    public static void configureInputField(Word word, Quiz quiz){
+    public static void configureInputField(Word word, Quiz quiz, ImageView submit_button){
+        submit = submit_button;
         controller = quiz;
         root = MainApp.getStackPane();
+        submit.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> submit());
+
+        reconfigureInputField(word);
+    }
+
+    public static void reconfigureInputField(Word word){
         removeAll();
         
         wordSize = word.getMaori().length();
@@ -34,6 +44,25 @@ public class InputField extends TextField{
         createInputFields(word);
 
         addAll();
+        reset();
+    }
+    
+     /**
+     * insert macron to textfield
+     */
+    public static void insertMacron(String macron){
+        System.out.println("Should enter macron");
+        // String newInput = inputTextField.getText() + macron;
+        // inputTextField.setText(newInput);
+        // inputTextField.positionCaret(newInput.length());
+    }
+
+    private static void submit(){
+        Word input = new Word();
+        input.setMaori(getInput());
+
+        controller.onEnter(input);
+        reset();
     }
 
     private static void alterCentre(){
@@ -99,11 +128,7 @@ public class InputField extends TextField{
             int followingIndex = getNextValidIndex(num, true);
 
             if (event.getCode() == KeyCode.ENTER){
-                Word input = new Word();
-                input.setMaori(getInput());
-
-                controller.onEnter(input);
-                reset();
+                submit();
             } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
                 String in = inputItem.getText();
                 if (in.length() != 0){
