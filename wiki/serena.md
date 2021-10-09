@@ -92,6 +92,7 @@
 
 *9 Oct, 2021*
 - Finally got around to redesigning the rewards screen to look a bit better, also added a user high score display
+- Implemented functionality of saving user high score and displaying on the rewards screen, with indication if the user sets a new high score
 - Planned out things still to be done for the project in the (very) near future, planning done in collaborative meeting with Notion - discovered coloured property labels! :)
 - Game screen almost complete, looks great and implementation with the separated textfield boxes working fine
 - Still some more bits and bobs to be completed, aiming to patch these all out by tomorrow so we have a fully functioning prototype ready for submission
