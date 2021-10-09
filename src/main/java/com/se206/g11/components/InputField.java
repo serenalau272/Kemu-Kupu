@@ -15,6 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -62,7 +63,6 @@ public class InputField extends TextField{
         createHintItems();
         createInputFields();
         
-
         addAll(inputItems);
         addAll(hintItems);
 
@@ -97,8 +97,14 @@ public class InputField extends TextField{
     private static void createInputFields(){
         for (int i = 0; i < inputItems.length; i++){
             TextField n = null;
-            if (!getCharacter(i).equals(" ") && hintItems[i] == null){
-                n = createInputItem(i);
+            if (!getCharacter(i).equals(" ")){
+                if (hintItems[i] != null){
+                    //has hint
+                    n = createInputItem(i, false);
+                } else {
+                    //is inputtable
+                    n = createInputItem(i, true);
+                }
             }
             inputItems[i] = n;
         }
@@ -119,6 +125,7 @@ public class InputField extends TextField{
   
             Label hintItem = new Label(getCharacter(trialIndex));
             hintItem.setFont(Font.font("System", FontWeight.BOLD, 30));
+            hintItem.setTextFill(Color.WHITE);
             setPositioning(hintItem, trialIndex);
             hintItems[trialIndex] = hintItem;
         }
@@ -129,13 +136,18 @@ public class InputField extends TextField{
         node.setTranslateY(-1 * bottomMargin);
     }
 
-    private static TextField createInputItem(int num){
+    private static TextField createInputItem(int num, boolean isInputtable){
         TextField inputItem = new TextField();
         inputItem.setMaxSize(inputTileWidth, inputTileWidth - 5);
         inputItem.setPrefSize(inputTileWidth, inputTileWidth - 5);
         setPositioning(inputItem, num);
 
-        addHandler(inputItem);
+        if (isInputtable){
+            addHandler(inputItem);
+        } else {
+            inputItem.setStyle("-fx-background-color: #5F7E79");
+            inputItem.setEditable(false);
+        }
         
         return inputItem;
     }
@@ -143,7 +155,7 @@ public class InputField extends TextField{
     private static String getInput(){
         String input = "";
         for (int index = 0; index < inputItems.length; index++){
-            if (inputItems[index] != null){
+            if (inputItems[index] != null && hintItems[index] == null){
                 input += inputItems[index].getText();
             } else if (hintItems[index] != null){
                 input += hintItems[index].getText();
@@ -163,7 +175,7 @@ public class InputField extends TextField{
 
             if (promptIndex == wordSize || promptIndex == -1){
                 foundIndex = true;
-            } else if (inputItems[promptIndex] != null){
+            } else if (inputItems[promptIndex] != null && hintItems[promptIndex] == null){
                 foundIndex = true;
             }
         }

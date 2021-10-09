@@ -47,7 +47,7 @@ public class Topic extends ApplicationController implements Initializable {
             if (TOPICS.contains(topic)){
                 //if it is a valid topic
                 try {
-                    Game game = new Game(Gamemode.PRACTISE, topic); //TODO - ranked vs practise selection
+                    Game game = new Game(Gamemode.RANKED, topic); //TODO - ranked vs practise selection
                     MainApp.setGameState(game);
                 } catch (IOException e) {
                     e.printStackTrace();
