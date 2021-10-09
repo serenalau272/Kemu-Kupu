@@ -173,3 +173,13 @@
 * Backend started.
 * Tomorrow, we aim to have a very big collaborative session where we finish the inputfield, implement
 the ranked/practice modal and implement that, fix the numbering of the rewards screen and iron out any other bugs. If time permits, we will work on finishing the backend REST API and implementing user profile.
+
+- - - -
+**<font size="5">Mandatory Elements Nearing Completion</font>**
+
+*9-Oct, 2021.*
+* Inputfield and game mode differentiation has been implemented (with macrons and hints and the rest)
+* Still needs to be reviewed and some modals still need to be completed.
+* Progress on backend made
+* Planning to have a meeting later tonight to finalise what we still need to do before we submit A4 and
+going forward through to Project submission
