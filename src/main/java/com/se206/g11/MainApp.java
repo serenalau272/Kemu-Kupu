@@ -1,4 +1,5 @@
 package com.se206.g11;
+import java.io.File;
 import java.io.IOException;
 
 import com.se206.g11.components.InputField;
@@ -63,6 +64,11 @@ public class MainApp extends Application {
         for (int i=0; i<stackPane.getChildren().size()-2; i++) {
             stackPane.getChildren().get(i).setDisable(isDisable);
         }
+    }
+
+    private void configureStatsFiles() throws IOException {
+        File file = new File(".userStats");
+        file.createNewFile();
     }
 
     //// Public Methods ////
@@ -169,6 +175,12 @@ public class MainApp extends Application {
         setting = new Setting();
         stage.setResizable(false);
         tts = new TTS();
+        try {
+            configureStatsFiles();
+        } catch (IOException e) {
+            System.err.println("Unable to create user stats file");
+            e.printStackTrace();
+        }
         setRoot(View.MENU);
     }
 

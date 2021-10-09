@@ -21,7 +21,7 @@ public class FxmlTests {
     
     /**
      * This test checks that the fxml version is correct for all fxml files in the game.
-     */
+     
     @Test
     public void checkFxmlVersion11() {
         String path = "./src/main/resources/fxml/";
@@ -40,7 +40,8 @@ public class FxmlTests {
             }
         });
     }
-
+    */
+    
     /**
      * Check that all fxml is available in the Views or Modals
      */

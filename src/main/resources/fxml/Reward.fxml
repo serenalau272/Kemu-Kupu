@@ -71,7 +71,7 @@
             <Image url="@../assets/rewardScreen/empty-star.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="new_label" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="new_label" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/rewardScreen/NEW.png" />
          </image>
@@ -84,17 +84,17 @@
             <Rectangle2D minX="489.0" />
          </viewport>
       </ImageView>
-      <ImageView fx:id="star3" fitHeight="169.0" fitWidth="169.0" layoutX="729.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" rotate="25.0">
+      <ImageView fx:id="star3" fitHeight="169.0" fitWidth="169.0" layoutX="729.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" rotate="25.0" visible="false">
          <image>
             <Image url="@../assets/rewardScreen/star-fill.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="star2" fitHeight="213.0" fitWidth="213.0" layoutX="500.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="star2" fitHeight="213.0" fitWidth="213.0" layoutX="500.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/rewardScreen/star-fill.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="star1" fitHeight="169.0" fitWidth="169.0" layoutX="315.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" rotate="-25.0">
+      <ImageView fx:id="star1" fitHeight="169.0" fitWidth="169.0" layoutX="315.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" rotate="-25.0" visible="false">
          <image>
             <Image url="@../assets/rewardScreen/star-fill.png" />
          </image>

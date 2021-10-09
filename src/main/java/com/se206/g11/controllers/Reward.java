@@ -1,5 +1,11 @@
 package com.se206.g11.controllers;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -32,6 +38,8 @@ public class Reward extends ApplicationController implements Initializable {
     @FXML private ImageView star2;
     @FXML private ImageView star3;
     @FXML private ImageView score;
+    @FXML private ImageView highScore;
+    @FXML private ImageView new_label;
 
     //// Private (helper) methods ////
     /**
@@ -68,18 +76,48 @@ public class Reward extends ApplicationController implements Initializable {
         star3.setVisible(false);
     }
 
+    private Integer getHighScore() throws IOException {
+        File userStats = new File(".userStats");
+        BufferedReader statsReader = new BufferedReader(new FileReader(userStats));
+        Integer highScore = 0;
+        String line;
+        if ((line = statsReader.readLine()) != null) {
+            highScore = Integer.parseInt(line);
+        }
+        statsReader.close();
+        return highScore;
+    }
+
+    private void setHighScore(int gameScore) throws IOException {
+        File userStats = new File(".userStats");
+        BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
+        int prevHighScore = getHighScore();
+        if (gameScore > prevHighScore) {
+            statsWriter.write(gameScore);
+            setImage(gameScore, highScore);
+            new_label.setVisible(true);
+        } else {
+            setImage(prevHighScore, highScore);
+        }
+        statsWriter.close();
+    }
+
     //// Public Methods ////
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();
+        new_label.setVisible(false);
         this.game = MainApp.getGameState();
+        int gameScore = this.game.getScore();
 
-        setStars(this.game.getScore());
+        setStars(gameScore);
+
         try {
-            setImage(this.game.getScore(), score);
-        } catch (FileNotFoundException e) {
+            setHighScore(gameScore);
+            setImage(gameScore, score);
+        } catch (IOException e) {
             System.err.println(e);
         }
         
