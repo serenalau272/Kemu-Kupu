@@ -76,3 +76,23 @@
 - Refactored Rewards Screen stars using the new findNodesByID implementation
 - Continued building the new/modified FXMl files 
 
+- - - - 
+**Collaborative session: pause modal + results screen** 
+
+*8 Oct, 2021*
+- Collaborative coding sesh with some big strides:
+  - Finished implementation of pause modal
+  - Implemented pausing of timer on opening of modals
+  - Results screen finished with user display
+  - Major progress in game screen implementation of the text input fields
+  - Tried implementing custom fonts with no success :( will try again later
+
+- - - -
+**Rewards screen makeover + collaborative planning and other miscellaneous implementations** 
+
+*9 Oct, 2021*
+- Finally got around to redesigning the rewards screen to look a bit better, also added a user high score display
+- Planned out things still to be done for the project in the (very) near future, planning done in collaborative meeting with Notion - discovered coloured property labels! :)
+- Game screen almost complete, looks great and implementation with the separated textfield boxes working fine
+- Still some more bits and bobs to be completed, aiming to patch these all out by tomorrow so we have a fully functioning prototype ready for submission
+- Progress on backend also made
