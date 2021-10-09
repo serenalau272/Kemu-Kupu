@@ -81,7 +81,7 @@ public class Reward extends ApplicationController implements Initializable {
         File userStats = new File("./user/.userStats.txt");
         Scanner statsReader = new Scanner(userStats);
         Integer highScore = 0;
-        if (statsReader.hasNext()) {
+        if (statsReader.hasNextLine()) {
             highScore = statsReader.nextInt();
             System.out.println(highScore);
         }
@@ -91,16 +91,16 @@ public class Reward extends ApplicationController implements Initializable {
 
     private void setHighScore(int gameScore) throws IOException {
         File userStats = new File("./user/.userStats.txt");
-        BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
         int prevHighScore = getHighScore();
         if (gameScore > prevHighScore) {
+            BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
             statsWriter.write(String.valueOf(gameScore));
             setImage(gameScore, highScore);
             new_label.setVisible(true);
+            statsWriter.close();
         } else {
             setImage(prevHighScore, highScore);
         }
-        statsWriter.close();
     }
 
     //// Public Methods ////
