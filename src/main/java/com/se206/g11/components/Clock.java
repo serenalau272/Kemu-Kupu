@@ -1,6 +1,7 @@
 package com.se206.g11.components;
 
 import com.se206.g11.MainApp;
+import com.se206.g11.enums.Gamemode;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
@@ -29,15 +30,21 @@ public class Clock {
     }
 
     public void stop(){
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTISE) return;
+
         timer.close();
     }
 
     public void start(){
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTISE) return;
+
         angle = 0.0f;
         resume();
     }
 
     public void resume() {
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTISE) return;
+
         duration = MainApp.getSetting().getTimerDuration();
         timer = new MyTimer(this.duration);
         timer.start();
@@ -50,6 +57,8 @@ public class Clock {
      * @return the score multiplier based upon time. 4 is maximum and 1 is minimum
      */
     public int getScoreMultiplier(){
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTISE) return 4;
+
         int multiplier = (int) Math.ceil((360 - angle) * 4 / 360);
         return (multiplier == 0) ? 1 : multiplier; 
     }

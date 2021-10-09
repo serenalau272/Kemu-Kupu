@@ -10,6 +10,7 @@ import com.se206.g11.util.Sounds;
 import com.se206.g11.MainApp;
 import com.se206.g11.components.Clock;
 import com.se206.g11.components.InputField;
+import com.se206.g11.enums.Gamemode;
 import com.se206.g11.enums.Language;
 import com.se206.g11.enums.Modals;
 import com.se206.g11.enums.Status;
@@ -46,6 +47,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private Arc arc;
     @FXML private Label timerLabel;
     @FXML private ImageView play_button;
+    @FXML private ImageView clock;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -271,6 +273,7 @@ public class Quiz extends ApplicationController implements Initializable {
 
         //required to prevent bug
         this.game.getWord().setStatus(Status.SKIPPED);
+        InputField.setEditability(false);
 
         timer.stop();
         toggleLabels();
@@ -307,6 +310,19 @@ public class Quiz extends ApplicationController implements Initializable {
         //configure timer
         timer = new Clock(arc, timerLabel);
         game.setClock(timer);
+
+        if (this.game.getGameMode() == Gamemode.PRACTISE){
+            arc.setVisible(false);
+            timerLabel.setVisible(false);
+            pause_button.setVisible(false);
+            try {
+                setImage("Practice", clock);
+                clock.setFitWidth(1400);
+                clock.setTranslateX(-225);
+            } catch (FileNotFoundException e){
+                System.err.println("Unable to load practice clock image");
+            }
+        }
         
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

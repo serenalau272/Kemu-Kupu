@@ -49,6 +49,9 @@ public class Game {
         return this.words;
     }
 
+    public Gamemode getGameMode() {
+        return this.gamemode;
+    }
 
     public int getWordIndex(){
         return wordIndex;

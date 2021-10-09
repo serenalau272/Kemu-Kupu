@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -99,19 +98,19 @@
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pause_button" fitHeight="66.0" fitWidth="68.0" layoutX="1078.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pause_button" fitHeight="66.0" fitWidth="68.0" layoutX="1023.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/pause.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="help_button" fitHeight="65.0" fitWidth="60.0" layoutX="1024.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="help_button" fitHeight="65.0" fitWidth="60.0" layoutX="1083.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/help.png" />
          </image>
       </ImageView>
       <ImageView fx:id="clock" fitHeight="181.0" fitWidth="156.0" layoutX="554.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/clock.png" />
+            <Image url="@../assets/Game-screen/clock.png" />
          </image>
       </ImageView>
       <Arc fx:id="arc" fill="DODGERBLUE" layoutX="632.0" layoutY="189.0" length="270.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />

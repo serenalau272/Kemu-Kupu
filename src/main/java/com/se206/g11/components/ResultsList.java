@@ -4,6 +4,7 @@ import com.se206.g11.MainApp;
 import com.se206.g11.enums.Status;
 import com.se206.g11.models.Word;
 
+import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 public class ResultsList extends TextField{
     private static Node[][] inputs = new Node[5][4];
@@ -132,7 +134,7 @@ public class ResultsList extends TextField{
         for (Node[] els : inputs){
             for (Node e: els){
                 if (e != null){
-                    root.getChildren().add(e);
+                    root.getChildren().add(e);         
                 } else {
                     System.err.println("Null element to print in input field.");
                 }  
