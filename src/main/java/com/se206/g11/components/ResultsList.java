@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 public class ResultsList extends TextField{
     private static Node[][] inputs = new Node[5][4];
@@ -40,10 +41,10 @@ public class ResultsList extends TextField{
         ImageView icon = createIcon(index, word);
         elements[1] = icon;
 
-        Label wordLabel = createInputLabel(index, word);
+        Label wordLabel = createWordLabel(index, word);
         elements[2] = wordLabel;
 
-        Label inputLabel = createWordLabel(index, word);
+        Label inputLabel = createInputLabel(index, word);
         elements[3] = inputLabel;
 
         inputs[index-1] = elements;
@@ -93,26 +94,27 @@ public class ResultsList extends TextField{
         return img;
     }
 
-    private static Label createInputLabel(int index, Word word){
-        String txt = (word.getStatus() != Status.SKIPPED) ? capitaliseFirst(word.getResponse().getMaori()) : "-";
-        Label l = new Label(txt);
+    private static Label createWordLabel(int index, Word word){
+        Label l = new Label(capitaliseFirst(word.getMaori()));
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(-290);
         l.setPrefSize(264.0, 47.0);
         l.setTextFill(Color.WHITE);
-        l.setFont(new Font(50));
+        l.setFont(Font.font("System", FontWeight.BOLD, 50));
 
         return l;
     }
 
-    private static Label createWordLabel(int index, Word word){
-        String txt = (word.getStatus() == Status.FAILED || word.getStatus() == Status.SKIPPED) ? capitaliseFirst(word.getMaori()) : "";
+    private static Label createInputLabel(int index, Word word){
+        String txt = (word.getStatus() == Status.FAILED) ? capitaliseFirst(word.getResponse().getMaori()) : "";
         Label l = new Label(txt);
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(200);
         l.setPrefSize(264.0, 47.0);
         l.setTextFill(Color.WHITE);
-        l.setFont(Font.font("System", FontWeight.BOLD, 50));
+        l.setFont(new Font(50));
+        l.setTextAlignment(TextAlignment.RIGHT);
+        
 
         return l;
     }
