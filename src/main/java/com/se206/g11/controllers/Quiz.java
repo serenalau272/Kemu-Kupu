@@ -1,5 +1,6 @@
 package com.se206.g11.controllers;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
@@ -24,7 +25,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
 
 public class Quiz extends ApplicationController implements Initializable {
-    //Index of current word
+    private String[] correctMessages = {"Good Job! You're doing great!", "Ka mau te wehi!", "Superb! You're a spelling superstar!", "Bzzzz... Spelling Bee here!", "Do the mahi! Get the treats!"};
+    private String[] incorrectMessages = {"No sweat! Practice makes progress!", "You've got this! Try again next time!", "Third times the charm!"};
     
     private Game game;
 
@@ -95,7 +97,7 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void showElementsForResponse(){
         setResponseImageView();
-        addSubTextIncorrect();
+        addSubText();
 
         //hide elements
         submit_button.setVisible(false);
@@ -162,14 +164,19 @@ public class Quiz extends ApplicationController implements Initializable {
     /**
      * Add subtext for faulted and failed responses
      */
-    private void addSubTextIncorrect() {
+    private void addSubText() {
         Word word = this.game.getWord();
         switch (word.getStatus()) {
             case FAULTED:
                 messageLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
                 break;
-            case FAILED: 
-                messageLabel.setText("Correct answer: " + word.getMaori());
+            case FAILED:
+                String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
+                messageLabel.setText(incorrectMsg);
+                break;
+            case MASTERED:
+                String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
+                messageLabel.setText(correctMsg);
                 break;
             default: 
                 messageLabel.setText("");
