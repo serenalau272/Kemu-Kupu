@@ -15,7 +15,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class InputField extends TextField{
     //configured fields
@@ -105,20 +108,20 @@ public class InputField extends TextField{
     private static void createHintItems(){
         if (currentWord.getStatus() != Status.FAULTED) return;
 
-        int numOfHints = (int) Math.ceil(0.4 * wordSize);
+        int numOfHints = (int) Math.ceil(0.2 * wordSize);
 
         for (int i = 0; i < numOfHints; i++){
-            // int probes = new Random().nextInt(wordSize - i - 1) + 1;
-            // int probeIndex = 0;
-            // while (probeIndex != probes){
-            //     probeIndex++;
-            //     if (hintItems[probeIndex] != null){
-            //         probeIndex--;
-            //     }
-            // }
-            Label hintItem = new Label(getCharacter(i));
-            setPositioning(hintItem, i);
-            hintItems[i] = hintItem;
+            int trialIndex = new Random().nextInt(wordSize);
+
+            while (hintItems[trialIndex] != null){
+                trialIndex++;
+                if (trialIndex >= wordSize) trialIndex-=wordSize;
+            }
+  
+            Label hintItem = new Label(getCharacter(trialIndex));
+            hintItem.setFont(Font.font("System", FontWeight.BOLD, 30));
+            setPositioning(hintItem, trialIndex);
+            hintItems[trialIndex] = hintItem;
         }
     }
 

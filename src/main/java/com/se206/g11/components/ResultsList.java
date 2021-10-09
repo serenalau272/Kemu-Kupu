@@ -114,7 +114,7 @@ public class ResultsList extends TextField{
         l.setTranslateX(200);
         l.setPrefSize(264.0, 47.0);
         l.setTextFill(Color.WHITE);
-        l.setFont(Font.font("Roboto", FontWeight.BOLD, 50));
+        l.setFont(Font.font("System", FontWeight.BOLD, 50));
 
         return l;
     }
