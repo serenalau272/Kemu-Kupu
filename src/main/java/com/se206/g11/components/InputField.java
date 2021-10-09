@@ -1,34 +1,41 @@
 package com.se206.g11.components;
 
+import java.util.Random;
+
 import com.se206.g11.MainApp;
 import com.se206.g11.controllers.Quiz;
 import com.se206.g11.enums.Status;
 import com.se206.g11.models.Word;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class InputField extends TextField{
-    private static TextField[] inputs;
+    //configured fields
     private static StackPane root;
+    private static ImageView submit;
+    private static Quiz controller;
+
+    //word specific fields
+    private static TextField[] inputItems;
+    private static Label[] hintItems;
+    private static int wordSize;
+    private static Word currentWord;
+    private static int cursor;
+
+    //fields for styling
     private static int offset = 10;
     private static int inputTileWidth = 70;
     private static int leftMargin = 397;
     private static int bottomMargin = 50;
     private static int totalWidth = 908;
-    private static Quiz controller;
-    private static ImageView submit;
-    private static int wordSize;
-    private static Word currentWord;
-    
 
     public static void configureInputField(Word word, Quiz quiz, ImageView submit_button){
         submit = submit_button;
@@ -41,26 +48,33 @@ public class InputField extends TextField{
 
     public static void reconfigureInputField(Word word){
         currentWord = word;
-        removeAll();
+
+        removeAll(inputItems);
+        removeAll(hintItems);
         
         wordSize = currentWord.getMaori().length();
-        inputs = new TextField[wordSize];
+        inputItems = new TextField[wordSize];
+        hintItems = new Label[wordSize];
 
         alterCentre();
+        createHintItems();
         createInputFields();
+        
 
-        addAll();
-        reset();
+        addAll(inputItems);
+        addAll(hintItems);
+
+        int startIndex = getNextValidIndex(-1, true);
+        inputItems[startIndex].requestFocus();
+        cursor = startIndex;        
     }
     
      /**
      * insert macron to textfield
      */
     public static void insertMacron(String macron){
-        System.out.println("Should enter macron");
-        // String newInput = inputTextField.getText() + macron;
-        // inputTextField.setText(newInput);
-        // inputTextField.positionCaret(newInput.length());
+        inputItems[cursor].setText(macron);
+        insertCharacter(inputItems[cursor]);
     }
 
     private static void submit(){
@@ -79,32 +93,58 @@ public class InputField extends TextField{
     }
 
     private static void createInputFields(){
-        for (int i = 0; i < inputs.length; i++){
+        for (int i = 0; i < inputItems.length; i++){
             TextField n = null;
-            if (!getCharacter(i).equals(" ")){
+            if (!getCharacter(i).equals(" ") && hintItems[i] == null){
                 n = createInputItem(i);
             }
-            inputs[i] = n;
+            inputItems[i] = n;
         }
+    }
+
+    private static void createHintItems(){
+        if (currentWord.getStatus() != Status.FAULTED) return;
+
+        int numOfHints = (int) Math.ceil(0.4 * wordSize);
+
+        for (int i = 0; i < numOfHints; i++){
+            // int probes = new Random().nextInt(wordSize - i - 1) + 1;
+            // int probeIndex = 0;
+            // while (probeIndex != probes){
+            //     probeIndex++;
+            //     if (hintItems[probeIndex] != null){
+            //         probeIndex--;
+            //     }
+            // }
+            Label hintItem = new Label(getCharacter(i));
+            setPositioning(hintItem, i);
+            hintItems[i] = hintItem;
+        }
+    }
+
+    private static void setPositioning (Node node, int num){
+        node.setTranslateX(((inputTileWidth + offset) * num) - leftMargin);
+        node.setTranslateY(-1 * bottomMargin);
     }
 
     private static TextField createInputItem(int num){
         TextField inputItem = new TextField();
         inputItem.setMaxSize(inputTileWidth, inputTileWidth - 5);
         inputItem.setPrefSize(inputTileWidth, inputTileWidth - 5);
-        inputItem.setTranslateX(((inputTileWidth + offset) * num) - leftMargin);
-        inputItem.setTranslateY(-1 * bottomMargin);
+        setPositioning(inputItem, num);
 
-        addHandler(inputItem, num);
+        addHandler(inputItem);
         
         return inputItem;
     }
 
     private static String getInput(){
         String input = "";
-        for (TextField t : inputs){
-            if (t != null){
-                input += t.getText();
+        for (int index = 0; index < inputItems.length; index++){
+            if (inputItems[index] != null){
+                input += inputItems[index].getText();
+            } else if (hintItems[index] != null){
+                input += hintItems[index].getText();
             } else {
                 input += " ";
             }
@@ -121,7 +161,7 @@ public class InputField extends TextField{
 
             if (promptIndex == wordSize || promptIndex == -1){
                 foundIndex = true;
-            } else if (inputs[promptIndex] != null){
+            } else if (inputItems[promptIndex] != null){
                 foundIndex = true;
             }
         }
@@ -129,75 +169,63 @@ public class InputField extends TextField{
         return promptIndex;
     }
 
-    private static void addHandler(TextField inputItem, int num){
+    private static void addHandler(TextField inputItem){
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            int previousIndex = getNextValidIndex(num, false);
-            int followingIndex = getNextValidIndex(num, true);
-
             if (event.getCode() == KeyCode.ENTER){
                 submit();
             } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
-                String in = inputItem.getText();
-                if (in.length() != 0){
-                    String c = Character.toString(in.charAt(0));
-                    inputItem.clear();
-                    inputItem.setText(c);
-                    inputItem.positionCaret(1);
-                }
-
-                if (!inputItem.getText().equals("")) {
-                    if (followingIndex < wordSize) {
-                        inputs[followingIndex].requestFocus();
-                    }
-                }
+                insertCharacter(inputItem);
             } else if (event.getCode() == KeyCode.BACK_SPACE) {
-                if (inputItem.getText().equals("")) {
-                    if (previousIndex >= 0) {
-                        inputs[previousIndex].clear();
-                        inputs[previousIndex].requestFocus();
-                        inputs[previousIndex].positionCaret(1);
-                    }
-                }
+                removeCharacter(inputItem);
             } else if (!event.getCode().isNavigationKey()) {
                 inputItem.clear();
             }
         });
     }
     
+    private static void insertCharacter(TextField inputItem){
+        String in = inputItem.getText();
+        if (in.length() != 0){
+            String c = Character.toString(in.charAt(0));
+            inputItem.clear();
+            inputItem.setText(c);
+            inputItem.positionCaret(1);
+        }
 
-    private static void removeAll(){
-        if (inputs == null ) return;
-        for (Node n : inputs){
-            if (n != null){
-                root.getChildren().remove(n);
-            }
-        }     
-    }
-
-    public static void reset(){
-        if (inputs == null ) return;
-        for (TextField n : inputs){
-            if (n != null){
-                n.clear();
+        if (!inputItem.getText().equals("")) {
+            int followingIndex = getNextValidIndex(cursor, true);
+            if (followingIndex < wordSize) {
+                inputItems[followingIndex].requestFocus();
+                cursor = followingIndex;
             }
         }
-        int ind = getNextValidIndex(-1, true);
-        inputs[ind].requestFocus();
+    }
+
+    private static void removeCharacter(TextField inputItem){
+        if (inputItem.getText().equals("")) {
+            int previousIndex = getNextValidIndex(cursor, false);
+            if (previousIndex >= 0) {
+                inputItems[previousIndex].clear();
+                inputItems[previousIndex].requestFocus();
+                inputItems[previousIndex].positionCaret(1);
+                cursor = previousIndex;
+            }
+        }
     }
 
     private static void onFailed(Paint colour){
-        if (inputs == null ) return;
-        for (int ind = 0; ind < inputs.length; ind++){
-            if (inputs[ind] != null){
-                inputs[ind].setStyle("-fx-background-color: #"+colour.toString().substring(2));
-                inputs[ind].setText(getCharacter(ind));
+        if (inputItems == null ) return;
+        for (int ind = 0; ind < inputItems.length; ind++){
+            if (inputItems[ind] != null){
+                inputItems[ind].setStyle("-fx-background-color: #"+colour.toString().substring(2));
+                inputItems[ind].setText(getCharacter(ind));
             }
         }
     }
 
     public static void setEditability(boolean isEditable){
-        if (inputs == null ) return;
-        for (TextField n : inputs){
+        if (inputItems == null ) return;
+        for (TextField n : inputItems){
             if (n != null){
                 n.setEditable(isEditable);
             }    
@@ -208,8 +236,18 @@ public class InputField extends TextField{
         return Character.toString(currentWord.getMaori().charAt(index));
     }
 
-    private static void addAll(){
-        for (Node n : inputs){
+
+    private static void removeAll(Node[] items){
+        if (items == null ) return;
+        for (Node n : items){
+            if (n != null){
+                root.getChildren().remove(n);
+            }
+        }     
+    }
+
+    private static void addAll(Node[] items){
+        for (Node n : items){
             if (n != null){
                 root.getChildren().add(n);
             }   

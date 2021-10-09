@@ -287,7 +287,7 @@ public class Quiz extends ApplicationController implements Initializable {
             InputField.setEditability(false);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
             InputField.setEditability(true);
-            InputField.reset();
+            InputField.reconfigureInputField(this.game.getWord());;
             
             onEnterContinue();
         }
@@ -304,7 +304,6 @@ public class Quiz extends ApplicationController implements Initializable {
         showElementsForInput();      //no response given initially
 
         //Load words from the MainApp
-        
         this.__updateWordIndexBanner();
         //configure timer
         timer = new Clock(arc, timerLabel);
