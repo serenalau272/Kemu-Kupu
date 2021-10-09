@@ -67,7 +67,7 @@ public class MainApp extends Application {
     }
 
     private void configureStatsFiles() throws IOException {
-        File file = new File(".userStats");
+        File file = new File("./user/.userStats.txt");
         file.createNewFile();
     }
 
