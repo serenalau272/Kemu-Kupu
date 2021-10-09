@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
@@ -77,29 +78,29 @@ public class Reward extends ApplicationController implements Initializable {
     }
 
     private Integer getHighScore() throws IOException {
-        File userStats = new File(".userStats");
-        BufferedReader statsReader = new BufferedReader(new FileReader(userStats));
+        File userStats = new File("./user/.userStats.txt");
+        Scanner statsReader = new Scanner(userStats);
         Integer highScore = 0;
-        String line;
-        if ((line = statsReader.readLine()) != null) {
-            highScore = Integer.parseInt(line);
+        if (statsReader.hasNextLine()) {
+            highScore = statsReader.nextInt();
+            System.out.println(highScore);
         }
         statsReader.close();
         return highScore;
     }
 
     private void setHighScore(int gameScore) throws IOException {
-        File userStats = new File(".userStats");
-        BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
+        File userStats = new File("./user/.userStats.txt");
         int prevHighScore = getHighScore();
         if (gameScore > prevHighScore) {
-            statsWriter.write(gameScore);
+            BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
+            statsWriter.write(String.valueOf(gameScore));
             setImage(gameScore, highScore);
             new_label.setVisible(true);
+            statsWriter.close();
         } else {
             setImage(prevHighScore, highScore);
         }
-        statsWriter.close();
     }
 
     //// Public Methods ////
