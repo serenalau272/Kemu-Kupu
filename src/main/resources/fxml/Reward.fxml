@@ -5,26 +5,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.controllers.Reward">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" minHeight="730.0" minWidth="1209.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.controllers.Reward">
     <children>
-      <ImageView fitHeight="769.0" fitWidth="1200.0" pickOnBounds="true">
+      <ImageView fx:id="background" fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/cartoon-landscape.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="553.0" fitWidth="703.0" layoutX="268.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/background.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="769.0" fitWidth="600.0" layoutX="305.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/rewardScreen/wood.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="pot_button" fitHeight="374.0" fitWidth="420.0" layoutX="698.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pot_button" fitHeight="337.0" fitWidth="387.0" layoutX="711.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/honey-pot.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="123.0" fitWidth="554.0" layoutX="323.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/rewardScreen/label-quiz-complete.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="56.0" fitWidth="236.0" layoutX="499.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
@@ -32,9 +27,9 @@
             <Image url="@../assets/rewardScreen/label-your-score.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="218.0" fitWidth="237.0" layoutX="495.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="257.0" fitWidth="338.0" layoutX="476.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/rewardScreen/stars/empty-star2.png" />
+            <Image url="@../assets/rewardScreen/empty-star.png" />
          </image>
       </ImageView>
       <ImageView fx:id="star2" fitHeight="183.0" fitWidth="185.0" layoutX="513.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -43,24 +38,19 @@
          </image>
       </ImageView>
       <!-- Buttons -->
-      <ImageView fx:id="menu_button" fitHeight="133.0" fitWidth="152.0" layoutX="617.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="menu_button" fitHeight="133.0" fitWidth="152.0" layoutX="617.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/menu.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="again_button" fitHeight="142.0" fitWidth="191.0" layoutX="426.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="again_button" fitHeight="142.0" fitWidth="191.0" layoutX="426.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/play-again.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="218.0" fitWidth="237.0" layoutX="285.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" rotate="-25.0">
+      <ImageView fitHeight="202.0" fitWidth="205.0" layoutX="301.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" rotate="-25.0">
          <image>
-            <Image url="@../assets/rewardScreen/stars/empty-star2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="218.0" fitWidth="237.0" layoutX="701.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" rotate="25.0">
-         <image>
-            <Image url="@../assets/rewardScreen/stars/empty-star2.png" />
+            <Image url="@../assets/rewardScreen/empty-star.png" />
          </image>
       </ImageView>
       <ImageView fx:id="star1" fitHeight="183.0" fitWidth="185.0" layoutX="298.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" rotate="-25.0" visible="false">
@@ -68,18 +58,56 @@
             <Image url="@../assets/rewardScreen/stars/star2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="star3" fitHeight="183.0" fitWidth="185.0" layoutX="724.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" rotate="25.0" visible="false">
+      <ImageView fx:id="highScore" fitHeight="73.0" fitWidth="109.0" layoutX="666.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/rewardScreen/stars/star2.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="score" fitHeight="133.0" fitWidth="251.0" layoutX="489.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/rewardScreen/score/0.png" />
+            <Image url="@../assets/rewardScreen/score/100.png" />
          </image>
          <viewport>
             <Rectangle2D minX="489.0" />
          </viewport>
+      </ImageView>
+      <ImageView fitHeight="202.0" fitWidth="205.0" layoutX="707.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" rotate="25.0">
+         <image>
+            <Image url="@../assets/rewardScreen/empty-star.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="new_label" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/rewardScreen/NEW.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="score" fitHeight="73.0" fitWidth="109.0" layoutX="666.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/rewardScreen/score/100.png" />
+         </image>
+         <viewport>
+            <Rectangle2D minX="489.0" />
+         </viewport>
+      </ImageView>
+      <ImageView fx:id="star3" fitHeight="169.0" fitWidth="169.0" layoutX="729.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" rotate="25.0">
+         <image>
+            <Image url="@../assets/rewardScreen/star-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="star2" fitHeight="213.0" fitWidth="213.0" layoutX="500.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/rewardScreen/star-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="star1" fitHeight="169.0" fitWidth="169.0" layoutX="315.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" rotate="-25.0">
+         <image>
+            <Image url="@../assets/rewardScreen/star-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="banner" fitHeight="170.0" fitWidth="675.0" layoutX="268.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/rewardScreen/banner.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="133.0" fitWidth="494.0" layoutX="357.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/rewardScreen/label-quiz-complete.png" />
+         </image>
       </ImageView>
     </children>
 </AnchorPane>
