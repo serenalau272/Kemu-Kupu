@@ -284,7 +284,11 @@ public class Quiz extends ApplicationController implements Initializable {
     public void onEnter(Word input){
         if (awaitingInput) {
             checkInput(input);
+            InputField.setEditability(false);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
+            InputField.setEditability(true);
+            InputField.reset();
+            
             onEnterContinue();
         }
     }
@@ -300,16 +304,16 @@ public class Quiz extends ApplicationController implements Initializable {
         showElementsForInput();      //no response given initially
 
         //Load words from the MainApp
-        this.__hearWord(1);
-        this.__updateWordIndexBanner();
         
+        this.__updateWordIndexBanner();
         //configure timer
         timer = new Clock(arc, timerLabel);
         game.setClock(timer);
-        timer.start();
-
+        
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            this.__hearWord(1);
+            timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
             InputField.configureInputField(game.getWord(), this, submit_button);

@@ -2,6 +2,7 @@ package com.se206.g11.components;
 
 import com.se206.g11.MainApp;
 import com.se206.g11.controllers.Quiz;
+import com.se206.g11.enums.Status;
 import com.se206.g11.models.Word;
 
 import javafx.scene.Node;
@@ -10,7 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class InputField extends TextField{
     private static TextField[] inputs;
@@ -23,6 +27,7 @@ public class InputField extends TextField{
     private static Quiz controller;
     private static ImageView submit;
     private static int wordSize;
+    private static Word currentWord;
     
 
     public static void configureInputField(Word word, Quiz quiz, ImageView submit_button){
@@ -35,13 +40,14 @@ public class InputField extends TextField{
     }
 
     public static void reconfigureInputField(Word word){
+        currentWord = word;
         removeAll();
         
-        wordSize = word.getMaori().length();
+        wordSize = currentWord.getMaori().length();
         inputs = new TextField[wordSize];
 
         alterCentre();
-        createInputFields(word);
+        createInputFields();
 
         addAll();
         reset();
@@ -62,7 +68,8 @@ public class InputField extends TextField{
         input.setMaori(getInput());
 
         controller.onEnter(input);
-        reset();
+
+        if (currentWord.getStatus() == Status.FAILED) onFailed(Paint.valueOf("FF6F74"));
     }
 
     private static void alterCentre(){
@@ -71,10 +78,10 @@ public class InputField extends TextField{
         leftMargin = 397 - additionalOffset;
     }
 
-    private static void createInputFields(Word word){
+    private static void createInputFields(){
         for (int i = 0; i < inputs.length; i++){
             TextField n = null;
-            if (!Character.toString(word.getMaori().charAt(i)).equals(" ")){
+            if (!getCharacter(i).equals(" ")){
                 n = createInputItem(i);
             }
             inputs[i] = n;
@@ -167,7 +174,7 @@ public class InputField extends TextField{
         }     
     }
 
-    private static void reset(){
+    public static void reset(){
         if (inputs == null ) return;
         for (TextField n : inputs){
             if (n != null){
@@ -178,13 +185,34 @@ public class InputField extends TextField{
         inputs[ind].requestFocus();
     }
 
+    private static void onFailed(Paint colour){
+        if (inputs == null ) return;
+        for (int ind = 0; ind < inputs.length; ind++){
+            if (inputs[ind] != null){
+                inputs[ind].setStyle("-fx-background-color: #"+colour.toString().substring(2));
+                inputs[ind].setText(getCharacter(ind));
+            }
+        }
+    }
+
+    public static void setEditability(boolean isEditable){
+        if (inputs == null ) return;
+        for (TextField n : inputs){
+            if (n != null){
+                n.setEditable(isEditable);
+            }    
+        }
+    }
+
+    private static String getCharacter(int index){
+        return Character.toString(currentWord.getMaori().charAt(index));
+    }
+
     private static void addAll(){
         for (Node n : inputs){
             if (n != null){
                 root.getChildren().add(n);
-            } else {
-                System.err.println("Null element to print in input field.");
-            }       
+            }   
         }
     }
 
