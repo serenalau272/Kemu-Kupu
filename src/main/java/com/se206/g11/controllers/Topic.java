@@ -31,7 +31,6 @@ public class Topic extends ApplicationController implements Initializable {
     @FXML private ImageView daysOfWeek_button;
     @FXML private ImageView monthsOfYear_button;
     @FXML private ImageView software_button;
-    @FXML private ImageView uniLife_button;
     @FXML private ImageView weather_button;
     @FXML private ImageView work_button;
     @FXML private ImageView feelings_button;

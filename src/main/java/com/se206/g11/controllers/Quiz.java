@@ -236,12 +236,12 @@ public class Quiz extends ApplicationController implements Initializable {
     /**
      * Handler for the submit button
      */
-    public void checkInput(Word input) {
+    public void checkInput(Word input, boolean isInputEmpty) {
         timer.stop();
         if (this.disabled) return;
         
         //return if empty textfield
-        if (input.getMaori().isEmpty()) {
+        if (isInputEmpty) {
             __hearWord(1);
             return;
         }
@@ -290,9 +290,9 @@ public class Quiz extends ApplicationController implements Initializable {
         MainApp.showModal(Modals.PAUSE);
     }
 
-    public void onEnter(Word input){
+    public void onEnter(Word input, boolean isInputEmpty){
         if (awaitingInput) {
-            checkInput(input);
+            checkInput(input, isInputEmpty);
             InputField.setEditability(false);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
             InputField.setEditability(true);

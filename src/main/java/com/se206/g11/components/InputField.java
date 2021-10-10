@@ -32,6 +32,7 @@ public class InputField extends TextField{
     private static int wordSize;
     private static Word currentWord;
     private static int cursor;
+    private static boolean isInputEmpty;
 
     //fields for styling
     private static int offset = 10;
@@ -51,11 +52,13 @@ public class InputField extends TextField{
 
     public static void reconfigureInputField(Word word){
         currentWord = word;
-
+        wordSize = currentWord.getMaori().length();
+        isInputEmpty = true;       //assumes empty initially and checks if actually not empty in getInput()
+        
         removeAll(inputItems);
         removeAll(hintItems);
         
-        wordSize = currentWord.getMaori().length();
+        
         inputItems = new TextField[wordSize];
         hintItems = new Label[wordSize];
 
@@ -66,11 +69,14 @@ public class InputField extends TextField{
         addAll(inputItems);
         addAll(hintItems);
 
-        int startIndex = getNextValidIndex(-1, true);
-        inputItems[startIndex].requestFocus();
-        cursor = startIndex;        
+        cursor = getNextValidIndex(-1, true);
+        recursor(); 
     }
     
+    public static void recursor(){
+        inputItems[cursor].requestFocus();
+    }
+
      /**
      * insert macron to textfield
      */
@@ -83,7 +89,7 @@ public class InputField extends TextField{
         Word input = new Word();
         input.setMaori(getInput());
 
-        controller.onEnter(input);
+        controller.onEnter(input, isInputEmpty);
 
         if (currentWord.getStatus() == Status.FAILED) onFailed(Paint.valueOf("FF6F74"));
     }
@@ -143,7 +149,7 @@ public class InputField extends TextField{
         setPositioning(inputItem, num);
 
         if (isInputtable){
-            addHandler(inputItem);
+            addHandler(inputItem, num);
         } else {
             inputItem.setStyle("-fx-background-color: #5F7E79");
             inputItem.setEditable(false);
@@ -157,6 +163,9 @@ public class InputField extends TextField{
         for (int index = 0; index < inputItems.length; index++){
             if (inputItems[index] != null && hintItems[index] == null){
                 input += inputItems[index].getText();
+
+                if (!inputItems[index].getText().isEmpty()) isInputEmpty = false;
+
             } else if (hintItems[index] != null){
                 input += hintItems[index].getText();
             } else {
@@ -183,24 +192,26 @@ public class InputField extends TextField{
         return promptIndex;
     }
 
-    private static void addHandler(TextField inputItem){
+    private static void addHandler(TextField inputItem, int num){
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER){
                 submit();
-            } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
-                insertCharacter(inputItem);
-            } else if (event.getCode() == KeyCode.BACK_SPACE) {
+            }  else if (event.getCode() == KeyCode.BACK_SPACE) {
                 removeCharacter(inputItem);
-            } else if (!event.getCode().isNavigationKey()) {
-                inputItem.clear();
+            } else  {
+                insertCharacter(inputItem);
             }
+        });
+        inputItem.setOnMouseClicked(e -> {
+            cursor = num;
+            recursor();
         });
     }
     
     private static void insertCharacter(TextField inputItem){
         String in = inputItem.getText();
         if (in.length() != 0){
-            String c = Character.toString(in.charAt(0));
+            String c = Character.toString(in.charAt(in.length() - 1));
             inputItem.clear();
             inputItem.setText(c);
             inputItem.positionCaret(1);
@@ -210,6 +221,7 @@ public class InputField extends TextField{
             int followingIndex = getNextValidIndex(cursor, true);
             if (followingIndex < wordSize) {
                 inputItems[followingIndex].requestFocus();
+                inputItems[followingIndex].positionCaret(1);
                 cursor = followingIndex;
             }
         }
@@ -233,6 +245,7 @@ public class InputField extends TextField{
             if (inputItems[ind] != null){
                 inputItems[ind].setStyle("-fx-background-color: #"+colour.toString().substring(2));
                 inputItems[ind].setText(getCharacter(ind));
+                inputItems[ind].setEditable(false);
             }
         }
     }
