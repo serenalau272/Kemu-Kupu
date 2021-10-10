@@ -108,17 +108,12 @@
             <Image url="@../assets/Game-screen/help.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="clock1" fitHeight="181.0" fitWidth="156.0" layoutX="554.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clock" fitHeight="181.0" fitWidth="156.0" layoutX="554.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/clock.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="clock" fitHeight="181.0" fitWidth="156.0" layoutX="554.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../assets/Game-screen/clock.png" />
-         </image>
-      </ImageView>
-      <Arc fx:id="arc" fill="#acf94b" layoutX="632.0" layoutY="189.0" length="270.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" visible="false" />
+      <Arc fx:id="arc" fill="#acf94b" layoutX="632.0" layoutY="189.0" length="360.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" visible="false" />
       <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="562.0" layoutY="158.0" prefHeight="57.0" prefWidth="137.0" text="30" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
             <Font size="50.0" />
@@ -128,7 +123,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <ImageView fx:id="practice_sign" fitHeight="231.0" fitWidth="732.0" layoutX="249.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="practice_sign" fitHeight="231.0" fitWidth="732.0" layoutX="263.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/Game-screen/Practice.png" />
          </image>
