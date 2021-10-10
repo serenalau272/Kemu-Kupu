@@ -49,6 +49,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private Label timerLabel;
     @FXML private ImageView play_button;
     @FXML private ImageView clock;
+    @FXML private ImageView score;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -125,6 +126,7 @@ public class Quiz extends ApplicationController implements Initializable {
         responseImg.setVisible(false);
         continueLabel.setVisible(false);
         messageLabel.setVisible(false);
+        score.setVisible(false);
     }
 
     private void setMacronVisibility(boolean isVisible){
@@ -182,6 +184,15 @@ public class Quiz extends ApplicationController implements Initializable {
                 messageLabel.setText("");
                 break;
         }
+    }
+
+    private void setScoreIncrease(int scoreIncrease) {
+        try {
+            setImage(scoreIncrease, this.score);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        score.setVisible(true);
     }
 
     /**
@@ -251,6 +262,7 @@ public class Quiz extends ApplicationController implements Initializable {
             this.game.getWord().setScoreMultiplier(timer.getScoreMultiplier());
             Sounds.playSoundEffect("correct");
             this.__updateProgressBar(this.game.getScore());
+            this.setScoreIncrease(this.game.getScore());
         }
 
         toggleLabels();
