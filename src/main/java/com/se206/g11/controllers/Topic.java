@@ -79,7 +79,6 @@ public class Topic extends ApplicationController implements Initializable {
         __initialiseSelectableTopic(daysOfWeek_button);
         __initialiseSelectableTopic(monthsOfYear_button);
         __initialiseSelectableTopic(software_button);
-        __initialiseSelectableTopic(uniLife_button);
         __initialiseSelectableTopic(weather_button);
         __initialiseSelectableTopic(work_button);
         __initialiseSelectableTopic(feelings_button);
