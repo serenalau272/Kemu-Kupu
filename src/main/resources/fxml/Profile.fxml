@@ -22,7 +22,7 @@
             <Image url="@../assets/OtherModals/Group%20130.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="highScore" fitHeight="75.0" fitWidth="123.0" layoutX="660.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="highScore_label" fitHeight="75.0" fitWidth="123.0" layoutX="660.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/score/100.png" />
          </image>

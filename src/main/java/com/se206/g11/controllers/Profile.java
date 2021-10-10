@@ -26,7 +26,7 @@ public class Profile extends ApplicationController implements Initializable {
 
     @FXML ImageView reset_button;
     @FXML ImageView exit_button;
-    @FXML ImageView score;
+    @FXML ImageView highScore_label;
 
     //// Private Methods ////
 
@@ -40,7 +40,7 @@ public class Profile extends ApplicationController implements Initializable {
     private void updateHighScore() {
         try {
             highScore = Game.getHighScore();
-            setImage(highScore, score);
+            setImage(highScore, highScore_label);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,6 +58,7 @@ public class Profile extends ApplicationController implements Initializable {
 
         this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             File userStats = new File("./.user/.userStats.txt");
+            System.out.println("hi");
             try {
                 BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
                 statsWriter.close();
