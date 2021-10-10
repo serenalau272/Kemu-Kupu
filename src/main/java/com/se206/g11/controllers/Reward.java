@@ -56,20 +56,9 @@ public class Reward extends ApplicationController implements Initializable {
         }
     }
 
-    private Integer getHighScore() throws IOException {
-        File userStats = new File("./.user/.userStats.txt");
-        Scanner statsReader = new Scanner(userStats);
-        Integer highScore = 0;
-        if (statsReader.hasNextLine()) {
-            highScore = statsReader.nextInt();
-        }
-        statsReader.close();
-        return highScore;
-    }
-
     private void setHighScore(int gameScore) throws IOException {
         File userStats = new File("./.user/.userStats.txt");
-        int prevHighScore = getHighScore();
+        int prevHighScore = game.getHighScore();
         if (gameScore > prevHighScore) {
             BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
             statsWriter.write(String.valueOf(gameScore));

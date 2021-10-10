@@ -308,6 +308,10 @@ public class Quiz extends ApplicationController implements Initializable {
         MainApp.showModal(Modals.PAUSE);
     }
 
+    public void helpClick() {
+        MainApp.showModal(Modals.HELP);
+    }
+
     public void onEnter(Word input, boolean isInputEmpty){
         if (awaitingInput) {
             checkInput(input, isInputEmpty);
@@ -372,6 +376,11 @@ public class Quiz extends ApplicationController implements Initializable {
         pause_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             pauseClick();
+        });
+
+        help_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
+            helpClick();
         });
 
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
