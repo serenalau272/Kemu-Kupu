@@ -343,13 +343,15 @@ public class Quiz extends ApplicationController implements Initializable {
         } else {
             Sounds.playMusic("game");
         }
-        
+        MainApp.disableScreenNodes(true);
+
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.__hearWord(1);
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
+            MainApp.disableScreenNodes(false);
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 

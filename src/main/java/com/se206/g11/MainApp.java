@@ -60,7 +60,7 @@ public class MainApp extends Application {
     /**
      * Disable all screen nodes
      */
-    private static void disableScreenNodes(boolean isDisable) {
+    public static void disableScreenNodes(boolean isDisable) {
         stackPane.getChildren().get(0).setDisable(isDisable);
         for (int i=0; i<stackPane.getChildren().size()-2; i++) {
             stackPane.getChildren().get(i).setDisable(isDisable);
