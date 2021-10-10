@@ -66,9 +66,9 @@ public class InputField extends TextField{
         
         addAll(inputItems);
         addAll(hintItems);
-        int startIndex = getNextValidIndex(-1, true);
-        inputItems[startIndex].requestFocus();
-        cursor = startIndex;  
+
+        cursor = getNextValidIndex(-1, true);
+        recursor(); 
     }
     
     public static void recursor(){
@@ -147,7 +147,7 @@ public class InputField extends TextField{
         setPositioning(inputItem, num);
 
         if (isInputtable){
-            addHandler(inputItem);
+            addHandler(inputItem, num);
         } else {
             inputItem.setStyle("-fx-background-color: #5F7E79");
             inputItem.setEditable(false);
@@ -187,7 +187,7 @@ public class InputField extends TextField{
         return promptIndex;
     }
 
-    private static void addHandler(TextField inputItem){
+    private static void addHandler(TextField inputItem, int num){
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER){
                 submit();
@@ -199,12 +199,16 @@ public class InputField extends TextField{
                 inputItem.clear();
             }
         });
+        inputItem.setOnMouseClicked(e -> {
+            cursor = num;
+            recursor();
+        });
     }
     
     private static void insertCharacter(TextField inputItem){
         String in = inputItem.getText();
         if (in.length() != 0){
-            String c = Character.toString(in.charAt(0));
+            String c = Character.toString(in.charAt(in.length() - 1));
             inputItem.clear();
             inputItem.setText(c);
             inputItem.positionCaret(1);
