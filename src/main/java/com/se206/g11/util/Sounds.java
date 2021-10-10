@@ -14,14 +14,14 @@ public class Sounds {
     private static MediaPlayer musicPlayer;
 
     public static void playMusic(String music) {
-        if (!MainApp.getSetting().getMusic()) return;
-
         if (musicPlayer != null){
             musicPlayer.stop();
         }
+        
+        if (!MainApp.getSetting().getMusic()) return;        
 
         try {
-            String path = MainApp.class.getResource("/sound/" + music + ".wav").toURI().toString();
+            String path = MainApp.class.getResource("/sound/" + music + ".mp3").toURI().toString();
             musicPlayer = new MediaPlayer(new Media(path));
             musicPlayer.setOnEndOfMedia(new Runnable() {
                 public void run() {

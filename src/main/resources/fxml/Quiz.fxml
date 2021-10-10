@@ -113,7 +113,7 @@
             <Image url="@../assets/Game-screen/clock.png" />
          </image>
       </ImageView>
-      <Arc fx:id="arc" fill="DODGERBLUE" layoutX="632.0" layoutY="189.0" length="270.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="arc" fill="#acf94b" layoutX="632.0" layoutY="189.0" length="270.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
       <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="562.0" layoutY="158.0" prefHeight="57.0" prefWidth="137.0" text="30" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="50.0" />

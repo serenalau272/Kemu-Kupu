@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.se206.g11.models.Game;
+import com.se206.g11.util.Sounds;
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 import com.se206.g11.enums.Gamemode;
@@ -64,9 +65,11 @@ public class GameMode extends ApplicationController implements Initializable {
         switch (mode) {
             case "practice": 
                 modeEnum = Gamemode.PRACTICE;
+                Sounds.playMusic("practice");
                 break;
             case "ranked":
                 modeEnum = Gamemode.RANKED;
+                Sounds.playMusic("game");
                 break;
             default: 
                 System.err.println("Mode not valid.");
@@ -81,6 +84,7 @@ public class GameMode extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Sounds.playMusic("menu");
         intialiseMode(practice);
         intialiseMode(ranked);
     }

@@ -36,7 +36,7 @@ public class Menu extends ApplicationController implements Initializable {
         //Inital setup & loading of data
         super.initialize();
 
-        Sounds.playMusic("pop");
+        Sounds.playMusic("menu");
 
         //Set event handlers
         //exiting

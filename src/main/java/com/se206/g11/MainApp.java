@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.se206.g11.components.InputField;
 import com.se206.g11.components.ResultsList;
+import com.se206.g11.enums.Gamemode;
 import com.se206.g11.enums.Modals;
 import com.se206.g11.enums.View;
 import com.se206.g11.models.Game;
@@ -153,7 +154,21 @@ public class MainApp extends Application {
             state.getClock().resume();
             InputField.recursor();
         }
+    }
 
+    /*
+    * update music on modal toggle
+    */
+    public static void updateMusic(){
+        if (view == View.QUIZ) {
+            if (state.getGameMode() == Gamemode.RANKED){
+                Sounds.playMusic("game");
+            } else {
+                Sounds.playMusic("practice");
+            }
+        } else {
+            Sounds.playMusic("menu");
+        }
     }
 
     /**
