@@ -21,11 +21,6 @@
             <Image url="@../assets/topicChoices/daysOfWeek.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="uniLife_button" fitHeight="105.0" fitWidth="289.0" layoutX="846.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/topicChoices/uniLife.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="babies_button" fitHeight="105.0" fitWidth="276.0" layoutX="840.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/babies.png" />
