@@ -345,7 +345,7 @@ public class Quiz extends ApplicationController implements Initializable {
 
             if (this.game.getGameMode() == Gamemode.PRACTICE){
                 practice_sign.setVisible(true);
-
+                clock.setVisible(false);
                 Sounds.playMusic("practice");
             } else {
                 arc.setVisible(true);
