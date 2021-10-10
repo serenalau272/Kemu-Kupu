@@ -32,6 +32,7 @@ public class InputField extends TextField{
     private static int wordSize;
     private static Word currentWord;
     private static int cursor;
+    private static boolean isInputEmpty;
 
     //fields for styling
     private static int offset = 10;
@@ -52,6 +53,7 @@ public class InputField extends TextField{
     public static void reconfigureInputField(Word word){
         currentWord = word;
         wordSize = currentWord.getMaori().length();
+        isInputEmpty = true;       //assumes empty initially and checks if actually not empty in getInput()
         
         removeAll(inputItems);
         removeAll(hintItems);
@@ -87,7 +89,7 @@ public class InputField extends TextField{
         Word input = new Word();
         input.setMaori(getInput());
 
-        controller.onEnter(input);
+        controller.onEnter(input, isInputEmpty);
 
         if (currentWord.getStatus() == Status.FAILED) onFailed(Paint.valueOf("FF6F74"));
     }
@@ -161,6 +163,9 @@ public class InputField extends TextField{
         for (int index = 0; index < inputItems.length; index++){
             if (inputItems[index] != null && hintItems[index] == null){
                 input += inputItems[index].getText();
+
+                if (!inputItems[index].getText().isEmpty()) isInputEmpty = false;
+
             } else if (hintItems[index] != null){
                 input += hintItems[index].getText();
             } else {
@@ -196,8 +201,6 @@ public class InputField extends TextField{
             } else  {
                 insertCharacter(inputItem);
             }
-
-            // if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey())
         });
         inputItem.setOnMouseClicked(e -> {
             cursor = num;
