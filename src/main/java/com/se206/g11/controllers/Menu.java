@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
+import com.se206.g11.enums.Modals;
 import com.se206.g11.enums.View;
 import com.se206.g11.util.Sounds;
 
@@ -68,6 +69,11 @@ public class Menu extends ApplicationController implements Initializable {
         settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
+        });
+
+        profile_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
+            MainApp.showModal(Modals.PROFILE);
         });
 
         //open attributions modal
