@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.controllers.Result">
+    <children>
+      <ImageView fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/cartoon-landscape.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="word1" layoutX="178.0" layoutY="197.0" prefHeight="47.0" prefWidth="264.0" text="Kohitatea" textFill="WHITE" visible="false">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <TextField fx:id="hiddenField" layoutX="590.0" layoutY="633.0" opacity="0.0" prefHeight="23.0" prefWidth="28.0" />
+      <ImageView fitHeight="112.0" fitWidth="439.0" layoutX="385.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/GameMode/Game%20Mode.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="practice" fitHeight="570.0" fitWidth="776.0" layoutX="78.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/GameMode/practice-faded.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ranked" fitHeight="530.0" fitWidth="556.0" layoutX="623.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/GameMode/ranked-faded.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>

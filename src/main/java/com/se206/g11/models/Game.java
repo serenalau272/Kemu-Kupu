@@ -27,14 +27,9 @@ public class Game {
      * @param topic the topic to select
      * @param numWords optional param for the number of words, defaults to 5
      */
-    public Game(Gamemode mode, SpellingTopic topic, Integer numWords) throws IOException {
-        this.gamemode = mode;
-        this.topic = topic;
-        this.words = SystemIO.getWords(numWords, topic.getPath());
-    }
 
-    public Game(Gamemode mode, SpellingTopic topic) throws IOException {
-        this(mode, topic, 5);
+    public Game(Gamemode mode) throws IOException {
+        this.gamemode = mode;
     }
 
     /**
@@ -91,6 +86,11 @@ public class Game {
      */
     public SpellingTopic getTopic() {
         return this.topic;
+    }
+
+    public void setTopic(SpellingTopic topic) throws IOException {
+        this.topic = topic;
+        this.words = SystemIO.getWords(5, topic.getPath());
     }
 
     public Clock getClock() {

@@ -77,7 +77,7 @@ public class Menu extends ApplicationController implements Initializable {
         //enter topic selection
         enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.setRoot(View.TOPIC);
+            MainApp.setRoot(View.GAMEMODE);
             event.consume();
         });
     }    

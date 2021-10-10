@@ -5,15 +5,20 @@ package com.se206.g11.enums;
  */
 public enum View {
     MENU,
+    GAMEMODE,
     TOPIC,
     QUIZ,
     EXIT,
-    RESULTS;
+    RESULTS,
+    REWARD;
 
     public String getFileName() {
         switch (this) {
             case MENU: {
                 return "Menu";
+            }
+            case GAMEMODE: {
+                return "GameMode";
             }
             case TOPIC: {
                 return "Topic";
@@ -27,6 +32,9 @@ public enum View {
             case RESULTS: {
                 return "Results";
             }
+            case REWARD: {
+                return "Reward";
+            }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
                 return "Menu";
@@ -39,6 +47,9 @@ public enum View {
             case MENU: {
                 return "Kemu Kupu";
             }
+            case GAMEMODE: {
+                return "Kemu Kupu - Select Game Mode";
+            }
             case TOPIC: {
                 return "Kemu Kupu - Choose a Topic!";
             }
@@ -50,6 +61,9 @@ public enum View {
             }
             case RESULTS: {
                 return "Kemu Kupu - Results";
+            }
+            case REWARD: {
+                return "Kemu Kupu - Reward";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");
