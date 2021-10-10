@@ -313,7 +313,7 @@ public class Quiz extends ApplicationController implements Initializable {
         timer = new Clock(arc, timerLabel);
         game.setClock(timer);
 
-        if (this.game.getGameMode() == Gamemode.PRACTISE){
+        if (this.game.getGameMode() == Gamemode.PRACTICE){
             arc.setVisible(false);
             timerLabel.setVisible(false);
             pause_button.setVisible(false);
