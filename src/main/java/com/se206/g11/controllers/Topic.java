@@ -34,7 +34,6 @@ public class Topic extends ApplicationController implements Initializable {
     @FXML private ImageView weather_button;
     @FXML private ImageView work_button;
     @FXML private ImageView feelings_button;
-
     //// Private Methods ////
 
     private void __initialiseSelectableTopic(ImageView id){

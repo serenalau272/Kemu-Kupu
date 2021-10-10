@@ -30,7 +30,6 @@ public class Quiz extends ApplicationController implements Initializable {
     
     private Game game;
 
-    private boolean disabled = false;
     private boolean awaitingInput = true;
     Clock timer;
 
@@ -190,7 +189,6 @@ public class Quiz extends ApplicationController implements Initializable {
      * @param repeats number of times to repeat the word to the user, minimum is 1.
      */
     private void __hearWord(int repeats) {
-        if (this.disabled) return;
         //SAFTEY: We have already validated that we are at a currently valid word, so a null pointer check isn't needed (or out of bounds check).
         try {
             
@@ -239,13 +237,14 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     public void checkInput(Word input, boolean isInputEmpty) {
         timer.stop();
-        if (this.disabled) return;
         
         //return if empty textfield
         if (isInputEmpty) {
             __hearWord(1);
             return;
         }
+
+        InputField.setEditability(false);
         
         if (this.game.getWord().isEqualStrict(input)) {
             //Correct i.e. MASTERED. Increment score.
@@ -260,9 +259,7 @@ public class Quiz extends ApplicationController implements Initializable {
     /**
      * function to continue from response given for word, determined by status
      */
-    public void onEnterContinue(){
-        if (this.disabled) return;
-        
+    public void onEnterContinue(){       
         toggleLabels();
         timer.start();
 
@@ -277,8 +274,6 @@ public class Quiz extends ApplicationController implements Initializable {
      * Handler for the skip button
      */
     public void skipWordClick() {
-        if (this.disabled) return;
-
         //required to prevent bug
         this.game.getWord().setStatus(Status.SKIPPED);
         InputField.setEditability(false);
@@ -294,7 +289,6 @@ public class Quiz extends ApplicationController implements Initializable {
     public void onEnter(Word input, boolean isInputEmpty){
         if (awaitingInput) {
             checkInput(input, isInputEmpty);
-            InputField.setEditability(false);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
             InputField.setEditability(true);
             InputField.reconfigureInputField(this.game.getWord());;
