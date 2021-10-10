@@ -123,7 +123,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <ImageView fx:id="practice_sign" fitHeight="231.0" fitWidth="732.0" layoutX="263.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="practice_sign" fitHeight="210.0" fitWidth="667.0" layoutX="297.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/Game-screen/Practice.png" />
          </image>
