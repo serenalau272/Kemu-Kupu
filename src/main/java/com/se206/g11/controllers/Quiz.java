@@ -122,6 +122,9 @@ public class Quiz extends ApplicationController implements Initializable {
         skip_button.setVisible(true);
         hear_button.setVisible(true);
         setMacronVisibility(true);
+        arc.setVisible(true);
+        timerLabel.setVisible(true);
+        wordIndexBanner.setVisible(true);
 
         //hide elements
         responseImg.setVisible(false);
@@ -316,42 +319,40 @@ public class Quiz extends ApplicationController implements Initializable {
         game.setWordIndex(0);
         setTopicBanner();
         
-
         //Inital setup & loading of data
         super.initialize();       
-        showElementsForInput();      //no response given initially
-
-        //Load words from the MainApp
-        this.__updateWordIndexBanner();
-        //configure timer
-        timer = new Clock(arc, timerLabel);
-        game.setClock(timer);
-
-        if (this.game.getGameMode() == Gamemode.PRACTICE){
-            
-            arc.setVisible(false);
-            timerLabel.setVisible(false);
-            try {
-                setImage("Practice", clock);
-                clock.setFitWidth(1400);
-                clock.setTranslateX(-225);
-            } catch (FileNotFoundException e){
-                System.err.println("Unable to load practice clock image");
-            }
-
-            Sounds.playMusic("practice");
-        } else {
-            Sounds.playMusic("game");
-        }
-        MainApp.disableScreenNodes(true);
 
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            showElementsForInput();      //no response given initially
+
+            //Load words from the MainApp
+            this.__updateWordIndexBanner();
+            //configure timer
+            timer = new Clock(arc, timerLabel);
+            game.setClock(timer);
+
+            if (this.game.getGameMode() == Gamemode.PRACTICE){
+                
+                arc.setVisible(false);
+                timerLabel.setVisible(false);
+                try {
+                    setImage("Practice", clock);
+                    clock.setFitWidth(1400);
+                    clock.setTranslateX(-225);
+                } catch (FileNotFoundException e){
+                    System.err.println("Unable to load practice clock image");
+                }
+
+                Sounds.playMusic("practice");
+            } else {
+                Sounds.playMusic("game");
+            }
+            
             this.__hearWord(1);
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
-            MainApp.disableScreenNodes(false);
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
