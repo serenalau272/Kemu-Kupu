@@ -133,7 +133,7 @@
             <Image url="@../assets/MENU_PLAY.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="skip_button1" fitHeight="53.0" fitWidth="105.0" layoutX="132.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="score" fitHeight="53.0" fitWidth="105.0" layoutX="132.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/scoreIncrease/20.png" />
          </image>
