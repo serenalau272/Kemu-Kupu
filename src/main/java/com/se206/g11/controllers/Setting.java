@@ -87,6 +87,7 @@ public class Setting extends ApplicationController implements Initializable {
         this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
         this.music_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
+            MainApp.updateMusic();
             Sounds.playSoundEffect("pop");
             this.__update();
         });

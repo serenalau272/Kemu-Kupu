@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
 import com.se206.g11.enums.View;
+import com.se206.g11.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +20,8 @@ public class Result extends ApplicationController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
+
+        Sounds.playMusic("menu");
         
         hiddenField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {

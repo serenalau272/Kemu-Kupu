@@ -303,8 +303,6 @@ public class Quiz extends ApplicationController implements Initializable {
         game.setWordIndex(0);
         setTopicBanner();
         
-        //set music
-        Sounds.playMusic("correct");
 
         //Inital setup & loading of data
         super.initialize();       
