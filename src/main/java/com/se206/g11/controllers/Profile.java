@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.se206.g11.ApplicationController;
 import com.se206.g11.MainApp;
+import com.se206.g11.models.Game;
 import com.se206.g11.util.Sounds;
 
 import javafx.fxml.FXML;
@@ -38,7 +39,7 @@ public class Profile extends ApplicationController implements Initializable {
 
     private void updateHighScore() {
         try {
-            highScore = MainApp.getGameState().getHighScore();
+            highScore = Game.getHighScore();
             setImage(highScore, score);
         } catch (IOException e) {
             e.printStackTrace();

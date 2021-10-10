@@ -103,7 +103,7 @@ public class Game {
         this.timer = timer;
     }
 
-    public Integer getHighScore() throws IOException {
+    public static Integer getHighScore() throws IOException {
         File userStats = new File("./.user/.userStats.txt");
         Scanner statsReader = new Scanner(userStats);
         Integer highScore = 0;
