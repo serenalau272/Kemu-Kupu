@@ -11,9 +11,9 @@
             <Image url="@../assets/attribution/AttributionsModal.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit_button" fitHeight="82.0" fitWidth="68.0" layoutX="41.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit_button" fitHeight="82.0" fitWidth="68.0" layoutX="150.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/settings/back.png" />
+            <Image url="@../assets/attribution/exit.png" />
          </image>
       </ImageView>
     </children>

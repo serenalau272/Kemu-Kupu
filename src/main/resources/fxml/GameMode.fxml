@@ -25,12 +25,12 @@
             <Image url="@../assets/GameMode/Game%20Mode.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="practice" fitHeight="570.0" fitWidth="776.0" layoutX="68.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="practice" fitHeight="577.0" fitWidth="538.0" layoutX="67.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/GameMode/practice-faded.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ranked" fitHeight="530.0" fitWidth="551.0" layoutX="639.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ranked" fitHeight="530.0" fitWidth="551.0" layoutX="639.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/GameMode/ranked-faded.png" />
          </image>

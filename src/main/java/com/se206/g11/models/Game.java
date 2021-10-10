@@ -1,6 +1,8 @@
 package com.se206.g11.models;
 
 import java.io.IOException;
+import java.io.File;
+import java.util.Scanner;
 import java.util.List;
 
 import com.se206.g11.components.Clock;
@@ -99,5 +101,16 @@ public class Game {
 
     public void setClock(Clock timer) {
         this.timer = timer;
+    }
+
+    public static Integer getHighScore() throws IOException {
+        File userStats = new File("./.user/.userStats.txt");
+        Scanner statsReader = new Scanner(userStats);
+        Integer highScore = 0;
+        if (statsReader.hasNextLine()) {
+            highScore = statsReader.nextInt();
+        }
+        statsReader.close();
+        return highScore;
     }
 }

@@ -50,6 +50,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView play_button;
     @FXML private ImageView clock;
     @FXML private ImageView score;
+    @FXML private ImageView practice_sign;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -122,6 +123,7 @@ public class Quiz extends ApplicationController implements Initializable {
         skip_button.setVisible(true);
         hear_button.setVisible(true);
         setMacronVisibility(true);
+        wordIndexBanner.setVisible(true);
 
         //hide elements
         responseImg.setVisible(false);
@@ -242,6 +244,12 @@ public class Quiz extends ApplicationController implements Initializable {
         }
     }
 
+    private void disableMenuButtons(boolean isDisable) {
+        settings_button.setDisable(isDisable);
+        pause_button.setDisable(isDisable);
+        help_button.setDisable(isDisable);
+    }
+
     //// Button Handlers ////
     
     /**
@@ -299,6 +307,10 @@ public class Quiz extends ApplicationController implements Initializable {
         MainApp.showModal(Modals.PAUSE);
     }
 
+    public void helpClick() {
+        MainApp.showModal(Modals.HELP);
+    }
+
     public void onEnter(Word input, boolean isInputEmpty){
         if (awaitingInput) {
             checkInput(input, isInputEmpty);
@@ -312,46 +324,39 @@ public class Quiz extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Inital setup & loading of data
+        super.initialize();  
+
         this.game = MainApp.getGameState();
         game.setWordIndex(0);
         setTopicBanner();
-        
-
-        //Inital setup & loading of data
-        super.initialize();       
-        showElementsForInput();      //no response given initially
-
         //Load words from the MainApp
         this.__updateWordIndexBanner();
         //configure timer
         timer = new Clock(arc, timerLabel);
         game.setClock(timer);
 
-        if (this.game.getGameMode() == Gamemode.PRACTICE){
-            
-            arc.setVisible(false);
-            timerLabel.setVisible(false);
-            try {
-                setImage("Practice", clock);
-                clock.setFitWidth(1400);
-                clock.setTranslateX(-225);
-            } catch (FileNotFoundException e){
-                System.err.println("Unable to load practice clock image");
-            }
-
-            Sounds.playMusic("practice");
-        } else {
-            Sounds.playMusic("game");
-        }
-        // MainApp.disableScreenNodes(true);
+        disableMenuButtons(true);
 
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            showElementsForInput();      //no response given initially
+
+            if (this.game.getGameMode() == Gamemode.PRACTICE){
+                practice_sign.setVisible(true);
+                clock.setVisible(false);
+                Sounds.playMusic("practice");
+            } else {
+                arc.setVisible(true);
+                timerLabel.setVisible(true);
+                Sounds.playMusic("game");
+            }
+        
             this.__hearWord(1);
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
-            // MainApp.disableScreenNodes(false);
+            disableMenuButtons(false); 
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
@@ -363,6 +368,11 @@ public class Quiz extends ApplicationController implements Initializable {
         pause_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             pauseClick();
+        });
+
+        help_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
+            helpClick();
         });
 
         hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
