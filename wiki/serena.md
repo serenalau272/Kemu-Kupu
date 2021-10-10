@@ -97,3 +97,13 @@
 - Game screen almost complete, looks great and implementation with the separated textfield boxes working fine
 - Still some more bits and bobs to be completed, aiming to patch these all out by tomorrow so we have a fully functioning prototype ready for submission
 - Progress on backend also made
+
+- - - -
+**Game mode select screen 
+
+*10 Oct, 2021*
+- Completed game mode select screen implementation with the hover saturation toggle, might patch up the design later
+- Added music for menu screen, game mode and practice mode
+- Implemented score increase labels (instead of on the green correct label)
+- Redesigned start button for the game
+- Fixed many miscellaneous bugs 

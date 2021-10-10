@@ -338,7 +338,6 @@ public class Quiz extends ApplicationController implements Initializable {
 
         disableMenuButtons(true);
 
-
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             showElementsForInput();      //no response given initially
