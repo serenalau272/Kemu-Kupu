@@ -183,3 +183,15 @@ the ranked/practice modal and implement that, fix the numbering of the rewards s
 * Progress on backend made
 * Planning to have a meeting later tonight to finalise what we still need to do before we submit A4 and
 going forward through to Project submission
+
+- - - -
+**<font size="5">Scope redefined yet again for A4 submission and ironing out the specifics!</font>**
+
+*10-Oct, 2021.*
+* Bugs in input field have been identified and fixed
+* Bugs in the topic banner fixed as well
+* Rewards modal has been fixed and implementing with high score records being stored.
+* Backend is being developed and domain purchased: kemukupu.com
+* Still need a few changes in design and game mode implementation.
+* We plan to finish and review all changes tonight before exporting to jar and submitting for A4
+* Some improvement to code commenting is also needed.

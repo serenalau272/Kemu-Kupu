@@ -149,7 +149,10 @@ public class MainApp extends Application {
         stackPane.getChildren().remove(size-1);
         removeBlur();
         disableScreenNodes(false);
-        if (view == View.QUIZ) state.getClock().resume();
+        if (view == View.QUIZ) {
+            state.getClock().resume();
+            InputField.recursor();
+        }
 
     }
 
