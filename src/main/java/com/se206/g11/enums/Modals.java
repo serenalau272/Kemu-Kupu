@@ -1,7 +1,6 @@
 package com.se206.g11.enums;
 
 public enum Modals {
-    REWARD,
     SETTING,
     ATTRIBUTION,
     PAUSE,
@@ -9,9 +8,6 @@ public enum Modals {
 
     public String getFileName() {
         switch (this) {
-            case REWARD: {
-                return "Reward";
-            }
             case SETTING: {
                 return "Setting";
             }
@@ -33,9 +29,6 @@ public enum Modals {
 
     public String getWindowName() {
         switch (this) {
-            case REWARD: {
-                return "Reward";
-            }
             case SETTING: {
                 return "Settings";
             }

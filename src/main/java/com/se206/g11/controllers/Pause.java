@@ -46,7 +46,7 @@ public class Pause extends ApplicationController implements Initializable {
         super.initialize();
         //Set event handlers
         this.resume_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.resume());  
-        this.replay_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.TOPIC));
+        this.replay_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.GAMEMODE));
         this.menu_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.MENU));
     }
 }

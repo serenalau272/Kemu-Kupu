@@ -1,9 +1,6 @@
 package com.se206.g11.controllers;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -43,15 +40,6 @@ public class Reward extends ApplicationController implements Initializable {
     @FXML private ImageView new_label;
 
     //// Private (helper) methods ////
-    /**
-     * Change the mainapp to a new window, and close this modal
-     * @param v the view to switch to
-     */
-    private void __changeClose(View v) {
-        MainApp.closeModal();
-        MainApp.setRoot(v);
-        hideStars();
-    }
 
     /**
      * Set visibility of stars based on score
@@ -68,22 +56,12 @@ public class Reward extends ApplicationController implements Initializable {
         }
     }
 
-    /**
-     * Hide all stars
-     */
-    private void hideStars() {
-        star1.setVisible(false);
-        star2.setVisible(false);
-        star3.setVisible(false);
-    }
-
     private Integer getHighScore() throws IOException {
         File userStats = new File("./.user/.userStats.txt");
         Scanner statsReader = new Scanner(userStats);
         Integer highScore = 0;
         if (statsReader.hasNextLine()) {
             highScore = statsReader.nextInt();
-            System.out.println(highScore);
         }
         statsReader.close();
         return highScore;
@@ -123,8 +101,8 @@ public class Reward extends ApplicationController implements Initializable {
         }
         
         //Set event handlers
-        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose(View.MENU));
-        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> __changeClose(View.TOPIC));
+        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.MENU));
+        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.GAMEMODE));
         pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
                 MainApp.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);
