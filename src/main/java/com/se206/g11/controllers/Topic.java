@@ -33,10 +33,11 @@ public class Topic extends ApplicationController implements Initializable {
     @FXML private ImageView software_button;
     @FXML private ImageView weather_button;
     @FXML private ImageView work_button;
+    @FXML private ImageView feelings_button;
 
     //// Private Methods ////
 
-    private void __initiliseSelectableTopic(ImageView id){
+    private void __initialiseSelectableTopic(ImageView id){
         //get topic name from button
         String listName = id.getId().replace("_button", "");
 
@@ -72,13 +73,15 @@ public class Topic extends ApplicationController implements Initializable {
         }
 
         //add handlers
-        __initiliseSelectableTopic(babies_button);
-        __initiliseSelectableTopic(compassPoints_button);
-        __initiliseSelectableTopic(colours_button);
-        __initiliseSelectableTopic(daysOfWeek_button);
-        __initiliseSelectableTopic(monthsOfYear_button);
-        __initiliseSelectableTopic(software_button);
-        __initiliseSelectableTopic(weather_button);
-        __initiliseSelectableTopic(work_button);
+        __initialiseSelectableTopic(babies_button);
+        __initialiseSelectableTopic(compassPoints_button);
+        __initialiseSelectableTopic(colours_button);
+        __initialiseSelectableTopic(daysOfWeek_button);
+        __initialiseSelectableTopic(monthsOfYear_button);
+        __initialiseSelectableTopic(software_button);
+        __initialiseSelectableTopic(uniLife_button);
+        __initialiseSelectableTopic(weather_button);
+        __initialiseSelectableTopic(work_button);
+        __initialiseSelectableTopic(feelings_button);
     }
 }
