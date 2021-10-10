@@ -245,6 +245,12 @@ public class Quiz extends ApplicationController implements Initializable {
         }
     }
 
+    private void disableMenuButtons(boolean isDisable) {
+        settings_button.setDisable(isDisable);
+        pause_button.setDisable(isDisable);
+        help_button.setDisable(isDisable);
+    }
+
     //// Button Handlers ////
     
     /**
@@ -321,8 +327,7 @@ public class Quiz extends ApplicationController implements Initializable {
         
         //Inital setup & loading of data
         super.initialize();  
-        MainApp.disableScreenNodes(true);    
-        play_button.setDisable(false); 
+        disableMenuButtons(true);  
 
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -355,7 +360,7 @@ public class Quiz extends ApplicationController implements Initializable {
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
-            MainApp.disableScreenNodes(false);
+            disableMenuButtons(true); 
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
