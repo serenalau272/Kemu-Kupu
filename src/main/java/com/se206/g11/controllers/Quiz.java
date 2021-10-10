@@ -320,7 +320,9 @@ public class Quiz extends ApplicationController implements Initializable {
         setTopicBanner();
         
         //Inital setup & loading of data
-        super.initialize();       
+        super.initialize();  
+        MainApp.disableScreenNodes(true);    
+        play_button.setDisable(false); 
 
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -353,6 +355,7 @@ public class Quiz extends ApplicationController implements Initializable {
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
+            MainApp.disableScreenNodes(false);
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
