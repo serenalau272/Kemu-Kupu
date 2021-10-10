@@ -65,11 +65,9 @@ public class GameMode extends ApplicationController implements Initializable {
         switch (mode) {
             case "practice": 
                 modeEnum = Gamemode.PRACTICE;
-                Sounds.playMusic("practice");
                 break;
             case "ranked":
                 modeEnum = Gamemode.RANKED;
-                Sounds.playMusic("game");
                 break;
             default: 
                 System.err.println("Mode not valid.");

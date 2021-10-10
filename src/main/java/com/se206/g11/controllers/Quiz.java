@@ -327,6 +327,7 @@ public class Quiz extends ApplicationController implements Initializable {
         game.setClock(timer);
 
         if (this.game.getGameMode() == Gamemode.PRACTICE){
+            
             arc.setVisible(false);
             timerLabel.setVisible(false);
             try {
@@ -336,6 +337,10 @@ public class Quiz extends ApplicationController implements Initializable {
             } catch (FileNotFoundException e){
                 System.err.println("Unable to load practice clock image");
             }
+
+            Sounds.playMusic("practice");
+        } else {
+            Sounds.playMusic("game");
         }
         
         // initalize event handlers for buttons

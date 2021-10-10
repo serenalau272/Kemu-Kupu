@@ -23,7 +23,11 @@ public class Sounds {
         try {
             String path = MainApp.class.getResource("/sound/" + music + ".mp3").toURI().toString();
             musicPlayer = new MediaPlayer(new Media(path));
-            musicPlayer.setVolume(0.1);
+
+            if (!music.equals("menu")){
+                musicPlayer.setVolume(0.05);
+            } 
+
             musicPlayer.setOnEndOfMedia(new Runnable() {
                 public void run() {
                     musicPlayer.seek(Duration.ZERO);
