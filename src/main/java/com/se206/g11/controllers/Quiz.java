@@ -343,7 +343,7 @@ public class Quiz extends ApplicationController implements Initializable {
         } else {
             Sounds.playMusic("game");
         }
-        MainApp.disableScreenNodes(true);
+        // MainApp.disableScreenNodes(true);
 
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -351,7 +351,7 @@ public class Quiz extends ApplicationController implements Initializable {
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
-            MainApp.disableScreenNodes(false);
+            // MainApp.disableScreenNodes(false);
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
