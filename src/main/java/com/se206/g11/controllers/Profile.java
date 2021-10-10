@@ -57,6 +57,7 @@ public class Profile extends ApplicationController implements Initializable {
         this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
 
         this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Sounds.playSoundEffect("pop");
             File userStats = new File("./.user/.userStats.txt");
             System.out.println("hi");
             try {
