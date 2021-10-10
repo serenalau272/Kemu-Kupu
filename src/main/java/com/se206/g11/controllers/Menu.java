@@ -36,6 +36,8 @@ public class Menu extends ApplicationController implements Initializable {
         //Inital setup & loading of data
         super.initialize();
 
+        Sounds.playMusic("pop");
+
         //Set event handlers
         //exiting
         exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

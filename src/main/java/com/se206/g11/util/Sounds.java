@@ -5,15 +5,33 @@ import java.net.URISyntaxException;
 import com.se206.g11.MainApp;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  * This class handles all sound effects and music for the game.
  */
 public class Sounds {    
+    private static MediaPlayer musicPlayer;
 
     public static void playMusic(String music) {
         if (!MainApp.getSetting().getMusic()) return;
-        //@TODO implement music here!
+
+        if (musicPlayer != null){
+            musicPlayer.stop();
+        }
+
+        try {
+            String path = MainApp.class.getResource("/sound/" + music + ".wav").toURI().toString();
+            musicPlayer = new MediaPlayer(new Media(path));
+            musicPlayer.setOnEndOfMedia(new Runnable() {
+                public void run() {
+                    musicPlayer.seek(Duration.ZERO);
+                }
+            });
+            musicPlayer.play();
+        } catch (URISyntaxException exception){
+            System.err.println("Unable to load music file: " + music);
+        }
     }
 
     /**
