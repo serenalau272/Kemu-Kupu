@@ -191,13 +191,13 @@ public class InputField extends TextField{
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER){
                 submit();
-            } else if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey()) {
-                insertCharacter(inputItem);
-            } else if (event.getCode() == KeyCode.BACK_SPACE) {
+            }  else if (event.getCode() == KeyCode.BACK_SPACE) {
                 removeCharacter(inputItem);
-            } else if (!event.getCode().isNavigationKey()) {
-                inputItem.clear();
+            } else  {
+                insertCharacter(inputItem);
             }
+
+            // if (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode().isWhitespaceKey())
         });
         inputItem.setOnMouseClicked(e -> {
             cursor = num;
@@ -218,6 +218,7 @@ public class InputField extends TextField{
             int followingIndex = getNextValidIndex(cursor, true);
             if (followingIndex < wordSize) {
                 inputItems[followingIndex].requestFocus();
+                inputItems[followingIndex].positionCaret(1);
                 cursor = followingIndex;
             }
         }
@@ -241,6 +242,7 @@ public class InputField extends TextField{
             if (inputItems[ind] != null){
                 inputItems[ind].setStyle("-fx-background-color: #"+colour.toString().substring(2));
                 inputItems[ind].setText(getCharacter(ind));
+                inputItems[ind].setEditable(false);
             }
         }
     }
