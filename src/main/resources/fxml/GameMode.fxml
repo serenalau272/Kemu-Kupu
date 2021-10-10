@@ -20,17 +20,17 @@
          </font>
       </Label>
       <TextField fx:id="hiddenField" layoutX="590.0" layoutY="633.0" opacity="0.0" prefHeight="23.0" prefWidth="28.0" />
-      <ImageView fitHeight="112.0" fitWidth="439.0" layoutX="385.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="594.0" layoutX="308.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/GameMode/Game%20Mode.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="practice" fitHeight="570.0" fitWidth="776.0" layoutX="78.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="practice" fitHeight="570.0" fitWidth="776.0" layoutX="68.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/GameMode/practice-faded.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ranked" fitHeight="530.0" fitWidth="556.0" layoutX="623.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ranked" fitHeight="530.0" fitWidth="551.0" layoutX="639.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/GameMode/ranked-faded.png" />
          </image>
