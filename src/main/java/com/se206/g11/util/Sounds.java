@@ -11,7 +11,10 @@ import javafx.scene.media.MediaPlayer;
  */
 public class Sounds {    
 
-    //TODO implement music here!
+    public static void playMusic(String music) {
+        if (!MainApp.getSetting().getMusic()) return;
+        //@TODO implement music here!
+    }
 
     /**
      * Play a sound from the resources/sound folder.
@@ -20,7 +23,7 @@ public class Sounds {
      * @param sound the name of the sound to play
      */
     public static void playSoundEffect(String sound) {
-        if (!MainApp.getSetting().getMusic()) return;
+        if (!MainApp.getSetting().getSounds()) return;
         try {
             String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound
