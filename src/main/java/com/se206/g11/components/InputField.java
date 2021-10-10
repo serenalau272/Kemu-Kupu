@@ -51,11 +51,12 @@ public class InputField extends TextField{
 
     public static void reconfigureInputField(Word word){
         currentWord = word;
-
+        wordSize = currentWord.getMaori().length();
+        
         removeAll(inputItems);
         removeAll(hintItems);
         
-        wordSize = currentWord.getMaori().length();
+        
         inputItems = new TextField[wordSize];
         hintItems = new Label[wordSize];
 
@@ -65,12 +66,15 @@ public class InputField extends TextField{
         
         addAll(inputItems);
         addAll(hintItems);
-
         int startIndex = getNextValidIndex(-1, true);
         inputItems[startIndex].requestFocus();
-        cursor = startIndex;        
+        cursor = startIndex;  
     }
     
+    public static void recursor(){
+        inputItems[cursor].requestFocus();
+    }
+
      /**
      * insert macron to textfield
      */
