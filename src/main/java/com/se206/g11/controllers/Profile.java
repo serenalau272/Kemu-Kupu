@@ -58,7 +58,6 @@ public class Profile extends ApplicationController implements Initializable {
 
         this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             File userStats = new File("./.user/.userStats.txt");
-            System.out.println("hi");
             try {
                 BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
                 statsWriter.close();
