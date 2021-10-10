@@ -98,12 +98,12 @@
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pause_button" fitHeight="66.0" fitWidth="68.0" layoutX="1023.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pause_button" fitHeight="66.0" fitWidth="68.0" layoutX="1023.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/pause.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="help_button" fitHeight="65.0" fitWidth="60.0" layoutX="1083.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="help_button" fitHeight="65.0" fitWidth="60.0" layoutX="1083.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/help.png" />
          </image>

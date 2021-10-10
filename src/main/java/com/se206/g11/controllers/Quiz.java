@@ -364,7 +364,7 @@ public class Quiz extends ApplicationController implements Initializable {
             timer.start();
             Sounds.playSoundEffect("pop");
             play_button.setVisible(false);
-            disableMenuButtons(true); 
+            disableMenuButtons(false); 
             InputField.configureInputField(game.getWord(), this, submit_button);
         });
 
