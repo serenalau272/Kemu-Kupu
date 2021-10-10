@@ -195,3 +195,15 @@ going forward through to Project submission
 * Still need a few changes in design and game mode implementation.
 * We plan to finish and review all changes tonight before exporting to jar and submitting for A4
 * Some improvement to code commenting is also needed.
+
+- - - -
+**<font size="5">Submission for BETA!</font>**
+
+*11-Oct, 2021.*
+* With collaborative efforts up till 3am this morning, and then just finishing the export in the last hour,
+seems like we will manage to submit in time! woohoo!
+* All things have been implemented except for specific profile things and help modal.
+* Commenting is poor but we feel this is fine given we are not marked on code for A4
+* Plan to have another group meeting soon after submission to talk about what we plan to do for competition
+and for Project submission
+* Efforts were basically finding a whole bunch of bugs and fixing them :))
