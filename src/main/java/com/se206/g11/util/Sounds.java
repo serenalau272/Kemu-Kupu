@@ -25,7 +25,11 @@ public class Sounds {
             musicPlayer = new MediaPlayer(new Media(path));
 
             if (!music.equals("menu")){
-                musicPlayer.setVolume(0.05);
+                if (music.equals("game")){
+                    musicPlayer.setVolume(0.08);
+                } else {
+                    musicPlayer.setVolume(0.15);
+                }
             } 
 
             musicPlayer.setOnEndOfMedia(new Runnable() {
