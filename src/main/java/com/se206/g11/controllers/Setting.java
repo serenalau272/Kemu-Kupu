@@ -102,6 +102,8 @@ public class Setting extends ApplicationController implements Initializable {
         this.time_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
         this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings = new com.se206.g11.models.Setting();
+            MainApp.setSetting(this.settings);
+            Sounds.playSoundEffect("pop");
             MainApp.updateMusic();
             this.__update();
         });

@@ -44,6 +44,7 @@ public class GameMode extends ApplicationController implements Initializable {
 
         mode.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             try {
+                Sounds.playSoundEffect("pop");
                 selectMode(mode.getId());
             } catch (IOException e) {
                 e.printStackTrace();
