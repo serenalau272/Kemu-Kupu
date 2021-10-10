@@ -4,16 +4,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.controllers.Attribution">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se206.g11.controllers.Attribution">
     <children>
       <ImageView fx:id="attributionModal" fitHeight="627.0" fitWidth="793.0" layoutX="218.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/attribution/AttributionsModal.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit_button" fitHeight="82.0" fitWidth="68.0" layoutX="41.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit_button" fitHeight="82.0" fitWidth="68.0" layoutX="150.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/settings/back.png" />
+            <Image url="@../assets/attribution/exit.png" />
          </image>
       </ImageView>
     </children>
