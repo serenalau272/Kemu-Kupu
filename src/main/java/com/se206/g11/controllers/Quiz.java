@@ -50,6 +50,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView play_button;
     @FXML private ImageView clock;
     @FXML private ImageView score;
+    @FXML private ImageView practice_sign;
 
     //macron buttons
     @FXML private ImageView macron_bg;
@@ -122,8 +123,6 @@ public class Quiz extends ApplicationController implements Initializable {
         skip_button.setVisible(true);
         hear_button.setVisible(true);
         setMacronVisibility(true);
-        arc.setVisible(true);
-        timerLabel.setVisible(true);
         wordIndexBanner.setVisible(true);
 
         //hide elements
@@ -325,41 +324,35 @@ public class Quiz extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Inital setup & loading of data
+        super.initialize();  
+
         this.game = MainApp.getGameState();
         game.setWordIndex(0);
         setTopicBanner();
-        
-        //Inital setup & loading of data
-        super.initialize();  
-        disableMenuButtons(true);  
+        //Load words from the MainApp
+        this.__updateWordIndexBanner();
+        //configure timer
+        timer = new Clock(arc, timerLabel);
+        game.setClock(timer);
+
+        disableMenuButtons(true);
+
 
         // initalize event handlers for buttons
         play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             showElementsForInput();      //no response given initially
 
-            //Load words from the MainApp
-            this.__updateWordIndexBanner();
-            //configure timer
-            timer = new Clock(arc, timerLabel);
-            game.setClock(timer);
-
             if (this.game.getGameMode() == Gamemode.PRACTICE){
-                
-                arc.setVisible(false);
-                timerLabel.setVisible(false);
-                try {
-                    setImage("Practice", clock);
-                    clock.setFitWidth(1400);
-                    clock.setTranslateX(-225);
-                } catch (FileNotFoundException e){
-                    System.err.println("Unable to load practice clock image");
-                }
+                practice_sign.setVisible(true);
 
                 Sounds.playMusic("practice");
             } else {
+                arc.setVisible(true);
+                timerLabel.setVisible(true);
                 Sounds.playMusic("game");
             }
-            
+        
             this.__hearWord(1);
             timer.start();
             Sounds.playSoundEffect("pop");
