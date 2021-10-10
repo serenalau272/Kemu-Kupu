@@ -99,6 +99,7 @@ public class Quiz extends ApplicationController implements Initializable {
     private void showElementsForResponse(){
         setResponseImageView();
         addSubText();
+        
 
         //hide elements
         submit_button.setVisible(false);
@@ -189,10 +190,10 @@ public class Quiz extends ApplicationController implements Initializable {
     private void setScoreIncrease(int scoreIncrease) {
         try {
             setImage(scoreIncrease, this.score);
+            this.score.setVisible(true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        score.setVisible(true);
     }
 
     /**
@@ -262,7 +263,7 @@ public class Quiz extends ApplicationController implements Initializable {
             this.game.getWord().setScoreMultiplier(timer.getScoreMultiplier());
             Sounds.playSoundEffect("correct");
             this.__updateProgressBar(this.game.getScore());
-            this.setScoreIncrease(this.game.getScore());
+            this.setScoreIncrease(timer.getScoreMultiplier() * 5);
         }
 
         toggleLabels();
