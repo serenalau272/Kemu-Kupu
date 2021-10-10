@@ -76,6 +76,7 @@ public class Quiz extends ApplicationController implements Initializable {
         } else {
             //game ended, navigate to rewards screen
             MainApp.setRoot(View.RESULTS);
+
         }
     }
     
