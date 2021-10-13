@@ -1,16 +1,18 @@
-module com.se206.g11 {
+module com {
     requires transitive javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
     requires transitive javafx.graphics;
-    opens com.se206.g11 to javafx.fxml;
-    opens com.se206.g11.controllers to javafx.fxml;
-    opens com.se206.g11.models to javafx.fxml;
-    opens com.se206.g11.components to javafx.fxml;
-    opens com.se206.g11.util to javafx.fxml;
-    exports com.se206.g11;
-    exports com.se206.g11.models;
-    exports com.se206.g11.controllers;
-    exports com.se206.g11.util;
-    exports com.se206.g11.components;
+    opens com to javafx.fxml;
+    opens com.controllers to javafx.fxml;
+    opens com.models to javafx.fxml;
+    opens com.components to javafx.fxml;
+    opens com.util to javafx.fxml;
+    opens com.enums to javafx.fxml;
+    exports com;
+    exports com.models;
+    exports com.controllers;
+    exports com.util;
+    exports com.components;
+    exports com.enums;
 }
