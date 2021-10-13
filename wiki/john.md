@@ -207,3 +207,16 @@ seems like we will manage to submit in time! woohoo!
 * Plan to have another group meeting soon after submission to talk about what we plan to do for competition
 and for Project submission
 * Efforts were basically finding a whole bunch of bugs and fixing them :))
+
+- - - -
+**<font size="5">Meeting to scaffold project deliverables + Avatar design</font>**
+
+*13-Oct, 2021.*
+* We met as a team to figure out how much additional features we wanted to implement before final submission
+* We were chosen as a shortlisted team which is exciting so we plan to get all implementation done by
+next Tuesday. Improving code quality and filling out our user manual will be done post-Tuesday in a cram.
+* Before Tuesday, we are thinking of fixing a few bugs, implementing avatar selection with user login,
+implementing badges, finalising our website, and adding various animations. A spinning wheel to 'win' stars may also be added. If we get time around, a leaderboard might also be added.
+* A help modal of sorts will also need to be developed and a separate rewards screen for practice mode would like to be put in place.
+* In terms of work, we've come up with 10 costumes and these have been designed and exported to our repo.
+* We plan to have our first massive collaborative session this Saturday and plan to get things prepared for that as much as possible.
