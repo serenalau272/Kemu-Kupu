@@ -12,13 +12,16 @@ import com.MainApp;
 import com.enums.Language;
 import com.enums.View;
 import com.models.Word;
+import com.util.Sounds;
 import com.models.Game;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 /**
  * This class is the controller for the rewards modal.
@@ -27,6 +30,7 @@ public class Reward extends ApplicationController implements Initializable {
     private Game game;
     //The threshold of score for each star to appear
     private final int[] starThreshold = {20, 60, 100};
+    private List<Node> stars;
 
     @FXML private ImageView againButton;
     @FXML private ImageView menuButton;
@@ -46,13 +50,25 @@ public class Reward extends ApplicationController implements Initializable {
      */
     private void setStars(int score) {
         String[] star = {"star"};
-        List<Node> stars = findNodesByID(anchorPane, star);
-        for (Node s : stars) {
-            int num = Integer.parseInt(s.getId().substring(4));
-            if (score >= this.starThreshold[num-1]) {
-                s.setVisible(true);
-            }
+        stars = findNodesByID(anchorPane, star);
+
+        setStar(0, score);
+    }
+
+    private void setStar(int index, int score){
+        if (index >= stars.size()) return;
+
+        int num = Integer.parseInt(stars.get(index).getId().substring(4));
+        if (score >= this.starThreshold[num-1]) {
+            Sounds.playSoundEffect("correct");
+            stars.get(index).setVisible(true);
         }
+
+        PauseTransition pause = new PauseTransition(Duration.millis(1000));
+        pause.setOnFinished(e -> {
+            setStar(index + 1, score);
+        });
+        pause.play();
     }
 
     private void setHighScore(int gameScore) throws IOException {
