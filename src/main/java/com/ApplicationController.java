@@ -113,7 +113,7 @@ public class ApplicationController {
         // Add resizing to all buttons on the page
         List<ImageView> imgs = findElms(anchorPane, ImageView.class);
         imgs.forEach(i -> {
-            if (i.getId() != null && i.getId().contains("_button")) {
+            if (i.getId() != null && i.getId().contains("Button")) {
                 i.addEventHandler(MouseEvent.MOUSE_ENTERED, _e -> {
                     i.setScaleX(1.1);
                     i.setScaleY(1.1);

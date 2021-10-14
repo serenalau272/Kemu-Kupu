@@ -28,15 +28,15 @@ public class Reward extends ApplicationController implements Initializable {
     //The threshold of score for each star to appear
     private final int[] starThreshold = {20, 60, 100};
 
-    @FXML private ImageView again_button;
-    @FXML private ImageView menu_button;
-    @FXML private ImageView pot_button;
+    @FXML private ImageView againButton;
+    @FXML private ImageView menuButton;
+    @FXML private ImageView potButton;
     @FXML private ImageView star1;
     @FXML private ImageView star2;
     @FXML private ImageView star3;
     @FXML private ImageView score;
     @FXML private ImageView highScore;
-    @FXML private ImageView new_label;
+    @FXML private ImageView newLabel;
 
     //// Private (helper) methods ////
 
@@ -62,7 +62,7 @@ public class Reward extends ApplicationController implements Initializable {
             BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
             statsWriter.write(String.valueOf(gameScore));
             setImage(gameScore, highScore);
-            new_label.setVisible(true);
+            newLabel.setVisible(true);
             statsWriter.close();
         } else {
             setImage(prevHighScore, highScore);
@@ -75,7 +75,7 @@ public class Reward extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();
-        new_label.setVisible(false);
+        newLabel.setVisible(false);
         this.game = MainApp.getGameState();
         int gameScore = this.game.getScore();
 
@@ -89,9 +89,9 @@ public class Reward extends ApplicationController implements Initializable {
         }
         
         //Set event handlers
-        menu_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.MENU));
-        again_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.GAMEMODE));
-        pot_button.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+        menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.MENU));
+        againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.GAMEMODE));
+        potButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
                 MainApp.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);
             } catch (Exception e) {

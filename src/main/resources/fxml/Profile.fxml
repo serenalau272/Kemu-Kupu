@@ -12,17 +12,17 @@
             <Image url="@../assets/OtherModals/Group%20161.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit_button" fitHeight="82.0" fitWidth="68.0" layoutX="1101.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitButton" fitHeight="82.0" fitWidth="68.0" layoutX="1101.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="reset_button" fitHeight="68.0" fitWidth="221.0" layoutX="489.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="resetButton" fitHeight="68.0" fitWidth="221.0" layoutX="489.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/OtherModals/Group%20130.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="highScore_label" fitHeight="75.0" fitWidth="123.0" layoutX="660.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="highScoreLabel" fitHeight="75.0" fitWidth="123.0" layoutX="660.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/score/100.png" />
          </image>

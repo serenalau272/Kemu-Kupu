@@ -23,20 +23,20 @@ public class Topic extends ApplicationController implements Initializable {
     //List of imported topics
     private ArrayList<SpellingTopic> TOPICS;
 
-    @FXML private ImageView babies_button;
-    @FXML private ImageView compassPoints_button;
-    @FXML private ImageView colours_button;
-    @FXML private ImageView daysOfWeek_button;
-    @FXML private ImageView monthsOfYear_button;
-    @FXML private ImageView software_button;
-    @FXML private ImageView weather_button;
-    @FXML private ImageView work_button;
-    @FXML private ImageView feelings_button;
+    @FXML private ImageView babiesButton;
+    @FXML private ImageView compassPointsButton;
+    @FXML private ImageView coloursButton;
+    @FXML private ImageView daysOfWeekButton;
+    @FXML private ImageView monthsOfYearButton;
+    @FXML private ImageView softwareButton;
+    @FXML private ImageView weatherButton;
+    @FXML private ImageView workButton;
+    @FXML private ImageView feelingsButton;
     //// Private Methods ////
 
     private void __initialiseSelectableTopic(ImageView id){
         //get topic name from button
-        String listName = id.getId().replace("_button", "");
+        String listName = id.getId().replace("Button", "");
 
         //add handler
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -69,14 +69,14 @@ public class Topic extends ApplicationController implements Initializable {
         }
 
         //add handlers
-        __initialiseSelectableTopic(babies_button);
-        __initialiseSelectableTopic(compassPoints_button);
-        __initialiseSelectableTopic(colours_button);
-        __initialiseSelectableTopic(daysOfWeek_button);
-        __initialiseSelectableTopic(monthsOfYear_button);
-        __initialiseSelectableTopic(software_button);
-        __initialiseSelectableTopic(weather_button);
-        __initialiseSelectableTopic(work_button);
-        __initialiseSelectableTopic(feelings_button);
+        __initialiseSelectableTopic(babiesButton);
+        __initialiseSelectableTopic(compassPointsButton);
+        __initialiseSelectableTopic(coloursButton);
+        __initialiseSelectableTopic(daysOfWeekButton);
+        __initialiseSelectableTopic(monthsOfYearButton);
+        __initialiseSelectableTopic(softwareButton);
+        __initialiseSelectableTopic(weatherButton);
+        __initialiseSelectableTopic(workButton);
+        __initialiseSelectableTopic(feelingsButton);
     }
 }

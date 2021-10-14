@@ -22,14 +22,14 @@ public class Setting extends ApplicationController implements Initializable {
 
     @FXML Label speedVal;
     @FXML Label timeVal;
-    @FXML ImageView music_toggle_button;
-    @FXML ImageView sound_toggle_button;
-    @FXML ImageView exit_button;
-    @FXML ImageView speed_minus_button;
-    @FXML ImageView speed_plus_button;
-    @FXML ImageView time_minus_button;
-    @FXML ImageView time_plus_button;
-    @FXML ImageView reset_button;
+    @FXML ImageView musicToggleButton;
+    @FXML ImageView soundToggleButton;
+    @FXML ImageView exitButton;
+    @FXML ImageView speedMinusButton;
+    @FXML ImageView speedPlusButton;
+    @FXML ImageView timeMinusButton;
+    @FXML ImageView timePlusButton;
+    @FXML ImageView resetButton;
 
     //// Private Methods ////
 
@@ -40,8 +40,8 @@ public class Setting extends ApplicationController implements Initializable {
         this.speedVal.setText(String.format("%.2f", this.settings.getSpeechSpeed()));
         this.timeVal.setText(this.settings.getTimerDuration() + "s");
         try {
-            this.setImage((this.settings.getMusic()) ? "on" : "off", this.music_toggle_button);
-            this.setImage((this.settings.getSounds()) ? "on" : "off", this.sound_toggle_button);
+            this.setImage((this.settings.getMusic()) ? "on" : "off", this.musicToggleButton);
+            this.setImage((this.settings.getSounds()) ? "on" : "off", this.soundToggleButton);
         } catch (FileNotFoundException e) {
             System.err.println("Unable to load image for music toggling");
             e.printStackTrace();
@@ -84,23 +84,23 @@ public class Setting extends ApplicationController implements Initializable {
         this.__update();
         
         //Set event handlers
-        this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
-        this.music_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
+        this.musicToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
             MainApp.updateMusic();
             Sounds.playSoundEffect("pop");
             this.__update();
         });
-        this.sound_toggle_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.soundToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setSounds(!this.settings.getSounds());
             Sounds.playSoundEffect("pop");
             this.__update();
         });
-        this.speed_minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));
-        this.speed_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
-        this.time_minus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(-5));
-        this.time_plus_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
-        this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.speedMinusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));
+        this.speedPlusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
+        this.timeMinusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(-5));
+        this.timePlusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
+        this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings = new com.models.Setting();
             MainApp.setSetting(this.settings);
             Sounds.playSoundEffect("pop");

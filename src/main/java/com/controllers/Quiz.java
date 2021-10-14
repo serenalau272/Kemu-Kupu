@@ -37,28 +37,28 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML private ImageView topicBanner; 
     @FXML private ImageView wordIndexBanner;
     @FXML private ImageView progressBar;
-    @FXML private ImageView hear_button;
-    @FXML private ImageView submit_button;
-    @FXML private ImageView skip_button;
-    @FXML private ImageView settings_button;
-    @FXML private ImageView pause_button;
-    @FXML private ImageView help_button;
+    @FXML private ImageView hearButton;
+    @FXML private ImageView submitButton;
+    @FXML private ImageView skipButton;
+    @FXML private ImageView settingsButton;
+    @FXML private ImageView pauseButton;
+    @FXML private ImageView helpButton;
     @FXML private ImageView responseImg;
     @FXML private ImageView continueLabel;
     @FXML private Arc arc;
     @FXML private Label timerLabel;
-    @FXML private ImageView play_button;
+    @FXML private ImageView playButton;
     @FXML private ImageView clock;
     @FXML private ImageView score;
-    @FXML private ImageView practice_sign;
+    @FXML private ImageView practiceSign;
 
     //macron buttons
-    @FXML private ImageView macron_bg;
-    @FXML private ImageView a_button;
-    @FXML private ImageView e_button;
-    @FXML private ImageView i_button;
-    @FXML private ImageView o_button;
-    @FXML private ImageView u_button;
+    @FXML private ImageView macronBackground;
+    @FXML private ImageView aButton;
+    @FXML private ImageView eButton;
+    @FXML private ImageView iButton;
+    @FXML private ImageView oButton;
+    @FXML private ImageView uButton;
 
     //// Helper Functions ////
     /**
@@ -103,9 +103,9 @@ public class Quiz extends ApplicationController implements Initializable {
         
 
         //hide elements
-        submit_button.setVisible(false);
-        skip_button.setVisible(false);
-        hear_button.setVisible(false);
+        submitButton.setVisible(false);
+        skipButton.setVisible(false);
+        hearButton.setVisible(false);
         setMacronVisibility(false);
 
         //show elements
@@ -119,9 +119,9 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void showElementsForInput(){
         //show elements
-        submit_button.setVisible(true);
-        skip_button.setVisible(true);
-        hear_button.setVisible(true);
+        submitButton.setVisible(true);
+        skipButton.setVisible(true);
+        hearButton.setVisible(true);
         setMacronVisibility(true);
         wordIndexBanner.setVisible(true);
 
@@ -133,12 +133,12 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     private void setMacronVisibility(boolean isVisible){
-        a_button.setVisible(isVisible);
-        e_button.setVisible(isVisible);
-        i_button.setVisible(isVisible);
-        o_button.setVisible(isVisible);
-        u_button.setVisible(isVisible);
-        macron_bg.setVisible(isVisible);
+        aButton.setVisible(isVisible);
+        eButton.setVisible(isVisible);
+        iButton.setVisible(isVisible);
+        oButton.setVisible(isVisible);
+        uButton.setVisible(isVisible);
+        macronBackground.setVisible(isVisible);
     }
 
     /**
@@ -245,9 +245,9 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     private void disableMenuButtons(boolean isDisable) {
-        settings_button.setDisable(isDisable);
-        pause_button.setDisable(isDisable);
-        help_button.setDisable(isDisable);
+        settingsButton.setDisable(isDisable);
+        pauseButton.setDisable(isDisable);
+        helpButton.setDisable(isDisable);
     }
 
     //// Button Handlers ////
@@ -339,11 +339,11 @@ public class Quiz extends ApplicationController implements Initializable {
         disableMenuButtons(true);
 
         // initalize event handlers for buttons
-        play_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        playButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             showElementsForInput();      //no response given initially
 
             if (this.game.getGameMode() == Gamemode.PRACTICE){
-                practice_sign.setVisible(true);
+                practiceSign.setVisible(true);
                 clock.setVisible(false);
                 Sounds.playMusic("practice");
             } else {
@@ -355,34 +355,34 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__hearWord(1);
             timer.start();
             Sounds.playSoundEffect("pop");
-            play_button.setVisible(false);
+            playButton.setVisible(false);
             disableMenuButtons(false); 
-            InputField.configureInputField(game.getWord(), this, submit_button);
+            InputField.configureInputField(game.getWord(), this, submitButton);
         });
 
-        settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
         });
 
-        pause_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        pauseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             pauseClick();
         });
 
-        help_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             helpClick();
         });
 
-        hear_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
+        hearButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
 
-        skip_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
+        skipButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
 
-        a_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ā"));
-        e_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ē"));
-        i_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ī"));
-        o_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ō"));
-        u_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ū"));
+        aButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ā"));
+        eButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ē"));
+        iButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ī"));
+        oButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ō"));
+        uButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ū"));
     }    
 }

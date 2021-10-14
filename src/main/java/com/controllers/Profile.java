@@ -22,9 +22,9 @@ import javafx.scene.input.MouseEvent;
 public class Profile extends ApplicationController implements Initializable {
     private int highScore;
 
-    @FXML ImageView reset_button;
-    @FXML ImageView exit_button;
-    @FXML ImageView highScore_label;
+    @FXML ImageView resetButton;
+    @FXML ImageView exitButton;
+    @FXML ImageView highScoreLabel;
 
     //// Private Methods ////
 
@@ -38,7 +38,7 @@ public class Profile extends ApplicationController implements Initializable {
     private void updateHighScore() {
         try {
             highScore = Game.getHighScore();
-            setImage(highScore, highScore_label);
+            setImage(highScore, highScoreLabel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,9 +52,9 @@ public class Profile extends ApplicationController implements Initializable {
         updateHighScore();
         
         //Set event handlers
-        this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
 
-        this.reset_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             File userStats = new File("./.user/.userStats.txt");
             try {

@@ -16,8 +16,8 @@ import javafx.scene.input.MouseEvent;
  */
 public class Help extends ApplicationController implements Initializable {
 
-    @FXML ImageView attributions_button;
-    @FXML ImageView exit_button;
+    @FXML ImageView attributionsButton;
+    @FXML ImageView exitButton;
 
     //// Private Methods ////
 
@@ -40,8 +40,8 @@ public class Help extends ApplicationController implements Initializable {
         super.initialize();
         
         //Set event handlers
-        this.attributions_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.openAttributions());
-        this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
+        this.attributionsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.openAttributions());
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
         
     }
 }

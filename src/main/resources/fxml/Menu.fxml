@@ -17,7 +17,7 @@
          </image>
       </ImageView>
       <!-- Buttons -->
-      <ImageView fx:id="exitGame_button" fitHeight="81.0" fitWidth="95.0" layoutX="1084.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitGameButton" fitHeight="81.0" fitWidth="95.0" layoutX="1084.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/EXIT_CROSS.png" />
          </image>
@@ -27,37 +27,37 @@
             <Image url="@../assets/EXIT.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="enterTopicSelect_button" fitHeight="146.0" fitWidth="249.0" layoutX="477.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="enterTopicSelectButton" fitHeight="146.0" fitWidth="249.0" layoutX="477.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MENU_PLAY.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="profile_button" fitHeight="90.0" fitWidth="95.0" layoutX="29.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profileButton" fitHeight="90.0" fitWidth="95.0" layoutX="29.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/profile.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="help_button" fitHeight="90.0" fitWidth="95.0" layoutX="29.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="helpButton" fitHeight="90.0" fitWidth="95.0" layoutX="29.0" layoutY="636.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/help.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settings_button" fitHeight="90.0" fitWidth="90.0" layoutX="31.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settingsButton" fitHeight="90.0" fitWidth="90.0" layoutX="31.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/Vector.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="help_label" fitHeight="62.0" fitWidth="106.0" layoutX="118.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="helpLabel" fitHeight="62.0" fitWidth="106.0" layoutX="118.0" layoutY="646.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/HELP-Label.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="profile_label" fitHeight="62.0" fitWidth="156.0" layoutX="117.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="profileLabel" fitHeight="62.0" fitWidth="156.0" layoutX="117.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/PROFILE-Label.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="settings_label" fitHeight="62.0" fitWidth="204.0" layoutX="118.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="settingsLabel" fitHeight="62.0" fitWidth="204.0" layoutX="118.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/SETTINGS-Label.png" />
          </image>

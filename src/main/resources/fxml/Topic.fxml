@@ -16,47 +16,47 @@
             <Image url="@../assets/topicChoices/labelPickATopic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="daysOfWeek_button" fitHeight="105.0" fitWidth="276.0" layoutX="833.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="daysOfWeekButton" fitHeight="105.0" fitWidth="276.0" layoutX="833.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/daysOfWeek.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="babies_button" fitHeight="105.0" fitWidth="276.0" layoutX="840.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="babiesButton" fitHeight="105.0" fitWidth="276.0" layoutX="840.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/babies.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="colours_button" fitHeight="105.0" fitWidth="276.0" layoutX="101.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="coloursButton" fitHeight="105.0" fitWidth="276.0" layoutX="101.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/colours.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="compassPoints_button" fitHeight="105.0" fitWidth="276.0" layoutX="506.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="compassPointsButton" fitHeight="105.0" fitWidth="276.0" layoutX="506.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/compassPoints.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="feelings_button" fitHeight="105.0" fitWidth="276.0" layoutX="159.0" layoutY="596.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="feelingsButton" fitHeight="105.0" fitWidth="276.0" layoutX="159.0" layoutY="596.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/feelings.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="monthsOfYear_button" fitHeight="105.0" fitWidth="276.0" layoutX="662.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monthsOfYearButton" fitHeight="105.0" fitWidth="276.0" layoutX="662.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/monthsOfYear.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="software_button" fitHeight="105.0" fitWidth="276.0" layoutX="55.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="softwareButton" fitHeight="105.0" fitWidth="276.0" layoutX="55.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/software.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="weather_button" fitHeight="105.0" fitWidth="276.0" layoutX="471.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="weatherButton" fitHeight="105.0" fitWidth="276.0" layoutX="471.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/weather.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="work_button" fitHeight="105.0" fitWidth="276.0" layoutX="409.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="workButton" fitHeight="105.0" fitWidth="276.0" layoutX="409.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/work.png" />
          </image>

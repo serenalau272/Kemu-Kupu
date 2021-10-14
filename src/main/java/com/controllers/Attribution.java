@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the attributions modal.
  */
 public class Attribution extends ApplicationController implements Initializable {
-    @FXML ImageView exit_button;
+    @FXML ImageView exitButton;
 
     /**
      * Close this modal
@@ -31,6 +31,6 @@ public class Attribution extends ApplicationController implements Initializable 
         super.initialize();
         
         //Set event handlers
-        this.exit_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
     }
 }

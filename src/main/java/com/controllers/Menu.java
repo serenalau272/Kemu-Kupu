@@ -22,14 +22,14 @@ import javafx.scene.image.ImageView;
  * This class is the controller for the menu screen
  */
 public class Menu extends ApplicationController implements Initializable {
-    @FXML private ImageView exitGame_button;
-    @FXML private ImageView enterTopicSelect_button;
-    @FXML private ImageView settings_button;
-    @FXML private ImageView profile_button;
-    @FXML private ImageView help_button;
-    @FXML private ImageView settings_label;
-    @FXML private ImageView profile_label;
-    @FXML private ImageView help_label;
+    @FXML private ImageView exitGameButton;
+    @FXML private ImageView enterTopicSelectButton;
+    @FXML private ImageView settingsButton;
+    @FXML private ImageView profileButton;
+    @FXML private ImageView helpButton;
+    @FXML private ImageView settingsLabel;
+    @FXML private ImageView profileLabel;
+    @FXML private ImageView helpLabel;
     
 
     @Override
@@ -41,7 +41,7 @@ public class Menu extends ApplicationController implements Initializable {
 
         //Set event handlers
         //exiting
-        exitGame_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
             MainApp.setRoot(View.EXIT);
             event.consume();
@@ -53,42 +53,42 @@ public class Menu extends ApplicationController implements Initializable {
         });
 
 
-        String[] iconButtons = {"settings_button", "profile_button", "help_button"};
+        String[] iconButtons = {"settingsButton", "profileButton", "helpButton"};
         List<Node> icons = findNodesByID(anchorPane, iconButtons);
         icons.forEach(i -> {
             i.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-                String labelId = i.getId().replace("_button", "_label");
+                String labelId = i.getId().replace("Button", "Label");
                 findNodesByID(anchorPane, labelId).setVisible(true);
             });
             i.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-                String labelId = i.getId().replace("_button", "_label");
+                String labelId = i.getId().replace("Button", "Label");
                 findNodesByID(anchorPane, labelId).setVisible(false);
             });
         });
 
-        settings_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             super.settingsClick();
         });
 
-        profile_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             MainApp.showModal(Modals.PROFILE);
         });
 
-        help_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             MainApp.showModal(Modals.HELP);
         });
 
         //open attributions modal
-        // info_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        // infoButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
         //     Sounds.playSoundEffect("pop");
         //     MainApp.showModal(Modals.ATTRIBUTION);
         // });
 
         //enter topic selection
-        enterTopicSelect_button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        enterTopicSelectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
             MainApp.setRoot(View.GAMEMODE);
             event.consume();

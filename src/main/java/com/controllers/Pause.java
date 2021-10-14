@@ -17,9 +17,9 @@ import javafx.scene.input.MouseEvent;
 public class Pause extends ApplicationController implements Initializable {
     //The users current settings Selection
 
-    @FXML ImageView menu_button;
-    @FXML ImageView resume_button;
-    @FXML ImageView replay_button;
+    @FXML ImageView menuButton;
+    @FXML ImageView resumeButton;
+    @FXML ImageView replayButton;
 
     //// Private Methods ////
 
@@ -45,8 +45,8 @@ public class Pause extends ApplicationController implements Initializable {
         //Inital setup & loading of data
         super.initialize();
         //Set event handlers
-        this.resume_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.resume());  
-        this.replay_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.GAMEMODE));
-        this.menu_button.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.MENU));
+        this.resumeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.resume());  
+        this.replayButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.GAMEMODE));
+        this.menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.changeClose(View.MENU));
     }
 }

@@ -17,7 +17,7 @@
             <Image url="@../assets/rewardScreen/background.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pot_button" fitHeight="337.0" fitWidth="387.0" layoutX="711.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="potButton" fitHeight="337.0" fitWidth="387.0" layoutX="711.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/honey-pot.png" />
          </image>
@@ -28,12 +28,12 @@
          </image>
       </ImageView>
       <!-- Buttons -->
-      <ImageView fx:id="menu_button" fitHeight="133.0" fitWidth="152.0" layoutX="617.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="menuButton" fitHeight="133.0" fitWidth="152.0" layoutX="617.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/menu.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="again_button" fitHeight="142.0" fitWidth="191.0" layoutX="426.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="againButton" fitHeight="142.0" fitWidth="191.0" layoutX="426.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/rewardScreen/play-again.png" />
          </image>
@@ -56,7 +56,7 @@
             <Image url="@../assets/rewardScreen/empty-star.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="new_label" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="newLabel" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/rewardScreen/NEW.png" />
          </image>
