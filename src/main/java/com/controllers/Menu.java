@@ -75,8 +75,7 @@ public class Menu extends ApplicationController implements Initializable {
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             MainApp.showModal(Modals.PROFILE);
-            BouncingImageView avatar = new BouncingImageView(enterTopicSelectButton);
-            avatar.getAnimator().play();
+            
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -97,6 +96,13 @@ public class Menu extends ApplicationController implements Initializable {
             event.consume();
         });
 
+        Platform.runLater(new Runnable(){
+            public void run() {
+                BouncingImageView avatar = new BouncingImageView(enterTopicSelectButton);
+                avatar.getAnimator().play();
+            }
+            
+        });
         
     }    
 }
