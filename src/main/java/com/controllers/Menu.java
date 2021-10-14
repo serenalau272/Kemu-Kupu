@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.ApplicationController;
 import com.MainApp;
+import com.components.BouncingImageView;
 import com.enums.Modals;
 import com.enums.View;
 import com.util.Sounds;
@@ -74,6 +75,8 @@ public class Menu extends ApplicationController implements Initializable {
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
             MainApp.showModal(Modals.PROFILE);
+            BouncingImageView avatar = new BouncingImageView(enterTopicSelectButton);
+            avatar.getAnimator().play();
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -93,5 +96,7 @@ public class Menu extends ApplicationController implements Initializable {
             MainApp.setRoot(View.GAMEMODE);
             event.consume();
         });
+
+        
     }    
 }
