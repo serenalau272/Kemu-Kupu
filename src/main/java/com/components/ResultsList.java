@@ -3,7 +3,9 @@ package com.components;
 import com.MainApp;
 import com.enums.Status;
 import com.models.Word;
+import com.util.Sounds;
 
+import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 public class ResultsList extends TextField{
     private static Node[][] inputs = new Node[5][4];
@@ -29,7 +32,7 @@ public class ResultsList extends TextField{
             index++;
         }
 
-        addAll();
+        addTile(0);
     }
 
     private static void createElement(int index, Word word){
@@ -130,16 +133,21 @@ public class ResultsList extends TextField{
         }     
     }
 
-    private static void addAll(){
-        for (Node[] els : inputs){
-            for (Node e: els){
-                if (e != null){
-                    root.getChildren().add(e);         
-                } else {
-                    System.err.println("Null element to print in input field.");
-                }  
+    private static void addTile(int num){
+        Sounds.playSoundEffect("pop");
+        Node[] els = inputs[num];
+
+        for (Node e: els){
+            if (e != null){
+                root.getChildren().add(e);         
             }
         }
+
+        if (num + 1 >= 5) return;
+
+        PauseTransition pause = new PauseTransition(Duration.millis(500));
+        pause.setOnFinished(e -> addTile(num + 1));
+        pause.play();
     }
 
     public static String capitaliseFirst(String s) {
