@@ -348,7 +348,6 @@ public class Quiz extends ApplicationController implements Initializable {
 
     @Override
     protected void start() {
-        super.start();
         showElementsForInput(); // no response given initially
 
         if (game.getGameMode() == Gamemode.PRACTICE) {

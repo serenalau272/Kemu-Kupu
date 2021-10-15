@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.IOException;
 
 import com.components.InputField;
-import com.components.ResultsList;
 import com.enums.Gamemode;
 import com.enums.Modals;
 import com.enums.View;
@@ -45,12 +44,7 @@ public class MainApp extends Application {
             scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
             stage.setTitle(view.getWindowName());
             stage.setScene(scene);
-            stage.show();              
-
-            if (view == View.RESULTS){
-                ResultsList.configureEntries();
-            }
-            
+            stage.show();                          
         } catch (IOException e) {
             System.err.println("Unable to set root for fxml: " + view.getFileName());
             e.printStackTrace();

@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.ApplicationController;
 import com.MainApp;
+import com.components.ResultsList;
 import com.enums.View;
 import com.util.Sounds;
 
@@ -16,6 +17,11 @@ import javafx.scene.input.KeyEvent;
 
 public class Result extends ApplicationController implements Initializable{
     @FXML TextField hiddenField;
+
+    @Override
+    protected void start() {
+        ResultsList.configureEntries();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

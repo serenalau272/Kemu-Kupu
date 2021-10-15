@@ -88,21 +88,24 @@ public class Reward extends ApplicationController implements Initializable {
     //// Public Methods ////
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //Inital setup & loading of data
-        super.initialize();
-        newLabel.setVisible(false);
-        this.game = MainApp.getGameState();
+    protected void start() {
         int gameScore = this.game.getScore();
 
-        setStars(gameScore);
-
         try {
+            setStars(gameScore);
             setHighScore(gameScore);
             setImage(gameScore, score);
         } catch (IOException e) {
             System.err.println(e);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //Inital setup & loading of data
+        super.initialize();
+        newLabel.setVisible(false);
+        this.game = MainApp.getGameState();
         
         //Set event handlers
         menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.MENU));
