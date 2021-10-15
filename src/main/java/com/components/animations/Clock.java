@@ -1,4 +1,4 @@
-package com.components;
+package com.components.animations;
 
 import com.MainApp;
 import com.enums.Gamemode;

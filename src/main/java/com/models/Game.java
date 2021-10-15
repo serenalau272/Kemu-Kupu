@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.List;
 
-import com.components.Clock;
+import com.components.animations.Clock;
 import com.enums.Gamemode;
 import com.enums.Status;
 import com.util.SystemIO;
