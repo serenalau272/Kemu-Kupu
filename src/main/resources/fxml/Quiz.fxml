@@ -128,11 +128,6 @@
             <Image url="@../assets/Game-screen/Practice.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="playButton" fitHeight="171.0" fitWidth="282.0" layoutX="491.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/Game-screen/START.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="score" fitHeight="53.0" fitWidth="105.0" layoutX="132.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/Game-screen/scoreIncrease/20.png" />

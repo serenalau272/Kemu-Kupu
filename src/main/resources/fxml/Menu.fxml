@@ -22,7 +22,7 @@
             <Image url="@../assets/EXIT_CROSS.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="106.0" layoutX="1072.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitMessage" fitHeight="62.0" fitWidth="106.0" layoutX="1072.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/EXIT.png" />
          </image>

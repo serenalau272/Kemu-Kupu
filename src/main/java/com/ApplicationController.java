@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.enums.Modals;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -104,7 +105,10 @@ public class ApplicationController {
         MainApp.showModal(Modals.SETTING);
     }
 
-    
+    /**
+     * Runs after initialisation
+     */
+    protected void start(){}
 
     /**
      * Initalize a regular stage
@@ -122,6 +126,14 @@ public class ApplicationController {
                     i.setScaleX(1);
                     i.setScaleY(1);
                 });
+            }
+        });
+
+        //run start method after initialisation
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                start();                
             }
         });
     }
