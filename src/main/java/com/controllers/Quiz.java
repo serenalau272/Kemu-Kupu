@@ -378,7 +378,7 @@ public class Quiz extends ApplicationController implements Initializable {
         this.__updateWordIndexBanner();
         // configure timer
         timer = new Clock(arc, timerLabel);
-        game.setClock(timer);
+        MainApp.clock = timer;
         controller = this;
 
         settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

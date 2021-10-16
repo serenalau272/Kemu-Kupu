@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.List;
 
-import com.components.animations.Clock;
 import com.enums.Gamemode;
 import com.enums.Status;
 import com.util.SystemIO;
@@ -20,7 +19,6 @@ public class Game {
     private List<Word> words;
     private SpellingTopic topic;
     private int wordIndex = 0;
-    private Clock timer;
     public Node inputField;
 
     /**
@@ -93,14 +91,6 @@ public class Game {
     public void setTopic(SpellingTopic topic) throws IOException {
         this.topic = topic;
         this.words = SystemIO.getWords(5, topic.getPath());
-    }
-
-    public Clock getClock() {
-        return this.timer;
-    }
-
-    public void setClock(Clock timer) {
-        this.timer = timer;
     }
 
     public static Integer getHighScore() throws IOException {
