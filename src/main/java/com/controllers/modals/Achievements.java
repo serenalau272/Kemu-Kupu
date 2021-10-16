@@ -1,9 +1,9 @@
-package com.controllers;
+package com.controllers.modals;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
+import com.controllers.ApplicationController;
 import com.enums.Achievement;
 import com.models.User;
 
@@ -25,7 +25,7 @@ public class Achievements extends ApplicationController implements Initializable
      * Close this modal
      */
     private void __close() {
-        MainApp.closeModal();
+        App.closeModal();
     }
     
     //// Public Methods ////
@@ -33,7 +33,7 @@ public class Achievements extends ApplicationController implements Initializable
     private void setAchievementsVisibility(){
         for (Achievement achievement : user.getProcuredAchievements()){
             int achievementId = achievement.getId();
-            findNodesByID((Pane) MainApp.getStackPane(), Integer.toString(achievementId)).setVisible(true);;
+            findNodesByID((Pane) App.getStackPane(), Integer.toString(achievementId)).setVisible(true);;
         }
     }
 
@@ -46,7 +46,7 @@ public class Achievements extends ApplicationController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();
-        this.user = MainApp.getUser();
+        this.user = App.getUser();
 
         //Set event handlers
         this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  

@@ -1,9 +1,9 @@
-package com.controllers;
+package com.controllers.modals;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
+import com.controllers.ApplicationController;
 import com.enums.View;
 
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class Pause extends ApplicationController implements Initializable {
 
     
     private void resume() {
-        MainApp.closeModal();
+        App.closeModal();
     }
 
     /**
@@ -33,8 +33,8 @@ public class Pause extends ApplicationController implements Initializable {
      * @param v the view to switch to
      */
     private void changeClose(View v) {
-        MainApp.closeModal();
-        MainApp.setRoot(v);
+        App.closeModal();
+        App.setRoot(v);
     }
 
 

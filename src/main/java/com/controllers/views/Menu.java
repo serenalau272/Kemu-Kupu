@@ -1,13 +1,13 @@
-package com.controllers;
+package com.controllers.views;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
 import com.components.animations.OscillatingComponent;
 import com.components.animations.SlideComponentHorizontal;
+import com.controllers.ApplicationController;
 import com.enums.Modals;
 import com.enums.View;
 import com.util.Sounds;
@@ -74,7 +74,7 @@ public class Menu extends ApplicationController implements Initializable {
 
     private void transition() {
         menuAnimation.stop();
-        MainApp.setRoot(View.GAMEMODE);
+        App.setRoot(View.GAMEMODE);
         Sounds.playSoundEffect("pop");
     }
 
@@ -100,7 +100,7 @@ public class Menu extends ApplicationController implements Initializable {
         // exiting
         exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.setRoot(View.EXIT);
+            App.setRoot(View.EXIT);
             event.consume();
 
             // pause and exit
@@ -129,13 +129,13 @@ public class Menu extends ApplicationController implements Initializable {
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.showModal(Modals.PROFILE);
+            App.showModal(Modals.PROFILE);
             
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.showModal(Modals.HELP);
+            App.showModal(Modals.HELP);
         });
 
         enterTopicSelectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

@@ -1,9 +1,10 @@
-package com;
+package com.controllers;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.App;
 import com.enums.Modals;
 
 import javafx.application.Platform;
@@ -102,7 +103,7 @@ public class ApplicationController {
      * Handler for the settings button
      */
     public void settingsClick() {
-        MainApp.showModal(Modals.SETTING);
+        App.showModal(Modals.SETTING);
     }
 
     /**

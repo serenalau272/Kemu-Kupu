@@ -1,11 +1,11 @@
-package com.controllers;
+package com.controllers.views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
 import com.components.ResultsList;
+import com.controllers.ApplicationController;
 import com.enums.View;
 import com.util.Sounds;
 
@@ -31,7 +31,7 @@ public class Result extends ApplicationController implements Initializable{
         
         hiddenField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                MainApp.setRoot(View.REWARD);
+                App.setRoot(View.REWARD);
             }
         });
     }

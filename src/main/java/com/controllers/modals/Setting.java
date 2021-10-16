@@ -1,10 +1,10 @@
-package com.controllers;
+package com.controllers.modals;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
+import com.controllers.ApplicationController;
 import com.util.Sounds;
 
 import javafx.fxml.FXML;
@@ -52,8 +52,8 @@ public class Setting extends ApplicationController implements Initializable {
      * Close this modal
      */
     private void __close() {
-        MainApp.setSetting(this.settings);
-        MainApp.closeModal();
+        App.setSetting(this.settings);
+        App.closeModal();
     }
 
     /**
@@ -80,14 +80,14 @@ public class Setting extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Inital setup & loading of data
         super.initialize();
-        this.settings = MainApp.getSetting();
+        this.settings = App.getSetting();
         this.__update();
         
         //Set event handlers
         this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
         this.musicToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
-            MainApp.updateMusic();
+            App.updateMusic();
             Sounds.playSoundEffect("pop");
             this.__update();
         });
@@ -102,9 +102,9 @@ public class Setting extends ApplicationController implements Initializable {
         this.timePlusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings = new com.models.Setting();
-            MainApp.setSetting(this.settings);
+            App.setSetting(this.settings);
             Sounds.playSoundEffect("pop");
-            MainApp.updateMusic();
+            App.updateMusic();
             this.__update();
         });
     }

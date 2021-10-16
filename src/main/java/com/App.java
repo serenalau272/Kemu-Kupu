@@ -21,7 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
 
-public class MainApp extends Application {
+public class App extends Application {
     private static Stage stage;
     private static View view;
     private static StackPane stackPane;
@@ -41,11 +41,11 @@ public class MainApp extends Application {
     private static void __setRoot(View view) {
         tts.stopSpeech(); //Clear the queue
         try {
-            MainApp.view = view;
+            App.view = view;
             stackPane = new StackPane();
-            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
+            stackPane.getChildren().add(new FXMLLoader(App.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
-            scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
+            scene.getStylesheets().add(App.class.getResource("/styles/application.css").toExternalForm());
             stage.setTitle(view.getWindowName());
             stage.setScene(scene);
             stage.show();                          
@@ -140,7 +140,7 @@ public class MainApp extends Application {
             //Duplicate code should be refactored at some point
             if (view == View.QUIZ) clock.stop();
             disableScreenNodes(true);
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
             stackPane.getChildren().add(modal);
             addBlur();

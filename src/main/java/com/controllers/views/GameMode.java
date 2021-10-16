@@ -1,4 +1,4 @@
-package com.controllers;
+package com.controllers.views;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import com.models.Game;
 import com.util.Sounds;
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
+import com.controllers.ApplicationController;
 import com.enums.Gamemode;
 import com.enums.View;
 
@@ -75,8 +75,8 @@ public class GameMode extends ApplicationController implements Initializable {
         }
 
         Game game = new Game(modeEnum);
-        MainApp.setGameState(game);
-        MainApp.setRoot(View.TOPIC);
+        App.setGameState(game);
+        App.setRoot(View.TOPIC);
     }
 
     //// Public Methods ////

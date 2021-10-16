@@ -2,7 +2,7 @@ package com.util;
 
 import java.net.URISyntaxException;
 
-import com.MainApp;
+import com.App;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -18,10 +18,10 @@ public class Sounds {
             musicPlayer.stop();
         }
         
-        if (!MainApp.getSetting().getMusic()) return;        
+        if (!App.getSetting().getMusic()) return;        
 
         try {
-            String path = MainApp.class.getResource("/sound/" + music + ".mp3").toURI().toString();
+            String path = App.class.getResource("/sound/" + music + ".mp3").toURI().toString();
             musicPlayer = new MediaPlayer(new Media(path));
 
             if (!music.equals("menu")){
@@ -50,9 +50,9 @@ public class Sounds {
      * @param sound the name of the sound to play
      */
     public static void playSoundEffect(String sound) {
-        if (!MainApp.getSetting().getSounds()) return;
+        if (!App.getSetting().getSounds()) return;
         try {
-            String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
+            String path = App.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound
             new MediaPlayer(new Media(path)).play();
         } catch (URISyntaxException exception){

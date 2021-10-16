@@ -1,4 +1,4 @@
-package com.controllers;
+package com.controllers.modals;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
+import com.controllers.ApplicationController;
 import com.models.Game;
 import com.util.Sounds;
 
@@ -32,7 +32,7 @@ public class Profile extends ApplicationController implements Initializable {
      * Close this modal
      */
     private void __close() {
-        MainApp.closeModal();
+        App.closeModal();
     }
 
     private void updateHighScore() {

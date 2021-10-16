@@ -1,10 +1,9 @@
-package com.controllers;
+package com.controllers.modals;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
-import com.enums.Modals;
+import com.App;
+import com.controllers.ApplicationController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,26 +11,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * This class is the controller for the settings modal.
+ * This class is the controller for the attributions modal.
  */
-public class Help extends ApplicationController implements Initializable {
-
-    @FXML ImageView attributionsButton;
+public class Attribution extends ApplicationController implements Initializable {
     @FXML ImageView exitButton;
-
-    //// Private Methods ////
 
     /**
      * Close this modal
      */
     private void __close() {
-        MainApp.closeModal();
+        App.closeModal();
     }
-
-    private void openAttributions() {
-        MainApp.showModal(Modals.ATTRIBUTION);
-    }
-
+    
     //// Public Methods ////
 
     @Override
@@ -40,8 +31,6 @@ public class Help extends ApplicationController implements Initializable {
         super.initialize();
         
         //Set event handlers
-        this.attributionsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.openAttributions());
         this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
-        
     }
 }

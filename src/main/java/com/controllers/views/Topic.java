@@ -1,4 +1,4 @@
-package com.controllers;
+package com.controllers.views;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 import com.models.SpellingTopic;
 import com.util.Sounds;
 import com.util.SystemIO;
-import com.ApplicationController;
-import com.MainApp;
+import com.App;
+import com.controllers.ApplicationController;
 import com.enums.View;
 
 import javafx.scene.input.MouseEvent;
@@ -44,12 +44,12 @@ public class Topic extends ApplicationController implements Initializable {
             if (TOPICS.contains(topic)){
                 //if it is a valid topic
                 try {
-                    MainApp.getGameState().setTopic(topic);
+                    App.getGameState().setTopic(topic);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 Sounds.playSoundEffect("pop");
-                MainApp.setRoot(View.QUIZ);
+                App.setRoot(View.QUIZ);
             } else {
                 System.err.println("Could not select topic with id: " + listName);
             }

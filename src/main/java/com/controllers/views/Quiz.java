@@ -1,17 +1,17 @@
-package com.controllers;
+package com.controllers.views;
 
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
-import com.ApplicationController;
 import com.models.Game;
 import com.models.Word;
 import com.util.Sounds;
-import com.MainApp;
+import com.App;
 import com.components.InputField;
 import com.components.animations.Clock;
+import com.controllers.ApplicationController;
 import com.enums.Gamemode;
 import com.enums.Language;
 import com.enums.Modals;
@@ -101,7 +101,7 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__hearWord(1);
         } else {
             // game ended, navigate to rewards screen
-            MainApp.setRoot(View.RESULTS);
+            App.setRoot(View.RESULTS);
 
         }
     }
@@ -233,7 +233,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // null pointer check isn't needed (or out of bounds check).
         try {
 
-            MainApp.tts.readWord(this.game.getWord(), repeats, Language.MAORI);
+            App.tts.readWord(this.game.getWord(), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -327,11 +327,11 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     public void pauseClick() {
-        MainApp.showModal(Modals.PAUSE);
+        App.showModal(Modals.PAUSE);
     }
 
     public void helpClick() {
-        MainApp.showModal(Modals.HELP);
+        App.showModal(Modals.HELP);
     }
 
     public void onEnter(Word input, boolean isInputEmpty) {
@@ -371,14 +371,14 @@ public class Quiz extends ApplicationController implements Initializable {
         // Inital setup & loading of data
         super.initialize();
 
-        this.game = MainApp.getGameState();
+        this.game = App.getGameState();
         game.setWordIndex(0);
         setTopicBanner();
         // Load words from the MainApp
         this.__updateWordIndexBanner();
         // configure timer
         timer = new Clock(arc, timerLabel);
-        MainApp.clock = timer;
+        App.clock = timer;
         controller = this;
 
         settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

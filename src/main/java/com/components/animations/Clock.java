@@ -1,6 +1,6 @@
 package com.components.animations;
 
-import com.MainApp;
+import com.App;
 import com.enums.Gamemode;
 
 import javafx.animation.AnimationTimer;
@@ -30,22 +30,22 @@ public class Clock {
     }
 
     public void stop(){
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+        if (App.getGameState().getGameMode() == Gamemode.PRACTICE) return;
 
         timer.close();
     }
 
     public void start(){
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+        if (App.getGameState().getGameMode() == Gamemode.PRACTICE) return;
 
         angle = 0.0f;
         resume();
     }
 
     public void resume() {
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+        if (App.getGameState().getGameMode() == Gamemode.PRACTICE) return;
 
-        duration = MainApp.getSetting().getTimerDuration();
+        duration = App.getSetting().getTimerDuration();
         timer = new MyTimer(this.duration);
         timer.start();
     }
@@ -57,7 +57,7 @@ public class Clock {
      * @return the score multiplier based upon time. 4 is maximum and 1 is minimum
      */
     public int getScoreMultiplier(){
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return 4;
+        if (App.getGameState().getGameMode() == Gamemode.PRACTICE) return 4;
 
         int multiplier = (int) Math.ceil((360 - angle) * 4 / 360);
         return (multiplier == 0) ? 1 : multiplier; 
