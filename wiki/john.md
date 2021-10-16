@@ -220,3 +220,18 @@ implementing badges, finalising our website, and adding various animations. A sp
 * A help modal of sorts will also need to be developed and a separate rewards screen for practice mode would like to be put in place.
 * In terms of work, we've come up with 10 costumes and these have been designed and exported to our repo.
 * We plan to have our first massive collaborative session this Saturday and plan to get things prepared for that as much as possible.
+
+- - - -
+**<font size="5">Staggered Progress (Been a bit busy!!)</font>**
+
+*14~16-Oct, 2021.*
+* Design is well under way for the costumes, achievements
+* Backend is also well underway and should be completed soon
+* Implementatation has stagnated a bit due to the above but models and enums have been created
+* Animations have also been added to the menu screen
+* An inherited start method in ApplicationController allows for operations to run after initialisation.
+This allowed for the refactoring of much code. This was done.
+* Tomorrow (rest of tonight) will focus on getting the remaining FXML done, and then finishing up all
+the implementation of the cosutmes/achievements.
+* Subsequently, we'll need to touch up the remaining GUI interface, including help modal etc., as well
+as prepare to present on Tuesday. A lot to be done! Gah!
