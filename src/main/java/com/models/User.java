@@ -27,11 +27,11 @@ public class User {
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 100),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 100),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NINJA, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PRINCESS, 100),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 100),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.TUXEDO, 100),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.MAGICIAN, 100),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.WIZARD, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NASSER, 100)
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 100)
     );
 
     public HashSet<Achievement> getProcuredAchievements(){
@@ -118,7 +118,7 @@ public class User {
     public HashSet<Avatar> getCostumes() throws Exception {
         return new HashSet<Avatar>() {
             {
-                add(Avatar.PRINCESS);
+                add(Avatar.QUEEN);
                 add(Avatar.WIZARD);
                 add(Avatar.DEFAULT);
             }
