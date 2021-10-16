@@ -3,11 +3,13 @@ import java.io.File;
 import java.io.IOException;
 
 import com.components.InputField;
+import com.components.animations.Clock;
 import com.enums.Gamemode;
 import com.enums.Modals;
 import com.enums.View;
 import com.models.Game;
 import com.models.Setting;
+import com.models.User;
 import com.util.Sounds;
 import com.util.TTS;
 
@@ -24,8 +26,10 @@ public class MainApp extends Application {
     private static View view;
     private static StackPane stackPane;
     private static Game state;
+    private static User user;
     private static Setting setting;
     public static TTS tts;
+    public static Clock clock;
 
     //// Private (helper) methods ////
     /**
@@ -80,6 +84,14 @@ public class MainApp extends Application {
     }
 
     /**
+     * Get user
+     * @return
+     */
+    public static User getUser() {
+        return user;
+    }
+
+    /**
      * Update the game state
      * @param newState
      */
@@ -126,7 +138,7 @@ public class MainApp extends Application {
     public static void showModal(Modals m) {
         try {
             //Duplicate code should be refactored at some point
-            if (view == View.QUIZ) state.getClock().stop();
+            if (view == View.QUIZ) clock.stop();
             disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
@@ -148,7 +160,7 @@ public class MainApp extends Application {
         removeBlur();
         disableScreenNodes(false);
         if (view == View.QUIZ) {
-            state.getClock().resume();
+            clock.resume();
             InputField.recursor();
         }
     }
@@ -190,6 +202,7 @@ public class MainApp extends Application {
         setting = new Setting();
         stage.setResizable(false);
         tts = new TTS();
+        user = new User();
         try {
             configureStatsFiles();
         } catch (IOException e) {
