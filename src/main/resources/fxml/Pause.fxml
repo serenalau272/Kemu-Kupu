@@ -18,7 +18,7 @@
             <Image url="@../assets/Pause/Menu.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="resumeButton" fitHeight="114.0" fitWidth="297.0" layoutX="452.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitButton" fitHeight="114.0" fitWidth="297.0" layoutX="452.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Pause/Resume.png" />
          </image>

@@ -1,14 +1,11 @@
 package com.controllers.modals;
 import java.io.FileNotFoundException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.App;
-import com.controllers.ApplicationController;
+import com.controllers.ModalController;
 import com.util.Sounds;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * This class is the controller for the settings modal.
  */
-public class Setting extends ApplicationController implements Initializable {
+public class Setting extends ModalController {
     //The users current settings Selection
     private com.models.Setting settings;
 
@@ -24,7 +21,6 @@ public class Setting extends ApplicationController implements Initializable {
     @FXML Label timeVal;
     @FXML ImageView musicToggleButton;
     @FXML ImageView soundToggleButton;
-    @FXML ImageView exitButton;
     @FXML ImageView speedMinusButton;
     @FXML ImageView speedPlusButton;
     @FXML ImageView timeMinusButton;
@@ -49,14 +45,6 @@ public class Setting extends ApplicationController implements Initializable {
     }
 
     /**
-     * Close this modal
-     */
-    private void __close() {
-        App.setSetting(this.settings);
-        App.closeModal();
-    }
-
-    /**
      * Change the speech speed of festival.
      * Note that we don't have ot do a check here if the speed is out of bounds (< 0), as this is
      * checked inside of the settinsg class itself.
@@ -77,14 +65,11 @@ public class Setting extends ApplicationController implements Initializable {
     //// Public Methods ////
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //Inital setup & loading of data
-        super.initialize();
+    public void initializeModal() {
+        super.initializeModal();
         this.settings = App.getSetting();
         this.__update();
-        
-        //Set event handlers
-        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
+
         this.musicToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
             App.updateMusic();
