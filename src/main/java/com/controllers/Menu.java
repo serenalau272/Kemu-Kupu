@@ -1,4 +1,5 @@
 package com.controllers;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,37 +26,52 @@ import javafx.scene.image.ImageView;
  * This class is the controller for the menu screen
  */
 public class Menu extends ApplicationController implements Initializable {
-    @FXML private ImageView exitGameButton;
-    @FXML private ImageView enterTopicSelectButton;
-    @FXML private ImageView settingsButton;
-    @FXML private ImageView profileButton;
-    @FXML private ImageView helpButton;
-    @FXML private ImageView settingsLabel;
-    @FXML private ImageView profileLabel;
-    @FXML private ImageView helpLabel;
+    @FXML
+    private ImageView exitGameButton;
+    @FXML
+    private ImageView enterTopicSelectButton;
+    @FXML
+    private ImageView settingsButton;
+    @FXML
+    private ImageView profileButton;
+    @FXML
+    private ImageView helpButton;
+    @FXML
+    private ImageView settingsLabel;
+    @FXML
+    private ImageView profileLabel;
+    @FXML
+    private ImageView helpLabel;
+    @FXML
+    private ImageView exitMessage;
+
     private ImageView[] animated = new ImageView[4];
 
-    private void onAnimateOut(Duration dur, double delta){
-        animateImage(dur, delta, 0, 1);
+    private void onAnimateOut(Duration dur, double delta) {
+        animateImage(dur, delta, 0);
     }
 
-    private void animateImage(Duration dur, double delta, int index, int direction){
-        Animation anim = new SlideComponentHorizontal(animated[index], dur, delta * direction).getAnimator();
+    private void animateImage(Duration dur, double delta, int index) {
+        Animation anim;
 
-        if (index + 1 >= animated.length){
+        if (animated[index].getId().equals("exitGameButton")) {
+            anim = new SlideComponentHorizontal(animated[index], dur, delta).getAnimator();
+            Animation anim2 = new SlideComponentHorizontal(exitMessage, dur, delta).getAnimator();
+            anim2.play();
+        } else {
+            anim = new SlideComponentHorizontal(animated[index], dur, delta * -1).getAnimator();
+        }
+
+        if (index + 1 >= animated.length) {
             anim.setOnFinished(e -> transition());
         } else {
-            if (direction == 1) {
-                anim.setOnFinished(e -> animateImage(dur, delta, index + 1, direction * -1));
-            } else {
-                anim.setOnFinished(e -> animateImage(dur, delta, index + 1, direction));
-            }
+            anim.setOnFinished(e -> animateImage(dur, delta, index + 1));
         }
 
         anim.play();
     }
-    
-    private void transition(){
+
+    private void transition() {
         MainApp.setRoot(View.GAMEMODE);
         Sounds.playSoundEffect("pop");
     }
@@ -70,26 +86,25 @@ public class Menu extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Inital setup & loading of data
+        // Inital setup & loading of data
         super.initialize();
 
         Sounds.playMusic("menu");
 
-        //Set event handlers
-        //exiting
+        // Set event handlers
+        // exiting
         exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
             MainApp.setRoot(View.EXIT);
             event.consume();
 
-            //pause and exit
+            // pause and exit
             PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(e -> Platform.exit());
             pause.play();
         });
 
-
-        String[] iconButtons = {"settingsButton", "profileButton", "helpButton"};
+        String[] iconButtons = { "settingsButton", "profileButton", "helpButton" };
         List<Node> icons = findNodesByID(anchorPane, iconButtons);
         icons.forEach(i -> {
             i.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
@@ -118,13 +133,13 @@ public class Menu extends ApplicationController implements Initializable {
         });
 
         enterTopicSelectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            onAnimateOut(Duration.millis(300), 120);
+            onAnimateOut(Duration.millis(100), 120);
             event.consume();
         });
-        //open attributions modal
+        // open attributions modal
         // infoButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-        //     Sounds.playSoundEffect("pop");
-        //     MainApp.showModal(Modals.ATTRIBUTION);
+        // Sounds.playSoundEffect("pop");
+        // MainApp.showModal(Modals.ATTRIBUTION);
         // });
-    }    
+    }
 }
