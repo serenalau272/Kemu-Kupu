@@ -82,6 +82,14 @@ public class MainApp extends Application {
     }
 
     /**
+     * Get user
+     * @return
+     */
+    public static User getUser() {
+        return user;
+    }
+
+    /**
      * Update the game state
      * @param newState
      */

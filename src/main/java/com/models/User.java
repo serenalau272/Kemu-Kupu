@@ -34,6 +34,10 @@ public class User {
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NASSER, 100)
     );
 
+    public HashSet<Achievement> getProcuredAchievements(){
+        return procuredAchievements;
+    }
+
     public User() {
         //guest
         this.name = "";
