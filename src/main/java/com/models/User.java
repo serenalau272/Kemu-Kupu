@@ -1,10 +1,10 @@
 package com.models;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import com.enums.Achievement;
 import com.enums.Avatar;
 
 import java.util.AbstractMap;
@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class User {
     private String name;
     private Avatar selectedAvatar;
-    private HashSet<Avatar> boughtAvatars = new HashSet<>();
+    private HashSet<Avatar> unlockedAvatars = new HashSet<>();
+    private HashSet<Achievement> procuredAchievements = new HashSet<>();
     private Integer stars;
     private Integer highScore;
 
@@ -33,11 +34,11 @@ public class User {
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NASSER, 100)
     );
 
-    User() {
+    public User() {
         //guest
         this.name = "";
         this.selectedAvatar = Avatar.DEFAULT;
-        this.boughtAvatars = null;
+        this.unlockedAvatars = null;
         this.stars = null;
         this.highScore = null;
     }
@@ -63,12 +64,17 @@ public class User {
         this.name = name;
         this.stars = 0;
         this.highScore = 0;
-        this.boughtAvatars = new HashSet<Avatar>() {
+        this.unlockedAvatars = new HashSet<Avatar>() {
             {
-                add(Avatar.WIZARD);
+                add(Avatar.DEFAULT);
             }
         };
 
+        this.procuredAchievements = new HashSet<Achievement>() {
+            {
+                add(Achievement.HIGHSCORE_HUNDRED);
+            }
+        };
         //post all fields
     }
 

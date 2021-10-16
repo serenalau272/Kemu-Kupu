@@ -8,6 +8,7 @@ import com.enums.Modals;
 import com.enums.View;
 import com.models.Game;
 import com.models.Setting;
+import com.models.User;
 import com.util.Sounds;
 import com.util.TTS;
 
@@ -24,6 +25,7 @@ public class MainApp extends Application {
     private static View view;
     private static StackPane stackPane;
     private static Game state;
+    private static User user;
     private static Setting setting;
     public static TTS tts;
 
@@ -190,6 +192,7 @@ public class MainApp extends Application {
         setting = new Setting();
         stage.setResizable(false);
         tts = new TTS();
+        user = new User();
         try {
             configureStatsFiles();
         } catch (IOException e) {
