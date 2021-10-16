@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import com.ApplicationController;
 import com.MainApp;
+import com.components.animations.OscillatingComponent;
 import com.components.animations.SlideComponentHorizontal;
-import com.components.BouncingImageView;
 import com.enums.Modals;
 import com.enums.View;
 import com.util.Sounds;
@@ -16,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
-import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +45,7 @@ public class Menu extends ApplicationController implements Initializable {
     @FXML
     private ImageView exitMessage;
 
+    private Animation menuAnimation;
     private ImageView[] animated = new ImageView[4];
 
     private void onAnimateOut(Duration dur, double delta) {
@@ -73,6 +73,7 @@ public class Menu extends ApplicationController implements Initializable {
     }
 
     private void transition() {
+        menuAnimation.stop();
         MainApp.setRoot(View.GAMEMODE);
         Sounds.playSoundEffect("pop");
     }
@@ -83,6 +84,9 @@ public class Menu extends ApplicationController implements Initializable {
         animated[3] = helpButton;
         animated[1] = settingsButton;
         animated[2] = profileButton;
+
+        menuAnimation = new OscillatingComponent(enterTopicSelectButton).getAnimator();
+        menuAnimation.play();
     }
 
     @Override
@@ -143,15 +147,6 @@ public class Menu extends ApplicationController implements Initializable {
         // Sounds.playSoundEffect("pop");
         // MainApp.showModal(Modals.ATTRIBUTION);
         // });
-
-
-        Platform.runLater(new Runnable(){
-            public void run() {
-                BouncingImageView avatar = new BouncingImageView(enterTopicSelectButton);
-                avatar.getAnimator().play();
-            }
-            
-        });
         
     }    
 }

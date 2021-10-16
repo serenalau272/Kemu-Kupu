@@ -1,4 +1,4 @@
-package com.components;
+package com.components.animations;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
@@ -6,13 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public class BouncingImageView {
+public class OscillatingComponent {
     @FXML private ImageView image;
     private Animation anim;
     private double initialY;
     private final int amplitude = 10;
 
-    public BouncingImageView(ImageView image){
+    public OscillatingComponent(ImageView image){
         this.image = image;
         this.initialY = image.getTranslateY();
 
