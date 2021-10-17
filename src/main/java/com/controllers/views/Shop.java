@@ -13,6 +13,7 @@ import com.controllers.ModalController;
 import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
 import com.enums.View;
+import com.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,11 +32,16 @@ import javafx.scene.layout.GridPane;
 public class Shop extends ModalController {
     @FXML private ImageView backButton;
     @FXML private ImageView buyButton;
+    @FXML private ImageView notEnough;
     @FXML private ImageView userAvatar;
     @FXML private ImageView avatarPrice;
     @FXML private Label avatarLabel;
+    @FXML private Label starTotal;
     @FXML private ScrollPane scroll;
     @FXML private GridPane grid;
+
+    private User currentUser;
+    private Avatar chosenAvatar;
 
     private List<AvatarItem> avatars = new ArrayList<>();
 
@@ -65,33 +71,63 @@ public class Shop extends ModalController {
         setTextYellow(clickedAvatarName);
         String avatarName = ((Label) clickedAvatarName).getText().replace(" Bee", "");
 
+        setChosenAvatar(Avatar.fromString(avatarName));
+    }
+
+    private void setChosenAvatar(Avatar avatar){
+        chosenAvatar = avatar;
+
+        if (currentUser.hasBeenPurchased(chosenAvatar)){
+            currentUser.setSelectedAvatar(chosenAvatar);
+        }
+
         try {
-            setImage(avatarName, userAvatar);
-            if (avatarName.equals("B")) {
+            setImage(chosenAvatar.toString(), userAvatar);
+            if (currentUser.hasBeenPurchased(chosenAvatar)) {
                 //@TODO
                 buyButton.setVisible(false);
+                notEnough.setVisible(false);
                 avatarLabel.setVisible(true);
-                avatarLabel.setText(avatarName);
+                avatarLabel.setText(chosenAvatar.toString());
                 setImage("background", avatarPrice);
             } else {
-                buyButton.setVisible(true);
+                if (currentUser.canPurchase(chosenAvatar)){
+                    buyButton.setVisible(true);
+                    notEnough.setVisible(false);
+                } else {
+                    notEnough.setVisible(true);
+                    buyButton.setVisible(false);
+                }
+                
                 avatarLabel.setVisible(false);
-                setImage(avatarName, avatarPrice);
+                setImage(chosenAvatar.toString(), avatarPrice);
             }
 
         } catch (FileNotFoundException e) {
-            System.err.println("File for avatar " + avatarName + " not found.");
+            System.err.println("File for avatar " + chosenAvatar.toString() + " not found.");
             e.printStackTrace();
         }
+    }
+
+    private void setStars(){
+        starTotal.setText(Integer.toString(currentUser.getNumStars()));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
+        currentUser = MainApp.getUser();
+        notEnough.setVisible(false);
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));  
-      
+        setStars();
         avatars.addAll(getData());
+
+        buyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            currentUser.purchaseAvatar(chosenAvatar);
+            setStars();
+            setChosenAvatar(chosenAvatar);
+        });  
 
         int column = 0;
         int row = 1;

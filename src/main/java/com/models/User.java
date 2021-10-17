@@ -160,15 +160,15 @@ public class User {
     private HashSet<Achievement> procuredAchievements = new HashSet<>();
     private final Map<Avatar, Integer> costAvatars = Map.ofEntries(
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.DEFAULT, 0),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 100),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 80),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NINJA, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.MAGICIAN, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.WIZARD, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 100)
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 30),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 5),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.MAGICIAN, 30),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.WIZARD, 5),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 200)
     );
 
     /**
@@ -367,6 +367,10 @@ public class User {
         return selectedAvatar;
     }
 
+    public void setSelectedAvatar(Avatar avatar){
+        this.selectedAvatar = avatar;
+    }
+
     public String getNickname(){
         return nickname;
     }
@@ -447,5 +451,24 @@ public class User {
     public void setNickname(String name){
         this.nickname = name;
         //TODO: link to backend
+    }
+
+    public boolean canPurchase(Avatar avatar){
+        int cost = costAvatars.get(avatar);
+        if (totalStars >= cost){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void purchaseAvatar(Avatar avatar){
+        //TODO: link to backend
+        unlockedAvatars.add(avatar);
+        totalStars -= costAvatars.get(avatar);
+    }
+
+    public boolean hasBeenPurchased(Avatar avatar){
+        return unlockedAvatars.contains(avatar);
     }
 }
