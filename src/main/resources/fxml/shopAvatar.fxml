@@ -10,7 +10,7 @@
     <children>
       <ImageView fx:id="avatar" fitHeight="156.0" fitWidth="157.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/costumeShop/ShopAvatars/Wizard.png" />
+            <Image url="@../assets/costumeShop/ShopAvatars/B.png" />
          </image>
       </ImageView>
       <Label fx:id="avatarName" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="163.0" prefHeight="29.0" prefWidth="157.0" text="Professor Bee" textAlignment="CENTER" textFill="WHITE">
