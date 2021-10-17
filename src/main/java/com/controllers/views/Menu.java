@@ -10,6 +10,7 @@ import com.components.animations.SlideComponentHorizontal;
 import com.controllers.ApplicationController;
 import com.enums.Modals;
 import com.enums.View;
+import com.util.Modal;
 import com.util.Sounds;
 
 import javafx.scene.input.MouseEvent;
@@ -129,13 +130,13 @@ public class Menu extends ApplicationController implements Initializable {
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            App.showModal(Modals.PROFILE);
+            Modal.showModal(Modals.PROFILE);
             
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            App.showModal(Modals.HELP);
+            Modal.showModal(Modals.HELP);
         });
 
         enterTopicSelectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 
 import com.models.Game;
 import com.models.Word;
+import com.util.Modal;
 import com.util.Sounds;
 import com.App;
 import com.components.InputField;
@@ -233,7 +234,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // null pointer check isn't needed (or out of bounds check).
         try {
 
-            App.tts.readWord(this.game.getWord(), repeats, Language.MAORI);
+            App.getTTS().readWord(this.game.getWord(), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -327,11 +328,11 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     public void pauseClick() {
-        App.showModal(Modals.PAUSE);
+        Modal.showModal(Modals.PAUSE);
     }
 
     public void helpClick() {
-        App.showModal(Modals.HELP);
+        Modal.showModal(Modals.HELP);
     }
 
     public void onEnter(Word input, boolean isInputEmpty) {
@@ -378,7 +379,8 @@ public class Quiz extends ApplicationController implements Initializable {
         this.__updateWordIndexBanner();
         // configure timer
         timer = new Clock(arc, timerLabel);
-        App.clock = timer;
+        Modal.setClock(timer);
+
         controller = this;
 
         settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

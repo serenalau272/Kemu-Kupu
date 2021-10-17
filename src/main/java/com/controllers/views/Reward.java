@@ -112,7 +112,7 @@ public class Reward extends ApplicationController implements Initializable {
         againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> App.setRoot(View.GAMEMODE));
         potButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
-                App.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);
+                App.getTTS().readWord(new Word("Ka Pai", null), 1, Language.MAORI);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

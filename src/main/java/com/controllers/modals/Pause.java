@@ -3,6 +3,7 @@ package com.controllers.modals;
 import com.App;
 import com.controllers.ModalController;
 import com.enums.View;
+import com.util.Modal;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -25,7 +26,7 @@ public class Pause extends ModalController {
      * @param v the view to switch to
      */
     private void changeClose(View v) {
-        App.closeModal();
+        Modal.closeModal();
         App.setRoot(v);
     }
 

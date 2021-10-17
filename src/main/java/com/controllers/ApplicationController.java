@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.App;
 import com.enums.Modals;
+import com.util.Modal;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -103,7 +103,7 @@ public class ApplicationController {
      * Handler for the settings button
      */
     public void settingsClick() {
-        App.showModal(Modals.SETTING);
+        Modal.showModal(Modals.SETTING);
     }
 
     /**

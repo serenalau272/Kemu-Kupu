@@ -1,8 +1,8 @@
 package com.controllers.modals;
 
-import com.App;
 import com.controllers.ModalController;
 import com.enums.Modals;
+import com.util.Modal;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -17,7 +17,7 @@ public class Help extends ModalController {
 
     //// Private Methods ////
     private void openAttributions() {
-        App.showModal(Modals.ATTRIBUTION);
+        Modal.showModal(Modals.ATTRIBUTION);
     }
 
     //// Public Methods ////
