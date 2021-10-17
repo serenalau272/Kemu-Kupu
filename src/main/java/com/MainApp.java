@@ -198,6 +198,17 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage s) {
+
+        //temp
+        User usr = new User();
+        try {
+            usr.login("joebloggs123", "joebloggs");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+
+
         stage = s;
         setting = new Setting();
         stage.setResizable(false);
