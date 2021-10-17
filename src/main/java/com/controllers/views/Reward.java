@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.MainApp;
@@ -120,7 +121,6 @@ public class Reward extends ApplicationController implements Initializable {
             System.err.println("Unable to load avatar");
         }
         
-        
         //Set event handlers
         menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             MainApp.setRoot(View.MENU);
@@ -133,10 +133,17 @@ public class Reward extends ApplicationController implements Initializable {
         });
 
         avatarButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
-            try {
-                MainApp.getTTS().readWord(new Word("Ka Pai", null), 1, Language.MAORI);
-            } catch (Exception e) {
-                e.printStackTrace();
+            int num = new Random().nextInt(3);
+            switch (num) {
+                case 0:
+                    Sounds.playSoundEffect("bee-utiful");
+                    break;
+                case 1:
+                    Sounds.playSoundEffect("kapai");
+                    break;
+                default:
+                    Sounds.playSoundEffect("bzz-ness");
+                    break;
             }
         });
 
