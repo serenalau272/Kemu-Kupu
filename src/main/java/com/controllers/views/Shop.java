@@ -1,4 +1,4 @@
-package com.controllers.modals;
+package com.controllers.views;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
