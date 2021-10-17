@@ -9,7 +9,6 @@ import com.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -31,7 +30,7 @@ public class Achievements extends ApplicationController implements Initializable
     //// Public Methods ////
 
     private void setAchievementsVisibility(){
-        for (Achievement achievement : user.getProcuredAchievements()){
+        for (Achievement achievement : user.getAchievements()){
             int achievementId = achievement.getId();
             findNodesByID((Pane) MainApp.getStackPane(), Integer.toString(achievementId)).setVisible(true);;
         }
