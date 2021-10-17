@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.MainApp;
 import com.enums.Modals;
 import com.util.Modal;
 import com.util.Sounds;
@@ -53,6 +54,8 @@ public class ApplicationController {
         return elm;
     }
 
+
+
     protected Node findNodesByID(Pane p, String id) {
         List<Node> nodes = new ArrayList<Node>();
         Node specificNode = null;
@@ -98,6 +101,14 @@ public class ApplicationController {
      */
     protected void setImage(String s, ImageView view) throws FileNotFoundException {
         __setImage(s, view);
+    }
+
+    protected void setAvatarImage(ImageView view){
+        try {
+            setImage(MainApp.getUser().getSelectedAvatar().getName(), view);
+        } catch (FileNotFoundException e){
+            System.err.println("Unable to load avatar");
+        }
     }
 
     /**
