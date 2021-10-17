@@ -46,6 +46,7 @@ public enum View {
             }
             case ACHIEVEMENT: {
                 return "Achievements";
+            }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
                 return "Menu";
