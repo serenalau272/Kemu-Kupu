@@ -3,7 +3,7 @@ package com.controllers.views;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.App;
+import com.MainApp;
 import com.components.ResultsList;
 import com.controllers.ApplicationController;
 import com.enums.View;
@@ -31,7 +31,7 @@ public class Result extends ApplicationController implements Initializable{
         
         hiddenField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                App.setRoot(View.REWARD);
+                MainApp.setRoot(View.REWARD);
             }
         });
     }

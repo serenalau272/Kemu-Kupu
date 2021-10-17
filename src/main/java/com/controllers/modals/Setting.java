@@ -1,7 +1,7 @@
 package com.controllers.modals;
 import java.io.FileNotFoundException;
 
-import com.App;
+import com.MainApp;
 import com.controllers.ModalController;
 import com.util.Sounds;
 
@@ -67,12 +67,12 @@ public class Setting extends ModalController {
     @Override
     public void initializeModal() {
         super.initializeModal();
-        this.settings = App.getSetting();
+        this.settings = MainApp.getSetting();
         this.__update();
 
         this.musicToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
-            App.updateMusic();
+            MainApp.updateMusic();
             Sounds.playSoundEffect("pop");
             this.__update();
         });
@@ -87,9 +87,9 @@ public class Setting extends ModalController {
         this.timePlusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings = new com.models.Setting();
-            App.setSetting(this.settings);
+            MainApp.setSetting(this.settings);
             Sounds.playSoundEffect("pop");
-            App.updateMusic();
+            MainApp.updateMusic();
             this.__update();
         });
     }

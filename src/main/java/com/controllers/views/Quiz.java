@@ -9,7 +9,7 @@ import com.models.Game;
 import com.models.Word;
 import com.util.Modal;
 import com.util.Sounds;
-import com.App;
+import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
 import com.controllers.ApplicationController;
@@ -102,7 +102,7 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__hearWord(1);
         } else {
             // game ended, navigate to rewards screen
-            App.setRoot(View.RESULTS);
+            MainApp.setRoot(View.RESULTS);
 
         }
     }
@@ -234,7 +234,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // null pointer check isn't needed (or out of bounds check).
         try {
 
-            App.getTTS().readWord(this.game.getWord(), repeats, Language.MAORI);
+            MainApp.getTTS().readWord(this.game.getWord(), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -372,7 +372,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // Inital setup & loading of data
         super.initialize();
 
-        this.game = App.getGameState();
+        this.game = MainApp.getGameState();
         game.setWordIndex(0);
         setTopicBanner();
         // Load words from the MainApp

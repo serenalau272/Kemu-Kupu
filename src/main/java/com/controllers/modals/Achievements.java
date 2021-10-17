@@ -1,6 +1,6 @@
 package com.controllers.modals;
 
-import com.App;
+import com.MainApp;
 import com.controllers.ModalController;
 import com.enums.Achievement;
 import com.models.User;
@@ -18,7 +18,7 @@ public class Achievements extends ModalController {
     private void setAchievementsVisibility(){
         for (Achievement achievement : user.getProcuredAchievements()){
             int achievementId = achievement.getId();
-            findNodesByID((Pane) App.getStackPane(), Integer.toString(achievementId)).setVisible(true);;
+            findNodesByID((Pane) MainApp.getStackPane(), Integer.toString(achievementId)).setVisible(true);;
         }
     }
 
@@ -30,6 +30,6 @@ public class Achievements extends ModalController {
     @Override
     public void initializeModal() {
         super.initializeModal();
-        this.user = App.getUser();
+        this.user = MainApp.getUser();
     }
 }

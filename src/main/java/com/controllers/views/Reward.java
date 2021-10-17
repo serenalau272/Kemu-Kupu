@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.App;
+import com.MainApp;
 import com.controllers.ApplicationController;
 import com.enums.Language;
 import com.enums.View;
@@ -105,14 +105,14 @@ public class Reward extends ApplicationController implements Initializable {
         //Inital setup & loading of data
         super.initialize();
         newLabel.setVisible(false);
-        this.game = App.getGameState();
+        this.game = MainApp.getGameState();
         
         //Set event handlers
-        menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> App.setRoot(View.MENU));
-        againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> App.setRoot(View.GAMEMODE));
+        menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.MENU));
+        againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.GAMEMODE));
         potButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
-                App.getTTS().readWord(new Word("Ka Pai", null), 1, Language.MAORI);
+                MainApp.getTTS().readWord(new Word("Ka Pai", null), 1, Language.MAORI);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

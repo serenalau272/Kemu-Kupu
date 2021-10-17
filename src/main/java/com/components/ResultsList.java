@@ -1,6 +1,6 @@
 package com.components;
 
-import com.App;
+import com.MainApp;
 import com.enums.Status;
 import com.models.Word;
 import com.util.Sounds;
@@ -23,11 +23,11 @@ public class ResultsList extends TextField{
     private static StackPane root;
 
     public static void configureEntries(){
-        root = App.getStackPane();
+        root = MainApp.getStackPane();
         removeAll();
         
         int index = 1;
-        for (Word word : App.getGameState().getWords()){
+        for (Word word : MainApp.getGameState().getWords()){
             createElement(index, word);            
             index++;
         }
@@ -58,13 +58,13 @@ public class ResultsList extends TextField{
 
         switch (word.getStatus()) {
             case MASTERED:
-                img = new ImageView(new Image(App.class.getResource("/assets/Results/tick.png").toString(), true));
+                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/tick.png").toString(), true));
                 break;
             case FAILED:
-                img = new ImageView(new Image(App.class.getResource("/assets/Results/cross.png").toString(), true));
+                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/cross.png").toString(), true));
                 break;
             default:
-                img = new ImageView(new Image(App.class.getResource("/assets/Results/skip.png").toString(), true));
+                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/skip.png").toString(), true));
                 break;
         }
         
@@ -81,13 +81,13 @@ public class ResultsList extends TextField{
 
         switch (word.getStatus()) {
             case MASTERED:
-                img = new ImageView(new Image(App.class.getResource("/assets/Results/green.png").toString(), true));
+                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/green.png").toString(), true));
                 break;
             case FAILED:
-                img = new ImageView(new Image(App.class.getResource("/assets/Results/red.png").toString(), true));
+                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/red.png").toString(), true));
                 break;
             default:
-                img = new ImageView(new Image(App.class.getResource("/assets/Results/brown.png").toString(), true));
+                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/brown.png").toString(), true));
                 break;
         }
         

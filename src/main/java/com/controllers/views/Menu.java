@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.App;
+import com.MainApp;
 import com.components.animations.OscillatingComponent;
 import com.components.animations.SlideComponentHorizontal;
 import com.controllers.ApplicationController;
@@ -75,7 +75,7 @@ public class Menu extends ApplicationController implements Initializable {
 
     private void transition() {
         menuAnimation.stop();
-        App.setRoot(View.GAMEMODE);
+        MainApp.setRoot(View.GAMEMODE);
         Sounds.playSoundEffect("pop");
     }
 
@@ -101,7 +101,7 @@ public class Menu extends ApplicationController implements Initializable {
         // exiting
         exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Sounds.playSoundEffect("pop");
-            App.setRoot(View.EXIT);
+            MainApp.setRoot(View.EXIT);
             event.consume();
 
             // pause and exit

@@ -1,6 +1,6 @@
 package com.util;
 
-import com.App;
+import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
 import com.enums.Modals;
@@ -30,12 +30,12 @@ public class Modal {
     public static void showModal(Modals m) {
         try {
             //Duplicate code should be refactored at some point
-            if (App.getBaseView() == View.QUIZ) clock.stop();
+            if (MainApp.getBaseView() == View.QUIZ) clock.stop();
 
             disableScreenNodes(true);
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
-            App.getStackPane().getChildren().add(modal);
+            MainApp.getStackPane().getChildren().add(modal);
             addBlur();
         } catch (Exception e) {
             System.err.println("Unable to load modal " + m.getFileName() + " due to error " + e.toString()); 
@@ -48,11 +48,11 @@ public class Modal {
      */
     public static void closeModal() {
         Sounds.playSoundEffect("pop");
-        int size = App.getStackPane().getChildren().size();
-        App.getStackPane().getChildren().remove(size-1);
+        int size = MainApp.getStackPane().getChildren().size();
+        MainApp.getStackPane().getChildren().remove(size-1);
         removeBlur();
         disableScreenNodes(false);
-        if (App.getBaseView() == View.QUIZ) {
+        if (MainApp.getBaseView() == View.QUIZ) {
             clock.resume();
             InputField.recursor();
         }
@@ -62,7 +62,7 @@ public class Modal {
      * Disable all screen nodes
      */
     public static void disableScreenNodes(boolean isDisable) {
-        StackPane stackpane = App.getStackPane();
+        StackPane stackpane = MainApp.getStackPane();
 
         stackpane.getChildren().get(0).setDisable(isDisable);
         int size = stackpane.getChildren().size();
@@ -79,14 +79,14 @@ public class Modal {
     public static void addBlur() {
         BoxBlur blur = new BoxBlur();
         blur.setIterations(2);
-        App.getStackPane().getChildren().get(0).setEffect(blur);
+        MainApp.getStackPane().getChildren().get(0).setEffect(blur);
     }
 
     /**
      * removes blur from background pane
      */
     public static void removeBlur() {
-        App.getStackPane().getChildren().get(0).setEffect(null);
+        MainApp.getStackPane().getChildren().get(0).setEffect(null);
     }
 
 }

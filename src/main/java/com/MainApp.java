@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class MainApp extends Application {
     private static Stage stage;
     private static View view;
     private static StackPane stackPane;
@@ -35,11 +35,11 @@ public class App extends Application {
     private static void __setRoot(View view) {
         tts.stopSpeech(); //Clear the queue
         try {
-            App.view = view;
+            MainApp.view = view;
             stackPane = new StackPane();
-            stackPane.getChildren().add(new FXMLLoader(App.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
+            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
-            scene.getStylesheets().add(App.class.getResource("/styles/application.css").toExternalForm());
+            scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
             stage.setTitle(view.getWindowName());
             stage.setScene(scene);
             stage.show();                          
@@ -63,7 +63,7 @@ public class App extends Application {
     public static Game getGameState() {
         return state;
     }
-    
+
     /**
      * Get the current TTS
      * @return

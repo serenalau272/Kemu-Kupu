@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import com.models.Game;
 import com.util.Sounds;
-import com.App;
+import com.MainApp;
 import com.controllers.ApplicationController;
 import com.enums.Gamemode;
 import com.enums.View;
@@ -75,8 +75,8 @@ public class GameMode extends ApplicationController implements Initializable {
         }
 
         Game game = new Game(modeEnum);
-        App.setGameState(game);
-        App.setRoot(View.TOPIC);
+        MainApp.setGameState(game);
+        MainApp.setRoot(View.TOPIC);
     }
 
     //// Public Methods ////

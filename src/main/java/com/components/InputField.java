@@ -2,7 +2,7 @@ package com.components;
 
 import java.util.Random;
 
-import com.App;
+import com.MainApp;
 import com.controllers.views.Quiz;
 import com.enums.Status;
 import com.models.Word;
@@ -44,7 +44,7 @@ public class InputField extends TextField{
     public static void configureInputField(Word word, Quiz quiz, ImageView submit_button){
         submit = submit_button;
         controller = quiz;
-        root = App.getStackPane();
+        root = MainApp.getStackPane();
         submit.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> submit());
 
         reconfigureInputField(word);
