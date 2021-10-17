@@ -1,8 +1,9 @@
-package com.controllers;
+package com.controllers.fxmlComponents;
 
 import java.io.FileNotFoundException;
 
 import com.components.AvatarItem;
+import com.controllers.ApplicationController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

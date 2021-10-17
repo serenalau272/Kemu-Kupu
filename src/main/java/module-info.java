@@ -9,6 +9,7 @@ module com {
     opens com.components to javafx.fxml;
     opens com.controllers.modals to javafx.fxml;
     opens com.controllers.views to javafx.fxml;
+    opens com.controllers.fxmlComponents to javafx.fxml;
     opens com.util to javafx.fxml;
     opens com.enums to javafx.fxml;
     exports com;
@@ -16,6 +17,7 @@ module com {
     exports com.controllers;
     exports com.controllers.modals;
     exports com.controllers.views;
+    exports com.controllers.fxmlComponents;
     exports com.util;
     exports com.components;
     exports com.enums;

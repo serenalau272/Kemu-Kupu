@@ -10,8 +10,7 @@ public enum View {
     QUIZ,
     EXIT,
     RESULTS,
-    REWARD,
-    SHOP;
+    REWARD;
 
     public String getFileName() {
         switch (this) {
@@ -35,9 +34,6 @@ public enum View {
             }
             case REWARD: {
                 return "Reward";
-            }
-            case SHOP: {
-                return "Shop";
             }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
@@ -68,9 +64,6 @@ public enum View {
             }
             case REWARD: {
                 return "Kemu Kupu - Reward";
-            }
-            case SHOP: {
-                return "Kemu Kupu - Costume Shop";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");

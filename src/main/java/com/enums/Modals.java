@@ -6,6 +6,7 @@ public enum Modals {
     PAUSE,
     HELP,
     ACHIEVEMENT,
+    SHOP,
     PROFILE;
 
     public String getFileName() {
@@ -27,6 +28,9 @@ public enum Modals {
             }
             case ACHIEVEMENT: {
                 return "Achievement";
+            }
+            case SHOP: {
+                return "Shop";
             }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
@@ -54,6 +58,9 @@ public enum Modals {
             }
             case PROFILE: {
                 return "User Profile";
+            }
+            case SHOP: {
+                return "Kemu Kupu - Costume Shop";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");
