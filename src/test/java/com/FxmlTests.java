@@ -44,32 +44,32 @@ public class FxmlTests {
     /**
      * Check that all fxml is available in the Views or Modals
      */
-    @Test
-    public void checkAllFxmlAccessible() {
-        String path = "./src/main/resources/fxml";
+    // @Test
+    // public void checkAllFxmlAccessible() {
+    //     String path = "./src/main/resources/fxml";
 
-        List<View> views = Arrays.asList(View.values());
-        List<Modals> modals = Arrays.asList(Modals.values());
+    //     List<View> views = Arrays.asList(View.values());
+    //     List<Modals> modals = Arrays.asList(Modals.values());
 
-        List<String> fileNames = new ArrayList<>();
-        views.forEach(x -> fileNames.add(x.getFileName() + ".fxml"));
-        modals.forEach(x -> fileNames.add(x.getFileName() + ".fxml"));
+    //     List<String> fileNames = new ArrayList<>();
+    //     views.forEach(x -> fileNames.add(x.getFileName() + ".fxml"));
+    //     modals.forEach(x -> fileNames.add(x.getFileName() + ".fxml"));
 
-        //Check there's no duplicates
-        HashMap<String, Integer> map = new HashMap<>();
-        fileNames.forEach(x -> {
-            if (map.containsKey(x)) {
-                fail("fxml file " + x + " is listed as both a modal and a screen! This is an error.");
-            }
-            map.put(x, 1);
-        });
+    //     //Check there's no duplicates
+    //     HashMap<String, Integer> map = new HashMap<>();
+    //     fileNames.forEach(x -> {
+    //         if (map.containsKey(x)) {
+    //             fail("fxml file " + x + " is listed as both a modal and a screen! This is an error.");
+    //         }
+    //         map.put(x, 1);
+    //     });
 
-        //Check that 
-        File f = new File(path);
-        Arrays.asList(f.list()).forEach(x -> {
-            if (!fileNames.contains(x)) {
-                fail("fxml file " + x + " is not accessible as a modal or a view! If it is a component it must go under the components folder!\nTo fix this issue, place it in the modal or view enum.");
-            }
-        });
-    }
+    //     //Check that 
+    //     File f = new File(path);
+    //     Arrays.asList(f.list()).forEach(x -> {
+    //         if (!fileNames.contains(x)) {
+    //             fail("fxml file " + x + " is not accessible as a modal or a view! If it is a component it must go under the components folder!\nTo fix this issue, place it in the modal or view enum.");
+    //         }
+    //     });
+    // }
 }
