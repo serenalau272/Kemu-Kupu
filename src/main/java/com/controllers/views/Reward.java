@@ -115,11 +115,7 @@ public class Reward extends ApplicationController implements Initializable {
         newLabel.setVisible(false);
         this.game = MainApp.getGameState();
         
-        try {
-            setImage(MainApp.getUser().getSelectedAvatar().getName(), avatarButton);
-        } catch (FileNotFoundException e){
-            System.err.println("Unable to load avatar");
-        }
+        setAvatarImage(avatarButton);
         
         //Set event handlers
         menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
