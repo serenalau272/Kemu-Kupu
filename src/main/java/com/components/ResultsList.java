@@ -134,7 +134,7 @@ public class ResultsList extends TextField{
     }
 
     private static void addTile(int num){
-        Sounds.playSoundEffect("pop");
+        Sounds.playSoundEffect("drip");
         Node[] els = inputs[num];
 
         for (Node e: els){
