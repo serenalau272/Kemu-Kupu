@@ -3,6 +3,8 @@ module com {
     requires javafx.fxml;
     requires javafx.media;
     requires transitive javafx.graphics;
+    requires java.net.http;
+    requires com.google.gson;
     opens com to javafx.fxml;
     opens com.controllers to javafx.fxml;
     opens com.models to javafx.fxml;

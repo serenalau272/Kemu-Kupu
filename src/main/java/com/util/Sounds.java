@@ -1,6 +1,11 @@
 package com.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 import com.MainApp;
 import javafx.scene.media.Media;
@@ -13,8 +18,61 @@ import javafx.util.Duration;
 public class Sounds {    
     private static MediaPlayer musicPlayer;
 
+    /**
+     * Loads information from the underlying OS, acquiring the exact linux distribution we are running on.
+     * Modified from: https://stackoverflow.com/questions/15018474/getting-linux-distro-from-java
+     * 
+     * HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with javafx 8 This 
+     * is unlikely to be fixed in the future, and only updating to a newer version of javafx
+     * will fix it. This function is needed to fix this issue.
+     * 
+     * See https://github.com/javafxports/openjdk-jfx/issues/331 for more information.
+     * @return the distribution
+     */
+    private static String getOSInformation() {
+        //lists all the files ending with -release in the etc folder
+        File dir = new File("/etc/");
+        File fileList[] = new File[0];
+        if(dir.exists()){
+            fileList =  dir.listFiles(new FilenameFilter() {
+                public boolean accept(File dir, String filename) {
+                    return filename.endsWith("-release");
+                }
+            });
+        }
+        //looks for the version file (not all linux distros)
+        File fileVersion = new File("/proc/version");
+        if(fileVersion.exists()){
+            fileList = Arrays.copyOf(fileList,fileList.length+1);
+            fileList[fileList.length-1] = fileVersion;
+        }       
+        //prints all the version-related files
+        for (File f : fileList) {
+            try {
+                BufferedReader myReader = new BufferedReader(new FileReader(f));
+                String strLine = null;
+                while ((strLine = myReader.readLine()) != null) {
+                    if (strLine.contains("PRETTY_NAME=")) {
+                        return strLine.substring(12, strLine.length()-1).toLowerCase();
+                    }
+
+                }
+                myReader.close();
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
+        return "";
+    }
+
     public static void playMusic(String music) {
-        if (musicPlayer != null){
+        //HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with javafx 8 This 
+        //is unlikely to be fixed in the future, and only updating to a newer version of javafx
+        //will fix it.
+        //See https://github.com/javafxports/openjdk-jfx/issues/331 for more information.
+        if (getOSInformation().contains("ubuntu")) return; 
+
+        if (musicPlayer != null) {
             musicPlayer.stop();
         }
         
