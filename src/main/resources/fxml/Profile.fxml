@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -48,7 +49,7 @@
             <Image url="@../assets/Profile/Nickname_.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="39.0" fitWidth="147.0" layoutX="116.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="39.0" fitWidth="147.0" layoutX="116.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Profile/Username_.png" />
          </image>
@@ -103,7 +104,7 @@
             <Image url="@../assets/Profile/star.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="editNickname" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="editNickname" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Profile/edit.png" />
          </image>
@@ -113,7 +114,7 @@
             <Image url="@../assets/Avatars/chef.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="editUsername" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="editUsername" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Profile/edit.png" />
          </image>
@@ -134,5 +135,7 @@
             <Font size="46.0" />
          </font>
       </Label>
+      <TextField fx:id="nicknameInput" layoutX="126.0" layoutY="339.0" prefHeight="41.0" prefWidth="198.0" />
+      <TextField fx:id="usernameInput" layoutX="126.0" layoutY="437.0" prefHeight="41.0" prefWidth="198.0" />
     </children>
 </AnchorPane>

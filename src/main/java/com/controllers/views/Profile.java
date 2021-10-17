@@ -13,7 +13,10 @@ import com.util.Sounds;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -34,19 +37,10 @@ public class Profile extends ApplicationController implements Initializable {
     @FXML Label starLabel;
     @FXML Label achievementsLabel;
     @FXML Label scoreLabel;
+    @FXML TextField usernameInput;
+    @FXML TextField nicknameInput;
 
-
-    //// Private Methods ////
-
-    private void updateHighScore() {
-        // try {
-        //     // int highScore = Game.getHighScore();     //TODO: are we getting from both???
-        //     //@TODO
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
-    }
-    //// Public Methods ////
+    
 
     private void configureStaticEntries(){
         nameLabel.setText("Hello " + currentUser.getNickname()+"!");
@@ -56,16 +50,46 @@ public class Profile extends ApplicationController implements Initializable {
 
     private void configureDynamicEntries(){
         scoreLabel.setText(Integer.toString(currentUser.getHighScore()));
+        nicknameInput.setText(currentUser.getNickname());
+        usernameInput.setText(currentUser.getUsername());
+        nicknameInput.setEditable(false);
+        usernameInput.setEditable(false);
     }
+
+    private void addHandlers(ImageView editBtn, TextField input){
+        editBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            input.setEditable(true);
+            input.setStyle("-fx-background-color: orange;");
+            input.requestFocus();
+            input.positionCaret(input.getText().length());
+        });
+
+        input.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER){
+                if (!usernameInput.getText().equals("")){
+                    currentUser.setUsername(usernameInput.getText());
+                }
+                if (!nicknameInput.getText().equals("")){
+                    currentUser.setNickname(nicknameInput.getText());
+                }
+                usernameInput.setStyle("-fx-background-color: blue;");
+                nicknameInput.setStyle("-fx-background-color: blue;");
+                configureDynamicEntries();
+            } 
+        });
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
-        updateHighScore();
         currentUser = MainApp.getUser();
         
+        nicknameInput.setFocusTraversable(false);
+        usernameInput.setFocusTraversable(false);
         configureStaticEntries();
         configureDynamicEntries();
+
         //Set event handlers
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -75,10 +99,19 @@ public class Profile extends ApplicationController implements Initializable {
             MainApp.setRoot(View.MENU);
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            //TODO: are we still using hidden for high score???
             Sounds.playSoundEffect("pop");
             currentUser.setHighScore(0);
             configureDynamicEntries();
         });
+
+        this.passwordButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            //TODO: IDEK HOW THIS GONNA WORK
+            Sounds.playSoundEffect("pop");
+        });
+
+        addHandlers(editNickname, nicknameInput);
+        addHandlers(editUsername, usernameInput);
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
         this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.SHOP));

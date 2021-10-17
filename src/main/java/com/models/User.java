@@ -147,7 +147,7 @@ public class User {
     private final String apiPath = "https://kemukupu.com/api/v1";
     // private final String apiPath = "http://127.0.0.1:8000/api/v1";
     private String JWTToken;
-    private String name;
+    private String username;
     private Integer id;
     private Avatar selectedAvatar = Avatar.DEFAULT;
     private HashSet<Avatar> unlockedAvatars = new HashSet<>() { { add(Avatar.DEFAULT); } };
@@ -284,7 +284,7 @@ public class User {
     }
 
     public User() {
-        this.name = "";
+        this.username = "";
         this.totalStars = 24;
         this.highScore = 70;
         this.nickname = "George";
@@ -292,16 +292,16 @@ public class User {
 
     /**
      * Create a new user with the api, and log them in automatically.
-     * @param name the username
+     * @param username the username
      * @param password the password to signup with
      * @throws Exception if unable to complete the request
      */
-    public String signup(String name, String password) throws Exception {
-        String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\"}";
+    public String signup(String username, String password) throws Exception {
+        String body = "{\"usr\":\"" + username + "\",\"pwd\":\"" + password + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/create", body);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here.
-            this.name = name;
+            this.username = username;
             this.JWTToken = res.loadJsonData();
             //Load user data
             this.__loadData();
@@ -312,16 +312,16 @@ public class User {
 
     /**
      * Login a user to the api
-     * @param name the username of the account
+     * @param username the username of the account
      * @param password the password of the account
      * @throws IOException if unable to complete the request
      */
-    public String login(String name, String password) throws IOException {
-        String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\"}";
+    public String login(String username, String password) throws IOException {
+        String body = "{\"usr\":\"" + username + "\",\"pwd\":\"" + password + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/login", body);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here.
-            this.name = name;
+            this.username = username;
             this.JWTToken = res.loadJsonData();
             //Load user data
             this.__loadData();
@@ -369,6 +369,10 @@ public class User {
 
     public String getNickname(){
         return nickname;
+    }
+
+    public String getUsername(){
+        return username;
     }
 
     /**
@@ -432,6 +436,16 @@ public class User {
 
     public void changeStarCount(int delta){
         this.totalStars += delta;
+        //TODO: link to backend
+    }
+
+    public void setUsername(String name){
+        this.username = name;
+        //TODO: link to backend
+    }
+
+    public void setNickname(String name){
+        this.nickname = name;
         //TODO: link to backend
     }
 }
