@@ -22,24 +22,24 @@ public class FxmlTests {
     /**
      * This test checks that the fxml version is correct for all fxml files in the game.
     */
-    // @Test
-    // public void checkFxmlVersion11() {
-    //     String path = "./src/main/resources/fxml/";
-    //     File f = new File(path);
-    //     Arrays.asList(f.list()).forEach(x -> {
-    //         try {
-    //             String content = Files.readString(Paths.get(path, x), StandardCharsets.UTF_8);
-    //             if (content.contains("http://javafx.com/javafx/16")) {
-    //                 fail("fxml file " + x + " is set to version 16, please change it to version 11!");
-    //             }
-    //             if (!content.contains("http://javafx.com/javafx/11")) {
-    //                 fail("fxml file " + x + " is not set to version 11!");
-    //             }
-    //         } catch (IOException e) {
-    //             fail("Failed to read fxml file at " + path + "/" + x + "\nError " + e.toString());
-    //         }
-    //     });
-    // }
+    @Test
+    public void checkFxmlVersion11() {
+        String path = "./src/main/resources/fxml/";
+        File f = new File(path);
+        Arrays.asList(f.list()).forEach(x -> {
+            try {
+                String content = Files.readString(Paths.get(path, x), StandardCharsets.UTF_8);
+                if (content.contains("http://javafx.com/javafx/16")) {
+                    fail("fxml file " + x + " is set to version 16, please change it to version 11!");
+                }
+                if (!content.contains("http://javafx.com/javafx/11")) {
+                    fail("fxml file " + x + " is not set to version 11!");
+                }
+            } catch (IOException e) {
+                fail("Failed to read fxml file at " + path + "/" + x + "\nError " + e.toString());
+            }
+        });
+    }
     
     /**
      * Check that all fxml is available in the Views or Modals

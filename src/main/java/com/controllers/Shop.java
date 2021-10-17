@@ -69,7 +69,6 @@ public class Shop extends ApplicationController implements Initializable {
     private void setChosenAvatar(Node clickedAvatarName) {
         setTextYellow(clickedAvatarName);
         String avatarName = ((Label) clickedAvatarName).getText().replace(" Bee", "");
-        System.out.println(avatarName);
 
         try {
             setImage(avatarName, userAvatar);
@@ -93,7 +92,6 @@ public class Shop extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("hi");
         super.initialize();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.close());  
