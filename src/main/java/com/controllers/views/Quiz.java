@@ -1,6 +1,9 @@
 package com.controllers.views;
 
 import java.net.URL;
+import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
@@ -13,6 +16,7 @@ import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
 import com.controllers.ApplicationController;
+import com.enums.Avatar;
 import com.enums.Gamemode;
 import com.enums.Language;
 import com.enums.Modals;
@@ -27,10 +31,25 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
 
 public class Quiz extends ApplicationController implements Initializable {
-    private String[] correctMessages = { "Good Job! You're doing great!", "Ka mau te wehi!",
+    private final String[] correctMessages = { "Good Job! You're doing great!", "Ka mau te wehi!",
             "Superb! You're a spelling superstar!", "Bzzzz... Spelling Bee here!", "Do the mahi! Get the treats!" };
-    private String[] incorrectMessages = { "No sweat! Practice makes progress!",
+    private final String[] incorrectMessages = { "No sweat! Practice makes progress!",
             "You've got this! Try again next time!", "Third times the charm!" };
+
+    private final String[][] speech = {
+        {"Agile and accurate. You’ll be a ninja in no time!", "All good! Let’s jump back into it!"},
+        {"Arrrr. Attit ma boi!", "When the waves get tough, we sail right through them!"},
+        {"You’re cooking up a storm!", "When you’ve split your mayo, you leave it and start afresh!"},
+        {"Keep on sparkling!", "A little pixie dust might just do the trick"},
+        {"With spelling like that, you’re fit for royalty!", "A few small mistakes? Let it go!"},
+        {"Wowzers! Your spelling is out of this world!", "No sweat. I still make mistakes - and I have 3 eyes!"},
+        {"Now that’s what I call magic!", "Don’t worry, sometimes it takes a while for the magic to appear ;)"},
+        {"That’s an A++ from me :)", "Embrace uncertainty, and use it to flourish your creativity."},
+        {"I cast spells. You can spell. We’re a perfect fit :)", "Fear not, spell-ing is what I do. We got this!"}
+    };
+
+    private Map<Avatar, String[]> speechAvatars = new HashMap<Avatar, String[]>();
+
 
     private Game game;
     Quiz controller;
@@ -72,6 +91,12 @@ public class Quiz extends ApplicationController implements Initializable {
     private ImageView score;
     @FXML
     private ImageView practiceSign;
+    @FXML
+    private ImageView avatar;
+    @FXML
+    private Label avatarMessage;
+    @FXML
+    private ImageView speechBubble;
 
     // macron buttons
     @FXML
@@ -88,6 +113,20 @@ public class Quiz extends ApplicationController implements Initializable {
     private ImageView uButton;
 
     //// Helper Functions ////
+
+    private void populateMessages(){
+        speechAvatars.put(Avatar.DEFAULT, null);
+        speechAvatars.put(Avatar.NINJA, speech[0]);
+        speechAvatars.put(Avatar.SAILOR, speech[1]);
+        speechAvatars.put(Avatar.CHEF, speech[2]);
+        speechAvatars.put(Avatar.FAIRY, speech[3]);
+        speechAvatars.put(Avatar.QUEEN, speech[4]);
+        speechAvatars.put(Avatar.ALIEN, speech[5]);
+        speechAvatars.put(Avatar.MAGICIAN, speech[6]);
+        speechAvatars.put(Avatar.PROFESSOR, speech[7]);
+        speechAvatars.put(Avatar.WIZARD, speech[8]);
+    }
+
     /**
      * Loads the next word for a user ot be tested on, simplifying the code
      * elsewhere. Functions: - Loads the next word, and relevant labels - If no
@@ -143,6 +182,8 @@ public class Quiz extends ApplicationController implements Initializable {
      * shows appropriate ImageViews when awaiting response
      */
     private void showElementsForInput() {
+        avatarMessage.setText("");
+
         // show elements
         submitButton.setVisible(true);
         skipButton.setVisible(true);
@@ -155,6 +196,7 @@ public class Quiz extends ApplicationController implements Initializable {
         continueLabel.setVisible(false);
         messageLabel.setVisible(false);
         score.setVisible(false);
+        speechBubble.setVisible(false);
     }
 
     private void setMacronVisibility(boolean isVisible) {
@@ -203,10 +245,14 @@ public class Quiz extends ApplicationController implements Initializable {
             case FAILED:
                 String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
                 messageLabel.setText(incorrectMsg);
+                avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[1]);
+                speechBubble.setVisible(true);
                 break;
             case MASTERED:
                 String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
+                avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[0]);
                 messageLabel.setText(correctMsg);
+                speechBubble.setVisible(true);
                 break;
             default:
                 messageLabel.setText("");
@@ -365,12 +411,17 @@ public class Quiz extends ApplicationController implements Initializable {
         timer.start();
         Sounds.playSoundEffect("pop");
         InputField.configureInputField(game.getWord(), controller, submitButton);
+
+        populateMessages();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Inital setup & loading of data
         super.initialize();
+
+        setAvatarImage(avatar);
+        avatarMessage.setWrapText(true);
 
         this.game = MainApp.getGameState();
         game.setWordIndex(0);
