@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "Poppins";
+    src: url("./fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Poor Story";
+    src: url("./fonts/PoorStory-Regular.ttf");
+}
+
 .text-field {
     -fx-background-color: #9FE8DC;
     -fx-background-radius: 5px;
@@ -8,6 +18,8 @@
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
     -fx-alignment: center;
+    /* -fx-font-family: 'Poppins'; */
+    -fx-font-family: 'Poor Story';
 
 }
 
