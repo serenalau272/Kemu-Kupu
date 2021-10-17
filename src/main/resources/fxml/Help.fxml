@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Help">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Help">
     <children>
       <!-- Static Images -->
       <ImageView fitHeight="519.0" fitWidth="623.0" layoutX="293.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
@@ -12,14 +12,14 @@
             <Image url="@../assets/OtherModals/Group%2063.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitButton" fitHeight="82.0" fitWidth="68.0" layoutX="1101.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/settings/back.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="attributionsButton" fitHeight="86.0" fitWidth="119.0" layoutX="784.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/attribution/personIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitButton" fitHeight="74.0" fitWidth="72.0" layoutX="1084.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
     </children>
