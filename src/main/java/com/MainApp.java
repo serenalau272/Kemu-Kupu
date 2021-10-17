@@ -144,15 +144,17 @@ public class MainApp extends Application {
         }
     }
 
-    
+    public static void setUser(){
+        user = new User();
+    }
 
     @Override
     public void start(Stage s) {
 
         //temp
-        User usr = new User();
+        setUser();
         try {
-            usr.login("joebloggs123", "joebloggs");
+            // user.login("joebloggs123", "joebloggs");
         } catch (Exception e) {
             e.printStackTrace();
         }

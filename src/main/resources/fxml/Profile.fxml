@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Profile">
     <children>
@@ -118,5 +119,20 @@
          </image>
       </ImageView>
       <Label fx:id="nameLabel" alignment="CENTER" layoutX="335.0" prefHeight="167.0" prefWidth="554.0" styleClass="heading-style" stylesheets="@../styles/application.css" text="Hello Henry!" />
+      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="478.0" layoutY="316.0" prefHeight="97.0" prefWidth="248.0" text="80" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="starLabel" alignment="CENTER" layoutX="886.0" layoutY="517.0" prefHeight="97.0" prefWidth="248.0" text="10" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="achievementsLabel" alignment="CENTER" layoutX="513.0" layoutY="509.0" prefHeight="97.0" prefWidth="248.0" text="5/18" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

@@ -285,8 +285,9 @@ public class User {
 
     public User() {
         this.name = "";
-        this.totalStars = 0;
-        this.highScore = 0;
+        this.totalStars = 24;
+        this.highScore = 70;
+        this.nickname = "George";
     }
 
     /**
@@ -366,6 +367,10 @@ public class User {
         return selectedAvatar;
     }
 
+    public String getNickname(){
+        return nickname;
+    }
+
     /**
      * Request the api to unlock a costume for this user
      * @param avatar the avatar the user wishes to attempt to unlock
@@ -406,5 +411,27 @@ public class User {
      */
     public Integer getNumGamesPlayed() {
         return this.numGamesPlayed;
+    }
+
+    public Integer getNumStars(){
+        return this.totalStars;
+    }
+
+    public Integer getNumAchievements(){
+        return this.procuredAchievements.size();
+    }
+
+    public Integer getHighScore(){
+        return this.highScore;
+    }
+
+    public void setHighScore(int score){
+        this.highScore = score;
+        //TODO: link to backend
+    }
+
+    public void changeStarCount(int delta){
+        this.totalStars += delta;
+        //TODO: link to backend
     }
 }

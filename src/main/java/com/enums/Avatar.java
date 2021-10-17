@@ -19,7 +19,7 @@ public enum Avatar {
      */
     public static Avatar fromString(String s) {
         switch (s.strip().toLowerCase()) {
-            case "default":
+            case "B":
                 return DEFAULT;
             case "sailor":
                 return SAILOR;
