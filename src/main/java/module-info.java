@@ -17,4 +17,5 @@ module com {
     exports com.util;
     exports com.components;
     exports com.enums;
+    exports com.components.animations;
 }
