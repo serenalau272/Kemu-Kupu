@@ -103,7 +103,7 @@ public class Shop extends ApplicationController implements Initializable {
         try {
             for (int i=0; i<avatars.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(MainApp.class.getResource("/fxml/shopAvatar.fxml"));
+                fxmlLoader.setLocation(MainApp.class.getResource("/fxmlComponents/shopAvatar.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 anchorPane.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> setChosenAvatar(anchorPane.getChildren().get(1)));
                 ShopAvatar shopAvatarController = fxmlLoader.getController();
