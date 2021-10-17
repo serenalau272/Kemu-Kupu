@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Shop">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Shop">
     <children>
       <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -65,7 +65,7 @@
             </ScrollPane>
          </children>
       </HBox>
-      <ImageView fx:id="exitButton" fitHeight="74.0" fitWidth="72.0" layoutX="1088.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backButton" fitHeight="74.0" fitWidth="72.0" layoutX="1088.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/back.png" />
          </image>
