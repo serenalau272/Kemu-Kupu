@@ -1,7 +1,6 @@
 package com.controllers.views;
 
 import java.net.URL;
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -54,7 +53,6 @@ public class Quiz extends ApplicationController implements Initializable {
     private Game game;
     Quiz controller;
 
-    private boolean awaitingInput = true;
     Clock timer;
 
     @FXML
@@ -150,9 +148,9 @@ public class Quiz extends ApplicationController implements Initializable {
      * shows appropriate ImageViews based upon whether one is awaiting a response
      */
     private void toggleLabels() {
-        awaitingInput = !awaitingInput;
+        game.setAwaitingInput(!game.isAwaitingInput());
 
-        if (awaitingInput) {
+        if (game.isAwaitingInput()) {
             showElementsForInput();
         } else {
             showElementsForResponse();
@@ -382,12 +380,11 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     public void onEnter(Word input, boolean isInputEmpty) {
-        if (awaitingInput) {
+        if (game.isAwaitingInput()) {
             checkInput(input, isInputEmpty);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
             InputField.setEditability(true);
             InputField.reconfigureInputField(this.game.getWord());
-            ;
 
             onEnterContinue();
         }

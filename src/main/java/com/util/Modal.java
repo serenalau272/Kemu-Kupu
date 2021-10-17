@@ -52,6 +52,7 @@ public class Modal {
         MainApp.getStackPane().getChildren().remove(size-1);
         removeBlur();
         disableScreenNodes(false);
+
         if (MainApp.getBaseView() == View.QUIZ) {
             clock.resume();
             InputField.recursor();

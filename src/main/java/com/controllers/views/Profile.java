@@ -1,14 +1,10 @@
 package com.controllers.views;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.controllers.ApplicationController;
-import com.controllers.ModalController;
 import com.enums.View;
 import com.models.Game;
 import com.util.Sounds;

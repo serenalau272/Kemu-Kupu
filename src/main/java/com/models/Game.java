@@ -19,6 +19,7 @@ public class Game {
     private List<Word> words;
     private SpellingTopic topic;
     private int wordIndex = 0;
+    private boolean awaitingInput = true;
     public Node inputField;
 
     /**
@@ -30,6 +31,14 @@ public class Game {
 
     public Game(Gamemode mode) throws IOException {
         this.gamemode = mode;
+    }
+
+    public void setAwaitingInput(boolean value){
+        this.awaitingInput = value;
+    }
+
+    public boolean isAwaitingInput(){
+        return awaitingInput;
     }
 
     /**

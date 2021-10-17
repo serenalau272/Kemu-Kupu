@@ -1,7 +1,6 @@
 package com.controllers.views;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -12,9 +11,7 @@ import java.util.ResourceBundle;
 import com.MainApp;
 import com.components.animations.OscillatingComponent;
 import com.controllers.ApplicationController;
-import com.enums.Language;
 import com.enums.View;
-import com.models.Word;
 import com.util.Sounds;
 import com.models.Game;
 
