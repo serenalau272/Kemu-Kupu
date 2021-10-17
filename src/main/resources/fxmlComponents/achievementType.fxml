@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="349.0" maxWidth="930.0" minHeight="200.0" minWidth="168.0" prefHeight="250.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.fxmlComponents.AchievementType">
+    <children>
+      <ImageView fx:id="avatar" fitHeight="45.0" fitWidth="879.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Achievements/titleBackground.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="typeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="23.0" prefHeight="36.0" prefWidth="879.0" text="Big Explorer" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <stylesheets>
+            <URL value="@../styles/application.css" />
+            <URL value="@../styles/achievements.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="type-label" />
+         </styleClass>
+      </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="64.0" prefHeight="182.0" prefWidth="879.0" styleClass="hbox-circles" stylesheets="@../styles/achievements.css">
+         <children>
+            <ImageView fx:id="level1" fitHeight="159.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/Achievements/Badges/empty.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="level2" fitHeight="159.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/Achievements/Badges/empty.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="level3" fitHeight="167.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/Achievements/Badges/empty.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="level4" fitHeight="167.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/Achievements/Badges/empty.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="level5" fitHeight="167.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/Achievements/Badges/empty.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="26.0" layoutY="79.0" prefHeight="151.0" prefWidth="879.0" styleClass="hbox-labels" stylesheets="@../styles/achievements.css">
+         <children>
+            <Label fx:id="label1" prefHeight="118.0" prefWidth="116.0" textAlignment="CENTER" wrapText="true">
+               <stylesheets>
+                  <URL value="@../styles/application.css" />
+                  <URL value="@../styles/achievements.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="poor-story-text" />
+                  <String fx:value="not-achieved-text" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label2" prefHeight="118.0" prefWidth="116.0" textAlignment="CENTER" wrapText="true">
+               <stylesheets>
+                  <URL value="@../styles/application.css" />
+                  <URL value="@../styles/achievements.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="poor-story-text" />
+                  <String fx:value="not-achieved-text" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label3" prefHeight="118.0" prefWidth="116.0" textAlignment="CENTER" wrapText="true">
+               <stylesheets>
+                  <URL value="@../styles/application.css" />
+                  <URL value="@../styles/achievements.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="poor-story-text" />
+                  <String fx:value="not-achieved-text" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label4" prefHeight="118.0" prefWidth="116.0" textAlignment="CENTER" wrapText="true">
+               <stylesheets>
+                  <URL value="@../styles/application.css" />
+                  <URL value="@../styles/achievements.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="poor-story-text" />
+                  <String fx:value="not-achieved-text" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label5" prefHeight="118.0" prefWidth="116.0" textAlignment="CENTER" wrapText="true">
+               <stylesheets>
+                  <URL value="@../styles/application.css" />
+                  <URL value="@../styles/achievements.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="poor-story-text" />
+                  <String fx:value="not-achieved-text" />
+               </styleClass>
+            </Label>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

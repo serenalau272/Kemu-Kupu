@@ -37,3 +37,13 @@
 .text-field:focused {
     -fx-border-color: #5F7E79;
 }
+
+.transparent{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.poor-story-text .text {
+    -fx-font-family: 'Poor Story';
+    -fx-fill: #FFFFFF;
+}
