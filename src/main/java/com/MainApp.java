@@ -24,6 +24,7 @@ public class MainApp extends Application {
     private static User user;
     private static Setting setting;
     private static TTS tts;
+    private static long lastSpun;
 
     //// Private (helper) methods ////
     /**
@@ -159,7 +160,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         
-
+        lastSpun = System.currentTimeMillis() - 150_000;   //2 minutes = 60 * 2 * 1000 = 120 000
 
         stage = s;
         setting = new Setting();
@@ -173,6 +174,17 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         setRoot(View.MENU);
+    }
+
+    public static boolean canSpin(){
+        long timeNow = System.currentTimeMillis();
+        if (timeNow - lastSpun >= 120_000){
+            //spin
+            lastSpun = timeNow;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

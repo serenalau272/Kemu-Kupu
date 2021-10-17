@@ -23,7 +23,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.fxml.Initializable;
 
@@ -31,6 +30,8 @@ import javafx.fxml.Initializable;
  * This class is the controller for the achievements modal.
  */
 public class Achievements extends ApplicationController implements Initializable {
+    User currentUser;
+
     @FXML Label numLabel;
     @FXML ImageView backButton;
     @FXML ScrollPane scroll;
@@ -113,6 +114,9 @@ public class Achievements extends ApplicationController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
+        currentUser = MainApp.getUser();
+
+        numLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/18");
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));
 
