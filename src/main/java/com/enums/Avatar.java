@@ -52,7 +52,7 @@ public enum Avatar {
     public String toString() {
         switch (this) {
             case DEFAULT:
-                return "default";
+                return "B";
             case SAILOR:
                 return "sailor";
             case MAGICIAN:

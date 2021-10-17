@@ -105,7 +105,7 @@ public class ApplicationController {
 
     protected void setAvatarImage(ImageView view){
         try {
-            setImage(MainApp.getUser().getSelectedAvatar().getName(), view);
+            setImage(MainApp.getUser().getSelectedAvatar().toString(), view);
         } catch (FileNotFoundException e){
             System.err.println("Unable to load avatar");
         }

@@ -13,11 +13,11 @@ public class AvatarItem {
 
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
-        this.imgName = avatar.getName();
+        this.imgName = avatar.toString();
         if (imgName.equals("B")) {
             this.name = imgName;
         } else {
-            this.name = avatar.getName() + " Bee";
+            this.name = avatar.toString() + " Bee";
         }
     }
 
