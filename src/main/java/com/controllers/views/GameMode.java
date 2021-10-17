@@ -22,6 +22,7 @@ public class GameMode extends ApplicationController implements Initializable {
 
     @FXML private ImageView practice;
     @FXML private ImageView ranked;
+    @FXML private ImageView backButton;
 
     //// Private Methods ////
 
@@ -85,5 +86,7 @@ public class GameMode extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         intialiseMode(practice);
         intialiseMode(ranked);
+
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
     }
 }

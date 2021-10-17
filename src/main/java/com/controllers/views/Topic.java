@@ -32,6 +32,7 @@ public class Topic extends ApplicationController implements Initializable {
     @FXML private ImageView weatherButton;
     @FXML private ImageView workButton;
     @FXML private ImageView feelingsButton;
+    @FXML private ImageView backButton;
     //// Private Methods ////
 
     private void __initialiseSelectableTopic(ImageView id){
@@ -78,5 +79,7 @@ public class Topic extends ApplicationController implements Initializable {
         __initialiseSelectableTopic(weatherButton);
         __initialiseSelectableTopic(workButton);
         __initialiseSelectableTopic(feelingsButton);
+
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.GAMEMODE));
     }
 }

@@ -2,15 +2,17 @@ package com.controllers.modals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.components.AvatarItem;
 import com.controllers.ModalController;
 import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
+import com.enums.View;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,7 @@ import javafx.scene.layout.GridPane;
  * This class is the controller for the costume shop.
  */
 public class Shop extends ModalController {
+    @FXML private ImageView backButton;
     @FXML private ImageView buyButton;
     @FXML private ImageView userAvatar;
     @FXML private ImageView avatarPrice;
