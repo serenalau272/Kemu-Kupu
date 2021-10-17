@@ -1,0 +1,8 @@
+.transparent{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.tableBackground {
+    -fx-background-color: rgba(70, 70, 70, 0.68);
+    -fx-border-radius: 100px;
+}
