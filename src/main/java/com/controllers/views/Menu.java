@@ -30,7 +30,7 @@ public class Menu extends ApplicationController implements Initializable {
     @FXML
     private ImageView exitGameButton;
     @FXML
-    private ImageView enterTopicSelectButton;
+    private ImageView playButton;
     @FXML
     private ImageView settingsButton;
     @FXML
@@ -86,7 +86,7 @@ public class Menu extends ApplicationController implements Initializable {
         animated[1] = settingsButton;
         animated[2] = profileButton;
 
-        menuAnimation = new OscillatingComponent(enterTopicSelectButton).getAnimator();
+        menuAnimation = new OscillatingComponent(playButton).getAnimator();
         menuAnimation.play();
     }
 
@@ -139,7 +139,7 @@ public class Menu extends ApplicationController implements Initializable {
             Modal.showModal(Modals.HELP);
         });
 
-        enterTopicSelectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        playButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             onAnimateOut(Duration.millis(100), 120);
             event.consume();
         });

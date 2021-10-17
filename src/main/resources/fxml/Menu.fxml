@@ -27,7 +27,7 @@
             <Image url="@../assets/EXIT.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="enterTopicSelectButton" fitHeight="146.0" fitWidth="249.0" layoutX="477.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="playButton" fitHeight="146.0" fitWidth="249.0" layoutX="477.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/MENU_PLAY.png" />
          </image>
