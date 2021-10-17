@@ -1,0 +1,43 @@
+.number-label .text {
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 4px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 50px;
+}
+
+.not-achieved-text .text{
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 0.5px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 25px;
+}
+
+.achieved-text .text{
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1.7px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 25px;
+}
+
+.type-label .text {
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 0.8px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 35px;
+}
+
+.hbox-circles {
+    -fx-spacing: 27px;
+}
+
+.hbox-labels {
+    -fx-spacing: 66px;
+}

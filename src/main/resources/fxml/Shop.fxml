@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Shop">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Shop">
     <children>
       <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -52,11 +52,11 @@
             <Image url="@../assets/Avatars/B.png" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER" layoutX="563.0" layoutY="192.0" prefHeight="482.0" prefWidth="570.0" styleClass="transparent" stylesheets="@../styles/costumeShop.css">
+      <HBox alignment="CENTER" layoutX="563.0" layoutY="192.0" prefHeight="482.0" prefWidth="570.0" styleClass="transparent">
          <children>
-            <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="482.0" prefWidth="577.0" styleClass="transparent" stylesheets="@../styles/costumeShop.css">
+            <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="482.0" prefWidth="577.0" styleClass="transparent" stylesheets="@../styles/application.css">
                <content>
-                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="0.0" prefWidth="25.0" styleClass="transparent" stylesheets="@../styles/costumeShop.css">
+                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="0.0" prefWidth="25.0" styleClass="transparent" stylesheets="@../styles/application.css">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                      </rowConstraints>
