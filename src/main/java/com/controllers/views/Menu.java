@@ -130,7 +130,11 @@ public class Menu extends ApplicationController implements Initializable {
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
+<<<<<<< HEAD
             MainApp.setRoot(View.PROFILE);
+=======
+            Modal.showModal(Modals.SHOP);
+>>>>>>> a21114531d1ff5eb85612c38456248976e166f5f
             
         });
 

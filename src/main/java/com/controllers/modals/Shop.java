@@ -1,20 +1,19 @@
-package com.controllers;
+package com.controllers.modals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.components.AvatarItem;
+import com.controllers.ModalController;
+import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
-import com.enums.View;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -27,9 +26,7 @@ import javafx.scene.layout.GridPane;
 /**
  * This class is the controller for the costume shop.
  */
-public class Shop extends ApplicationController implements Initializable {
-
-    @FXML private ImageView backButton;
+public class Shop extends ModalController {
     @FXML private ImageView buyButton;
     @FXML private ImageView userAvatar;
     @FXML private ImageView avatarPrice;
@@ -86,11 +83,16 @@ public class Shop extends ApplicationController implements Initializable {
     }
 
     @Override
+<<<<<<< HEAD:src/main/java/com/controllers/Shop.java
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));  
 
+=======
+    public void initializeModal() {
+        super.initializeModal();
+>>>>>>> a21114531d1ff5eb85612c38456248976e166f5f:src/main/java/com/controllers/modals/Shop.java
         avatars.addAll(getData());
 
         int column = 0;
