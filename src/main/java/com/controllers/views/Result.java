@@ -1,11 +1,11 @@
-package com.controllers;
+package com.controllers.views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
 import com.MainApp;
 import com.components.ResultsList;
+import com.controllers.ApplicationController;
 import com.enums.View;
 import com.util.Sounds;
 

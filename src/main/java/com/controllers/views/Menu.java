@@ -1,15 +1,16 @@
-package com.controllers;
+package com.controllers.views;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
 import com.MainApp;
 import com.components.animations.OscillatingComponent;
 import com.components.animations.SlideComponentHorizontal;
+import com.controllers.ApplicationController;
 import com.enums.Modals;
 import com.enums.View;
+import com.util.Modal;
 import com.util.Sounds;
 
 import javafx.scene.input.MouseEvent;
@@ -129,13 +130,13 @@ public class Menu extends ApplicationController implements Initializable {
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.showModal(Modals.PROFILE);
+            Modal.showModal(Modals.PROFILE);
             
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
-            MainApp.showModal(Modals.HELP);
+            Modal.showModal(Modals.HELP);
         });
 
         enterTopicSelectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

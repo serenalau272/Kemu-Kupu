@@ -1,4 +1,4 @@
-package com.controllers;
+package com.controllers.views;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,8 +7,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.ApplicationController;
 import com.MainApp;
+import com.controllers.ApplicationController;
 import com.enums.Language;
 import com.enums.View;
 import com.models.Word;
@@ -112,7 +112,7 @@ public class Reward extends ApplicationController implements Initializable {
         againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.GAMEMODE));
         potButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
-                MainApp.tts.readWord(new Word("Ka Pai", null), 1, Language.MAORI);
+                MainApp.getTTS().readWord(new Word("Ka Pai", null), 1, Language.MAORI);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

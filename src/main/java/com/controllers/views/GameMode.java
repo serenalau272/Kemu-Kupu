@@ -1,4 +1,4 @@
-package com.controllers;
+package com.controllers.views;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import com.models.Game;
 import com.util.Sounds;
-import com.ApplicationController;
 import com.MainApp;
+import com.controllers.ApplicationController;
 import com.enums.Gamemode;
 import com.enums.View;
 

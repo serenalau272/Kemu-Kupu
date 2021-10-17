@@ -1,17 +1,18 @@
-package com.controllers;
+package com.controllers.views;
 
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
 
-import com.ApplicationController;
 import com.models.Game;
 import com.models.Word;
+import com.util.Modal;
 import com.util.Sounds;
 import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
+import com.controllers.ApplicationController;
 import com.enums.Gamemode;
 import com.enums.Language;
 import com.enums.Modals;
@@ -233,7 +234,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // null pointer check isn't needed (or out of bounds check).
         try {
 
-            MainApp.tts.readWord(this.game.getWord(), repeats, Language.MAORI);
+            MainApp.getTTS().readWord(this.game.getWord(), repeats, Language.MAORI);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -327,11 +328,11 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     public void pauseClick() {
-        MainApp.showModal(Modals.PAUSE);
+        Modal.showModal(Modals.PAUSE);
     }
 
     public void helpClick() {
-        MainApp.showModal(Modals.HELP);
+        Modal.showModal(Modals.HELP);
     }
 
     public void onEnter(Word input, boolean isInputEmpty) {
@@ -378,7 +379,8 @@ public class Quiz extends ApplicationController implements Initializable {
         this.__updateWordIndexBanner();
         // configure timer
         timer = new Clock(arc, timerLabel);
-        MainApp.clock = timer;
+        Modal.setClock(timer);
+
         controller = this;
 
         settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

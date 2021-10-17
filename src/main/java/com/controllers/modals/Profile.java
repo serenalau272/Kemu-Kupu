@@ -1,43 +1,29 @@
-package com.controllers;
+package com.controllers.modals;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import com.ApplicationController;
-import com.MainApp;
+import com.controllers.ModalController;
 import com.models.Game;
 import com.util.Sounds;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
  * This class is the controller for the settings modal.
  */
-public class Profile extends ApplicationController implements Initializable {
-    private int highScore;
-
+public class Profile extends ModalController {
     @FXML ImageView resetButton;
-    @FXML ImageView exitButton;
     @FXML ImageView highScoreLabel;
 
     //// Private Methods ////
 
-    /**
-     * Close this modal
-     */
-    private void __close() {
-        MainApp.closeModal();
-    }
-
     private void updateHighScore() {
         try {
-            highScore = Game.getHighScore();
+            int highScore = Game.getHighScore();
             setImage(highScore, highScoreLabel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,13 +32,11 @@ public class Profile extends ApplicationController implements Initializable {
     //// Public Methods ////
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //Inital setup & loading of data
-        super.initialize();
+    public void initializeModal() {
+        super.initializeModal();
         updateHighScore();
         
         //Set event handlers
-        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__close());  
 
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Sounds.playSoundEffect("pop");
