@@ -41,7 +41,7 @@ public class User {
     public User() {
         //guest
         this.name = "";
-        this.selectedAvatar = Avatar.DEFAULT;
+        this.selectedAvatar = Avatar.ALIEN;
         this.unlockedAvatars = null;
         this.stars = null;
         this.highScore = null;
@@ -123,6 +123,14 @@ public class User {
                 add(Avatar.DEFAULT);
             }
         };
+    }
+
+    /**
+     * Get selected avatar
+     * @return
+     */
+    public Avatar getSelectedAvatar(){
+        return selectedAvatar;
     }
 
     /**

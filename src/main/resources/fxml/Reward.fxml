@@ -17,9 +17,9 @@
             <Image url="@../assets/rewardScreen/background.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="potButton" fitHeight="337.0" fitWidth="387.0" layoutX="711.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="avatarButton" fitHeight="337.0" fitWidth="387.0" layoutX="711.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/rewardScreen/honey-pot.png" />
+            <Image url="@../assets/Avatars/B.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="257.0" fitWidth="338.0" layoutX="476.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

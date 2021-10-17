@@ -1,6 +1,7 @@
 package com.controllers.views;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.MainApp;
+import com.components.animations.OscillatingComponent;
 import com.controllers.ApplicationController;
 import com.enums.Language;
 import com.enums.View;
@@ -15,6 +17,7 @@ import com.models.Word;
 import com.util.Sounds;
 import com.models.Game;
 
+import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,13 +31,14 @@ import javafx.util.Duration;
  */
 public class Reward extends ApplicationController implements Initializable {
     private Game game;
+    Animation avatarAnim;
     //The threshold of score for each star to appear
     private final int[] starThreshold = {20, 60, 100};
     private List<Node> stars;
 
     @FXML private ImageView againButton;
     @FXML private ImageView menuButton;
-    @FXML private ImageView potButton;
+    @FXML private ImageView avatarButton;
     @FXML private ImageView star1;
     @FXML private ImageView star2;
     @FXML private ImageView star3;
@@ -60,8 +64,8 @@ public class Reward extends ApplicationController implements Initializable {
 
         int num = Integer.parseInt(stars.get(index).getId().substring(4));
         if (score >= this.starThreshold[num-1]) {
-            Sounds.playSoundEffect("correct");
-            stars.get(index).setVisible(true);
+            Sounds.playSoundEffect("reward");
+            stars.get(2 - index).setVisible(true);
         }
 
         PauseTransition pause = new PauseTransition(Duration.millis(1000));
@@ -98,6 +102,9 @@ public class Reward extends ApplicationController implements Initializable {
         } catch (IOException e) {
             System.err.println(e);
         }
+
+        avatarAnim = new OscillatingComponent(avatarButton).getAnimator();
+        avatarAnim.play();
     }
 
     @Override
@@ -107,14 +114,28 @@ public class Reward extends ApplicationController implements Initializable {
         newLabel.setVisible(false);
         this.game = MainApp.getGameState();
         
+        try {
+            setImage(MainApp.getUser().getSelectedAvatar().getName(), avatarButton);
+        } catch (FileNotFoundException e){
+            System.err.println("Unable to load avatar");
+        }
+        
+        
         //Set event handlers
-        menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.MENU));
-        againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> MainApp.setRoot(View.GAMEMODE));
-        potButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+        menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+            MainApp.setRoot(View.MENU);
+            avatarAnim.stop();
+        });
+
+        againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+            MainApp.setRoot(View.GAMEMODE);
+            avatarAnim.stop();
+        });
+
+        avatarButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             try {
                 MainApp.getTTS().readWord(new Word("Ka Pai", null), 1, Language.MAORI);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
