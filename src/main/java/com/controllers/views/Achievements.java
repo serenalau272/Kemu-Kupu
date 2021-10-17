@@ -45,68 +45,65 @@ public class Achievements extends ApplicationController implements Initializable
     private void configureMockData() {
         data.add("EXPLORER_1");
         data.add("EXPLORER_2");
-        data.add("#STUDENT_5");
-        data.add("#ACHIEVER_2");
+        data.add("STUDENT_5");
+        data.add("ACHIEVER_2");
         data.add("SPEEDY_1");
-        data.add("#POCKETS_3");
-        data.add("#STYLISH_0");
-    }
-
-    private Achievement setAchievementType(String identifier) {
-        System.out.println(identifier);
-        switch (identifier) {
-            case "EXPLORER":
-                return Achievement.EXPLORER;
-            case "#STUDENT":
-                return Achievement.STUDENT;
-            case "#ACHIEVER":
-                return Achievement.ACHIEVER;
-            case "SPEEDY":
-                return Achievement.SPEEDY;
-            case "#POCKETS":
-                return Achievement.POCKETS;
-            case "#STYLISH":
-                return Achievement.STYLISH;
-            default:
-                System.err.println("Achievement type invalid");
-                return null;
-        }
+        data.add("POCKETS_3");
     }
 
     private List<AchievementItem> getData() {
         List<AchievementItem> types = new ArrayList<>();
         Achievement achievementType;
         List<Integer> explorerLevels = new ArrayList<>();
+        List<Integer> studentLevels = new ArrayList<>();
+        List<Integer> achieverLevels = new ArrayList<>();
         List<Integer> speedyLevels = new ArrayList<>();
+        List<Integer> pocketLevels = new ArrayList<>();
+        List<Integer> stylishLevels = new ArrayList<>();
+        
         AchievementItem item;
         configureMockData();
 
-        for (String achievement : data) {
-            List<Integer> levels = new ArrayList<>();
-            String[] components = achievement.split("_");
-            achievementType = setAchievementType(components[0]);
+        for (String achievementLabel : data) {
+            String[] components = achievementLabel.split("_");
+            achievementType = Achievement.fromString(components[0]);
             Integer levelNum = Integer.parseInt(components[1]);
-            if (achievement.startsWith("#")) {
-                for (int i=1; i<=levelNum; i++) {
-                    levels.add(i);
-                }
-                item = new AchievementItem(achievementType, levels);
-                types.add(item);
-            } else {
-                switch (components[0]) {
-                    case "EXPLORER":
-                        explorerLevels.add(levelNum);
-                        continue;
-                    case "SPEEDY":
-                        speedyLevels.add(levelNum);
-                        continue;
-                }
+
+            switch (achievementType){
+                case EXPLORER:
+                    explorerLevels.add(levelNum);
+                    continue;
+                case STUDENT:
+                    studentLevels.add(levelNum);
+                    continue;
+                case ACHIEVER:
+                    achieverLevels.add(levelNum);
+                    continue;
+                case SPEEDY:
+                    speedyLevels.add(levelNum);
+                    continue;
+                case POCKETS:
+                    pocketLevels.add(levelNum);
+                    continue;
+                case STYLISH:
+                    stylishLevels.add(levelNum);
+                    continue;
             }
         }
+
         item = new AchievementItem(Achievement.EXPLORER, explorerLevels);
+        types.add(0, item);
+        item = new AchievementItem(Achievement.STUDENT, studentLevels);
+        types.add(0, item);
+        item = new AchievementItem(Achievement.ACHIEVER, achieverLevels);
         types.add(0, item);
         item = new AchievementItem(Achievement.SPEEDY, speedyLevels);
         types.add(3, item);
+        item = new AchievementItem(Achievement.POCKETS, pocketLevels);
+        types.add(4, item);
+        item = new AchievementItem(Achievement.STYLISH, stylishLevels);
+        types.add(5, item);
+
         return types;
     }
 

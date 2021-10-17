@@ -8,6 +8,46 @@ public enum Achievement {
     POCKETS,
     STYLISH;
 
+    public String toString(){
+        switch (this) {
+            case EXPLORER:
+                return "EXPLORER";
+            case STUDENT:
+                return "STUDENT";
+            case ACHIEVER:
+                return "ACHIEVER";
+            case SPEEDY:
+                return "SPEEDY";
+            case POCKETS:
+                return "POCKETS";
+            case STYLISH:
+                return "STYLISH";
+            default:
+                System.err.println("ERROR: Type not implemented for achievements!");
+                return "";
+        }
+    }
+
+    public static Achievement fromString(String s){
+        switch (s.strip().toUpperCase()) {
+            case "EXPLORER":
+                return EXPLORER;
+            case "STUDENT":
+                return STUDENT;
+            case "ACHIEVER":
+                return ACHIEVER;
+            case "SPEEDY":
+                return SPEEDY;
+            case "POCKETS":
+                return POCKETS;
+            case "STYLISH":
+                return STYLISH;
+            default:
+                System.err.println("ERROR: Invalid string. No avatar found");
+                return null;
+        }
+    }
+
     public String getTypeName() {
         switch (this) {
             case EXPLORER:
