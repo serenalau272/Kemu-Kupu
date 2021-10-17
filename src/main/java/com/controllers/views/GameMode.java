@@ -83,7 +83,6 @@ public class GameMode extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Sounds.playMusic("menu");
         intialiseMode(practice);
         intialiseMode(ranked);
     }

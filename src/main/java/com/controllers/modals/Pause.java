@@ -4,6 +4,7 @@ import com.MainApp;
 import com.controllers.ModalController;
 import com.enums.View;
 import com.util.Modal;
+import com.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,9 @@ public class Pause extends ModalController {
     private void changeClose(View v) {
         Modal.closeModal();
         MainApp.setRoot(v);
+        if (v == View.GAMEMODE){
+            Sounds.playMusic("menu");
+        }
     }
 
 
