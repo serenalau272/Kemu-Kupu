@@ -83,16 +83,11 @@ public class Shop extends ModalController {
     }
 
     @Override
-<<<<<<< HEAD:src/main/java/com/controllers/Shop.java
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));  
-
-=======
-    public void initializeModal() {
-        super.initializeModal();
->>>>>>> a21114531d1ff5eb85612c38456248976e166f5f:src/main/java/com/controllers/modals/Shop.java
+      
         avatars.addAll(getData());
 
         int column = 0;
