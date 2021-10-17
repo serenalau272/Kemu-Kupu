@@ -8,6 +8,18 @@
     src: url("./fonts/PoorStory-Regular.ttf");
 }
 
+.heading-style .text {
+    -fx-font-family: 'Poor Story';
+    -fx-font-size: 100px;
+    -fx-fill: #CF6A28;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 6px;
+    -fx-stroke-type: outside;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
+}
+
 .text-field {
     -fx-background-color: #9FE8DC;
     -fx-background-radius: 5px;
@@ -18,8 +30,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
     -fx-alignment: center;
-    /* -fx-font-family: 'Poppins'; */
-    -fx-font-family: 'Poor Story';
+    -fx-font-family: 'Poppins';
 
 }
 

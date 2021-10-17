@@ -54,10 +54,6 @@ public class Shop extends ApplicationController implements Initializable {
         return avatars;
     }
 
-    private void close() {
-        MainApp.setRoot(View.MENU);
-    }
-
     private void setTextYellow(Node clickedAvatarName) {
         for (Node avatar : grid.getChildren()) {
             ((AnchorPane) avatar).getChildren().get(1).setStyle("-fx-text-fill: #FFFFFF");
@@ -93,7 +89,7 @@ public class Shop extends ApplicationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.close());  
+        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));  
 
         avatars.addAll(getData());
 

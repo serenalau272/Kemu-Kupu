@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.enums.Modals;
 import com.util.Modal;
+import com.util.Sounds;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -127,6 +128,8 @@ public class ApplicationController {
                     i.setScaleX(1);
                     i.setScaleY(1);
                 });
+
+                i.addEventHandler(MouseEvent.MOUSE_CLICKED, _e -> Sounds.playSoundEffect("pop"));
             }
         });
 
