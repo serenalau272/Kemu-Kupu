@@ -24,11 +24,6 @@
             <Image url="@../assets/Results/green.png" />
          </image>
       </ImageView>
-      <Label fx:id="word1" layoutX="724.0" layoutY="197.0" prefHeight="47.0" prefWidth="253.0" text="Kohitatea" textFill="WHITE" visible="false">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
       <ImageView fx:id="res1" fitHeight="66.0" fitWidth="74.0" layoutX="975.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/Results/tick.png" />
@@ -45,5 +40,10 @@
             <Image url="@../assets/Results/enter.png" />
          </image>
       </ImageView>
+      <Label fx:id="word1" layoutX="118.0" layoutY="198.0" prefHeight="47.0" prefWidth="253.0" text="Kohitatea" textFill="WHITE" visible="false">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
