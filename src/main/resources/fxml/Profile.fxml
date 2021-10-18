@@ -120,7 +120,7 @@
             <Image url="@../assets/Profile/edit.png" />
          </image>
       </ImageView>
-      <Label fx:id="nameLabel" alignment="CENTER" layoutX="335.0" prefHeight="167.0" prefWidth="554.0" styleClass="heading-style" stylesheets="@../styles/application.css" text="Hello Henry!" />
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="207.0" layoutY="-24.0" prefHeight="167.0" prefWidth="891.0" styleClass="heading-style" stylesheets="@../styles/application.css" text="Hello MMMMMMMMMM!" />
       <Label fx:id="scoreLabel" alignment="CENTER" layoutX="484.0" layoutY="275.0" prefHeight="97.0" prefWidth="248.0" styleClass="highScore" stylesheets="@../styles/profile.css" text="80" textAlignment="CENTER" textFill="#fcfcfc">
          <font>
             <Font size="46.0" />

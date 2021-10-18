@@ -1,6 +1,8 @@
 package com.controllers.views;
+
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -14,6 +16,7 @@ import com.controllers.ApplicationController;
 import com.enums.View;
 import com.util.Sounds;
 import com.models.Game;
+import com.models.User;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
@@ -29,47 +32,58 @@ import javafx.util.Duration;
  */
 public class Reward extends ApplicationController implements Initializable {
     private Game game;
-    Animation avatarAnim;
-    //The threshold of score for each star to appear
-    private final int[] starThreshold = {20, 60, 100};
+    private User user;
+    private Animation avatarAnim;
+    // The threshold of score for each star to appear
+    private final int[] starThreshold = { 20, 60, 100 };
     private List<Node> stars;
     private int numStars = 0;
 
-    @FXML private ImageView againButton;
-    @FXML private ImageView menuButton;
-    @FXML private ImageView avatarButton;
-    @FXML private ImageView star1;
-    @FXML private ImageView star2;
-    @FXML private ImageView star3;
-    @FXML private ImageView score;
-    @FXML private ImageView highScore;
-    @FXML private ImageView newLabel;
+    @FXML
+    private ImageView againButton;
+    @FXML
+    private ImageView menuButton;
+    @FXML
+    private ImageView avatarButton;
+    @FXML
+    private ImageView star1;
+    @FXML
+    private ImageView star2;
+    @FXML
+    private ImageView star3;
+    @FXML
+    private ImageView score;
+    @FXML
+    private ImageView highScore;
+    @FXML
+    private ImageView newLabel;
 
     //// Private (helper) methods ////
 
     /**
      * Set visibility of stars based on score
+     * 
      * @param score the score for the game
      */
     private void setStars(int score) {
-        String[] star = {"star"};
+        String[] star = { "star" };
         stars = findNodesByID(anchorPane, star);
 
         setStar(0, score);
     }
 
-    private void setStar(int index, int score){
+    private void setStar(int index, int score) {
         if (index >= stars.size()) {
             try {
-                MainApp.getUser().addScore(score, numStars);
-            } catch (IOException e) {
-                System.err.println("Unable to complete request");
+                user.addScore(score, numStars);
+            }  catch (IOException e){
+                System.err.println("Unable to make a request");
             }
             return;
         }
 
         int num = Integer.parseInt(stars.get(index).getId().substring(4));
-        if (score >= this.starThreshold[num-1]) {
+        if (score >= this.starThreshold[num - 1]) {
             Sounds.playSoundEffect("reward");
             stars.get(2 - index).setVisible(true);
             numStars++;
@@ -82,30 +96,34 @@ public class Reward extends ApplicationController implements Initializable {
         pause.play();
     }
 
-    private void setHighScore(int gameScore) throws IOException {
-        File userStats = new File("./.user/.userStats.txt");
-        int prevHighScore = Game.getHighScore();
-        if (gameScore > prevHighScore) {
-            BufferedWriter statsWriter = new BufferedWriter(new FileWriter(userStats, false));
-            statsWriter.write(String.valueOf(gameScore));
-            setImage(gameScore, highScore);
-            newLabel.setVisible(true);
-            statsWriter.close();
-        } else {
-            setImage(prevHighScore, highScore);
+    private void setHighScore(int gameScore) {
+        try {
+            int prevHighScore = user.getHighScore();
+
+            if (gameScore > prevHighScore) {
+                // new high score
+                setImage(gameScore, highScore);
+                newLabel.setVisible(true);
+            } else {
+                setImage(prevHighScore, highScore);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Unable to load score images");
         }
+
     }
 
     //// Public Methods ////
 
     @Override
     protected void start() {
+        user = MainApp.getUser();
         int gameScore = this.game.getScore();
 
         try {
             setStars(gameScore);
-            setHighScore(gameScore);
             setImage(gameScore, score);
+            setHighScore(gameScore);
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -116,14 +134,14 @@ public class Reward extends ApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Inital setup & loading of data
+        // Inital setup & loading of data
         super.initialize();
         newLabel.setVisible(false);
         this.game = MainApp.getGameState();
-        
+
         setAvatarImage(avatarButton);
-        
-        //Set event handlers
+
+        // Set event handlers
         menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             MainApp.setRoot(View.MENU);
             avatarAnim.stop();
@@ -149,5 +167,5 @@ public class Reward extends ApplicationController implements Initializable {
             }
         });
 
-    }    
+    }
 }
