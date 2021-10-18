@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,15 +39,15 @@
             <Font size="30.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordInput" layoutX="390.0" layoutY="477.0" prefHeight="65.0" prefWidth="509.0" promptText="Password">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </TextField>
       <TextField fx:id="nicknameInput" layoutX="390.0" layoutY="220.0" prefHeight="65.0" prefWidth="509.0" promptText="Nickname">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
+      <PasswordField fx:id="passwordInput" layoutX="393.0" layoutY="483.0" prefHeight="65.0" prefWidth="503.0" promptText="Password">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </PasswordField>
     </children>
 </AnchorPane>

@@ -11,6 +11,7 @@ import com.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -28,7 +29,7 @@ public class NewUser extends ApplicationController implements Initializable {
     @FXML
     private TextField usernameInput;
     @FXML
-    private TextField passwordInput;
+    private PasswordField passwordInput;
     @FXML
     private ImageView createAccountButton;
 
@@ -87,6 +88,8 @@ public class NewUser extends ApplicationController implements Initializable {
                 onCreateAccount();
             }
         });
+
+
     }
 
 }
