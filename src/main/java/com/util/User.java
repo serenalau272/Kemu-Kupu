@@ -11,8 +11,6 @@ import com.enums.Achievement;
 import com.enums.Avatar;
 import com.google.gson.Gson;
 
-import javafx.fxml.LoadException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -168,11 +166,17 @@ class JsonCostumes {
 
 /**
  * This class handles the storing and retreiving of the current user.
+ * It has interactions with the api for saving and retriving data.
+ * It also serializes data onto the disk, which allows persistent logins
+ * and guest accounts to function correctly.
  */
 public class User implements Serializable {
     protected final String guestSavePath = "./.user/guest.data";
     protected final String userSavePath = "./.user/token.data";
     private final String apiPath = "https://kemukupu.com/api/v1";
+
+    //// Properties ////
+
     private String JWTToken;
     private String username;
     private String nickname;
@@ -195,6 +199,8 @@ public class User implements Serializable {
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20)
     );
+
+    //// Private (Helper) Methods ////
 
     /**
      * Save the internal state to the disk.
@@ -388,6 +394,8 @@ public class User implements Serializable {
         this.__saveData();
     }
 
+    //// Public Methods ////
+
     public User() {
         if (new File(this.userSavePath).isFile()) {
             try {
@@ -505,11 +513,15 @@ public class User implements Serializable {
     /**
      * Request the api to unlock a costume for this user
      * @param avatar the avatar the user wishes to attempt to unlock
+     * @return a string, null if succesful, or containing an error message otherwise
      * @throws IOException throws if unable to complete the request
      */
     public String unlockCostume(Avatar avatar) throws IOException {
-        if (this.unlockedAvatars.contains(avatar)) return null;
+        //Validate purchase
+        if (this.unlockedAvatars.contains(avatar)) return "Avatar already unlocked";
+        if (!this.canPurchase(avatar)) return "Unable to afford avatar";
 
+        //Carry out purchase
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + avatar.toString() + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
@@ -527,7 +539,7 @@ public class User implements Serializable {
             }
             return res.loadJsonData();
         } else {
-            //Guest account = note that no check is performed
+            //Guest account
             this.unlockedAvatars.add(avatar);
             this.totalStars -= this.getPrice(avatar);
             this.__saveData();
@@ -631,11 +643,10 @@ public class User implements Serializable {
     }
 
     /**
-     * If the user is logged in, sign out.
-     * @throws LoadException if the user is not logged in.
+     * Sign the user out, note that if the user is not logged in will merely reset their account.
      */
-    public void signout() throws LoadException {
-        if (this.JWTToken == null) throw new LoadException("User attempted to sign out without being signed in!");
+    public void signout() {
+        if (this.JWTToken == null) System.err.println("Warning! Logout was clicked with a guest account.");
         //Reset Account
         this.__reset();
     }
@@ -716,6 +727,36 @@ public class User implements Serializable {
         return this.unlockedAvatars;
     }
 
+    /**
+     * Checks whether a user has enough money to make a purchase of a costume.
+     * @param avatar the avatar the user wishes to purchase
+     * @return a boolean, which is true if the avatar can be afforded and false otherwise.
+     */
+    public boolean canPurchase(Avatar avatar) {
+        int cost = costAvatars.get(avatar);
+        return totalStars >= cost;
+    }
+
+    /**
+     * Checks whether an avatar has already been purchased by this user.
+     * @param avatar the avatar to investigate
+     * @return a boolean, true if the user has purchased this avatar, and false otherwise.
+     */
+    public boolean hasBeenPurchased(Avatar avatar) {
+        return unlockedAvatars.contains(avatar);
+    }
+
+    /**
+     * Change this users number of stars by a custom among, either positive or negative.
+     * @param delta the amount to change the stars by
+     * @return a string, which is null if everything was succesful and contains an error message otherwise.
+     * @throws IOException if unable to contact the server.
+     */
+    public String changeStars(int delta) throws IOException {
+        this.addScore(-1, delta);
+        return null;
+    }
+
     public Avatar getSelectedAvatar() {
         return this.selectedAvatar;
     }
@@ -740,21 +781,7 @@ public class User implements Serializable {
         return this.totalStars;
     }
 
-    public boolean canPurchase(Avatar avatar) {
-        int cost = costAvatars.get(avatar);
-        return totalStars >= cost;
-    }
-
-    public boolean hasBeenPurchased(Avatar avatar) {
-        return unlockedAvatars.contains(avatar);
-    }
-
     public Integer getNumAchievements() {
         return this.unlockedAchievements.size();
-    }
-
-    public String changeStars(int delta) throws IOException {
-        this.addScore(-1, delta);
-        return null;
     }
 }

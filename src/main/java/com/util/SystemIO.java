@@ -66,6 +66,7 @@ public class SystemIO {
             w.add(__parse_csv_line(l));
         }
         br.close();
+        
         //Generate random lines
         Random r = new Random();
         List<Word> res = new ArrayList<Word>();
