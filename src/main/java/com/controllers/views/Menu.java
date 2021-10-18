@@ -76,7 +76,7 @@ public class Menu extends ApplicationController implements Initializable {
     private void transition() {
         menuAnimation.stop();
         MainApp.setRoot(Views.GAMEMODE);
-        Sounds.playSoundEffect("pop");
+        // Sounds.playSoundEffect("pop");
     }
 
     @Override
