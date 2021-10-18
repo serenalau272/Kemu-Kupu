@@ -157,16 +157,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage s) {
         globalTimer = new GlobalTimer(2 * 60);
-        // globalTimer.restart();
-
-        //temp
-        setUser();
-        try {
-            user.login("joebloggs123", "joebloggs");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
+        // globalTimer.restart();        
         stage = s;
         setting = new Setting();
         stage.setResizable(false);
