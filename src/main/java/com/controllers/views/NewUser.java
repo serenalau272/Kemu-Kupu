@@ -54,9 +54,13 @@ public class NewUser extends ApplicationController implements Initializable {
     }
 
     @Override
+    protected void start() {
+        nicknameInput.requestFocus();
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
-        nicknameInput.requestFocus();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(View.SIGNIN);    
@@ -64,6 +68,24 @@ public class NewUser extends ApplicationController implements Initializable {
 
         createAccountButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             onCreateAccount(); 
+        });
+
+        nicknameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                usernameInput.requestFocus();
+            }
+        });
+
+        usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                passwordInput.requestFocus();
+            }
+        });
+
+        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                onCreateAccount();
+            }
         });
     }
 

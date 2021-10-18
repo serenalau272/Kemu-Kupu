@@ -73,10 +73,14 @@ public class SignIn extends ApplicationController implements Initializable {
     }
 
     @Override
+    protected void start() {
+        usernameInput.requestFocus();
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
         incorrectMessage.setVisible(false);
-        usernameInput.requestFocus();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(View.MENU);
