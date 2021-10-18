@@ -427,12 +427,17 @@ public class User {
                 this.__loadData();
                 return null;
             }
+
+            addScore(-1, costAvatars.get(avatar));
+
             return res.loadJsonData();
         } else {
             //Guest account = note that no check is performed
             this.unlockedAvatars.add(avatar);
+            this.totalStars -= costAvatars.get(avatar);
             return null;
         }
+
     }
 
     /**

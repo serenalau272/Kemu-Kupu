@@ -159,19 +159,18 @@ public class MainApp extends Application {
         globalTimer = new GlobalTimer(2 * 60);
         // globalTimer.restart();
 
-        //temp
+        stage = s;
+        setting = new Setting();
+        stage.setResizable(false);
+        tts = new TTS();
+
         setUser();
         try {
             user.login("joebloggs123", "joebloggs");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        stage = s;
-        setting = new Setting();
-        stage.setResizable(false);
-        tts = new TTS();
-        user = new User();
+
         try {
             configureStatsFiles();
         } catch (IOException e) {
