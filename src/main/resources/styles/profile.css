@@ -1,0 +1,50 @@
+.wheel .text {
+    -fx-font-family: 'Poor Story';
+    -fx-font-size: 35px;
+    -fx-fill: #A14016;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 2px;
+    -fx-stroke-type: outside;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
+}
+
+.highScore .text {
+    -fx-font-family: 'Poor Story';
+    -fx-font-size: 160px;
+    -fx-fill: #74D5D3;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 6px;
+    -fx-stroke-type: outside;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
+}
+
+.achievements .text {
+    -fx-font-family: 'Poor Story';
+    -fx-font-size: 75px;
+    -fx-fill: #3F3F3F;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 6px;
+    -fx-stroke-type: outside;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+}
+
+.stars .text {
+    -fx-font-family: 'Poor Story';
+    -fx-font-size: 75px;
+    -fx-fill: #F7C800;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 6px;
+    -fx-stroke-type: outside;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+}
+
+.inputField {
+
+}
+

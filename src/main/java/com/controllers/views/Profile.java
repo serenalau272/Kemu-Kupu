@@ -39,6 +39,8 @@ public class Profile extends ApplicationController implements Initializable {
     @FXML TextField usernameInput;
     @FXML TextField nicknameInput;
     @FXML ImageView userAvatar;
+    @FXML ImageView wheelButton;
+    @FXML Label wheelLabel;
 
     
 
@@ -84,12 +86,12 @@ public class Profile extends ApplicationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
-        currentUser = MainApp.getUser();
+        // currentUser = MainApp.getUser();
         
-        nicknameInput.setFocusTraversable(false);
-        usernameInput.setFocusTraversable(false);
-        configureStaticEntries();
-        configureDynamicEntries();
+        // nicknameInput.setFocusTraversable(false);
+        // usernameInput.setFocusTraversable(false);
+        // configureStaticEntries();
+        // configureDynamicEntries();
 
         //Set event handlers
 
@@ -115,5 +117,6 @@ public class Profile extends ApplicationController implements Initializable {
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
         this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.SHOP));
         this.achievementsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.ACHIEVEMENT));
+        this.wheelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.WHEEL));
     }
 }
