@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import com.MainApp;
 import com.controllers.ApplicationController;
 import com.enums.Views;
-import com.models.User;
+import com.util.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

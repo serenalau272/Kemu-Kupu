@@ -13,7 +13,7 @@ import com.controllers.ApplicationController;
 import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
 import com.enums.Views;
-import com.models.User;
+import com.util.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -10,8 +10,8 @@ import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
 import com.enums.Achievement;
 import com.enums.Views;
-import com.models.User;
 import com.util.Sounds;
+import com.util.User;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;

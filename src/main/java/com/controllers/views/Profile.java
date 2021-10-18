@@ -8,8 +8,8 @@ import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
 import com.enums.ConfirmModal;
 import com.enums.Views;
-import com.models.User;
 import com.util.Modal;
+import com.util.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

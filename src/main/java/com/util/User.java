@@ -1,4 +1,4 @@
-package com.models;
+package com.util;
 
 import java.util.Map;
 
@@ -10,6 +10,8 @@ import java.util.List;
 import com.enums.Achievement;
 import com.enums.Avatar;
 import com.google.gson.Gson;
+
+import javafx.fxml.LoadException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -629,15 +631,22 @@ public class User implements Serializable {
     }
 
     /**
+     * If the user is logged in, sign out.
+     * @throws LoadException if the user is not logged in.
+     */
+    public void signout() throws LoadException {
+        if (this.JWTToken == null) throw new LoadException("User attempted to sign out without being signed in!");
+        //Reset Account
+        this.__reset();
+    }
+
+    /**
      * Delete this user account, this is a permenant irreversible action.
      * This method will still reset the guest account.
      * @returns a string which is null if succesful, and contains an error message otherwise.
      * @throws IOException throws if unable to complete the request
      */
     public String deleteAccount() throws IOException {
-        //Delete save files
-        new File(this.guestSavePath).delete();
-        new File(this.userSavePath).delete();
         //If logged in, send deletion request
         if (this.JWTToken != null) {
             Response res = this.__makeRequest(RequestMethod.Delete, "/student", null);

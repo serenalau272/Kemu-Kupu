@@ -14,8 +14,8 @@ import com.enums.Achievement;
 import com.enums.Gamemode;
 import com.enums.Views;
 import com.util.Sounds;
+import com.util.User;
 import com.models.Game;
-import com.models.User;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
