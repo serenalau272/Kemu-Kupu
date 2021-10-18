@@ -23,13 +23,47 @@ import javafx.scene.input.MouseEvent;
 public class NewUser extends ApplicationController implements Initializable {
     @FXML
     private ImageView backButton;
+    @FXML
+    private TextField nicknameInput;
+    @FXML
+    private TextField usernameInput;
+    @FXML
+    private TextField passwordInput;
+    @FXML
+    private ImageView createAccountButton;
+
+    private void onCreateAccount(){
+        User user = new User();
+        try {
+            String res = user.signup(usernameInput.getText(), passwordInput.getText(), nicknameInput.getText());
+            if (res == null){
+                //success
+                MainApp.setUser(user);
+                MainApp.setRoot(View.PROFILE);
+            } else {
+                //duplicate username
+                //TODO: error modal
+                usernameInput.clear();
+                passwordInput.clear();
+                nicknameInput.clear();
+                nicknameInput.requestFocus();
+            }
+        } catch (IOException e){
+            System.err.println("Unable to complete request");
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
+        nicknameInput.requestFocus();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(View.SIGNIN);    
+        });
+
+        createAccountButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            onCreateAccount(); 
         });
     }
 
