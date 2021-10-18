@@ -127,7 +127,13 @@ public class Menu extends ApplicationController implements Initializable {
         });
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            MainApp.setRoot(View.SIGNIN);
+            if (MainApp.getUser().getUsername() == null){
+                //guest
+                MainApp.setRoot(View.SIGNIN);
+            } else {
+                MainApp.setRoot(View.PROFILE);
+            }
+            
             
         });
 
