@@ -31,15 +31,24 @@ import javafx.scene.layout.GridPane;
  * This class is the controller for the costume shop.
  */
 public class Shop extends ApplicationController implements Initializable {
-    @FXML private ImageView backButton;
-    @FXML private ImageView buyButton;
-    @FXML private ImageView notEnough;
-    @FXML private ImageView userAvatar;
-    @FXML private ImageView avatarPrice;
-    @FXML private Label avatarLabel;
-    @FXML private Label starTotal;
-    @FXML private ScrollPane scroll;
-    @FXML private GridPane grid;
+    @FXML
+    private ImageView backButton;
+    @FXML
+    private ImageView buyButton;
+    @FXML
+    private ImageView notEnough;
+    @FXML
+    private ImageView userAvatar;
+    @FXML
+    private ImageView avatarPrice;
+    @FXML
+    private Label avatarLabel;
+    @FXML
+    private Label starTotal;
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private GridPane grid;
 
     private User currentUser;
     private Avatar chosenAvatar;
@@ -50,14 +59,14 @@ public class Shop extends ApplicationController implements Initializable {
         List<AvatarItem> avatars = new ArrayList<>();
         AvatarItem avatar;
 
-        Avatar[] avatarTypes = {Avatar.DEFAULT, Avatar.WIZARD, Avatar.SAILOR, Avatar.CHEF, Avatar.MAGICIAN, 
-            Avatar.QUEEN, Avatar.ALIEN, Avatar.FAIRY, Avatar.NINJA, Avatar.PROFESSOR};
+        Avatar[] avatarTypes = { Avatar.DEFAULT, Avatar.WIZARD, Avatar.SAILOR, Avatar.CHEF, Avatar.MAGICIAN,
+                Avatar.QUEEN, Avatar.ALIEN, Avatar.FAIRY, Avatar.NINJA, Avatar.PROFESSOR };
         for (Avatar type : avatarTypes) {
             avatar = new AvatarItem();
             avatar.setAvatar(type);
             avatars.add(avatar);
         }
- 
+
         return avatars;
     }
 
@@ -72,10 +81,14 @@ public class Shop extends ApplicationController implements Initializable {
         setTextYellow(clickedAvatarName);
         String avatarName = ((Label) clickedAvatarName).getText().replace(" Bee", "");
 
+        if (avatarName.equals("B")){
+            avatarName = "Default";
+        }
+
         setChosenAvatar(Avatar.fromString(avatarName));
     }
 
-    private void setChosenAvatar(Avatar avatar){
+    private void setChosenAvatar(Avatar avatar) {
         chosenAvatar = avatar;
 
         if (currentUser.hasBeenPurchased(chosenAvatar)) {
@@ -90,21 +103,30 @@ public class Shop extends ApplicationController implements Initializable {
         try {
             setImage(chosenAvatar.toString(), userAvatar);
             if (currentUser.hasBeenPurchased(chosenAvatar)) {
-                //@TODO
+                // @TODO
                 buyButton.setVisible(false);
                 notEnough.setVisible(false);
                 avatarLabel.setVisible(true);
-                avatarLabel.setText(chosenAvatar.toString());
+
+                String name = avatar.toString() + " Bee";
+                name = name.substring(0, 1).toUpperCase() + name.substring(1);
+
+                if (name.equals("Default Bee")) {
+                    name = "B";
+                }
+
+                avatarLabel.setText(name);
+
                 setImage("background", avatarPrice);
             } else {
-                if (currentUser.canPurchase(chosenAvatar)){
+                if (currentUser.canPurchase(chosenAvatar)) {
                     buyButton.setVisible(true);
                     notEnough.setVisible(false);
                 } else {
                     notEnough.setVisible(true);
                     buyButton.setVisible(false);
                 }
-                
+
                 avatarLabel.setVisible(false);
                 setImage(chosenAvatar.toString(), avatarPrice);
             }
@@ -115,7 +137,7 @@ public class Shop extends ApplicationController implements Initializable {
         }
     }
 
-    private void setStars(){
+    private void setStars() {
         starTotal.setText(Integer.toString(currentUser.getTotalStars()));
     }
 
@@ -125,7 +147,7 @@ public class Shop extends ApplicationController implements Initializable {
         currentUser = MainApp.getUser();
         notEnough.setVisible(false);
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));  
+        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
         setStars();
         avatars.addAll(getData());
 
@@ -138,22 +160,23 @@ public class Shop extends ApplicationController implements Initializable {
             }
             setStars();
             setChosenAvatar(chosenAvatar);
-        });  
+        });
 
         int column = 0;
         int row = 1;
         try {
-            for (int i=0; i<avatars.size(); i++) {
+            for (int i = 0; i < avatars.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(MainApp.class.getResource("/fxmlComponents/shopAvatar.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-                anchorPane.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> setChosenAvatar(anchorPane.getChildren().get(1)));
+                anchorPane.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                        _event -> setChosenAvatar(anchorPane.getChildren().get(1)));
                 ShopAvatar shopAvatarController = fxmlLoader.getController();
                 shopAvatarController.setData(avatars.get(i));
 
                 if (column == 3) {
                     column = 0;
-                    row ++;
+                    row++;
                 }
 
                 grid.add(anchorPane, column++, row);
