@@ -11,18 +11,15 @@ import com.enums.Achievement;
 import com.enums.Avatar;
 import com.google.gson.Gson;
 
-import javafx.fxml.LoadException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.AbstractMap;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Used internally to define allowed interaction methods with the api.
@@ -105,11 +102,21 @@ class Response {
  * This one is designed to be constructed to represent a costume from json.
  */
 class JsonCostume {
-    public String name;
+    public String name; //Internal name representation
+    public String display_name; //shown to user
     public String description;
     public Integer price;
 }
 
+/**
+ * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
+ * This one is designed to be constructed to represent an achievement from json.
+ */
+class JsonAchievement {
+    public String name; //Internal name representation
+    public String display_name; //shown to user
+    public String description;
+}
 /**
  * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
  * This one is designed to be constructed from a 200 response from GET /student endpoint.
@@ -118,7 +125,9 @@ class JsonStudent {
     public Integer id;
     public String usr;
     public String current_costume;
+    public String nickname;
     public List<JsonCostume> costumes;
+    public List<JsonAchievement> achievements;
 }
 
 /**
@@ -141,36 +150,61 @@ class JsonScores {
 }
 
 /**
+ * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
+ * This one represents a collection of costumes from the api
+ */
+class JsonCostumes {
+    public List<JsonCostume> data;
+}
+
+/**
  * This class handles the storing and retreiving of the current user.
  */
 public class User {
     private final String apiPath = "https://kemukupu.com/api/v1";
-    // private final String apiPath = "http://127.0.0.1:8000/api/v1";
     private String JWTToken;
     private String username;
+    private String nickname;
     private Integer id;
-    private Avatar selectedAvatar = Avatar.DEFAULT;
-    private HashSet<Avatar> unlockedAvatars = new HashSet<>() { { add(Avatar.DEFAULT); } };
+    private Avatar selectedAvatar;
+    private HashSet<Avatar> unlockedAvatars;
     private Integer highScore;
     private Integer totalStars;
     private Integer numGamesPlayed;
-
-    //TODO implement
-    private String nickname;
-    private ArrayList<String> procuredAchievements = new ArrayList<>();
-
-    private final Map<Avatar, Integer> costAvatars = Map.ofEntries(
+    private HashSet<Achievement> unlockedAchievements;
+    private Map<Avatar, Integer> costAvatars = Map.ofEntries(
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.DEFAULT, 0),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 80),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NINJA, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 30),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 5),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.MAGICIAN, 30),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.WIZARD, 5),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 200)
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NINJA, 100),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 30),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 80),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 200),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20)
     );
+
+    /**
+     * Resets the entire state of the class to a fresh guest instance
+     */
+    private void __reset() {
+        this.JWTToken = null;
+        this.username = null;
+        this.id = null;
+        this.selectedAvatar = Avatar.DEFAULT;
+        this.unlockedAvatars = new HashSet<>() { { add(Avatar.DEFAULT); } };
+        this.highScore = 0;
+        this.totalStars = 0;
+        this.numGamesPlayed = 0;
+        this.nickname = "";
+        this.unlockedAchievements = new HashSet<>();
+        try {
+            this.__updatePrices();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * A helper method for making http requests to the kemukupu api
@@ -189,7 +223,7 @@ public class User {
         
         //Establish connection
         String url = apiPath + path;
-        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        HttpsURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
         connection.setRequestMethod(method.toString());
         connection.setDoOutput(true);
 
@@ -238,6 +272,23 @@ public class User {
     }
 
     /**
+     * Update the prices internally from the api
+     * @throws IOException thrown when the service is unable to contact the server.
+     */
+    private void __updatePrices() throws IOException {
+        Response res = this.__makeRequest(RequestMethod.Get, "/costume", null);
+        JsonCostumes costumes = new Gson().fromJson(res.getBody(), JsonCostumes.class);
+        //Load and process price data
+        HashMap<Avatar, Integer> priceUpdate = new HashMap<>();
+        for (JsonCostume avatarName : costumes.data) {
+            Avatar newAvatar = Avatar.fromString(avatarName.name);
+            if (!priceUpdate.containsKey(newAvatar))
+                priceUpdate.put(newAvatar, avatarName.price);
+        }
+        this.costAvatars = priceUpdate;
+    }
+
+    /**
      * After user has logged in, or been created, this method loads their data from the api.
      * @throws IOException if unable to contact the api
      */
@@ -249,10 +300,11 @@ public class User {
         //Set id
         this.id = student.id;
 
+        //Set nickname
+        this.nickname = student.nickname;
+
         //Set selected avatar
         this.selectedAvatar = Avatar.fromString(student.current_costume);
-
-        //TODO Set nickname
         
         //Set unlocked avatars
         HashSet<Avatar> avatarUpdate = new HashSet<>();
@@ -263,48 +315,50 @@ public class User {
         }
         this.unlockedAvatars = avatarUpdate;
 
+        //Load and Process Achievements
+        HashSet<Achievement> achievementUpdate = new HashSet<>();
+        for (JsonAchievement achievementName : student.achievements) {
+            Achievement newAchievement = Achievement.fromString(achievementName.name);
+            if (!achievementUpdate.contains(newAchievement))
+                achievementUpdate.add(newAchievement);
+        }
+        this.unlockedAchievements = achievementUpdate;
+
         //Load and process score data
         res = this.__makeRequest(RequestMethod.Get, "/scores?id="+ this.id, null);
         JsonScores scores = new Gson().fromJson(res.getBody(), JsonScores.class);
 
         this.numGamesPlayed = scores.data.size();
 
-        int newHighScore = Integer.MIN_VALUE;
+        int newHighScore = 0;
         int newTotalStars = 0;
         for (JsonScore score : scores.data) {
-            totalStars += score.num_stars;
-            if (score.score > highScore)
-                highScore = score.score;
+            newTotalStars += score.num_stars;
+            if (score.score > newHighScore)
+                newHighScore = score.score;
         }
         this.totalStars = newTotalStars;
-        this.highScore = newHighScore;
-
-        //TODO Load and Process Achievements
-
-        
+        this.highScore = newHighScore;        
     }
 
     public User() {
-        this.username = "";
-        this.totalStars = 24;
-        this.highScore = 70;
-        this.nickname = "George";
-        this.procuredAchievements.add(Achievement.EXPLORER.toString(1));
+        this.__reset();
     }
 
     /**
      * Create a new user with the api, and log them in automatically.
      * @param username the username
      * @param password the password to signup with
-     * @throws Exception if unable to complete the request
+     * @param nickname the users nickname
+     * @throws IOException if unable to complete the request
      */
-    public String signup(String username, String password) throws Exception {
-        String body = "{\"usr\":\"" + username + "\",\"pwd\":\"" + password + "\"}";
+    public String signup(String name, String password, String nickname) throws IOException {
+        String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\",\"nickname\":\"" + nickname + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/create", body);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here.
-            this.username = username;
             this.JWTToken = res.loadJsonData();
+            this.username = name;
             //Load user data
             this.__loadData();
             return null;
@@ -318,13 +372,13 @@ public class User {
      * @param password the password of the account
      * @throws IOException if unable to complete the request
      */
-    public String login(String username, String password) throws IOException {
-        String body = "{\"usr\":\"" + username + "\",\"pwd\":\"" + password + "\"}";
+    public String login(String name, String password) throws IOException {
+        String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/login", body);
         if (res.getStatus() == ResponseStatus.Success) {
-            //Succesful login, lets go from here.
-            this.username = username;
+            //Succesful login, lets go from here. main
             this.JWTToken = res.loadJsonData();
+            this.username = name;
             //Load user data
             this.__loadData();
             return null;
@@ -337,74 +391,111 @@ public class User {
      * @param score the score to be saved
      * @return null if success, string with error to be displayed to user otherwise
      * @throws IOException throws if unable to complete the request
-     * @throws LoadException if the user is not logged in
      */
-    public String addScore(int score, int numStars) throws IOException, LoadException {
-        if (this.JWTToken == null) throw new LoadException("User not logged in");
-        String body = "{\"score\":\"" + score + "\",\"num_stars\":\"" + numStars + "\"}";
-        Response res = this.__makeRequest(RequestMethod.Post, "/scores", body);
-        if (res.getStatus() == ResponseStatus.Success) {
-            //Succesfully added score, we should also update our local status now.
-            this.__loadData();
+    public String addScore(int score, int numStars) throws IOException {
+        if (this.JWTToken != null) {
+            //User logged in
+            String body = "{\"score\":" + score + ",\"num_stars\":" + numStars + "}";
+            Response res = this.__makeRequest(RequestMethod.Post, "/scores", body);
+            if (res.getStatus() == ResponseStatus.Success) {
+                //Succesfully added score, we should also update our local status now.
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();
+        } else {
+            //If user not logged in
+            if (score > this.highScore)
+                this.highScore = score;
+            this.numGamesPlayed +=1 ;
+            this.totalStars += numStars;
             return null;
         }
-        return res.loadJsonData();
-    }
-
-    /**
-     * Request this users list of unlocked costumes from the api.
-     * @return a hashset containing all of the users bought costumes
-     * @throws Exception if unable to complete the request.
-     */
-    public HashSet<Avatar> getCostumes() throws Exception {
-        this.__loadData();
-        return this.unlockedAvatars;
-    }
-
-    /**
-     * Get selected avatar
-     * @return
-     */
-    public Avatar getSelectedAvatar(){
-        return selectedAvatar;
-    }
-
-    public void setSelectedAvatar(Avatar avatar){
-        this.selectedAvatar = avatar;
-    }
-
-    public String getNickname(){
-        return nickname;
-    }
-
-    public String getUsername(){
-        return username;
     }
 
     /**
      * Request the api to unlock a costume for this user
      * @param avatar the avatar the user wishes to attempt to unlock
      * @throws IOException throws if unable to complete the request
-     * @throws LoadException if the user is not logged in
      */
-    public String unlockCostume(Avatar avatar) throws IOException, LoadException {
-        if (this.JWTToken == null) throw new LoadException("User not logged in");
-        String body = "{\"score\":\"" + avatar.toString() + "\"}";
-        Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
-        if (res.getStatus() == ResponseStatus.Success) {
-            //Succesfully added score, we should also update our local status now.
-            this.__loadData();
+    public String unlockCostume(Avatar avatar) throws IOException {
+        if (this.JWTToken != null) {
+            String body = "{\"name\":\"" + avatar.toString() + "\"}";
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
+            if (res.getStatus() == ResponseStatus.Success) {
+                //Succesfully added score, we should also update our local status now.
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();
+        } else {
+            //Guest account = note that no check is performed
+            this.unlockedAvatars.add(avatar);
             return null;
         }
-        return res.loadJsonData();
     }
 
     /**
-     * Get the users achievements
-     * @return a array list of the users achievements
+     * Request the api to unlock an achievement for this user.
+     * WARNING: THE API DOES NO VALIDATION ON IF THEY HAVE ACTUALLY EARNED THIS, THAT NEEDS TO BE DONE JAVA-SIDE FOR NOW.
+     * @param achievement the achievement to unlock
+     * @throws IOException throws if unable to complete the request
      */
-    public ArrayList<String> getProcuredAchievements(){
-        return this.procuredAchievements;
+    public String unlockAchievement(Achievement achievement) throws IOException {
+        if (this.JWTToken != null) {
+            String body = "{\"name\":\"" + achievement.toString() + "\"}";
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
+            if (res.getStatus() == ResponseStatus.Success) {
+                //Succesfully added score, we should also update our local status now.
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();    
+        } else {
+            //Guest account
+            this.unlockedAchievements.add(achievement);
+            return null;
+        }
+    }
+
+    /**
+     * Change this users avatar
+     * @param avatar the avatar to change to 
+     * @return a string, null if success or with a failure message if not.
+     * @throws IOException if unable to contact api
+     */
+    public String setAvatar(Avatar avatar) throws IOException {
+        if (!this.unlockedAvatars.contains(avatar))
+            return "Avatar not unlocked!";
+        if (this.JWTToken != null) {
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/" + avatar.toString(), "");
+            if (res.getStatus() == ResponseStatus.Success) {
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();
+            
+        } else {
+            this.selectedAvatar = avatar;
+            return null;
+        }
+    }
+
+    /**
+     * Delete this user account, this is a permenant irreversible action.
+     * This method will still reset the guest account.
+     * @throws IOException throws if unable to complete the request
+     */
+    public String deleteAccount() throws IOException {
+        //If logged in, send deletion request
+        if (this.JWTToken != null) {
+            Response res = this.__makeRequest(RequestMethod.Delete, "/student", null);
+            if (res.getStatus() == ResponseStatus.Failure)
+                return res.loadJsonData();
+        }
+        //Reset this instance
+        this.__reset();
+        return null;
     }
 
     /**
@@ -416,33 +507,70 @@ public class User {
     }
 
     /**
-     * Get the number of games this user has played.
-     * Note that if the user isn't logged in this will be null
+     * Collects the price of an avatar from the api.
+     * Note that if the user hasn't logged in, this will be the default values.
      */
+    public Integer getPrice(Avatar avatar) {
+        try {
+            this.__updatePrices();
+        } catch (Exception e) { /* Burn Failures */ }
+        return this.costAvatars.get(avatar);
+    }
+    
+    /**
+     * Get the users achievements
+     * @return a hashset of the users achievements
+     */
+    public HashSet<Achievement> getAchievements(){
+        return this.unlockedAchievements;
+    }
+
+    /**
+     * Request this users list of unlocked costumes from the api.
+     * @return a hashset containing all of the users bought costumes
+     */
+    public HashSet<Avatar> getCostumes() {
+        try {
+            this.__loadData();
+        } catch (IOException e) {}
+        return this.unlockedAvatars;
+    }
+
+    public Avatar getSelectedAvatar() {
+        return this.selectedAvatar;
+    }
+
     public Integer getNumGamesPlayed() {
         return this.numGamesPlayed;
     }
 
-    public Integer getNumStars(){
-        return this.totalStars;
+    public String getNickname() {
+        return this.nickname;
     }
 
-    public Integer getNumAchievements(){
-        return this.procuredAchievements.size();
+    public String getUsername() {
+        return this.username;
     }
 
-    public Integer getHighScore(){
+    public Integer getHighScore() {
         return this.highScore;
     }
 
-    public void setHighScore(int score){
-        this.highScore = score;
-        //TODO: link to backend
+    public Integer getTotalStars() {
+        return this.totalStars;
     }
 
-    public void changeStarCount(int delta){
-        this.totalStars += delta;
-        //TODO: link to backend
+    public boolean canPurchase(Avatar avatar){
+        int cost = costAvatars.get(avatar);
+        return totalStars >= cost;
+    }
+
+    public boolean hasBeenPurchased(Avatar avatar){
+        return unlockedAvatars.contains(avatar);
+    }
+
+    public Integer getNumAchievements(){
+        return this.unlockedAchievements.size();
     }
 
     public void setUsername(String name){
@@ -453,34 +581,5 @@ public class User {
     public void setNickname(String name){
         this.nickname = name;
         //TODO: link to backend
-    }
-
-    public boolean canPurchase(Avatar avatar){
-        int cost = costAvatars.get(avatar);
-        if (totalStars >= cost){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void purchaseAvatar(Avatar avatar){
-        if (hasBeenPurchased(avatar)) return;
-
-        //TODO: link to backend
-        unlockedAvatars.add(avatar);
-        totalStars -= costAvatars.get(avatar);
-    }
-
-    public boolean hasBeenPurchased(Avatar avatar){
-        return unlockedAvatars.contains(avatar);
-    }
-
-    public void addAchievement(Achievement achievement, int level){
-        String achievementString = achievement.toString(level);
-
-        if (procuredAchievements.contains(achievementString)) return;
-        //TODO: link to backend
-        procuredAchievements.add(achievementString);
     }
 }

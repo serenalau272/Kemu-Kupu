@@ -1,8 +1,6 @@
-package com;
+package com.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.models.SpellingTopic;
 
 import org.junit.jupiter.api.Test;
 

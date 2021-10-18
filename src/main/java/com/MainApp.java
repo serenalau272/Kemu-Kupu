@@ -161,17 +161,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage s) {
-
-        //temp
-        setUser();
-        try {
-            // user.login("joebloggs123", "joebloggs");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
         lastSpun = System.currentTimeMillis() - 150_000;   //2 minutes = 60 * 2 * 1000 = 120 000
-
         stage = s;
         setting = new Setting();
         stage.setResizable(false);
