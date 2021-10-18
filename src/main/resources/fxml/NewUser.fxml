@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.NewUser">
+    <children>
+      <ImageView fx:id="background" fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/cartoon-landscape.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="347.0" layoutX="444.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/newUser/New%20User.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton" fitHeight="74.0" fitWidth="72.0" layoutX="1088.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="625.0" fitWidth="653.0" layoutX="319.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/newUser/signUpBackground.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="createAccountButton" fitHeight="72.0" fitWidth="438.0" layoutX="467.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/newUser/createAccountButton.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="usernameInput" layoutX="390.0" layoutY="355.0" prefHeight="65.0" prefWidth="509.0" promptText="Username">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="nicknameInput" layoutX="390.0" layoutY="220.0" prefHeight="65.0" prefWidth="509.0" promptText="Nickname">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordInput" layoutX="393.0" layoutY="483.0" prefHeight="65.0" prefWidth="503.0" promptText="Password">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </PasswordField>
+    </children>
+</AnchorPane>
