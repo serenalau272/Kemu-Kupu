@@ -477,7 +477,10 @@ public class User {
     }
 
     public void addAchievement(Achievement achievement, int level){
+        String achievementString = achievement.toString(level);
+
+        if (procuredAchievements.contains(achievementString)) return;
         //TODO: link to backend
-        procuredAchievements.add(achievement.toString(level));
+        procuredAchievements.add(achievementString);
     }
 }
