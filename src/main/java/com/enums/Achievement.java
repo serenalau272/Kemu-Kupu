@@ -114,39 +114,39 @@ public enum Achievement {
     public static String fromString(String s) throws LoadException {
         switch (s.strip().toLowerCase()) {
             case "practice":
-                return "EXPLORER_1";
+                return "EXPLORER_1";        //done in GameMode.java
             case "play":
-                return "EXPLORER_2";
+                return "EXPLORER_2";        //done in GameMode.java
             case "playEvery":
-                return "EXPLORER_3";
+                return "EXPLORER_3";        //TODO: to be implemented
             case "diligence5":
-                return "STUDENT_1";
+                return "STUDENT_1";         //done in Reward.java
             case "diligence10":
-                return "STUDENT_2";
+                return "STUDENT_2";          //done in Reward.java
             case "diligence20":
-                return "STUDENT_3";
+                return "STUDENT_3";          //done in Reward.java
             case "diligence50":
-                return "STUDENT_4";
+                return "STUDENT_4";              //done in Reward.java
             case "diligence100":
-                return "STUDENT_5";
+                return "STUDENT_5";             //done in Reward.java
             case "highscore75":
-                return "ACHIEVER_1";
+                return "ACHIEVER_1";            //done in Reward.java
             case "highscore90":
-                return "ACHIEVER_2";
+                return "ACHIEVER_2";            //done in Reward.java
             case "highscore100":
-                return "ACHIEVER_3";
+                return "ACHIEVER_3";            //done in Reward.java
             case "unlockAll":
-                return "STYLISH_1";
-            case "star10":
-                return "POCKETS_1";
+                return "STYLISH_1";             //done in User.java
+            case "star10":                      
+                return "POCKETS_1";             //done in Reward.java + 
             case "star50":
-                return "POCKETS_2";
+                return "POCKETS_2";             //done in Reward.java
             case "star100":
-                return "POCKETS_3";
+                return "POCKETS_3";             //done in Reward.java
             case "star200":
-                return "POCKETS_4";
+                return "POCKETS_4";             //done in Reward.java
             case "star300":
-                return "POCKETS_5";
+                return "POCKETS_5";             //done in Reward.java
             default:
                 System.err.println();
                 throw new LoadException("Recieved unknown achievement request from string to achievement! Offending string " + s);

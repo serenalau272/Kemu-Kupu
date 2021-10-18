@@ -30,8 +30,6 @@ public class GameMode extends ApplicationController implements Initializable {
     @FXML private ImageView rankedAvatar;
     @FXML private ImageView backButton;
 
-    private Boolean isAvatar;
-
     //// Private Methods ////
 
     private void intialiseMode(Gamemode mode) {
@@ -97,6 +95,11 @@ public class GameMode extends ApplicationController implements Initializable {
 
     private void selectMode(Gamemode mode) throws IOException {
         Game game = new Game(mode);
+        if (mode == Gamemode.PRACTICE){
+            MainApp.getUser().unlockAchievement("EXPLORER_1");
+        } else {
+            MainApp.getUser().unlockAchievement("EXPLORER_2");
+        }
         MainApp.setGameState(game);
         MainApp.setRoot(View.TOPIC);
     }

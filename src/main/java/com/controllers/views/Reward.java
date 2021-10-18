@@ -1,9 +1,6 @@
 package com.controllers.views;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -13,6 +10,8 @@ import java.util.ResourceBundle;
 import com.MainApp;
 import com.components.animations.OscillatingComponent;
 import com.controllers.ApplicationController;
+import com.enums.Achievement;
+import com.enums.Gamemode;
 import com.enums.View;
 import com.util.Sounds;
 import com.models.Game;
@@ -22,6 +21,7 @@ import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -72,10 +72,61 @@ public class Reward extends ApplicationController implements Initializable {
         setStar(0, score);
     }
 
+    private void addStudentAchievement(int bound, int numGames){
+        if (numGames >= bound){
+            try {
+                String s = Achievement.fromString("diligence" + Integer.toString(bound));
+                user.unlockAchievement(s);
+            } catch (Exception e){
+                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            }
+        }
+    }
+    
+    private void addAchieverAchievement(int bound, int highscore){
+        if (highscore >= bound){
+            try {
+                String s = Achievement.fromString("highscore" + Integer.toString(bound));
+                user.unlockAchievement(s);
+            } catch (Exception e){
+                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            }
+        }
+    }
+
+    private void addPocketAchievement(int bound, int stars){
+        if (stars >= bound){
+            try {
+                String s = Achievement.fromString("star" + Integer.toString(bound));
+                user.unlockAchievement(s);
+            } catch (Exception e){
+                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            }
+        }
+    } 
+
     private void setStar(int index, int score) {
         if (index >= stars.size()) {
+            if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+            
             try {
                 user.addScore(score, numStars);
+                int numGamesPlayed = user.getNumGamesPlayed();
+                addStudentAchievement(5, numGamesPlayed);
+                addStudentAchievement(10, numGamesPlayed);
+                addStudentAchievement(20, numGamesPlayed);
+                addStudentAchievement(50, numGamesPlayed);
+                addStudentAchievement(100, numGamesPlayed);
+                int highScore = user.getHighScore();
+                addAchieverAchievement(75, highScore);
+                addAchieverAchievement(90, highScore);
+                addAchieverAchievement(100, highScore);
+                int totalStars = user.getTotalStars();
+                addPocketAchievement(10, totalStars);
+                addPocketAchievement(50, totalStars);
+                addPocketAchievement(100, totalStars);
+                addPocketAchievement(200, totalStars);
+                addPocketAchievement(300, totalStars);
             }  catch (IOException e){
                 System.err.println("Unable to make a request");
             }

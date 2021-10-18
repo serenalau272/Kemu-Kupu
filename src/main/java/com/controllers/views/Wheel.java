@@ -8,6 +8,7 @@ import com.MainApp;
 import com.components.animations.SpinningWheel;
 import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
+import com.enums.Achievement;
 import com.enums.View;
 import com.models.User;
 import com.util.Sounds;
@@ -46,7 +47,18 @@ public class Wheel extends ApplicationController implements Initializable {
     private WheelTimer timer;
     private Animation anim;
     private int reward;
-    private final int[] rewardStars = {3, 2, 1, 10, 1, 2, 5, 1};
+    private final int[] rewardStars = { 3, 2, 1, 10, 1, 2, 5, 1 };
+
+    private void addPocketAchievement(int bound, int stars) {
+        if (stars >= bound) {
+            try {
+                String s = Achievement.fromString("star" + Integer.toString(bound));
+                currentUser.unlockAchievement(s);
+            } catch (Exception e) {
+                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            }
+        }
+    }
 
     private void giveReward() {
         double rotation = wheel.getRotate();
@@ -64,13 +76,19 @@ public class Wheel extends ApplicationController implements Initializable {
             Sounds.playSoundEffect("reward");
         });
 
-        wait.play();        
+        wait.play();
     }
 
-    private void collectReward(){
+    private void collectReward() {
         try {
             currentUser.addScore(-1, reward);
-        } catch (IOException exception){
+            int totalStars = currentUser.getTotalStars();
+            addPocketAchievement(10, totalStars);
+            addPocketAchievement(50, totalStars);
+            addPocketAchievement(100, totalStars);
+            addPocketAchievement(200, totalStars);
+            addPocketAchievement(300, totalStars);
+        } catch (IOException exception) {
             System.err.println("Unable to add stars " + reward);
         }
 
@@ -82,17 +100,17 @@ public class Wheel extends ApplicationController implements Initializable {
         setPopupVisibility(false);
     }
 
-    private void updateStarLabel(){
+    private void updateStarLabel() {
         starLabel.setText(Integer.toString(currentUser.getTotalStars()));
     }
 
-    private void spin(){
+    private void spin() {
         if (MainApp.getGlobalTimer().getDuration() <= 0) {
             anim.play();
         }
     }
 
-    private void setPopupVisibility(boolean visibility){
+    private void setPopupVisibility(boolean visibility) {
         popup.setVisible(visibility);
         collectButton.setVisible(visibility);
         starNum.setVisible(visibility);
@@ -124,8 +142,6 @@ public class Wheel extends ApplicationController implements Initializable {
             timer.stop();
         });
 
-        
-        
     }
 
 }

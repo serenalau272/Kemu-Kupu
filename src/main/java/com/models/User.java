@@ -506,6 +506,8 @@ public class User implements Serializable {
      * @throws IOException throws if unable to complete the request
      */
     public String unlockCostume(Avatar avatar) throws IOException {
+        if (this.unlockedAvatars.contains(avatar)) return null;
+
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + avatar.toString() + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
@@ -513,6 +515,12 @@ public class User implements Serializable {
                 //Succesfully added score, we should also update our local status now.
                 String addScoreRes = this.addScore(-1, -this.getPrice(avatar));
                 this.__loadData();
+
+                //check to see if stylish badge can be awarded
+                if (this.unlockedAvatars.size() == 10){
+                    this.unlockAchievement("STYLISH_1");
+                }
+
                 return addScoreRes;
             }
             return res.loadJsonData();
@@ -533,6 +541,8 @@ public class User implements Serializable {
      * @throws IOException throws if unable to complete the request
      */
     public String unlockAchievement(String achievement) throws IOException {
+        if (this.unlockedAchievements.contains(achievement)) return null;
+
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + Achievement.toString(achievement) + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
