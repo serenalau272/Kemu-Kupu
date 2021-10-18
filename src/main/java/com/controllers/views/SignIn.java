@@ -81,6 +81,8 @@ public class SignIn extends ApplicationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
         incorrectMessage.setVisible(false);
+        usernameInput.clear();
+        passwordInput.clear();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(Views.MENU);
