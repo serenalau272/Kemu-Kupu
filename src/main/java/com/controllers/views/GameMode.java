@@ -23,6 +23,8 @@ public class GameMode extends ApplicationController implements Initializable {
     @FXML private ImageView practice;
     @FXML private ImageView ranked;
     @FXML private ImageView backButton;
+    @FXML private ImageView gameAvatar;
+    @FXML private ImageView practiceAvatar;
 
     //// Private Methods ////
 
@@ -87,6 +89,8 @@ public class GameMode extends ApplicationController implements Initializable {
         super.initialize();
         intialiseMode(practice);
         intialiseMode(ranked);
+
+        setAvatarImage(gameAvatar);
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
     }

@@ -65,6 +65,7 @@ public class Reward extends ApplicationController implements Initializable {
             } catch (IOException e) {
                 System.err.println("Unable to complete request");
             }
+            return;
         }
 
         int num = Integer.parseInt(stars.get(index).getId().substring(4));

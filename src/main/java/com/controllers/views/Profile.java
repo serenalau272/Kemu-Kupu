@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.MainApp;
+import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
 import com.enums.ConfirmModal;
 import com.enums.View;
@@ -23,6 +24,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class Profile extends ApplicationController implements Initializable {
     User currentUser;
+    WheelTimer timer;
 
     @FXML ImageView backButton;
     @FXML ImageView editUsername;
@@ -99,27 +101,43 @@ public class Profile extends ApplicationController implements Initializable {
         configureStaticEntries();
         configureDynamicEntries();
 
+        timer = new WheelTimer(wheelLabel);
+        timer.start();
         //Set event handlers
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             //TODO: yet to be fully linked
             Modal.showConfirmationModal(ConfirmModal.SIGNOUT);
+            // timer.stop();
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             //TODO: are we still using hidden for high score??
             // currentUser.setHighScore(0);
             configureDynamicEntries();
             Modal.showConfirmationModal(ConfirmModal.RESET);
+            // timer.stop();
         });
 
         this.passwordButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             //TODO: IDEK HOW THIS GONNA WORK
-             
+            timer.stop();
         });
 
-        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
-        this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.SHOP));
-        this.achievementsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.ACHIEVEMENT));
-        this.wheelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.WHEEL));
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event ->{
+            MainApp.setRoot(View.MENU);
+            timer.stop();
+        });
+        this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            MainApp.setRoot(View.SHOP);
+            timer.stop();
+        });
+        this.achievementsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            MainApp.setRoot(View.ACHIEVEMENT);
+            timer.stop();
+        });
+        this.wheelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            MainApp.setRoot(View.WHEEL);
+            timer.stop();
+        });
     }
 }
