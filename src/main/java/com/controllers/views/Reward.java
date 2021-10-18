@@ -21,7 +21,6 @@ import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -108,7 +107,7 @@ public class Reward extends ApplicationController implements Initializable {
     private void setStar(int index, int score) {
         if (index >= stars.size()) {
             if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
-            
+
             try {
                 user.addScore(score, numStars);
                 int numGamesPlayed = user.getNumGamesPlayed();
