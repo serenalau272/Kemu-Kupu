@@ -1,5 +1,6 @@
 package com.controllers.views;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,9 +32,9 @@ public class Wheel extends ApplicationController implements Initializable {
     @FXML
     private Label starLabel;
     @FXML
-    private ImageView exitButton;
+    private ImageView backButton;
     @FXML
-    private ImageView spin;
+    private ImageView spinButton;
     @FXML
     private ImageView popup;
     @FXML
@@ -56,10 +57,10 @@ public class Wheel extends ApplicationController implements Initializable {
         reward = rewardStars[segment];
         System.out.println(reward);
 
-        PauseTransition wait = new PauseTransition(new Duration(500));
+        PauseTransition wait = new PauseTransition(new Duration(800));
         wait.setOnFinished(e -> {
             setPopupVisibility(true);
-            starNum.setText(Integer.toString(reward));
+            starNum.setText(Integer.toString(reward) + " stars");
             Sounds.playSoundEffect("reward");
         });
 
@@ -71,6 +72,7 @@ public class Wheel extends ApplicationController implements Initializable {
 
         MainApp.getGlobalTimer().restart();
         timer.start();
+        spinButton.setVisible(false);
         updateStarLabel();
 
         setPopupVisibility(false);
@@ -96,14 +98,14 @@ public class Wheel extends ApplicationController implements Initializable {
     protected void start() {
         setPopupVisibility(false);
 
-        timer = new WheelTimer(timerLabel);
+        timer = new WheelTimer(timerLabel, spinButton);
         timer.start();
         updateStarLabel();
 
         anim = new SpinningWheel(wheel).getAnimator();
         anim.setOnFinished(e -> giveReward());
 
-        wheel.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> spin());
+        spinButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> spin());
         collectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> collectReward());
     }
 
@@ -113,8 +115,8 @@ public class Wheel extends ApplicationController implements Initializable {
 
         currentUser = MainApp.getUser();
 
-        exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MainApp.setRoot(View.MENU);
+        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            MainApp.setRoot(View.PROFILE);
             timer.stop();
         });
 
