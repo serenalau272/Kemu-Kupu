@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -32,18 +34,41 @@ public class SignIn extends ApplicationController implements Initializable {
     @FXML
     private ImageView incorrectMessage;
 
-    private boolean signin() throws IOException{
+    private boolean signin() throws IOException {
         String username = usernameInput.getText();
         String pwd = passwordInput.getText();
 
         User user = new User();
         String res = user.login(username, pwd);
 
-        if (res == null){
-            //success
+        if (res == null) {
+            // success
+            MainApp.setUser(user);
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void onSignIn() {
+        try {
+            boolean res = signin();
+
+            if (res == true) {
+                // signed in!!
+                incorrectMessage.setVisible(false);
+                MainApp.setRoot(View.PROFILE);
+            } else {
+                // incorrect
+                incorrectMessage.setVisible(true);
+                usernameInput.clear();
+                passwordInput.clear();
+                usernameInput.requestFocus();
+
+            }
+
+        } catch (IOException exception) {
+            System.err.println("Unable to complete request");
         }
     }
 
@@ -56,23 +81,20 @@ public class SignIn extends ApplicationController implements Initializable {
             MainApp.setRoot(View.MENU);
         });
 
-        signInButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            try {
-                boolean res = signin();
-
-                if (res == true){
-                    //signed in!!
-                    incorrectMessage.setVisible(false);
-                    MainApp.setRoot(View.PROFILE);
-                } else {
-                    //incorrect
-                    incorrectMessage.setVisible(true);
-                    
-                }
-
-            } catch (IOException exception){
-                System.err.println("Unable to complete request");
+        usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                passwordInput.requestFocus();
             }
+        });
+
+        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                onSignIn();
+            }
+        });
+
+        signInButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            onSignIn();
         });
     }
 

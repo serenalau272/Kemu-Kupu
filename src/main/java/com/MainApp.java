@@ -150,6 +150,10 @@ public class MainApp extends Application {
         user = new User();
     }
 
+    public static void setUser(User usr){
+        user = usr;
+    }
+
     public static GlobalTimer getGlobalTimer(){
         return globalTimer;
     }
