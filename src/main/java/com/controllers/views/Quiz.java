@@ -330,13 +330,14 @@ public class Quiz extends ApplicationController implements Initializable {
      * Handler for the submit button
      */
     public void checkInput(Word input, boolean isInputEmpty) {
-        timer.stop();
 
         // return if empty textfield
         if (isInputEmpty) {
             __hearWord(1);
             return;
         }
+
+        timer.stop();
 
         InputField.setDisableInputs(false);
 
