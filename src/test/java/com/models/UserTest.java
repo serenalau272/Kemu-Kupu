@@ -251,5 +251,8 @@ public class UserTest extends User {
 
         //Assert that avatar was updated correctly
         assertEquals(avatar, user.getAvatar());
+
+        //Cleanup
+        this.__deleteAccount(user);
     }
 }
