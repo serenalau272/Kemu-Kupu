@@ -9,13 +9,19 @@ import javafx.scene.image.ImageView;
 public class WheelTimer extends ApplicationController {
 
     private Label timerLabel;
-    private ImageView spinButton;
+    private ImageView spinButton = null;
     private int timeSeconds;
     private MyTimer timer;
     
     public WheelTimer(Label timerLabel, ImageView spinButton) {
         this.timerLabel = timerLabel;
         this.spinButton = spinButton;
+        timeSeconds =  MainApp.getGlobalTimer().getDuration();
+        timer = new MyTimer();
+    }
+
+    public WheelTimer(Label timerLabel) {
+        this.timerLabel = timerLabel;
         timeSeconds =  MainApp.getGlobalTimer().getDuration();
         timer = new MyTimer();
     }
@@ -30,8 +36,12 @@ public class WheelTimer extends ApplicationController {
 
     private void updateLabel(){
         if (timeSeconds <= 0){
-            timerLabel.setText("");
-            spinButton.setVisible(true);
+            if (spinButton == null) {
+                timerLabel.setText("Spin!");
+            } else {
+                timerLabel.setText("");
+                spinButton.setVisible(true);
+            }
             return;
         }
 
