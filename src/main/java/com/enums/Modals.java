@@ -4,7 +4,6 @@ public enum Modals {
     SETTING,
     ATTRIBUTION,
     PAUSE,
-    WHEEL,
     HELP;
 
     public String getFileName() {
@@ -20,9 +19,6 @@ public enum Modals {
             }
             case HELP: {
                 return "Help";
-            }
-            case WHEEL: {
-                return "Wheel";
             }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
@@ -44,9 +40,6 @@ public enum Modals {
             }
             case HELP: {
                 return "Help";
-            }
-            case WHEEL: {
-                return "Spin that wheel!";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");

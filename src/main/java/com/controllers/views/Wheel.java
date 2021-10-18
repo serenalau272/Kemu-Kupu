@@ -1,4 +1,4 @@
-package com.controllers.modals;
+package com.controllers.views;
 
 import com.MainApp;
 import com.components.animations.SpinningWheel;

@@ -13,6 +13,7 @@ public enum View {
     REWARD,
     PROFILE,
     SHOP,
+    WHEEL,
     ACHIEVEMENT;
 
     public String getFileName() {
@@ -37,6 +38,9 @@ public enum View {
             }
             case REWARD: {
                 return "Reward";
+            }
+            case WHEEL: {
+                return "Wheel";
             }
             case PROFILE: {
                 return "Profile";
@@ -64,6 +68,9 @@ public enum View {
             }
             case TOPIC: {
                 return "Kemu Kupu - Choose a Topic!";
+            }
+            case WHEEL: {
+                return "Spin to Win!";
             }
             case QUIZ: {
                 return "Kemu Kupu - Let's Play!";
