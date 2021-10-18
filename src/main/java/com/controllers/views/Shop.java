@@ -128,7 +128,7 @@ public class Shop extends ApplicationController implements Initializable {
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));  
         setStars();
         avatars.addAll(getData());
-
+        
         buyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             try {
                 currentUser.unlockCostume(chosenAvatar);

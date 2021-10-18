@@ -1,8 +1,6 @@
 package com.models;
 
 import java.io.IOException;
-import java.io.File;
-import java.util.Scanner;
 import java.util.List;
 
 import com.enums.Gamemode;
@@ -15,6 +13,7 @@ import javafx.scene.Node;
  * This class handles the storing and retriving of the current gamestate.
  */
 public class Game {
+    //// Properties ////
     private Gamemode gamemode;
     private List<Word> words;
     private SpellingTopic topic;
@@ -22,23 +21,15 @@ public class Game {
     private boolean awaitingInput = true;
     public Node inputField;
 
+    //// Public Methods /////
     /**
      * Create a new game instance
      * @param mode the gamemode we are testing in
      * @param topic the topic to select
      * @param numWords optional param for the number of words, defaults to 5
      */
-
     public Game(Gamemode mode) throws IOException {
         this.gamemode = mode;
-    }
-
-    public void setAwaitingInput(boolean value){
-        this.awaitingInput = value;
-    }
-
-    public boolean isAwaitingInput(){
-        return awaitingInput;
     }
 
     /**
@@ -49,34 +40,17 @@ public class Game {
         return this.words.get(wordIndex);
     }
 
-    public List<Word> getWords() {
-        return this.words;
-    }
-
-    public Gamemode getGameMode() {
-        return this.gamemode;
-    }
-
-    public int getWordIndex(){
-        return wordIndex;
-    }
-
-    public void setWordIndex(int index){
-        wordIndex = index;
-    }
-
-    
     /**
      * Get the number of words in the word list
-     * @return
+     * @return an integer representing the number of words
      */
     public int getWordListSize() {
         return this.words.size();
     }
 
     /**
-     * Get the overall score of the words
-     * @return
+     * Calculate and return the current total score.
+     * @return an integer representing the current total score
      */
     public int getScore() {
         int score = 0;
@@ -90,26 +64,40 @@ public class Game {
     }
 
     /**
-     * Get the topic we are currently testing on
-     * @return
+     * Set the current topic we are going to play
+     * @param topic the topic selection
+     * @throws IOException if unable to read the words from disk
      */
-    public SpellingTopic getTopic() {
-        return this.topic;
-    }
-
     public void setTopic(SpellingTopic topic) throws IOException {
         this.topic = topic;
         this.words = SystemIO.getWords(5, topic.getPath());
     }
 
-    public static Integer getHighScore() throws IOException {
-        File userStats = new File("./.user/.userStats.txt");
-        Scanner statsReader = new Scanner(userStats);
-        Integer highScore = 0;
-        if (statsReader.hasNextLine()) {
-            highScore = statsReader.nextInt();
-        }
-        statsReader.close();
-        return highScore;
+    public SpellingTopic getTopic() {
+        return this.topic;
+    }
+
+    public List<Word> getWords() {
+        return this.words;
+    }
+
+    public Gamemode getGameMode() {
+        return this.gamemode;
+    }
+
+    public int getWordIndex() {
+        return this.wordIndex;
+    }
+
+    public void setWordIndex(int index) {
+        this.wordIndex = index;
+    }
+
+    public void setAwaitingInput(boolean value) {
+        this.awaitingInput = value;
+    }
+ 
+    public boolean getAwaitingInput() {
+        return this.awaitingInput;
     }
 }

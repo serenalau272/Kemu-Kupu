@@ -18,6 +18,11 @@ public class ShopAvatar extends ApplicationController {
 
     public void setData(AvatarItem avatar) {
         String name = avatar.getName().substring(0, 1).toUpperCase() + avatar.getName().substring(1);
+
+        if (name.equals("Default Bee")){
+            name = "B";
+        }
+        
         avatarName.setText(name);
         try {
             setImage(avatar.getImgName(), this.avatar);

@@ -7,6 +7,7 @@ import javax.net.ssl.HttpsURLConnection;
 import java.util.HashSet;
 import java.util.List;
 
+import com.MainApp;
 import com.enums.Achievement;
 import com.enums.Avatar;
 import com.google.gson.Gson;
@@ -520,8 +521,9 @@ public class User implements Serializable {
         //Validate purchase
         if (this.unlockedAvatars.contains(avatar)) return "Avatar already unlocked";
         if (!this.canPurchase(avatar)) return "Unable to afford avatar";
-
-        Sounds.playSoundEffect("cha-ching");
+        
+        if (MainApp.getSetting() != null) 
+            Sounds.playSoundEffect("cha-ching");
 
         //Carry out purchase
         if (this.JWTToken != null) {
@@ -712,7 +714,7 @@ public class User implements Serializable {
      * Get the users achievements
      * @return a hashset of the users achievements
      */
-    public List<String> getAchievements(){
+    public List<String> getAchievements() {
         return this.unlockedAchievements;
     }
 
