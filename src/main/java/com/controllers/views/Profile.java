@@ -30,7 +30,7 @@ public class Profile extends ApplicationController implements Initializable {
     @FXML ImageView backButton;
     @FXML ImageView editUsername;
     @FXML ImageView editNickname;
-    @FXML ImageView passwordButton;
+    @FXML ImageView deleteButton;
     @FXML ImageView resetButton;
     @FXML ImageView signoutButton;
     @FXML ImageView shopButton;
@@ -125,16 +125,14 @@ public class Profile extends ApplicationController implements Initializable {
             // timer.stop();
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            //TODO: are we still using hidden for high score??
-            // currentUser.setHighScore(0);
-            configureDynamicEntries();
+            //TODO: endpoint to be created
             Modal.showConfirmationModal(ConfirmModal.RESET);
             // timer.stop();
         });
 
-        this.passwordButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            //TODO: IDEK HOW THIS GONNA WORK
-            timer.stop();
+        this.deleteButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Modal.showConfirmationModal(ConfirmModal.DELETE);
+            // timer.stop();
         });
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event ->{
