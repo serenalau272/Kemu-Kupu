@@ -1,10 +1,7 @@
 package com.controllers.modals;
-import java.io.FileNotFoundException;
 
-import com.MainApp;
 import com.controllers.ModalController;
 import com.enums.ConfirmModal;
-import com.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -4,7 +4,6 @@ import java.io.IOError;
 import java.io.IOException;
 
 import com.MainApp;
-import com.util.Modal;
 import com.util.Sounds;
 
 /**
