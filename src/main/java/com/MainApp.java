@@ -2,6 +2,7 @@ package com;
 import java.io.File;
 import java.io.IOException;
 
+import com.components.animations.WheelTimer;
 import com.enums.Gamemode;
 import com.enums.View;
 import com.models.Game;
@@ -25,6 +26,7 @@ public class MainApp extends Application {
     private static Setting setting;
     private static TTS tts;
     private static long lastSpun;
+    private static WheelTimer wheelTimer;
 
     //// Private (helper) methods ////
     /**
@@ -147,6 +149,14 @@ public class MainApp extends Application {
 
     public static void setUser(){
         user = new User();
+    }
+
+    public static void setWheelTimer(WheelTimer timer){
+        wheelTimer = timer;
+    }
+
+    public static WheelTimer getWheelTimer(){
+        return wheelTimer;
     }
 
     @Override

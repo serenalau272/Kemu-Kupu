@@ -2,10 +2,12 @@ package com.controllers.views;
 
 import com.MainApp;
 import com.components.animations.SpinningWheel;
+import com.components.animations.WheelTimer;
 import com.controllers.ModalController;
 
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -15,6 +17,9 @@ import javafx.scene.input.MouseEvent;
 public class Wheel extends ModalController {
     @FXML
     private ImageView wheel;
+    @FXML
+    private Label timerLabel;
+    WheelTimer timer;
     Animation anim;
     private final int[] rewardStars = {1, 10, 1, 2, 3, 1, 5, 2};
 
@@ -29,6 +34,12 @@ public class Wheel extends ModalController {
 
     @Override
     protected void start() {
+        if (MainApp.getWheelTimer() != null){
+            timer = MainApp.getWheelTimer();
+        } else {
+            timer = new WheelTimer(timerLabel);
+        }
+
         anim = new SpinningWheel(wheel).getAnimator();
         anim.setOnFinished(e -> giveReward());
 
