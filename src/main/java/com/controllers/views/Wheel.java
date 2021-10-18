@@ -33,7 +33,7 @@ public class Wheel extends ApplicationController implements Initializable {
     @FXML
     private ImageView exitButton;
     @FXML
-    private ImageView timerButton;
+    private ImageView spin;
     @FXML
     private ImageView popup;
     @FXML
@@ -103,7 +103,6 @@ public class Wheel extends ApplicationController implements Initializable {
         anim.setOnFinished(e -> giveReward());
 
         wheel.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> spin());
-        timerButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> spin());
         collectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> collectReward());
     }
 

@@ -33,9 +33,9 @@
             <Image url="@../assets/wheel/Spin%20to%20Win!.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="timerButton" fitHeight="87.0" fitWidth="304.0" layoutX="478.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="spin" fitHeight="87.0" fitWidth="304.0" layoutX="478.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/wheel/timerButton.png" />
+            <Image url="@../assets/wheel/timer.png" />
          </image>
       </ImageView>
       <Label fx:id="timerLabel" alignment="CENTER" layoutX="541.0" layoutY="150.0" prefHeight="40.0" prefWidth="119.0" text="2m 30s" textFill="WHITE">
