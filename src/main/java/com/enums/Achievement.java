@@ -165,7 +165,7 @@ public enum Achievement {
             case "EXPLORER_2":
                 return "play";
             case "EXPLORER_3":
-                return "playEver";
+                return "playEvery";
             case "STUDENT_1":
                 return "diligence5";
             case "STUDENT_2":

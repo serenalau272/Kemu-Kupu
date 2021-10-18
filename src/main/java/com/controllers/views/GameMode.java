@@ -88,10 +88,12 @@ public class GameMode extends ApplicationController implements Initializable {
             case "practice": 
                 modeEnum = Gamemode.PRACTICE;
                 currentUser.unlockAchievement("EXPLORER_1");
+                System.out.println("achievement unlocked EXPLORER_1!");
                 break;
             case "ranked":
                 modeEnum = Gamemode.RANKED;
                 currentUser.unlockAchievement("EXPLORER_2");
+                System.out.println("achievement unlocked EXPLORER_2!");
                 break;
             default: 
                 System.err.println("Mode not valid.");
