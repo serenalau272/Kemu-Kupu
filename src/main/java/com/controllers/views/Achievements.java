@@ -51,9 +51,8 @@ public class Achievements extends ApplicationController implements Initializable
         data.add("POCKETS_3");
     }
 
-    private List<AchievementItem> getData() {
+    private List<AchievementItem> configureComponents() {
         List<AchievementItem> types = new ArrayList<>();
-        Achievement achievementType;
         List<Integer> explorerLevels = new ArrayList<>();
         List<Integer> studentLevels = new ArrayList<>();
         List<Integer> achieverLevels = new ArrayList<>();
@@ -62,14 +61,11 @@ public class Achievements extends ApplicationController implements Initializable
         List<Integer> stylishLevels = new ArrayList<>();
         
         AchievementItem item;
-        configureMockData();
 
         for (String achievementLabel : data) {
-            String[] components = achievementLabel.split("_");
-            achievementType = Achievement.fromString(components[0]);
-            Integer levelNum = Integer.parseInt(components[1]);
+            Integer levelNum = Achievement.getLevelFromString(achievementLabel);
 
-            switch (achievementType){
+            switch (Achievement.getAchievementTypeFromString(achievementLabel)){
                 case EXPLORER:
                     explorerLevels.add(levelNum);
                     continue;
@@ -117,7 +113,8 @@ public class Achievements extends ApplicationController implements Initializable
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));
 
-        types.addAll(getData());
+        data = currentUser.getProcuredAchievements();
+        types.addAll(configureComponents());
 
         int row = 1;
         try {

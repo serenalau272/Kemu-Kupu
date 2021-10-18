@@ -8,28 +8,44 @@ public enum Achievement {
     POCKETS,
     STYLISH;
 
-    public String toString(){
+    public String toString(int level){
+        String label;
         switch (this) {
             case EXPLORER:
-                return "EXPLORER";
+                label = "EXPLORER";
+                break;
             case STUDENT:
-                return "STUDENT";
+                label = "STUDENT";
+                break;
             case ACHIEVER:
-                return "ACHIEVER";
+                label = "ACHIEVER";
+                break;
             case SPEEDY:
-                return "SPEEDY";
+                label = "SPEEDY";
+                break;
             case POCKETS:
-                return "POCKETS";
+                label = "POCKETS";
+                break;
             case STYLISH:
-                return "STYLISH";
+                label = "STYLISH";
+                break;
             default:
                 System.err.println("ERROR: Type not implemented for achievements!");
                 return "";
         }
+        String ret = label + "_" + Integer.toString(level);
+        System.out.println(ret);
+        return ret;
     }
 
-    public static Achievement fromString(String s){
-        switch (s.strip().toUpperCase()) {
+    public static int getLevelFromString(String s){
+        String[] components = s.split("_"); 
+        return Integer.parseInt(components[1]);
+    }
+
+    public static Achievement getAchievementTypeFromString(String s){
+        String[] components = s.split("_");            
+        switch (components[0].strip().toUpperCase()) {
             case "EXPLORER":
                 return EXPLORER;
             case "STUDENT":

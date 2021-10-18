@@ -157,7 +157,8 @@ public class User {
 
     //TODO implement
     private String nickname;
-    private HashSet<Achievement> procuredAchievements = new HashSet<>();
+    private ArrayList<String> procuredAchievements = new ArrayList<>();
+
     private final Map<Avatar, Integer> costAvatars = Map.ofEntries(
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.DEFAULT, 0),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
@@ -288,6 +289,7 @@ public class User {
         this.totalStars = 24;
         this.highScore = 70;
         this.nickname = "George";
+        this.procuredAchievements.add(Achievement.EXPLORER.toString(1));
     }
 
     /**
@@ -399,9 +401,9 @@ public class User {
 
     /**
      * Get the users achievements
-     * @return a hashset of the users achievements
+     * @return a array list of the users achievements
      */
-    public HashSet<Achievement> getProcuredAchievements(){
+    public ArrayList<String> getProcuredAchievements(){
         return this.procuredAchievements;
     }
 
@@ -463,6 +465,8 @@ public class User {
     }
 
     public void purchaseAvatar(Avatar avatar){
+        if (hasBeenPurchased(avatar)) return;
+
         //TODO: link to backend
         unlockedAvatars.add(avatar);
         totalStars -= costAvatars.get(avatar);
@@ -470,5 +474,10 @@ public class User {
 
     public boolean hasBeenPurchased(Avatar avatar){
         return unlockedAvatars.contains(avatar);
+    }
+
+    public void addAchievement(Achievement achievement, int level){
+        //TODO: link to backend
+        procuredAchievements.add(achievement.toString(level));
     }
 }
