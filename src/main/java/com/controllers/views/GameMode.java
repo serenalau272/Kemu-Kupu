@@ -95,11 +95,6 @@ public class GameMode extends ApplicationController implements Initializable {
 
     private void selectMode(Gamemode mode) throws IOException {
         Game game = new Game(mode);
-        if (mode == Gamemode.PRACTICE){
-            MainApp.getUser().unlockAchievement("EXPLORER_1");
-        } else {
-            MainApp.getUser().unlockAchievement("EXPLORER_2");
-        }
         MainApp.setGameState(game);
         MainApp.setRoot(Views.TOPIC);
     }

@@ -106,9 +106,12 @@ public class Reward extends ApplicationController implements Initializable {
 
     private void setStar(int index, int score) {
         if (index >= stars.size()) {
-            if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
-
             try {
+                if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE){
+                    user.unlockAchievement("EXPLORER_1");
+                    return;
+                } 
+                user.unlockAchievement("EXPLORER_2");
                 user.addScore(score, numStars);
                 int numGamesPlayed = user.getNumGamesPlayed();
                 addStudentAchievement(5, numGamesPlayed);

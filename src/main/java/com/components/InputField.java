@@ -36,7 +36,7 @@ public class InputField extends TextField{
 
     //fields for styling
     private static int offset = 10;
-    private static int inputTileWidth = 70;
+    private static int inputTileWidth = 73;
     private static int leftMargin = 397;
     private static int bottomMargin = 50;
     private static int totalWidth = 908;
