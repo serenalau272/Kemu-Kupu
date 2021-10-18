@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="349.0" maxWidth="930.0" minHeight="200.0" minWidth="168.0" prefHeight="250.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.fxmlComponents.AchievementType">
+<AnchorPane fx:id="anchorPane" maxHeight="349.0" maxWidth="930.0" minHeight="200.0" minWidth="168.0" prefHeight="250.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.fxmlComponents.AchievementType">
     <children>
       <ImageView fx:id="avatar" fitHeight="45.0" fitWidth="879.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>

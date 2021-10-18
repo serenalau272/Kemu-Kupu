@@ -70,7 +70,7 @@ public class Sounds {
         //is unlikely to be fixed in the future, and only updating to a newer version of javafx
         //will fix it.
         //See https://github.com/javafxports/openjdk-jfx/issues/331 for more information.
-        if (getOSInformation().contains("ubuntu")) return; 
+        // if (getOSInformation().contains("ubuntu")) return; 
 
         if (musicPlayer != null) {
             musicPlayer.stop();
@@ -79,7 +79,7 @@ public class Sounds {
         if (!MainApp.getSetting().getMusic()) return;        
 
         try {
-            String path = MainApp.class.getResource("/sound/" + music + ".mp3").toURI().toString();
+            String path = MainApp.class.getResource("/sound/" + music + ".wav").toURI().toString();
             musicPlayer = new MediaPlayer(new Media(path));
 
             if (!music.equals("menu")){
