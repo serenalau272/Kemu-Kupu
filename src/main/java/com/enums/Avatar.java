@@ -76,4 +76,32 @@ public enum Avatar {
                 return "default";
         }
     }
+
+    public String getAvatarName() {
+        switch (this) {
+            case DEFAULT:
+                return "B";
+            case SAILOR:
+                return "Sailor Bee";
+            case MAGICIAN:
+                return "Magician Bee";
+            case WIZARD:
+                return "Wizard Bee";
+            case NINJA:
+                return "Ninja Bee";
+            case QUEEN:
+                return "Queen Bee";
+            case FAIRY:
+                return "Fairy Bee";
+            case PROFESSOR:
+                return "Professor Bee";
+            case ALIEN:
+                return "Alien Bee";
+            case CHEF:
+                return "Chef Bee";
+            default:
+                System.err.println("Tried to convert unknown avatar into a string!");
+                return "B";
+        }
+    }
 }

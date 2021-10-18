@@ -94,7 +94,7 @@ public class Shop extends ApplicationController implements Initializable {
                 buyButton.setVisible(false);
                 notEnough.setVisible(false);
                 avatarLabel.setVisible(true);
-                avatarLabel.setText(chosenAvatar.toString());
+                avatarLabel.setText(chosenAvatar.getAvatarName());
                 setImage("background", avatarPrice);
             } else {
                 if (currentUser.canPurchase(chosenAvatar)){
