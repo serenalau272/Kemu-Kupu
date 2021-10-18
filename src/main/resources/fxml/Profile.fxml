@@ -1,31 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.Profile">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Profile">
     <children>
-      <!-- Static Images -->
-      <ImageView fitHeight="519.0" fitWidth="623.0" layoutX="292.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/OtherModals/Group%20161.png" />
+            <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitButton" fitHeight="82.0" fitWidth="68.0" layoutX="1101.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="501.0" fitWidth="1064.0" layoutX="84.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="268.0" layoutX="470.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Profile%20Info.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton" fitHeight="74.0" fitWidth="72.0" layoutX="1088.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="resetButton" fitHeight="68.0" fitWidth="221.0" layoutX="489.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="298.0" fitWidth="405.0" layoutX="861.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/OtherModals/Group%20130.png" />
+            <Image url="@../assets/Profile/avatarBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="highScoreLabel" fitHeight="75.0" fitWidth="123.0" layoutX="660.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="shopButton" fitHeight="85.0" fitWidth="220.0" layoutX="900.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/rewardScreen/score/100.png" />
+            <Image url="@../assets/Profile/shopButton.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="268.0" layoutX="117.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Account%20Settings.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="147.0" layoutX="117.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Nickname_.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="147.0" layoutX="116.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Username_.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="268.0" layoutX="478.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/High%20Score.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="268.0" layoutX="833.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Total%20Stars.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="268.0" layoutX="489.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Achievements.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="364.0" fitWidth="268.0" layoutX="426.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/Line%201.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="resetButton" fitHeight="85.0" fitWidth="220.0" layoutX="251.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/resetHighscore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="signoutButton" fitHeight="85.0" fitWidth="220.0" layoutX="158.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/signOut.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="passwordButton" fitHeight="85.0" fitWidth="220.0" layoutX="94.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/changePassword.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="achievementsButton" fitHeight="85.0" fitWidth="220.0" layoutX="513.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/achievementsButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="60.0" layoutX="506.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Achievements/Group%20(6).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="85.0" fitWidth="220.0" layoutX="844.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="editNickname" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="userAvatar" fitHeight="210.0" fitWidth="256.0" layoutX="892.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Avatars/chef.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="editUsername" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Profile/edit.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="335.0" prefHeight="167.0" prefWidth="554.0" styleClass="heading-style" stylesheets="@../styles/application.css" text="Hello Henry!" />
+      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="478.0" layoutY="316.0" prefHeight="97.0" prefWidth="248.0" text="80" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="starLabel" alignment="CENTER" layoutX="886.0" layoutY="517.0" prefHeight="97.0" prefWidth="248.0" text="10" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="achievementsLabel" alignment="CENTER" layoutX="513.0" layoutY="509.0" prefHeight="97.0" prefWidth="248.0" text="5/18" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nicknameInput" layoutX="126.0" layoutY="339.0" prefHeight="41.0" prefWidth="198.0" />
+      <TextField fx:id="usernameInput" layoutX="126.0" layoutY="437.0" prefHeight="41.0" prefWidth="198.0" />
     </children>
 </AnchorPane>

@@ -3,7 +3,7 @@ package com.components;
 import java.util.Random;
 
 import com.MainApp;
-import com.controllers.Quiz;
+import com.controllers.views.Quiz;
 import com.enums.Status;
 import com.models.Word;
 

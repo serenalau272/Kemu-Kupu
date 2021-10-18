@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.Topic">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Topic">
     <children>
       <ImageView fx:id="background" fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -59,6 +59,11 @@
       <ImageView fx:id="workButton" fitHeight="105.0" fitWidth="276.0" layoutX="409.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/topicChoices/work.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton" fitHeight="74.0" fitWidth="72.0" layoutX="1088.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
     </children>

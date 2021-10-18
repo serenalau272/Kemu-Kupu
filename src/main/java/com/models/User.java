@@ -163,27 +163,26 @@ class JsonCostumes {
 public class User {
     private final String apiPath = "https://kemukupu.com/api/v1";
     private String JWTToken;
-    private String name;
+    private String username;
+    private String nickname;
     private Integer id;
     private Avatar selectedAvatar;
     private HashSet<Avatar> unlockedAvatars;
     private Integer highScore;
     private Integer totalStars;
     private Integer numGamesPlayed;
-    private String nickname;
     private HashSet<Achievement> unlockedAchievements;
     private Map<Avatar, Integer> costAvatars = Map.ofEntries(
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.DEFAULT, 0),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 5),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.TUXEDO, 30),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.MAGICIAN, 30),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.WIZARD, 5),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NINJA, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PRINCESS, 30),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 30),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 80),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NASSER, 200),
+        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 200),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20)
-        
     );
 
     /**
@@ -191,7 +190,7 @@ public class User {
      */
     private void __reset() {
         this.JWTToken = null;
-        this.name = null;
+        this.username = null;
         this.id = null;
         this.selectedAvatar = Avatar.DEFAULT;
         this.unlockedAvatars = new HashSet<>() { { add(Avatar.DEFAULT); } };
@@ -348,7 +347,7 @@ public class User {
 
     /**
      * Create a new user with the api, and log them in automatically.
-     * @param name the username
+     * @param username the username
      * @param password the password to signup with
      * @param nickname the users nickname
      * @throws IOException if unable to complete the request
@@ -359,7 +358,7 @@ public class User {
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here.
             this.JWTToken = res.loadJsonData();
-            this.name = name;
+            this.username = name;
             //Load user data
             this.__loadData();
             return null;
@@ -369,7 +368,7 @@ public class User {
 
     /**
      * Login a user to the api
-     * @param name the username of the account
+     * @param username the username of the account
      * @param password the password of the account
      * @throws IOException if unable to complete the request
      */
@@ -377,9 +376,9 @@ public class User {
         String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/login", body);
         if (res.getStatus() == ResponseStatus.Success) {
-            //Succesful login, lets go from here.
+            //Succesful login, lets go from here. main
             this.JWTToken = res.loadJsonData();
-            this.name = name;
+            this.username = name;
             //Load user data
             this.__loadData();
             return null;
@@ -550,7 +549,7 @@ public class User {
     }
 
     public String getUsername() {
-        return this.name;
+        return this.username;
     }
 
     public Integer getHighScore() {
@@ -559,5 +558,32 @@ public class User {
 
     public Integer getTotalStars() {
         return this.totalStars;
+    }
+
+    public boolean canPurchase(Avatar avatar){
+        int cost = costAvatars.get(avatar);
+        if (totalStars >= cost){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean hasBeenPurchased(Avatar avatar){
+        return unlockedAvatars.contains(avatar);
+    }
+
+    public Integer getNumAchievements(){
+        return this.unlockedAchievements.size();
+    }
+
+    public void setUsername(String name){
+        this.username = name;
+        //TODO: link to backend
+    }
+
+    public void setNickname(String name){
+        this.nickname = name;
+        //TODO: link to backend
     }
 }

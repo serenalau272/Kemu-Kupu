@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Achievements">
+    <children>
+      <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/cartoon-landscape.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="501.0" fitWidth="1064.0" layoutX="84.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Achievements/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="buyButton" fitHeight="94.0" fitWidth="130.0" layoutX="354.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../assets/costumeShop/Buy.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton" fitHeight="74.0" fitWidth="72.0" layoutX="1088.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/settings/back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="117.0" fitWidth="617.0" layoutX="296.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Achievements/Achievements.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backButton11" fitHeight="51.0" fitWidth="44.0" layoutX="501.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Achievements/Group%20(6).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="numLabel" layoutX="552.0" layoutY="138.0" prefHeight="29.0" prefWidth="188.0" text="13 of 18">
+         <stylesheets>
+            <URL value="@../styles/achievements.css" />
+            <URL value="@../styles/application.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="number-label" />
+         </styleClass>
+      </Label>
+      <HBox alignment="CENTER" layoutX="84.0" layoutY="197.0" prefHeight="501.0" prefWidth="1040.0">
+         <children>
+            <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="501.0" prefWidth="1046.0" styleClass="transparent" stylesheets="@../styles/application.css">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="4.0" prefWidth="40.0" style="-fx-vgap: 1; -fx-hgap: 0;">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

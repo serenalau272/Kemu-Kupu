@@ -3,12 +3,12 @@ package com.enums;
 public enum Avatar {
     DEFAULT,
     SAILOR,
-    TUXEDO,
+    MAGICIAN,
     WIZARD,
     NINJA,
-    PRINCESS,
+    QUEEN,
     FAIRY,
-    NASSER,
+    PROFESSOR,
     ALIEN,
     CHEF;
 
@@ -19,22 +19,22 @@ public enum Avatar {
      */
     public static Avatar fromString(String s) {
         switch (s.strip().toLowerCase()) {
-            case "default":
+            case "b":
                 return DEFAULT;
             case "sailor":
                 return SAILOR;
             case "magician":
-                return TUXEDO;
+                return MAGICIAN;
             case "wizard":
                 return WIZARD;
             case "ninja":
                 return NINJA;
             case "queen":
-                return PRINCESS;
+                return QUEEN;
             case "fairy":
                 return FAIRY;
             case "professor":
-                return NASSER;
+                return PROFESSOR;
             case "alien":
                 return ALIEN;
             case "chef":
@@ -52,25 +52,25 @@ public enum Avatar {
     public String toString() {
         switch (this) {
             case DEFAULT:
-                return "default";
+                return "B";
             case SAILOR:
-                return "sailor";
-            case TUXEDO:
-                return "magician";
+                return "Sailor";
+            case MAGICIAN:
+                return "Magician";
             case WIZARD:
-                return "wizard";
+                return "Wizard";
             case NINJA:
-                return "ninja";
-            case PRINCESS:
-                return "queen";
+                return "Ninja";
+            case QUEEN:
+                return "Queen";
             case FAIRY:
-                return "fairy";
-            case NASSER:
-                return "professor";
+                return "Fairy";
+            case PROFESSOR:
+                return "Professor";
             case ALIEN:
-                return "alien";
+                return "Alien";
             case CHEF:
-                return "chef";
+                return "Chef";
             default:
                 System.err.println("Tried to convert unknown avatar into a string!");
                 return "B";

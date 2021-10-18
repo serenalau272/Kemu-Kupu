@@ -2,10 +2,7 @@ package com;
 import java.io.File;
 import java.io.IOException;
 
-import com.components.InputField;
-import com.components.animations.Clock;
 import com.enums.Gamemode;
-import com.enums.Modals;
 import com.enums.View;
 import com.models.Game;
 import com.models.Setting;
@@ -15,11 +12,9 @@ import com.util.TTS;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.scene.effect.BoxBlur;
 
 public class MainApp extends Application {
     private static Stage stage;
@@ -28,8 +23,8 @@ public class MainApp extends Application {
     private static Game state;
     private static User user;
     private static Setting setting;
-    public static TTS tts;
-    public static Clock clock;
+    private static TTS tts;
+    private static long lastSpun;
 
     //// Private (helper) methods ////
     /**
@@ -55,19 +50,6 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Disable all screen nodes
-     */
-    public static void disableScreenNodes(boolean isDisable) {
-        stackPane.getChildren().get(0).setDisable(isDisable);
-        int size = stackPane.getChildren().size();
-        if (size >= 3) {
-            for (int i=1; i<stackPane.getChildren().size()-2; i++) {
-                stackPane.getChildren().get(i).setDisable(isDisable);
-            }
-        }
-    }
-
     private void configureStatsFiles() throws IOException {
         File file = new File("./.user/.userStats.txt");
         file.createNewFile();
@@ -81,6 +63,22 @@ public class MainApp extends Application {
      */
     public static Game getGameState() {
         return state;
+    }
+
+    /**
+     * Get the current TTS
+     * @return
+     */
+    public static TTS getTTS(){
+        return tts;
+    }
+
+    /**
+     * Get the current view
+     * @return
+     */
+    public static View getBaseView() {
+        return view;
     }
 
     /**
@@ -131,39 +129,6 @@ public class MainApp extends Application {
         __setRoot(view);
     }
     
-    /**
-     * Load and show a modal to the user
-     * @param m the modal to load
-     */
-    public static void showModal(Modals m) {
-        try {
-            //Duplicate code should be refactored at some point
-            if (view == View.QUIZ) clock.stop();
-            disableScreenNodes(true);
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
-            Node modal = (Node) fxmlLoader.load();
-            stackPane.getChildren().add(modal);
-            addBlur();
-        } catch (Exception e) {
-            System.err.println("Unable to load modal " + m.getFileName() + " due to error " + e.toString()); 
-            return;
-        }
-    }
-
-    /**
-     * closes modal
-     */
-    public static void closeModal() {
-        Sounds.playSoundEffect("pop");
-        int size = stackPane.getChildren().size();
-        stackPane.getChildren().remove(size-1);
-        removeBlur();
-        disableScreenNodes(false);
-        if (view == View.QUIZ) {
-            clock.resume();
-            InputField.recursor();
-        }
-    }
 
     /*
     * update music on modal toggle
@@ -180,24 +145,13 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * adds blur from background pane
-     */
-    public static void addBlur() {
-        BoxBlur blur = new BoxBlur();
-        blur.setIterations(2);
-        stackPane.getChildren().get(0).setEffect(blur);
-    }
-
-    /**
-     * removes blur from background pane
-     */
-    public static void removeBlur() {
-        stackPane.getChildren().get(0).setEffect(null);
+    public static void setUser(){
+        user = new User();
     }
 
     @Override
     public void start(Stage s) {
+        lastSpun = System.currentTimeMillis() - 150_000;   //2 minutes = 60 * 2 * 1000 = 120 000
         stage = s;
         setting = new Setting();
         stage.setResizable(false);
@@ -210,6 +164,17 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         setRoot(View.MENU);
+    }
+
+    public static boolean canSpin(){
+        long timeNow = System.currentTimeMillis();
+        if (timeNow - lastSpun >= 120_000){
+            //spin
+            lastSpun = timeNow;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

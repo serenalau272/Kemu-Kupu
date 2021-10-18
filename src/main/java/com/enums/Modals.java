@@ -4,9 +4,7 @@ public enum Modals {
     SETTING,
     ATTRIBUTION,
     PAUSE,
-    HELP,
-    ACHIEVEMENT,
-    PROFILE;
+    HELP;
 
     public String getFileName() {
         switch (this) {
@@ -21,12 +19,6 @@ public enum Modals {
             }
             case HELP: {
                 return "Help";
-            }
-            case PROFILE: {
-                return "Profile";
-            }
-            case ACHIEVEMENT: {
-                return "Achievement";
             }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
@@ -43,17 +35,11 @@ public enum Modals {
             case ATTRIBUTION: {
                 return "Kemu Kupu - Asset Attributions";
             }
-            case ACHIEVEMENT: {
-                return "Kemu Kupu - Achievements!";
-            }
             case PAUSE: {
                 return "Game Paused";
             }
             case HELP: {
                 return "Help";
-            }
-            case PROFILE: {
-                return "User Profile";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");
