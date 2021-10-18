@@ -34,12 +34,12 @@
             <Image url="@../assets/newUser/createAccountButton.png" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameInput" layoutX="390.0" layoutY="355.0" prefHeight="65.0" prefWidth="509.0" promptText="Username">
+      <TextField fx:id="nicknameInput" layoutX="390.0" layoutY="220.0" prefHeight="65.0" prefWidth="509.0" promptText="Nickname">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <TextField fx:id="nicknameInput" layoutX="390.0" layoutY="220.0" prefHeight="65.0" prefWidth="509.0" promptText="Nickname">
+      <TextField fx:id="usernameInput" layoutX="390.0" layoutY="355.0" prefHeight="65.0" prefWidth="509.0" promptText="Username">
          <font>
             <Font size="30.0" />
          </font>

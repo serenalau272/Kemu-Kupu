@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Profile">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Profile">
     <children>
       <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -105,7 +105,7 @@
             <Image url="@../assets/Profile/star.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="editNickname" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="editNickname" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Profile/edit.png" />
          </image>
@@ -115,7 +115,7 @@
             <Image url="@../assets/Avatars/chef.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="editUsername" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="editUsername" fitHeight="39.0" fitWidth="34.0" layoutX="339.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Profile/edit.png" />
          </image>
@@ -145,7 +145,7 @@
          </viewport>
       </ImageView>
       <Label fx:id="wheelLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="143.0" prefHeight="28.0" prefWidth="124.0" styleClass="wheel" stylesheets="@../styles/profile.css" text="20min" textAlignment="CENTER" />
-      <TextField fx:id="usernameInput" layoutX="127.0" layoutY="466.0" />
-      <TextField fx:id="nicknameInput" layoutX="123.0" layoutY="336.0" />
+      <TextField fx:id="usernameInput" layoutX="127.0" layoutY="466.0" prefHeight="52.0" prefWidth="204.0" />
+      <TextField fx:id="nicknameInput" layoutX="123.0" layoutY="336.0" prefHeight="52.0" prefWidth="210.0" />
     </children>
 </AnchorPane>
