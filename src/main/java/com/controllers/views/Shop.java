@@ -129,6 +129,13 @@ public class Shop extends ApplicationController implements Initializable {
         currentUser = MainApp.getUser();
         notEnough.setVisible(false);
 
+        try {
+            setImage(currentUser.getSelectedAvatar().toString(), userAvatar);
+        } catch (FileNotFoundException e){
+            System.err.println("Unable to set avatar on load");
+        }
+        avatarLabel.setText(currentUser.getSelectedAvatar().getAvatarName());
+
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));  
         setStars();
         avatars.addAll(getData());
