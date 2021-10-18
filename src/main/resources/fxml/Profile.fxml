@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -144,5 +145,7 @@
          </viewport>
       </ImageView>
       <Label fx:id="wheelLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="143.0" prefHeight="28.0" prefWidth="124.0" styleClass="wheel" stylesheets="@../styles/profile.css" text="20min" textAlignment="CENTER" />
+      <TextField fx:id="usernameInput" layoutX="127.0" layoutY="466.0" />
+      <TextField fx:id="nicknameInput" layoutX="123.0" layoutY="336.0" />
     </children>
 </AnchorPane>
