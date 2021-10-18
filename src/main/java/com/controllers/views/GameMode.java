@@ -2,6 +2,8 @@ package com.controllers.views;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.models.Game;
@@ -32,75 +34,74 @@ public class GameMode extends ApplicationController implements Initializable {
 
     //// Private Methods ////
 
-    private void intialiseMode(ImageView mode) {
-        this.isAvatar = mode.getId().contains("Avatar");
+    private void intialiseMode(Gamemode mode) {
+        List<ImageView> imageViews = new ArrayList<ImageView>();
         
-        mode.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-            try {
-                toggleSaturation(mode, true);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
-
-        mode.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-            try {
-                toggleSaturation(mode, false);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
-
-        mode.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            try {
-                Sounds.playSoundEffect("pop");
-                selectMode(mode.getId());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    private void toggleSaturation(ImageView view, boolean isBright) throws FileNotFoundException{
-        if (isAvatar) {
-            if (isBright) {
-                ColorAdjust colorAdjust = setSaturation(1);
-                view.setEffect(colorAdjust);
-                view.setOpacity(0.7);
-            } else {
-                ColorAdjust colorAdjust = setSaturation(0);
-                view.setEffect(colorAdjust);
-                view.setOpacity(0.3);
-            }
-        } else {
-            String mode = view.getId();
-            if (isBright) {
-                setImage(mode + "-bright", view);
-            } else {
-                setImage(mode + "-faded", view);
-            }
-        }
-    }
-
-    private void selectMode(String mode) throws IOException {
-        Gamemode modeEnum = Gamemode.RANKED;
         switch (mode) {
-            case "practice": 
-                modeEnum = Gamemode.PRACTICE;
+            case PRACTICE:
+                imageViews.add(practice);
+                imageViews.add(practiceAvatar);
                 break;
-            case "ranked":
-                modeEnum = Gamemode.RANKED;
+            case RANKED:
+                imageViews.add(ranked);
+                imageViews.add(rankedAvatar);
                 break;
-            default: 
-                System.err.println("Mode not valid.");
+            default:
+                System.err.println("ERROR: Game mode not implemented.");
+                break;
         }
 
-        Game game = new Game(modeEnum);
+        for (ImageView view : imageViews) {
+            view.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+                try {
+                    toggleSaturation(imageViews, true);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            view.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
+                try {
+                    toggleSaturation(imageViews, false);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            view.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                try {
+                    Sounds.playSoundEffect("pop");
+                    selectMode(mode);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    private void toggleSaturation(List<ImageView> imageViews, boolean isBright) throws FileNotFoundException{
+        String modeName = imageViews.get(0).getId();
+
+        if (isBright) {
+            ColorAdjust colorAdjust = setSaturation(0);
+            imageViews.get(1).setEffect(colorAdjust);
+            imageViews.get(1).setOpacity(0.7);
+            setImage(modeName + "-bright", imageViews.get(0));
+        } else {
+            ColorAdjust colorAdjust = setSaturation(-1);
+            imageViews.get(1).setEffect(colorAdjust);
+            imageViews.get(1).setOpacity(0.3);
+            setImage(modeName + "-faded", imageViews.get(0));
+        }
+    }
+
+    private void selectMode(Gamemode mode) throws IOException {
+        Game game = new Game(mode);
         MainApp.setGameState(game);
         MainApp.setRoot(View.TOPIC);
     }
 
-    private ColorAdjust setSaturation(int saturation) {
+    private ColorAdjust setSaturation(double saturation) {
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setSaturation(saturation);
         return colorAdjust;
@@ -111,10 +112,8 @@ public class GameMode extends ApplicationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
-        intialiseMode(practice);
-        intialiseMode(practiceAvatar);
-        intialiseMode(ranked);
-        intialiseMode(rankedAvatar);
+        intialiseMode(Gamemode.PRACTICE);
+        intialiseMode(Gamemode.RANKED);
 
         setAvatarImage(rankedAvatar);
 
