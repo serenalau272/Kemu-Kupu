@@ -38,18 +38,7 @@ public class Achievements extends ApplicationController implements Initializable
     @FXML GridPane grid;
     
     private List<AchievementItem> types = new ArrayList<>();
-
-    // mock backend data:
     private ArrayList<String> data = new ArrayList<>();
-
-    private void configureMockData() {
-        data.add("EXPLORER_1");
-        data.add("EXPLORER_2");
-        data.add("STUDENT_5");
-        data.add("ACHIEVER_2");
-        data.add("SPEEDY_1");
-        data.add("POCKETS_3");
-    }
 
     private List<AchievementItem> configureComponents() {
         List<AchievementItem> types = new ArrayList<>();
