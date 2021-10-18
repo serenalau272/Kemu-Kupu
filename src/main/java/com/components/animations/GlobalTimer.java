@@ -1,39 +1,29 @@
 package com.components.animations;
-
-import com.MainApp;
-
 import javafx.animation.AnimationTimer;
-import javafx.scene.control.Label;
 
-public class WheelTimer {
-
-    private Label timerLabel;
+public class GlobalTimer {
     private int timeSeconds;
     private MyTimer timer;
+    private int duration;
     
-    public WheelTimer(Label timerLabel) {
-        this.timerLabel = timerLabel;
-        timeSeconds =  MainApp.getGlobalTimer().getDuration();
+    public GlobalTimer(int duration) {
+        this.duration = duration;
+        timeSeconds = 0;
         timer = new MyTimer();
-    }
-
-    public void start(){
-        timeSeconds =  MainApp.getGlobalTimer().getDuration();
         timer.start();
     }
+
     public void stop(){
         timer.stop();
     }
 
-    private void updateLabel(){
-        if (timeSeconds <= 0){
-            timerLabel.setText("SPIN");
-            return;
-        }
+    public void restart(){
+        timeSeconds = duration;
+        timer.start();
+    }
 
-        int numMinutes = timeSeconds / 60;
-        int numSeconds = timeSeconds - (numMinutes * 60);
-        timerLabel.setText(String.valueOf(numMinutes) + "m " + String.valueOf(numSeconds) + "s");
+    public int getDuration(){
+        return timeSeconds;
     }
 
     public class MyTimer extends AnimationTimer {
@@ -54,7 +44,6 @@ public class WheelTimer {
             }
 
             timeSeconds--;
-            updateLabel();
         }
     }
 }

@@ -2,6 +2,7 @@ package com;
 import java.io.File;
 import java.io.IOException;
 
+import com.components.animations.GlobalTimer;
 import com.components.animations.WheelTimer;
 import com.enums.Gamemode;
 import com.enums.View;
@@ -25,8 +26,7 @@ public class MainApp extends Application {
     private static User user;
     private static Setting setting;
     private static TTS tts;
-    private static long lastSpun;
-    private static WheelTimer wheelTimer;
+    private static GlobalTimer globalTimer;
 
     //// Private (helper) methods ////
     /**
@@ -151,16 +151,14 @@ public class MainApp extends Application {
         user = new User();
     }
 
-    public static void setWheelTimer(WheelTimer timer){
-        wheelTimer = timer;
-    }
-
-    public static WheelTimer getWheelTimer(){
-        return wheelTimer;
+    public static GlobalTimer getGlobalTimer(){
+        return globalTimer;
     }
 
     @Override
     public void start(Stage s) {
+        globalTimer = new GlobalTimer(1);
+        globalTimer.restart();
 
         //temp
         setUser();
@@ -170,8 +168,6 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         
-        lastSpun = System.currentTimeMillis() - 150_000;   //2 minutes = 60 * 2 * 1000 = 120 000
-
         stage = s;
         setting = new Setting();
         stage.setResizable(false);
@@ -184,17 +180,6 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         setRoot(View.MENU);
-    }
-
-    public static boolean canSpin(){
-        long timeNow = System.currentTimeMillis();
-        if (timeNow - lastSpun >= 120_000){
-            //spin
-            lastSpun = timeNow;
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
