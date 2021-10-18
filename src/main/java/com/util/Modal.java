@@ -3,6 +3,8 @@ package com.util;
 import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
+import com.controllers.modals.Confirmation;
+import com.enums.ConfirmModal;
 import com.enums.Modals;
 import com.enums.View;
 
@@ -39,6 +41,25 @@ public class Modal {
             addBlur();
         } catch (Exception e) {
             System.err.println("Unable to load modal " + m.getFileName() + " due to error " + e.toString()); 
+            return;
+        }
+    }
+
+    public static void showConfirmationModal(ConfirmModal confirmType) {
+        try {
+            disableScreenNodes(true);
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Confirmation.fxml"));
+            Node modal = (Node) fxmlLoader.load();
+            MainApp.getStackPane().getChildren().add(modal);
+            addBlur();
+
+            Confirmation confirmationController = fxmlLoader.getController();
+            confirmationController.setConfirmType(confirmType);
+            String message = confirmType.getMessage();
+            confirmationController.setMessage(message);
+
+        } catch (Exception e) {
+            System.err.println("Unable to load confirmation modal due to error " + e.toString()); 
             return;
         }
     }

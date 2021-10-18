@@ -4,8 +4,10 @@ import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.controllers.ApplicationController;
+import com.enums.ConfirmModal;
 import com.enums.View;
 import com.models.User;
+import com.util.Modal;
 import com.util.Sounds;
 
 import javafx.fxml.FXML;
@@ -94,20 +96,18 @@ public class Profile extends ApplicationController implements Initializable {
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             //TODO: yet to be fully linked
-            Sounds.playSoundEffect("pop");
-            MainApp.setUser();
-            MainApp.setRoot(View.MENU);
+            Modal.showConfirmationModal(ConfirmModal.SIGNOUT);
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            //TODO: are we still using hidden for high score???
-            Sounds.playSoundEffect("pop");
+            //TODO: are we still using hidden for high score??
             // currentUser.setHighScore(0);
             configureDynamicEntries();
+            Modal.showConfirmationModal(ConfirmModal.RESET);
         });
 
         this.passwordButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             //TODO: IDEK HOW THIS GONNA WORK
-            Sounds.playSoundEffect("pop");
+             
         });
 
         addHandlers(editNickname, nicknameInput);

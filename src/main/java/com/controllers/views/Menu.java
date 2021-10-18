@@ -100,7 +100,6 @@ public class Menu extends ApplicationController implements Initializable {
         // Set event handlers
         // exiting
         exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            Sounds.playSoundEffect("pop");
             MainApp.setRoot(View.EXIT);
             event.consume();
 
@@ -124,18 +123,15 @@ public class Menu extends ApplicationController implements Initializable {
         });
 
         settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            Sounds.playSoundEffect("pop");
             super.settingsClick();
         });
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            Sounds.playSoundEffect("pop");
-            MainApp.setRoot(View.WHEEL);
+            MainApp.setRoot(View.PROFILE);
             
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            Sounds.playSoundEffect("pop");
             Modal.showModal(Modals.HELP);
         });
 
