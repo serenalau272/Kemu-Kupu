@@ -43,7 +43,7 @@ public class Profile extends ApplicationController implements Initializable {
 
     private void configureStaticEntries(){
         nameLabel.setText("Hello " + currentUser.getNickname()+"!");
-        starLabel.setText(Integer.toString(currentUser.getNumStars()));
+        starLabel.setText(Integer.toString(currentUser.getTotalStars()));
         achievementsLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/18");
         setAvatarImage(userAvatar);
     }
@@ -101,7 +101,7 @@ public class Profile extends ApplicationController implements Initializable {
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             //TODO: are we still using hidden for high score???
             Sounds.playSoundEffect("pop");
-            currentUser.setHighScore(0);
+            // currentUser.setHighScore(0);
             configureDynamicEntries();
         });
 

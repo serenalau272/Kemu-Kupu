@@ -54,8 +54,6 @@ public class ApplicationController {
         return elm;
     }
 
-
-
     protected Node findNodesByID(Pane p, String id) {
         List<Node> nodes = new ArrayList<Node>();
         Node specificNode = null;

@@ -117,7 +117,7 @@ public class UserTest extends User {
         
         //Add achievement
         //TODO test all achievements in this manner
-        Achievement achievement = Achievement.PARTICIPATION_PRACTICE;
+        Achievement achievement = Achievement.EXPLORER;
         try {
             String res = user.unlockAchievement(achievement);
             if (res != null)
@@ -237,7 +237,7 @@ public class UserTest extends User {
         }
 
         //Assert that the account is currently on the default avatar.
-        assertEquals(Avatar.DEFAULT, user.getAvatar());
+        assertEquals(Avatar.DEFAULT, user.getSelectedAvatar());
 
         //Update avatar
         try {
@@ -250,7 +250,7 @@ public class UserTest extends User {
         }
 
         //Assert that avatar was updated correctly
-        assertEquals(avatar, user.getAvatar());
+        assertEquals(avatar, user.getSelectedAvatar());
 
         //Cleanup
         this.__deleteAccount(user);

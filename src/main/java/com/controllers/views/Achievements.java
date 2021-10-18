@@ -3,8 +3,10 @@ package com.controllers.views;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import com.MainApp;
 import com.components.AchievementItem;
@@ -102,7 +104,8 @@ public class Achievements extends ApplicationController implements Initializable
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));
 
-        data = currentUser.getProcuredAchievements();
+        String[] achievements = Stream.of(new ArrayList<Achievement>(currentUser.getAchievements())).map(x -> x.toString()).toArray(String[]::new);
+        data = new ArrayList<String>(Arrays.asList(achievements));
         types.addAll(configureComponents());
 
         int row = 1;

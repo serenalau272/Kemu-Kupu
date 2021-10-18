@@ -536,7 +536,7 @@ public class User {
         return this.unlockedAvatars;
     }
 
-    public Avatar getAvatar() {
+    public Avatar getSelectedAvatar() {
         return this.selectedAvatar;
     }
 
@@ -562,11 +562,7 @@ public class User {
 
     public boolean canPurchase(Avatar avatar){
         int cost = costAvatars.get(avatar);
-        if (totalStars >= cost){
-            return true;
-        } else {
-            return false;
-        }
+        return totalStars >= cost;
     }
 
     public boolean hasBeenPurchased(Avatar avatar){
