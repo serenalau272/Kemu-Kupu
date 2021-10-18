@@ -453,7 +453,7 @@ public class User {
      */
     public String unlockAchievement(String achievement) throws IOException {
         if (this.JWTToken != null) {
-            String body = "{\"name\":\"" + achievement.toString().replace("\"", "\\\"") + "\"}";
+            String body = "{\"name\":\"" + Achievement.toString(achievement).replace("\"", "\\\"") + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.

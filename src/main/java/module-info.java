@@ -7,7 +7,7 @@ module com {
     requires com.google.gson;
     opens com to javafx.fxml;
     opens com.controllers to javafx.fxml;
-    opens com.models to javafx.fxml;
+    opens com.models to com.google.gson;
     opens com.components to javafx.fxml;
     opens com.controllers.modals to javafx.fxml;
     opens com.controllers.views to javafx.fxml;

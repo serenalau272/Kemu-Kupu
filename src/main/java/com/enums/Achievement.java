@@ -158,7 +158,7 @@ public enum Achievement {
      * @return a string representing this achievement
      * @throws LoadException
      */
-    public String toString(String s) throws LoadException {
+    public static String toString(String s) throws LoadException {
         switch (s) {
             case "EXPLORER_1":
                 return "practice";
