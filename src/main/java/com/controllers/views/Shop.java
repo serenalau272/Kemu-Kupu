@@ -71,8 +71,11 @@ public class Shop extends ApplicationController implements Initializable {
     private void setChosenAvatar(Node clickedAvatarName) {
         setTextYellow(clickedAvatarName);
         String avatarName = ((Label) clickedAvatarName).getText().replace(" Bee", "");
-
-        setChosenAvatar(Avatar.fromString(avatarName));
+        if (avatarName == "B") {
+            setChosenAvatar(Avatar.fromString("default"));
+        } else {
+            setChosenAvatar(Avatar.fromString(avatarName));
+        }
     }
 
     private void setChosenAvatar(Avatar avatar){
@@ -128,7 +131,7 @@ public class Shop extends ApplicationController implements Initializable {
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));  
         setStars();
         avatars.addAll(getData());
-        
+
         buyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             try {
                 currentUser.unlockCostume(chosenAvatar);
