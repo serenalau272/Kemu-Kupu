@@ -82,6 +82,12 @@ public class Profile extends ApplicationController implements Initializable {
         });
     }
 
+    @Override
+    protected void start() {
+        super.start();
+        addHandlers(editNickname, nicknameInput);
+        addHandlers(editUsername, usernameInput);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,9 +116,6 @@ public class Profile extends ApplicationController implements Initializable {
             //TODO: IDEK HOW THIS GONNA WORK
              
         });
-
-        addHandlers(editNickname, nicknameInput);
-        addHandlers(editUsername, usernameInput);
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
         this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.SHOP));
