@@ -252,11 +252,11 @@ public class InputField extends TextField{
         }
     }
 
-    public static void setEditability(boolean isEditable){
+    public static void setDisableInputs(boolean isDisable){
         if (inputItems == null ) return;
         for (TextField n : inputItems){
             if (n != null){
-                n.setEditable(isEditable);
+                n.setDisable(isDisable);
             }    
         }
     }

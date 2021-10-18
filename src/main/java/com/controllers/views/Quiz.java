@@ -338,7 +338,7 @@ public class Quiz extends ApplicationController implements Initializable {
             return;
         }
 
-        InputField.setEditability(false);
+        InputField.setDisableInputs(false);
 
         if (this.game.getWord().isEqualStrict(input)) {
             // Correct i.e. MASTERED. Increment score.
@@ -371,7 +371,7 @@ public class Quiz extends ApplicationController implements Initializable {
     public void skipWordClick() {
         // required to prevent bug
         this.game.getWord().setStatus(Status.SKIPPED);
-        InputField.setEditability(false);
+        InputField.setDisableInputs(false);
 
         timer.stop();
         toggleLabels();
@@ -389,7 +389,7 @@ public class Quiz extends ApplicationController implements Initializable {
         if (game.isAwaitingInput()) {
             checkInput(input, isInputEmpty);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
-            InputField.setEditability(true);
+            InputField.setDisableInputs(true);
             InputField.reconfigureInputField(this.game.getWord());
 
             onEnterContinue();
