@@ -132,9 +132,7 @@ public class Menu extends ApplicationController implements Initializable {
                 MainApp.setRoot(View.SIGNIN);
             } else {
                 MainApp.setRoot(View.PROFILE);
-            }
-            
-            
+            }            
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
