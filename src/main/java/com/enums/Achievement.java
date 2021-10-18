@@ -61,7 +61,7 @@ public enum Achievement {
             case "STYLISH":
                 return STYLISH;
             default:
-                System.err.println("ERROR: Invalid string. No avatar found");
+                System.err.println("ERROR: Invalid string. No achievement found");
                 return null;
         }
     }
@@ -112,7 +112,7 @@ public enum Achievement {
      * @throws LoadException if the string can't be mapped to an achievement
      */
     public static String fromString(String s) throws LoadException {
-        switch (s.strip().toLowerCase()) {
+        switch (s.strip()) {
             case "practice":
                 return "EXPLORER_1";
             case "play":
@@ -148,7 +148,6 @@ public enum Achievement {
             case "star300":
                 return "POCKETS_5";
             default:
-                System.err.println();
                 throw new LoadException("Recieved unknown achievement request from string to achievement! Offending string " + s);
         }
     }
@@ -195,8 +194,7 @@ public enum Achievement {
             case "POCKETS_5":
                 return "star300";
             default:
-                System.err.println();
-                throw new LoadException("Recieved unknown achievement request from string to avatar! Offending string " + s);
+                throw new LoadException("Recieved unknown achievement request from achievement to string! Offending string " + s);
         }
     }
 
