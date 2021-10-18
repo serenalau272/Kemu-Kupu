@@ -45,7 +45,7 @@ public class Clock {
     public void resume() {
         if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
 
-        if (!MainApp.getGameState().isAwaitingInput()) return;
+        if (!MainApp.getGameState().getAwaitingInput()) return;
         
         duration = MainApp.getSetting().getTimerDuration();
         timer = new MyTimer(this.duration);

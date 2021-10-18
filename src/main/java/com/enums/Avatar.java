@@ -76,4 +76,50 @@ public enum Avatar {
                 return "default";
         }
     }
+
+    public String[] getSpeechLines() {
+        switch (this) {
+            case DEFAULT:
+                return null;
+            case SAILOR: {
+                String[] arr = {"Arrrr. Attit ma boi!", "When the waves get tough, we sail right through them!"};
+                return arr;
+            }
+            case MAGICIAN: {
+                String[] arr = {"Now that’s what I call magic!", "Don’t worry, sometimes it takes a while for the magic to appear ;)"};
+                return arr;
+            }
+            case WIZARD: {
+                String[] arr =  {"I cast spells. You can spell. We’re a perfect fit :)", "Fear not, spell-ing is what I do. We got this!"};
+                return arr;
+            }
+            case NINJA: {
+                String[] arr =  {"Agile and accurate. You’ll be a ninja in no time!", "All good! Let’s jump back into it!"};
+                return arr;
+            }
+            case QUEEN: {
+                String[] arr =  {"With spelling like that, you’re fit for royalty!", "A few small mistakes? Let it go!"};
+                return arr;
+            }
+            case FAIRY: {
+                String[] arr =  {"Keep on sparkling!", "A little pixie dust might just do the trick"};
+                return arr;
+            }
+            case PROFESSOR: {
+                String[] arr =  {"That’s an A++ from me :)", "Embrace uncertainty, and use it to flourish your creativity."};
+                return arr;
+            }
+            case ALIEN: {
+                String[] arr =  {"Wowzers! Your spelling is out of this world!", "No sweat. I still make mistakes - and I have 3 eyes!"};
+                return arr;
+            }
+            case CHEF: {
+                String[] arr =  {"You’re cooking up a storm!", "When you’ve split your mayo, you leave it and start afresh!"};
+                return arr;
+            }
+            default:
+                System.err.println("Tried to convert unknown avatar into a string!");
+                return null;
+        }
+    }
 }

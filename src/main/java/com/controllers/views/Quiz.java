@@ -1,8 +1,6 @@
 package com.controllers.views;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.io.FileNotFoundException;
@@ -15,7 +13,6 @@ import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
 import com.controllers.ApplicationController;
-import com.enums.Avatar;
 import com.enums.Gamemode;
 import com.enums.Language;
 import com.enums.Modals;
@@ -34,21 +31,6 @@ public class Quiz extends ApplicationController implements Initializable {
             "Superb! You're a spelling superstar!", "Bzzzz... Spelling Bee here!", "Do the mahi! Get the treats!" };
     private final String[] incorrectMessages = { "No sweat! Practice makes progress!",
             "You've got this! Try again next time!", "Third times the charm!" };
-
-    private final String[][] speech = {
-        {"Agile and accurate. You’ll be a ninja in no time!", "All good! Let’s jump back into it!"},
-        {"Arrrr. Attit ma boi!", "When the waves get tough, we sail right through them!"},
-        {"You’re cooking up a storm!", "When you’ve split your mayo, you leave it and start afresh!"},
-        {"Keep on sparkling!", "A little pixie dust might just do the trick"},
-        {"With spelling like that, you’re fit for royalty!", "A few small mistakes? Let it go!"},
-        {"Wowzers! Your spelling is out of this world!", "No sweat. I still make mistakes - and I have 3 eyes!"},
-        {"Now that’s what I call magic!", "Don’t worry, sometimes it takes a while for the magic to appear ;)"},
-        {"That’s an A++ from me :)", "Embrace uncertainty, and use it to flourish your creativity."},
-        {"I cast spells. You can spell. We’re a perfect fit :)", "Fear not, spell-ing is what I do. We got this!"}
-    };
-
-    private Map<Avatar, String[]> speechAvatars = new HashMap<Avatar, String[]>();
-
 
     private Game game;
     Quiz controller;
@@ -112,19 +94,6 @@ public class Quiz extends ApplicationController implements Initializable {
 
     //// Helper Functions ////
 
-    private void populateMessages(){
-        speechAvatars.put(Avatar.DEFAULT, null);
-        speechAvatars.put(Avatar.NINJA, speech[0]);
-        speechAvatars.put(Avatar.SAILOR, speech[1]);
-        speechAvatars.put(Avatar.CHEF, speech[2]);
-        speechAvatars.put(Avatar.FAIRY, speech[3]);
-        speechAvatars.put(Avatar.QUEEN, speech[4]);
-        speechAvatars.put(Avatar.ALIEN, speech[5]);
-        speechAvatars.put(Avatar.MAGICIAN, speech[6]);
-        speechAvatars.put(Avatar.PROFESSOR, speech[7]);
-        speechAvatars.put(Avatar.WIZARD, speech[8]);
-    }
-
     /**
      * Loads the next word for a user ot be tested on, simplifying the code
      * elsewhere. Functions: - Loads the next word, and relevant labels - If no
@@ -148,9 +117,9 @@ public class Quiz extends ApplicationController implements Initializable {
      * shows appropriate ImageViews based upon whether one is awaiting a response
      */
     private void toggleLabels() {
-        game.setAwaitingInput(!game.isAwaitingInput());
+        game.setAwaitingInput(!game.getAwaitingInput());
 
-        if (game.isAwaitingInput()) {
+        if (game.getAwaitingInput()) {
             showElementsForInput();
         } else {
             showElementsForResponse();
@@ -244,18 +213,18 @@ public class Quiz extends ApplicationController implements Initializable {
                 String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
                 messageLabel.setText(incorrectMsg);
 
-                if (speechAvatars.get(MainApp.getUser().getSelectedAvatar()) == null) return;
+                if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null) return;
 
-                avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[1]);
+                avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[1]);
                 speechBubble.setVisible(true);
                 break;
             case MASTERED:
                 String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
                 messageLabel.setText(correctMsg);
 
-                if (speechAvatars.get(MainApp.getUser().getSelectedAvatar()) == null) return;
+                if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null) return;
 
-                avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[0]);
+                avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[0]);
                 speechBubble.setVisible(true);
                 break;
             default:
@@ -387,7 +356,7 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     public void onEnter(Word input, boolean isInputEmpty) {
-        if (game.isAwaitingInput()) {
+        if (game.getAwaitingInput()) {
             checkInput(input, isInputEmpty);
         } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
             InputField.setDisableInputs(true);
@@ -415,8 +384,6 @@ public class Quiz extends ApplicationController implements Initializable {
         timer.start();
         Sounds.playSoundEffect("pop");
         InputField.configureInputField(game.getWord(), controller, submitButton);
-
-        populateMessages();
     }
 
     @Override
