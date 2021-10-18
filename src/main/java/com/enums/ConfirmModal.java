@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.MainApp;
 import com.util.Sounds;
 
+import javafx.fxml.LoadException;
+
 /**
  * An enum to represent the status of a word being tested.
  */
@@ -42,7 +44,11 @@ public enum ConfirmModal {
                 Sounds.playMusic("menu");
                 break;
             case SIGNOUT:
-                MainApp.setUser();
+                try {
+                    MainApp.getUser().signout();
+                } catch (LoadException e){
+                    System.err.println("User somehow already logged in");
+                }
                 MainApp.setRoot(Views.MENU);
                 break;
             case RESET:
