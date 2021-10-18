@@ -49,7 +49,7 @@ public class Wheel extends ModalController {
                 anim.play();
             } else {
                 // not enough time waiting
-                System.out.println("Wait some more kiddo");
+                System.out.println("Wait some more kiddo11");
             }
         });
     }
