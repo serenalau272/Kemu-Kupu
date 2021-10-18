@@ -521,6 +521,8 @@ public class User implements Serializable {
         if (this.unlockedAvatars.contains(avatar)) return "Avatar already unlocked";
         if (!this.canPurchase(avatar)) return "Unable to afford avatar";
 
+        Sounds.playSoundEffect("cha-ching");
+
         //Carry out purchase
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + avatar.toString() + "\"}";
