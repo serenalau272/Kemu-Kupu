@@ -46,8 +46,14 @@ public enum ConfirmModal {
                 MainApp.setRoot(Views.MENU);
                 break;
             case RESET:
-                MainApp.setRoot(Views.PROFILE);
-                // @TODO reset stats
+                try {
+                    String res = MainApp.getUser().resetAccount();
+                    if (res == null) {
+                        MainApp.setRoot(Views.PROFILE);
+                    }
+                } catch (IOException e) {
+                    System.err.println("Unable to make request");
+                }
                 break;
             case DELETE:
                 try {
