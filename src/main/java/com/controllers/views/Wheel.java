@@ -1,6 +1,7 @@
 package com.controllers.views;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -68,7 +69,11 @@ public class Wheel extends ApplicationController implements Initializable {
     }
 
     private void collectReward(){
-        // currentUser.changeStarCount(reward);
+        try {
+            currentUser.addScore(-1, reward);
+        } catch (IOException exception){
+            System.err.println("Unable to add stars " + reward);
+        }
 
         MainApp.getGlobalTimer().restart();
         timer.start();

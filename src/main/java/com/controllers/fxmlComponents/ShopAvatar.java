@@ -16,11 +16,8 @@ public class ShopAvatar extends ApplicationController {
     @FXML private ImageView avatar;
     @FXML private Label avatarName;
 
-    private AvatarItem avatarItem;
-
     public void setData(AvatarItem avatar) {
-        this.avatarItem = avatar;
-        String name = avatarItem.getName();
+        String name = avatar.getName().substring(0, 1).toUpperCase() + avatar.getName().substring(1);
         avatarName.setText(name);
         try {
             setImage(avatar.getImgName(), this.avatar);
