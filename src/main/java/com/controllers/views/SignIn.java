@@ -76,6 +76,7 @@ public class SignIn extends ApplicationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
         incorrectMessage.setVisible(false);
+        usernameInput.requestFocus();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(View.MENU);
@@ -95,6 +96,10 @@ public class SignIn extends ApplicationController implements Initializable {
 
         signInButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             onSignIn();
+        });
+
+        createAccount.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            MainApp.setRoot(View.NEWUSER);
         });
     }
 
