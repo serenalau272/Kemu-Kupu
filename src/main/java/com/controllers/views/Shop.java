@@ -12,7 +12,7 @@ import com.components.AvatarItem;
 import com.controllers.ApplicationController;
 import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
-import com.enums.View;
+import com.enums.Views;
 import com.models.User;
 
 import javafx.fxml.FXML;
@@ -125,7 +125,7 @@ public class Shop extends ApplicationController implements Initializable {
         currentUser = MainApp.getUser();
         notEnough.setVisible(false);
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));  
+        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));  
         setStars();
         avatars.addAll(getData());
 

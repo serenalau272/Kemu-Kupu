@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.controllers.ApplicationController;
-import com.enums.View;
+import com.enums.Views;
 import com.models.User;
 
 import javafx.fxml.FXML;
@@ -57,7 +57,7 @@ public class SignIn extends ApplicationController implements Initializable {
             if (res == true) {
                 // signed in!!
                 incorrectMessage.setVisible(false);
-                MainApp.setRoot(View.PROFILE);
+                MainApp.setRoot(Views.PROFILE);
             } else {
                 // incorrect
                 incorrectMessage.setVisible(true);
@@ -83,7 +83,7 @@ public class SignIn extends ApplicationController implements Initializable {
         incorrectMessage.setVisible(false);
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MainApp.setRoot(View.MENU);
+            MainApp.setRoot(Views.MENU);
         });
 
         usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -103,7 +103,7 @@ public class SignIn extends ApplicationController implements Initializable {
         });
 
         createAccount.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MainApp.setRoot(View.NEWUSER);
+            MainApp.setRoot(Views.NEWUSER);
         });
     }
 

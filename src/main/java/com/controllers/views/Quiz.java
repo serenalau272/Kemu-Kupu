@@ -20,7 +20,7 @@ import com.enums.Gamemode;
 import com.enums.Language;
 import com.enums.Modals;
 import com.enums.Status;
-import com.enums.View;
+import com.enums.Views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -139,7 +139,7 @@ public class Quiz extends ApplicationController implements Initializable {
             this.__hearWord(1);
         } else {
             // game ended, navigate to rewards screen
-            MainApp.setRoot(View.RESULTS);
+            MainApp.setRoot(Views.RESULTS);
 
         }
     }

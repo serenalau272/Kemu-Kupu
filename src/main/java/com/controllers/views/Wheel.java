@@ -8,7 +8,7 @@ import com.MainApp;
 import com.components.animations.SpinningWheel;
 import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
-import com.enums.View;
+import com.enums.Views;
 import com.models.User;
 import com.util.Sounds;
 
@@ -120,7 +120,7 @@ public class Wheel extends ApplicationController implements Initializable {
         currentUser = MainApp.getUser();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MainApp.setRoot(View.PROFILE);
+            MainApp.setRoot(Views.PROFILE);
             timer.stop();
         });
 

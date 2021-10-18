@@ -7,7 +7,7 @@ import com.MainApp;
 import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
 import com.enums.ConfirmModal;
-import com.enums.View;
+import com.enums.Views;
 import com.models.User;
 import com.util.Modal;
 
@@ -134,19 +134,19 @@ public class Profile extends ApplicationController implements Initializable {
         });
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event ->{
-            MainApp.setRoot(View.MENU);
+            MainApp.setRoot(Views.MENU);
             timer.stop();
         });
         this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            MainApp.setRoot(View.SHOP);
+            MainApp.setRoot(Views.SHOP);
             timer.stop();
         });
         this.achievementsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            MainApp.setRoot(View.ACHIEVEMENT);
+            MainApp.setRoot(Views.ACHIEVEMENT);
             timer.stop();
         });
         this.wheelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            MainApp.setRoot(View.WHEEL);
+            MainApp.setRoot(Views.WHEEL);
             timer.stop();
         });
     }

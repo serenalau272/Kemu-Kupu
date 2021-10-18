@@ -1,6 +1,5 @@
 package com.enums;
 
-import java.io.IOError;
 import java.io.IOException;
 
 import com.MainApp;
@@ -10,7 +9,11 @@ import com.util.Sounds;
  * An enum to represent the status of a word being tested.
  */
 public enum ConfirmModal {
-    MENU, REPLAY, SIGNOUT, DELETE, RESET;
+    MENU, 
+    REPLAY, 
+    SIGNOUT, 
+    DELETE, 
+    RESET;
 
     public String getMessage() {
         switch (this) {
@@ -32,25 +35,25 @@ public enum ConfirmModal {
     public void doConfirmedAction() {
         switch (this) {
             case MENU:
-                MainApp.setRoot(View.MENU);
+                MainApp.setRoot(Views.MENU);
                 break;
             case REPLAY:
-                MainApp.setRoot(View.GAMEMODE);
+                MainApp.setRoot(Views.GAMEMODE);
                 Sounds.playMusic("menu");
                 break;
             case SIGNOUT:
                 MainApp.setUser();
-                MainApp.setRoot(View.MENU);
+                MainApp.setRoot(Views.MENU);
                 break;
             case RESET:
-                MainApp.setRoot(View.PROFILE);
+                MainApp.setRoot(Views.PROFILE);
                 // @TODO reset stats
                 break;
             case DELETE:
                 try {
                     String res = MainApp.getUser().deleteAccount();
                     if (res == null) {
-                        MainApp.setRoot(View.MENU);
+                        MainApp.setRoot(Views.MENU);
                     }
                 } catch (IOException e) {
                     System.err.println("Unable to make request");

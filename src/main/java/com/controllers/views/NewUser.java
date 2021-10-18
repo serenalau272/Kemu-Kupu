@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.controllers.ApplicationController;
-import com.enums.View;
+import com.enums.Views;
 import com.models.User;
 
 import javafx.fxml.FXML;
@@ -40,7 +40,7 @@ public class NewUser extends ApplicationController implements Initializable {
             if (res == null){
                 //success
                 MainApp.setUser(user);
-                MainApp.setRoot(View.PROFILE);
+                MainApp.setRoot(Views.PROFILE);
             } else {
                 //duplicate username
                 //TODO: error modal
@@ -64,7 +64,7 @@ public class NewUser extends ApplicationController implements Initializable {
         super.initialize();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MainApp.setRoot(View.SIGNIN);    
+            MainApp.setRoot(Views.SIGNIN);    
         });
 
         createAccountButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {

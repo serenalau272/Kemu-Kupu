@@ -1,9 +1,6 @@
 package com.controllers.views;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -13,7 +10,7 @@ import java.util.ResourceBundle;
 import com.MainApp;
 import com.components.animations.OscillatingComponent;
 import com.controllers.ApplicationController;
-import com.enums.View;
+import com.enums.Views;
 import com.util.Sounds;
 import com.models.Game;
 import com.models.User;
@@ -143,12 +140,12 @@ public class Reward extends ApplicationController implements Initializable {
 
         // Set event handlers
         menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
-            MainApp.setRoot(View.MENU);
+            MainApp.setRoot(Views.MENU);
             avatarAnim.stop();
         });
 
         againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
-            MainApp.setRoot(View.GAMEMODE);
+            MainApp.setRoot(Views.GAMEMODE);
             avatarAnim.stop();
         });
 
