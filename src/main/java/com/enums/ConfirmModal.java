@@ -5,8 +5,6 @@ import java.io.IOException;
 import com.MainApp;
 import com.util.Sounds;
 
-import javafx.fxml.LoadException;
-
 /**
  * An enum to represent the status of a word being tested.
  */
