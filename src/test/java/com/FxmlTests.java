@@ -16,14 +16,14 @@ import com.enums.Modals;
 import com.enums.Views;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
+// import org.junit.jupiter.api.Disabled;
 
 public class FxmlTests {
     
     /**
      * This test checks that the fxml version is correct for all fxml files in the game.
     */
-    @Disabled 
+    // @Disabled 
     @Test
     public void checkFxmlVersion11() {
         String[] paths = {"./src/main/resources/fxml/", "./src/main/resources/fxmlComponents/"};

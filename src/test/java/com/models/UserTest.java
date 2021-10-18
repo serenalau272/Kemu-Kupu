@@ -12,6 +12,7 @@ import com.enums.Avatar;
 import com.util.User;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class UserTest extends User {
@@ -125,6 +126,7 @@ public class UserTest extends User {
         this.__deleteAccount(user);
     }
     
+    @Disabled
     @Test
     public void testAddingAchievementExtended() {
         //This is the extended version of testAddingAchievement, which tests literally every possible achievement.
@@ -211,6 +213,7 @@ public class UserTest extends User {
         this.__deleteAccount(user);
     }
     
+    @Disabled
     @Test
     public void testAddingCostumeExtended() {
         //This is the extended version of testAddingCostume, which tests literally every possible costume.
