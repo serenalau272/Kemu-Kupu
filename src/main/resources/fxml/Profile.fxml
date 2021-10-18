@@ -85,9 +85,9 @@
             <Image url="@../assets/Profile/signOut.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="passwordButton" fitHeight="80.0" fitWidth="210.0" layoutX="105.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteButton" fitHeight="80.0" fitWidth="210.0" layoutX="105.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Profile/changePassword.png" />
+            <Image url="@../assets/Profile/deleteButton.png" />
          </image>
       </ImageView>
       <ImageView fx:id="achievementsButton" fitHeight="61.0" fitWidth="239.0" layoutX="501.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true">

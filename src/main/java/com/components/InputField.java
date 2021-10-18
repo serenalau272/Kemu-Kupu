@@ -240,6 +240,8 @@ public class InputField extends TextField{
     }
 
     private static void onFailed(Paint colour){
+        removeAll(hintItems);
+        
         if (inputItems == null ) return;
         for (int ind = 0; ind < inputItems.length; ind++){
             if (inputItems[ind] != null){
