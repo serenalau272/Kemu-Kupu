@@ -51,7 +51,7 @@ public enum Achievement {
     public static Achievement fromString(String s) throws LoadException {
         switch (s.strip().toLowerCase()) {
             case "practice":
-                // return ;
+                return PARTICIPATION_PRACTICE;
             case "play":
                 // return ;
             case "practiceEvery":
@@ -97,7 +97,7 @@ public enum Achievement {
      * @return a string representing this achievement
      */
     public String toString() {
-        System.err.println("Tried to convert unknown avatar into a string!");
+        System.err.println("Tried to convert unknown achievement into a string!");
         //TODO
         //Should convert into the *exact* same strings as can be seen above in fromString();
         return "practice";

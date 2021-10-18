@@ -1,4 +1,4 @@
-package com;
+package com.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -11,14 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 import com.models.SpellingTopic;
 import com.models.Word;
-import com.util.SystemIO;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
-public class SystemInterfaceTest {
+public class SystemIOTest {
     static final String p = "./testingTemporaryFiles";
     static final int numFiles = 5;
 

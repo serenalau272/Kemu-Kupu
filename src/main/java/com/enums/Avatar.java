@@ -23,13 +23,13 @@ public enum Avatar {
                 return DEFAULT;
             case "sailor":
                 return SAILOR;
-            case "tuxedo":
+            case "magician":
                 return TUXEDO;
             case "wizard":
                 return WIZARD;
             case "ninja":
                 return NINJA;
-            case "princess":
+            case "queen":
                 return PRINCESS;
             case "fairy":
                 return FAIRY;
@@ -40,7 +40,7 @@ public enum Avatar {
             case "chef":
                 return CHEF;
             default:
-                System.err.println("Recieved unknown avatar request from string to avatar!");
+                System.err.println("Recieved unknown avatar request from string to avatar! Affected avatar string " + s);
                 return DEFAULT;
         }
     }
@@ -56,13 +56,13 @@ public enum Avatar {
             case SAILOR:
                 return "sailor";
             case TUXEDO:
-                return "tuxedo";
+                return "magician";
             case WIZARD:
                 return "wizard";
             case NINJA:
                 return "ninja";
             case PRINCESS:
-                return "princess";
+                return "queen";
             case FAIRY:
                 return "fairy";
             case NASSER:
