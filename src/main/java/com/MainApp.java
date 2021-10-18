@@ -162,7 +162,7 @@ public class MainApp extends Application {
         //temp
         setUser();
         try {
-            // user.login("joebloggs123", "joebloggs");
+            user.login("joebloggs123", "joebloggs");
         } catch (Exception e) {
             e.printStackTrace();
         }

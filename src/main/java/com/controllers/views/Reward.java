@@ -33,6 +33,7 @@ public class Reward extends ApplicationController implements Initializable {
     //The threshold of score for each star to appear
     private final int[] starThreshold = {20, 60, 100};
     private List<Node> stars;
+    private int numStars = 0;
 
     @FXML private ImageView againButton;
     @FXML private ImageView menuButton;
@@ -58,12 +59,19 @@ public class Reward extends ApplicationController implements Initializable {
     }
 
     private void setStar(int index, int score){
-        if (index >= stars.size()) return;
+        if (index >= stars.size()) {
+            try {
+                MainApp.getUser().addScore(score, numStars);
+            } catch (IOException e) {
+                System.err.println("Unable to complete request");
+            }
+        }
 
         int num = Integer.parseInt(stars.get(index).getId().substring(4));
         if (score >= this.starThreshold[num-1]) {
             Sounds.playSoundEffect("reward");
             stars.get(2 - index).setVisible(true);
+            numStars++;
         }
 
         PauseTransition pause = new PauseTransition(Duration.millis(1000));
