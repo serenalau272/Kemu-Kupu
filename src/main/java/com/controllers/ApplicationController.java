@@ -54,28 +54,33 @@ public class ApplicationController {
         return elm;
     }
 
-    protected Node findNodesByID(Pane p, String id) {
-        List<Node> nodes = new ArrayList<Node>();
-        Node specificNode = null;
-        nodes = findElms(p, Node.class);
-        for (Node i : nodes) {
-            if (i.getId() != null && i.getId().contains(id)) {
-                return i;
-            }
-        }
-        return specificNode;
-    }
-
-    protected <T> List<Node> findNodesByID(Pane p, String[] id) {
+    /**
+     * Find all nodes which made a given search term.
+     * @param pane The pane to search for
+     * @param fxid the fxid to match against
+     * @return a list of nodes, empty if none are found.
+     */
+    protected List<Node> findNodesByID(Pane pane, String[] fxid) {
         List<Node> nodes = new ArrayList<Node>();
         List<Node> specificNodes = new ArrayList<Node>();
-        nodes = findElms(p, Node.class);
+        nodes = findElms(pane, Node.class);
         nodes.forEach(i -> {
-            if (i.getId() != null && Arrays.stream(id).anyMatch(i.getId()::contains)) {
+            if (i.getId() != null && Arrays.stream(fxid).anyMatch(i.getId()::contains)) {
                 specificNodes.add(i);
             }
         });
         return specificNodes;
+    }
+
+    /**
+     * Find a node on a pane via it's fxid.
+     * @param pane the pane to search
+     * @param id the fxid to match against
+     * @return a node if found, null otherwise.
+     */
+    protected Node findNodeByID(Pane pane, String fxid) {
+        String [] str = { fxid };
+        return this.findNodesByID(pane, str).get(0);
     }
 
     /**

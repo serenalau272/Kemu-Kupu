@@ -17,6 +17,8 @@ public class Pause extends ModalController {
     @FXML ImageView menuButton;
     @FXML ImageView replayButton;
 
+    //// Private Methods ////
+
     /**
      * Change the mainapp to a new window, and close this modal
      * @param v the view to switch to
