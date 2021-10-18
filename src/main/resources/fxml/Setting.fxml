@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Setting">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Setting">
     <children>
       <!-- Static Images -->
       <ImageView fitHeight="519.0" fitWidth="623.0" layoutX="303.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
@@ -25,10 +26,14 @@
             <Image url="@../assets/settings/+.png" />
          </image>
       </ImageView>
-      <Label fx:id="speedVal" layoutX="731.0" layoutY="239.0" text="1.0x" textFill="WHITE">
+      <Label fx:id="speedVal" layoutX="731.0" layoutY="238.0" prefHeight="26.0" prefWidth="50.0" stylesheets="@../styles/application.css" text="1.0x" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="settings-text" />
+         </styleClass>
       </Label>
       <ImageView fx:id="speedMinusButton" fitHeight="33.0" fitWidth="38.0" layoutX="691.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -45,10 +50,14 @@
             <Image url="@../assets/settings/+.png" />
          </image>
       </ImageView>
-      <Label fx:id="timeVal" layoutX="732.0" layoutY="449.0" text="60s" textFill="WHITE">
+      <Label fx:id="timeVal" layoutX="733.0" layoutY="448.0" stylesheets="@../styles/application.css" text="60s" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="settings-text" />
+         </styleClass>
       </Label>
       <ImageView fx:id="timeMinusButton" fitHeight="33.0" fitWidth="38.0" layoutX="691.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
          <image>

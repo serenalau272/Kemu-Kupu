@@ -6,6 +6,7 @@ import com.models.Word;
 import com.util.Sounds;
 
 import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -100,10 +101,12 @@ public class ResultsList extends TextField{
     private static Label createWordLabel(int index, Word word){
         Label l = new Label(capitaliseFirst(word.getMaori()));
         l.setTranslateY(index * 85 - 230);
-        l.setTranslateX(-290);
-        l.setPrefSize(264.0, 47.0);
+        l.setTranslateX(20);
+        l.setPrefSize(900, 47.0);
         l.setTextFill(Color.WHITE);
-        l.setFont(Font.font("System", FontWeight.BOLD, 50));
+        Font font = Font.loadFont(MainApp.class.getResource("/styles/fonts/Poppins-Bold.ttf").toExternalForm(), 42);
+        l.setFont(font);
+        l.setTextAlignment(TextAlignment.LEFT);
 
         return l;
     }
@@ -111,12 +114,13 @@ public class ResultsList extends TextField{
     private static Label createInputLabel(int index, Word word){
         String txt = (word.getStatus() == Status.FAILED) ? capitaliseFirst(word.getResponse().getMaori()) : "";
         Label l = new Label(txt);
+        l.setAlignment(Pos.CENTER_RIGHT);
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(200);
-        l.setPrefSize(264.0, 47.0);
+        l.setPrefSize(300, 47.0);
         l.setTextFill(Color.WHITE);
-        l.setFont(new Font(50));
-        l.setTextAlignment(TextAlignment.RIGHT);
+        Font font = Font.loadFont(MainApp.class.getResource("/styles/fonts/Poppins-Regular.ttf").toExternalForm(), 42);
+        l.setFont(font);
         
 
         return l;

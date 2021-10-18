@@ -65,7 +65,7 @@ public class Profile extends ApplicationController implements Initializable {
     private void addHandlers(ImageView editBtn, TextField input){
         editBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             input.setEditable(true);
-            input.setStyle("-fx-background-color: orange;");
+            input.setStyle("-fx-background-color: #7D6B50");
             input.requestFocus();
             input.positionCaret(input.getText().length());
         });
@@ -81,7 +81,7 @@ public class Profile extends ApplicationController implements Initializable {
                     }
 
                 }
-                if (!nicknameInput.getText().equals("")){
+                if (!nicknameInput.getText().equals("") && !(nicknameInput.getText().length()>10)){
                     try {
                         currentUser.setNickname(nicknameInput.getText());
                     } catch (IOException e) {
@@ -89,8 +89,8 @@ public class Profile extends ApplicationController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-                usernameInput.setStyle("-fx-background-color: blue;");
-                nicknameInput.setStyle("-fx-background-color: blue;");
+                usernameInput.setStyle("-fx-background-color: #DFC49B;");
+                nicknameInput.setStyle("-fx-background-color: #DFC49B;");
                 configureDynamicEntries();
             } 
         });

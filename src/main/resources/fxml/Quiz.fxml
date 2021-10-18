@@ -113,8 +113,8 @@
             <Image url="@../assets/Game-screen/clock.png" />
          </image>
       </ImageView>
-      <Arc fx:id="arc" fill="#acf94b" layoutX="632.0" layoutY="189.0" length="360.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
-      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="564.0" layoutY="154.0" prefHeight="57.0" prefWidth="137.0" styleClass="timer" stylesheets="@../styles/quiz.css" text="49" textAlignment="CENTER" textFill="WHITE">
+      <Arc fx:id="arc" fill="#acf94b" layoutX="632.0" layoutY="189.0" length="360.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" visible="false" />
+      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="564.0" layoutY="154.0" prefHeight="57.0" prefWidth="137.0" styleClass="timer" stylesheets="@../styles/quiz.css" text="49" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
             <Font size="50.0" />
          </font></Label>
@@ -138,7 +138,7 @@
             <Image url="@../assets/Avatars/B.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="162.0" fitWidth="247.0" layoutX="790.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="speechBubble" fitHeight="155.0" fitWidth="231.0" layoutX="806.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/speech.png" />
          </image>

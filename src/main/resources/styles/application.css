@@ -52,3 +52,44 @@
     -fx-font-family: 'Poor Story';
     -fx-prompt-text-fill: #676767;
 }
+
+.profile {
+    -fx-background-color: #DFC49B;
+    -fx-background-radius: 11px;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 11px;
+    -fx-border-width: 3px;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Poor Story';
+    -fx-prompt-text-fill: #676767;
+}
+
+.shop-text .text {
+    -fx-font-family: 'Poor Story';
+    -fx-fill: #FFFFFF;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 25px;
+}
+
+.avatar-stage .text {
+    -fx-font-size: 40px;
+}
+
+.star-num .text {
+    -fx-font-size: 35px;
+}
+
+.settings-text .text {
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 0.2px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 25px;
+}

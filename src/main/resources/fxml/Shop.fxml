@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Shop">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Shop">
     <children>
       <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -70,15 +71,23 @@
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <Label fx:id="avatarLabel" alignment="CENTER" layoutX="113.0" layoutY="586.0" prefHeight="40.0" prefWidth="367.0" text="B" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="avatarLabel" alignment="CENTER" layoutX="113.0" layoutY="586.0" prefHeight="40.0" prefWidth="367.0" stylesheets="@../styles/application.css" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
+         <styleClass>
+            <String fx:value="shop-text" />
+            <String fx:value="avatar-stage" />
+         </styleClass>
       </Label>
-      <Label fx:id="starTotal" alignment="CENTER" layoutX="169.0" layoutY="241.0" prefHeight="40.0" prefWidth="88.0" text="150" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="starTotal" alignment="CENTER" layoutX="171.0" layoutY="241.0" prefHeight="40.0" prefWidth="82.0" stylesheets="@../styles/application.css" text="3" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
+         <styleClass>
+            <String fx:value="shop-text" />
+            <String fx:value="star-num" />
+         </styleClass>
       </Label>
       <ImageView fx:id="notEnough" fitHeight="94.0" fitWidth="130.0" layoutX="354.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
          <image>

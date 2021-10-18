@@ -33,7 +33,7 @@
             <Image url="@../assets/wheel/timer.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="502.0" layoutY="143.0" prefHeight="57.0" prefWidth="213.0" styleClass="timer" stylesheets="@../styles/wheel.css" text="2m 30s" textFill="WHITE">
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="502.0" layoutY="143.0" prefHeight="57.0" prefWidth="213.0" styleClass="timer" stylesheets="@../styles/wheel.css" textFill="WHITE">
          <font>
             <Font size="35.0" />
          </font>
@@ -68,7 +68,7 @@
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="spinButton" fitHeight="100.0" fitWidth="376.5" layoutX="417.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="spinButton" fitHeight="100.0" fitWidth="376.5" layoutX="417.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/wheel/spinButton.png" />
          </image>
