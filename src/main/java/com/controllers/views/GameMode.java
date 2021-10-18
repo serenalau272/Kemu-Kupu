@@ -14,6 +14,7 @@ import com.enums.View;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
 
@@ -22,13 +23,17 @@ public class GameMode extends ApplicationController implements Initializable {
 
     @FXML private ImageView practice;
     @FXML private ImageView ranked;
+    @FXML private ImageView practiceAvatar;    
+    @FXML private ImageView rankedAvatar;
     @FXML private ImageView backButton;
-    @FXML private ImageView gameAvatar;
-    @FXML private ImageView practiceAvatar;
+
+    private Boolean isAvatar;
 
     //// Private Methods ////
 
     private void intialiseMode(ImageView mode) {
+        this.isAvatar = mode.getId().contains("Avatar");
+        
         mode.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
             try {
                 toggleSaturation(mode, true);
@@ -56,11 +61,23 @@ public class GameMode extends ApplicationController implements Initializable {
     }
 
     private void toggleSaturation(ImageView view, boolean isBright) throws FileNotFoundException{
-        String mode = view.getId();
-        if (isBright) {
-            setImage(mode + "-bright", view);
+        if (isAvatar) {
+            if (isBright) {
+                ColorAdjust colorAdjust = setSaturation(1);
+                view.setEffect(colorAdjust);
+                view.setOpacity(0.7);
+            } else {
+                ColorAdjust colorAdjust = setSaturation(0);
+                view.setEffect(colorAdjust);
+                view.setOpacity(0.3);
+            }
         } else {
-            setImage(mode + "-faded", view);
+            String mode = view.getId();
+            if (isBright) {
+                setImage(mode + "-bright", view);
+            } else {
+                setImage(mode + "-faded", view);
+            }
         }
     }
 
@@ -82,15 +99,23 @@ public class GameMode extends ApplicationController implements Initializable {
         MainApp.setRoot(View.TOPIC);
     }
 
+    private ColorAdjust setSaturation(int saturation) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setSaturation(saturation);
+        return colorAdjust;
+    }
+
     //// Public Methods ////
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
         intialiseMode(practice);
+        intialiseMode(practiceAvatar);
         intialiseMode(ranked);
+        intialiseMode(rankedAvatar);
 
-        setAvatarImage(gameAvatar);
+        setAvatarImage(rankedAvatar);
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
     }

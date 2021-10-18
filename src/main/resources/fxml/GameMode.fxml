@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.GameMode">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.GameMode">
     <children>
       <ImageView fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,12 +40,12 @@
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="practiceAvatar" fitHeight="288.0" fitWidth="353.0" layoutX="168.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="practiceAvatar" fitHeight="329.0" fitWidth="382.0" layoutX="157.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" styleClass="faded-avatar">
          <image>
             <Image url="@../assets/Avatars/default.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="gameAvatar" fitHeight="288.0" fitWidth="353.0" layoutX="810.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="-22.8">
+      <ImageView fx:id="rankedAvatar" fitHeight="329.0" fitWidth="382.0" layoutX="822.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true" rotate="-22.0">
          <image>
             <Image url="@../assets/Avatars/default.png" />
          </image>
