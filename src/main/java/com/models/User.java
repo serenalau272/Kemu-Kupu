@@ -328,17 +328,20 @@ public class User {
         res = this.__makeRequest(RequestMethod.Get, "/scores?id="+ this.id, null);
         JsonScores scores = new Gson().fromJson(res.getBody(), JsonScores.class);
 
-        this.numGamesPlayed = scores.data.size();
-
+        int newGamesPlayed = 0;
         int newHighScore = 0;
         int newTotalStars = 0;
         for (JsonScore score : scores.data) {
             newTotalStars += score.num_stars;
             if (score.score > newHighScore)
                 newHighScore = score.score;
+            //HACK to allow additional stars to be added.
+            if (score.score != -1)
+                numGamesPlayed++;
         }
         this.totalStars = newTotalStars;
         this.highScore = newHighScore;        
+        this.numGamesPlayed = newGamesPlayed;
     }
 
     public User() {
@@ -424,8 +427,9 @@ public class User {
             Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
+                String addScoreRes = this.addScore(-1, -this.getPrice(avatar));
                 this.__loadData();
-                return null;
+                return addScoreRes;
             }
 
             addScore(-1, costAvatars.get(avatar));
@@ -565,31 +569,31 @@ public class User {
         return this.totalStars;
     }
 
-    public boolean canPurchase(Avatar avatar){
+    public boolean canPurchase(Avatar avatar) {
         int cost = costAvatars.get(avatar);
         return totalStars >= cost;
     }
 
-    public boolean hasBeenPurchased(Avatar avatar){
+    public boolean hasBeenPurchased(Avatar avatar) {
         return unlockedAvatars.contains(avatar);
     }
 
-    public Integer getNumAchievements(){
+    public Integer getNumAchievements() {
         return this.unlockedAchievements.size();
     }
 
-    public void setUsername(String name){
+    public void setUsername(String name) {
         this.username = name;
         //TODO: link to backend
     }
 
-    public void setNickname(String name){
+    public void setNickname(String name) {
         this.nickname = name;
         //TODO: link to backend
     }
 
-    public void changeStars(int delta){
-        //TODO: link to backend
-        this.totalStars += delta;
+    public String changeStars(int delta) throws IOException {
+        this.addScore(-1, delta);
+        return null;
     }
 }
