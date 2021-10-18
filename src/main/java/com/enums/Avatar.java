@@ -19,7 +19,7 @@ public enum Avatar {
      */
     public static Avatar fromString(String s) {
         switch (s.strip().toLowerCase()) {
-            case "b":
+            case "default":
                 return DEFAULT;
             case "sailor":
                 return SAILOR;
@@ -40,7 +40,7 @@ public enum Avatar {
             case "chef":
                 return CHEF;
             default:
-                System.err.println("Recieved unknown avatar request from string to avatar!");
+                System.err.println("Recieved unknown avatar request from string to avatar! Affected avatar string " + s);
                 return DEFAULT;
         }
     }
@@ -52,28 +52,28 @@ public enum Avatar {
     public String toString() {
         switch (this) {
             case DEFAULT:
-                return "B";
+                return "default";
             case SAILOR:
-                return "Sailor";
+                return "sailor";
             case MAGICIAN:
-                return "Magician";
+                return "magician";
             case WIZARD:
-                return "Wizard";
+                return "wizard";
             case NINJA:
-                return "Ninja";
+                return "ninja";
             case QUEEN:
-                return "Queen";
+                return "queen";
             case FAIRY:
-                return "Fairy";
+                return "fairy";
             case PROFESSOR:
-                return "Professor";
+                return "professor";
             case ALIEN:
-                return "Alien";
+                return "alien";
             case CHEF:
-                return "Chef";
+                return "chef";
             default:
                 System.err.println("Tried to convert unknown avatar into a string!");
-                return "B";
+                return "default";
         }
     }
 }

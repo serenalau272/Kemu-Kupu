@@ -1,13 +1,10 @@
 package com.controllers.fxmlComponents;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.components.AchievementItem;
 import com.controllers.ApplicationController;
-import com.enums.Achievement;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;

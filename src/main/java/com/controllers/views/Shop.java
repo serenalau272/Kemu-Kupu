@@ -77,8 +77,13 @@ public class Shop extends ModalController {
     private void setChosenAvatar(Avatar avatar){
         chosenAvatar = avatar;
 
-        if (currentUser.hasBeenPurchased(chosenAvatar)){
-            currentUser.setSelectedAvatar(chosenAvatar);
+        if (currentUser.hasBeenPurchased(chosenAvatar)) {
+            try {
+                currentUser.setAvatar(avatar);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         try {
@@ -110,7 +115,7 @@ public class Shop extends ModalController {
     }
 
     private void setStars(){
-        starTotal.setText(Integer.toString(currentUser.getNumStars()));
+        starTotal.setText(Integer.toString(currentUser.getTotalStars()));
     }
 
     @Override
@@ -124,7 +129,12 @@ public class Shop extends ModalController {
         avatars.addAll(getData());
 
         buyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            currentUser.purchaseAvatar(chosenAvatar);
+            try {
+                currentUser.unlockCostume(chosenAvatar);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             setStars();
             setChosenAvatar(chosenAvatar);
         });  
