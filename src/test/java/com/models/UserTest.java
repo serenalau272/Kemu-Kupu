@@ -126,11 +126,8 @@ public class UserTest extends User {
     
     @Test
     public void testAddingAchievementExtended() {
-        //This is the extended version of testAddingAchievement, which tests literally every possible test.
-
-
-
-
+        //This is the extended version of testAddingAchievement, which tests literally every possible achievement.
+        //TODO
     }
 
     @Test
@@ -213,6 +210,12 @@ public class UserTest extends User {
         this.__deleteAccount(user);
     }
     
+    @Test
+    public void testAddingCostumeExtended() {
+        //This is the extended version of testAddingCostume, which tests literally every possible costume.
+        //TODO
+    }
+
     @Test
     public void testSettingAvatar() {
         User user = this.__createAccount("_testing_account_set_costume");

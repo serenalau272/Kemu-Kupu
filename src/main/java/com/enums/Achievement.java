@@ -36,7 +36,6 @@ public enum Achievement {
                 return "";
         }
         String ret = label + "_" + Integer.toString(level);
-        System.out.println(ret);
         return ret;
     }
 
