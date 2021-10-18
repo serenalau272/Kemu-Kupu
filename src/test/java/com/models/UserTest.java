@@ -255,4 +255,38 @@ public class UserTest extends User {
         //Cleanup
         this.__deleteAccount(user);
     }
+
+    @Test
+    public void testChangingNickname() {
+        User user = this.__createAccount("_testing_account_change_nickname");
+        assertEquals("tester", user.getNickname());
+
+        try {
+            String res = user.setNickname("newnickname");
+            if (res != null)
+                fail("Failed to change nickname: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to change nickname: " + e.toString());
+        }
+
+        assertEquals("newnickname", user.getNickname());
+    }
+
+    @Test
+    public void testChangingUsername() {
+        User user = this.__createAccount("_testing_account_change_username");
+        assertEquals(prefix + "_testing_account_change_username", user.getUsername());
+        
+        try {
+            String res = user.setUsername(prefix + "_newusername123");
+            if (res != null)
+                fail("Failed to change nickname: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to change nickname: " + e.toString());
+        }
+
+        assertEquals(prefix + "_newusername123", user.getUsername());
+    }
 }

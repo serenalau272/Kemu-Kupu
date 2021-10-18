@@ -303,6 +303,9 @@ public class User {
         //Set nickname
         this.nickname = student.nickname;
 
+        //Set username
+        this.username = student.usr;
+
         //Set selected avatar
         this.selectedAvatar = Avatar.fromString(student.current_costume);
         
@@ -337,7 +340,7 @@ public class User {
                 newHighScore = score.score;
             //HACK to allow additional stars to be added.
             if (score.score != -1)
-                numGamesPlayed++;
+                newGamesPlayed++;
         }
         this.totalStars = newTotalStars;
         this.highScore = newHighScore;        
@@ -356,7 +359,7 @@ public class User {
      * @throws IOException if unable to complete the request
      */
     public String signup(String name, String password, String nickname) throws IOException {
-        String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\",\"nickname\":\"" + nickname + "\"}";
+        String body = "{\"usr\":\"" + name.replace("\"", "\\\"") + "\",\"pwd\":\"" + password.replace("\"", "\\\"") + "\",\"nickname\":\"" + nickname.replace("\"", "\\\"") + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/create", body);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here.
@@ -376,7 +379,7 @@ public class User {
      * @throws IOException if unable to complete the request
      */
     public String login(String name, String password) throws IOException {
-        String body = "{\"usr\":\"" + name + "\",\"pwd\":\"" + password + "\"}";
+        String body = "{\"usr\":\"" + name.replace("\"", "\\\"") + "\",\"pwd\":\"" + password.replace("\"", "\\\"") + "\"}";
         Response res = this.__makeRequest(RequestMethod.Post, "/student/login", body);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here. main
@@ -423,7 +426,7 @@ public class User {
      */
     public String unlockCostume(Avatar avatar) throws IOException {
         if (this.JWTToken != null) {
-            String body = "{\"name\":\"" + avatar.toString() + "\"}";
+            String body = "{\"name\":\"" + avatar.toString().replace("\"", "\\\"") + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
@@ -431,14 +434,11 @@ public class User {
                 this.__loadData();
                 return addScoreRes;
             }
-
-            addScore(-1, costAvatars.get(avatar));
-
             return res.loadJsonData();
         } else {
             //Guest account = note that no check is performed
             this.unlockedAvatars.add(avatar);
-            this.totalStars -= costAvatars.get(avatar);
+            this.totalStars -= this.getPrice(avatar);
             return null;
         }
 
@@ -452,7 +452,7 @@ public class User {
      */
     public String unlockAchievement(Achievement achievement) throws IOException {
         if (this.JWTToken != null) {
-            String body = "{\"name\":\"" + achievement.toString() + "\"}";
+            String body = "{\"name\":\"" + achievement.toString().replace("\"", "\\\"") + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
@@ -477,7 +477,7 @@ public class User {
         if (!this.unlockedAvatars.contains(avatar))
             return "Avatar not unlocked!";
         if (this.JWTToken != null) {
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/" + avatar.toString(), "");
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/" + avatar.toString().replace("\"", "\\\""), "");
             if (res.getStatus() == ResponseStatus.Success) {
                 this.__loadData();
                 return null;
@@ -486,6 +486,48 @@ public class User {
             
         } else {
             this.selectedAvatar = avatar;
+            return null;
+        }
+    }
+
+    /**
+     * Change this users username
+     * @param name the username to change to
+     * @return a string, null if success or with a failure message if not.
+     * @throws IOException if unable to contact api
+     */
+    public String setUsername(String name) throws IOException {
+        if (this.JWTToken != null) {
+            String body = "{\"name\":\"" + name.toString().replace("\"", "\\\"") + "\"}";
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/username", body);
+            if (res.getStatus() == ResponseStatus.Success) {
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();
+        } else {
+            this.username = name;
+            return null;
+        }
+    }
+
+    /**
+     * Change this users nickname
+     * @param name the nickname to change to
+     * @return a string, null if success or with a failure message if not.
+     * @throws IOException if unable to contact api
+     */
+    public String setNickname(String name) throws IOException {
+        if (this.JWTToken != null) {
+            String body = "{\"name\":\"" + name.toString().replace("\"", "\\\"") + "\"}";
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/nickname", body);
+            if (res.getStatus() == ResponseStatus.Success) {
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();
+        } else {
+            this.nickname = name;
             return null;
         }
     }
@@ -580,16 +622,6 @@ public class User {
 
     public Integer getNumAchievements() {
         return this.unlockedAchievements.size();
-    }
-
-    public void setUsername(String name) {
-        this.username = name;
-        //TODO: link to backend
-    }
-
-    public void setNickname(String name) {
-        this.nickname = name;
-        //TODO: link to backend
     }
 
     public String changeStars(int delta) throws IOException {

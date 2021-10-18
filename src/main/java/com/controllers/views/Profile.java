@@ -1,4 +1,5 @@
 package com.controllers.views;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -72,10 +73,20 @@ public class Profile extends ApplicationController implements Initializable {
         input.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER){
                 if (!usernameInput.getText().equals("")){
-                    currentUser.setUsername(usernameInput.getText());
+                    try {
+                        currentUser.setUsername(usernameInput.getText());
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
                 if (!nicknameInput.getText().equals("")){
-                    currentUser.setNickname(nicknameInput.getText());
+                    try {
+                        currentUser.setNickname(nicknameInput.getText());
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
                 usernameInput.setStyle("-fx-background-color: blue;");
                 nicknameInput.setStyle("-fx-background-color: blue;");
