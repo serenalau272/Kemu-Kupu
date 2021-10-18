@@ -24,32 +24,32 @@
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="493.0" fitWidth="640.0" layoutX="321.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="493.0" fitWidth="640.0" layoutX="295.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/signIn/signInBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="signInButton" fitHeight="65.0" fitWidth="442.0" layoutX="420.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="signInButton" fitHeight="65.0" fitWidth="442.0" layoutX="394.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/signIn/signInButton.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="createAccount" fitHeight="52.0" fitWidth="375.0" layoutX="488.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="createAccount" fitHeight="52.0" fitWidth="375.0" layoutX="462.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/signIn/Create%20an%20account!.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="incorrectMessage" fitHeight="52.0" fitWidth="375.0" layoutX="443.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="incorrectMessage" fitHeight="52.0" fitWidth="375.0" layoutX="417.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/signIn/Username%20or%20password%20incorrect..png" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameInput" layoutX="419.0" layoutY="259.0" prefHeight="65.0" prefWidth="442.0" styleClass="sign-in" stylesheets="@../styles/application.css" text="JohnDumbass123">
+      <TextField fx:id="usernameInput" layoutX="393.0" layoutY="259.0" prefHeight="65.0" prefWidth="442.0" styleClass="sign-in" stylesheets="@../styles/application.css" text="JohnDumbass123">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordInput" layoutX="420.0" layoutY="385.0" prefHeight="65.0" prefWidth="442.0" styleClass="sign-in" stylesheets="@../styles/application.css" text="sdfsdf">
+      <PasswordField fx:id="passwordInput" layoutX="394.0" layoutY="385.0" prefHeight="65.0" prefWidth="442.0" styleClass="sign-in" stylesheets="@../styles/application.css" text="sdfsdf">
          <font>
             <Font size="30.0" />
          </font>
