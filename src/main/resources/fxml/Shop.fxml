@@ -48,7 +48,7 @@
             <Image url="@../assets/costumeShop/Buy.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="userAvatar" fitHeight="227.0" fitWidth="226.0" layoutX="181.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="userAvatar" fitHeight="268.0" fitWidth="301.0" layoutX="146.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Avatars/default.png" />
          </image>
