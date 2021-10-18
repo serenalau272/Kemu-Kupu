@@ -157,8 +157,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage s) {
-        globalTimer = new GlobalTimer(1);
-        globalTimer.restart();
+        globalTimer = new GlobalTimer(5);
+        // globalTimer.restart();
 
         //temp
         setUser();

@@ -33,12 +33,12 @@
             <Image url="@../assets/wheel/Spin%20to%20Win!.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="87.0" fitWidth="304.0" layoutX="478.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="timerButton" fitHeight="87.0" fitWidth="304.0" layoutX="478.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/wheel/timer.png" />
+            <Image url="@../assets/wheel/timerButton.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="496.0" layoutY="148.0" prefHeight="49.0" prefWidth="213.0" text="SPIN" textFill="WHITE">
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="541.0" layoutY="150.0" prefHeight="40.0" prefWidth="119.0" text="2m 30s" textFill="WHITE">
          <font>
             <Font size="35.0" />
          </font>
@@ -51,6 +51,21 @@
       <Label fx:id="starLabel" alignment="CENTER" layoutX="38.0" layoutY="35.0" prefHeight="49.0" prefWidth="213.0" text="100" textFill="WHITE">
          <font>
             <Font size="35.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="popup" fitHeight="468.0" fitWidth="575.0" layoutX="339.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/wheel/popup.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="collectButton" fitHeight="77.0" fitWidth="251.0" layoutX="513.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/wheel/collectButton.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="starNum" alignment="CENTER" layoutX="544.0" layoutY="410.0" prefHeight="40.0" prefWidth="119.0" text="50" textFill="WHITE">
+         <font>
+            <Font size="84.0" />
          </font>
       </Label>
     </children>
