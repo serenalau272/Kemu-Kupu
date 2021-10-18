@@ -16,13 +16,13 @@ public class Wheel extends ModalController {
     @FXML
     private ImageView wheel;
     Animation anim;
-    private final int[] rewardStars = {5, 3, 10, 3, 50, 0};
+    private final int[] rewardStars = {1, 10, 1, 2, 3, 1, 5, 2};
 
     private void giveReward() {
         double rotation = wheel.getRotate();
         int truncateFactor = ((int) rotation) / 360;
         int rotatedBy = (int) rotation - truncateFactor * 360;
-        int segment = (int) Math.floor(((rotatedBy + 30.0) % 360) / 60.0); // should be 0 to 5
+        int segment = (int) Math.floor(((rotatedBy + 1) % 360) / 45.0); // should be 0 to 7
 
         System.out.println(rewardStars[segment]);
     }
