@@ -40,7 +40,6 @@ public enum ConfirmModal {
             case SIGNOUT:
                 MainApp.setUser();
                 MainApp.setRoot(View.MENU);
-                //@TODO signout user 
                 break;
             case RESET:
                 MainApp.setRoot(View.PROFILE);

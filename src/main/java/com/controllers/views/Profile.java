@@ -48,13 +48,13 @@ public class Profile extends ApplicationController implements Initializable {
     
 
     private void configureStaticEntries(){
-        nameLabel.setText("Hello " + currentUser.getNickname()+"!");
         starLabel.setText(Integer.toString(currentUser.getTotalStars()));
         achievementsLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/18");
         setAvatarImage(userAvatar);
     }
 
     private void configureDynamicEntries(){
+        nameLabel.setText("Hello " + currentUser.getNickname()+"!");
         scoreLabel.setText(Integer.toString(currentUser.getHighScore()));
         nicknameInput.setText(currentUser.getNickname());
         usernameInput.setText(currentUser.getUsername());
@@ -107,6 +107,8 @@ public class Profile extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
         currentUser = MainApp.getUser();
+
+        System.out.println(currentUser.getUsername());
         
         nicknameInput.setFocusTraversable(false);
         usernameInput.setFocusTraversable(false);
