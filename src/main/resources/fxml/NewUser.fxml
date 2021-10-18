@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.NewUser">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.NewUser">
     <children>
       <ImageView fx:id="background" fitHeight="730.0" fitWidth="1304.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="119.0" fitWidth="347.0" layoutX="444.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="108.0" fitWidth="384.0" layoutX="413.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/newUser/New%20User.png" />
          </image>
@@ -24,27 +24,27 @@
             <Image url="@../assets/settings/back.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="625.0" fitWidth="653.0" layoutX="319.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="544.0" fitWidth="548.0" layoutX="364.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/newUser/signUpBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="createAccountButton" fitHeight="72.0" fitWidth="438.0" layoutX="467.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="createAccountButton" fitHeight="80.0" fitWidth="307.0" layoutX="485.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/newUser/createAccountButton.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nicknameInput" layoutX="390.0" layoutY="220.0" prefHeight="65.0" prefWidth="509.0" promptText="Nickname">
+      <TextField fx:id="nicknameInput" layoutX="425.0" layoutY="255.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="429.0" promptText="Max 10 characters" styleClass="sign-in" stylesheets="@../styles/application.css">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <TextField fx:id="usernameInput" layoutX="390.0" layoutY="355.0" prefHeight="65.0" prefWidth="509.0" promptText="Username">
+      <TextField fx:id="usernameInput" layoutX="425.0" layoutY="363.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="429.0" styleClass="sign-in" stylesheets="@../styles/application.css">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordInput" layoutX="393.0" layoutY="483.0" prefHeight="65.0" prefWidth="503.0" promptText="Password">
+      <PasswordField fx:id="passwordInput" layoutX="425.0" layoutY="471.0" prefHeight="56.0" prefWidth="429.0" styleClass="sign-in" stylesheets="@../styles/application.css">
          <font>
             <Font size="30.0" />
          </font>

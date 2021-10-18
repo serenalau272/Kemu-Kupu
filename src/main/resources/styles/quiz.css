@@ -20,35 +20,33 @@
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
 }
 
+.text-field {
+    -fx-background-color: #9FE8DC;
+    -fx-background-radius: 5px;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 5px;
+    -fx-border-width: 3px;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+    -fx-font-family: 'Poppins';
+
+}
+
+.text-field:focused {
+    -fx-border-color: #5F7E79;
+}
+
 .transparent{
     -fx-background-color: transparent;
     -fx-background: transparent;
 }
 
-.poor-story-text .text {
-    -fx-font-family: 'Poor Story';
-    -fx-fill: #FFFFFF;
-}
-
-.confirmation-text .text {
-    -fx-font-size: 50px;
-    -fx-stroke: #FFFFFF;
-    -fx-stroke-width: 1.7px;
-    -fx-stroke-type: centered;
-    -fx-stroke-line-join: round;
-    -fx-stroke-line-cap: round;
-    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
-}
-
-.sign-in {
-    -fx-background-color: rgba(255, 226, 183, 0.7);
-    -fx-background-radius: 11px;
-    -fx-border-color: #FFFFFF;
-    -fx-border-radius: 11px;
-    -fx-border-width: 6px;
-    -fx-font-size: 30px;
+.timer .text {
+    -fx-font-family: 'Poppins';
     -fx-font-weight: bold;
-    -fx-text-fill: #000000;
-    -fx-font-family: 'Poor Story';
-    -fx-prompt-text-fill: #676767;
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 50px;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
 }

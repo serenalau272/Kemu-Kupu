@@ -41,7 +41,11 @@ public class MainApp extends Application {
             stackPane = new StackPane();
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
-            scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
+            if (view == View.QUIZ) {
+                scene.getStylesheets().add(MainApp.class.getResource("/styles/quiz.css").toExternalForm());
+            } else {
+                scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
+            }
             stage.setTitle(view.getWindowName());
             stage.setScene(scene);
             stage.show();                          
