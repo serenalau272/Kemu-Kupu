@@ -1,6 +1,7 @@
 package com.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -124,6 +125,12 @@ public class UserTest extends User {
     }
     
     @Test
+    public void testAddingAchievementExtended() {
+        //This is the extended version of testAddingAchievement, which tests literally every possible achievement.
+        //TODO
+    }
+
+    @Test
     public void testAddingScore() {
         //Create account
         User user = this.__createAccount("_testing_acount_score");
@@ -203,6 +210,12 @@ public class UserTest extends User {
         this.__deleteAccount(user);
     }
     
+    @Test
+    public void testAddingCostumeExtended() {
+        //This is the extended version of testAddingCostume, which tests literally every possible costume.
+        //TODO
+    }
+
     @Test
     public void testSettingAvatar() {
         User user = this.__createAccount("_testing_account_set_costume");
@@ -368,9 +381,13 @@ public class UserTest extends User {
 
     @Test
     public void testSerialization() {
+        //HACK these are combined into one file as currently the new User(); method just guesses which to serialize from 
+        //which could cause a collision if tested in a bad order. Combining them ensures serial testing.
+
         //Test Guest Serialization
         {
             new File(this.guestSavePath).delete();
+            new File(this.userSavePath).delete();
         
             User user = new User(); //Create guest account
             assertEquals(0, user.getAchievements().size());
@@ -387,10 +404,12 @@ public class UserTest extends User {
     
             User newUser = new User();
             assertTrue(newUser.getAchievements().contains("STUDENT_1"));
+            assertFalse(newUser.isLoggedIn());
         }
 
-        //Test User Serialization
+        //Test API Serialization
         {
+            new File(this.guestSavePath).delete();
             new File(this.userSavePath).delete();
             User user = this.__createAccount("_testing_account_serialize_logged_in");
             try {
