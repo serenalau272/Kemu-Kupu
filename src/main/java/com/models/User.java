@@ -12,10 +12,16 @@ import com.enums.Avatar;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.AbstractMap;
@@ -161,7 +167,9 @@ class JsonCostumes {
 /**
  * This class handles the storing and retreiving of the current user.
  */
-public class User {
+public class User implements Serializable {
+    protected final String guestSavePath = "./.user/guest.data";
+    protected final String userSavePath = "./.user/token.data";
     private final String apiPath = "https://kemukupu.com/api/v1";
     private String JWTToken;
     private String username;
@@ -187,6 +195,30 @@ public class User {
     );
 
     /**
+     * Save the internal state to the disk.
+     * In the event of a logged in user, saves the jwt. For a guest user saves the raw data as a file.
+     * @throws IOException in the event we are unable to save the disk for some reason.
+     */
+    private void __saveData() throws IOException {
+        //Remove any existing save files
+        new File(this.guestSavePath).delete();
+        new File(this.userSavePath).delete();
+        
+        //Serialize new file
+        if (this.JWTToken != null) {
+            FileOutputStream f_out = new FileOutputStream(this.userSavePath);
+            ObjectOutputStream obj_out = new ObjectOutputStream(f_out);
+            obj_out.writeObject(this.JWTToken);
+            obj_out.close();
+        } else {
+            FileOutputStream f_out = new FileOutputStream(this.guestSavePath);
+            ObjectOutputStream obj_out = new ObjectOutputStream(f_out);
+            obj_out.writeObject(this);
+            obj_out.close();
+        }
+    }
+
+    /**
      * Resets the entire state of the class to a fresh guest instance
      */
     private void __reset() {
@@ -204,6 +236,11 @@ public class User {
             this.__updatePrices();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        try {
+            this.__saveData();
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
     }
 
@@ -307,7 +344,7 @@ public class User {
          //Set username
         this.username = student.usr;
 
- //Set selected avatar
+        //Set selected avatar
         this.selectedAvatar = Avatar.fromString(student.current_costume);
         
         //Set unlocked avatars
@@ -346,9 +383,51 @@ public class User {
         this.totalStars = newTotalStars;
         this.highScore = newHighScore;        
         this.numGamesPlayed = newGamesPlayed;
+        this.__saveData();
     }
 
     public User() {
+        if (new File(this.userSavePath).isFile()) {
+            try {
+                FileInputStream f_in = new FileInputStream(this.userSavePath);
+                ObjectInputStream obj_in = new ObjectInputStream(f_in);
+                Object obj = obj_in.readObject();
+                obj_in.close();
+                if (obj instanceof String) {
+                    String str = (String) obj;
+                    this.JWTToken = str;
+                    this.__loadData();
+                    return;
+                }
+            } catch (IOException | ClassNotFoundException e) { 
+                e.printStackTrace();
+            }
+        } else if (new File(this.guestSavePath).isFile()) {
+            try {
+                FileInputStream f_in = new FileInputStream(this.guestSavePath);
+                ObjectInputStream obj_in = new ObjectInputStream(f_in);
+                Object obj = obj_in.readObject();
+                obj_in.close();
+                if (obj instanceof User) {
+                    User user = (User) obj;
+                    //Load relevant data from serialized object
+                    this.JWTToken = user.JWTToken;
+                    this.username = user.username;
+                    this.nickname = user.nickname;
+                    this.id = user.id;
+                    this.selectedAvatar = user.selectedAvatar;
+                    this.unlockedAvatars = user.unlockedAvatars;
+                    this.highScore = user.highScore;
+                    this.totalStars = user.totalStars;
+                    this.numGamesPlayed = user.numGamesPlayed;
+                    this.unlockedAchievements = user.unlockedAchievements;
+                    this.costAvatars = user.costAvatars;
+                    return;
+                }
+            } catch (IOException | ClassNotFoundException e) { 
+                e.printStackTrace();
+            }
+        }
         this.__reset();
     }
 
@@ -416,6 +495,7 @@ public class User {
                 this.highScore = score;
             this.numGamesPlayed +=1 ;
             this.totalStars += numStars;
+            this.__saveData();
             return null;
         }
     }
@@ -427,7 +507,7 @@ public class User {
      */
     public String unlockCostume(Avatar avatar) throws IOException {
         if (this.JWTToken != null) {
-            String body = "{\"name\":\"" + avatar.toString().replace("\"", "\\\"") + "\"}";
+            String body = "{\"name\":\"" + avatar.toString() + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
@@ -440,6 +520,7 @@ public class User {
             //Guest account = note that no check is performed
             this.unlockedAvatars.add(avatar);
             this.totalStars -= this.getPrice(avatar);
+            this.__saveData();
             return null;
         }
 
@@ -453,7 +534,7 @@ public class User {
      */
     public String unlockAchievement(String achievement) throws IOException {
         if (this.JWTToken != null) {
-            String body = "{\"name\":\"" + Achievement.toString(achievement).replace("\"", "\\\"") + "\"}";
+            String body = "{\"name\":\"" + Achievement.toString(achievement) + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
@@ -464,6 +545,7 @@ public class User {
         } else {
             //Guest account
             this.unlockedAchievements.add(achievement);
+            this.__saveData();
             return null;
         }
     }
@@ -487,6 +569,7 @@ public class User {
             
         } else {
             this.selectedAvatar = avatar;
+            this.__saveData();
             return null;
         }
     }
@@ -508,6 +591,7 @@ public class User {
             return res.loadJsonData();
         } else {
             this.username = name;
+            this.__saveData();
             return null;
         }
     }
@@ -529,6 +613,7 @@ public class User {
             return res.loadJsonData();
         } else {
             this.nickname = name;
+            this.__saveData();
             return null;
         }
     }
@@ -536,9 +621,13 @@ public class User {
     /**
      * Delete this user account, this is a permenant irreversible action.
      * This method will still reset the guest account.
+     * @returns a string which is null if succesful, and contains an error message otherwise.
      * @throws IOException throws if unable to complete the request
      */
     public String deleteAccount() throws IOException {
+        //Delete save files
+        new File(this.guestSavePath).delete();
+        new File(this.userSavePath).delete();
         //If logged in, send deletion request
         if (this.JWTToken != null) {
             Response res = this.__makeRequest(RequestMethod.Delete, "/student", null);
@@ -546,6 +635,24 @@ public class User {
                 return res.loadJsonData();
         }
         //Reset this instance
+        this.__reset();
+        return null;
+    }
+
+    /**
+     * Reset this user account data, this is a permenant irreversible action.
+     * @returns a string which is null if succesful, and contains an error message otherwise.
+     * @throws IOException
+     */
+    public String resetAccount() throws IOException {
+        if (this.JWTToken != null) {
+            Response res = this.__makeRequest(RequestMethod.Post, "/student/reset", "");
+            if (res.getStatus() == ResponseStatus.Success) {
+                this.__loadData();
+                return null;
+            }
+            return res.loadJsonData();
+        }
         this.__reset();
         return null;
     }
@@ -582,9 +689,11 @@ public class User {
      * @return a hashset containing all of the users bought costumes
      */
     public HashSet<Avatar> getCostumes() {
-        try {
-            this.__loadData();
-        } catch (IOException e) {}
+        if (this.JWTToken != null) {
+            try {
+                this.__loadData();
+            } catch (IOException e) {}   
+        }
         return this.unlockedAvatars;
     }
 

@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
-
-import com.enums.Achievement;
 import com.enums.Avatar;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -59,7 +58,7 @@ public class UserTest extends User {
     public static void setup() {
         prefix = String.valueOf(Instant.now().toEpochMilli());
     }
-
+    
     @Test
     public void testAccountCreation() {
         //Create a new account!
@@ -74,24 +73,15 @@ public class UserTest extends User {
 
         this.__deleteAccount(user);
     }
-
     
+    @Test
     public void testAccountLogin() {
         User createUser = this.__createAccount("_testing_account_login");
-        //Create a new account!
-        try {
-            String res = createUser.signup(prefix + "_testing_acount_account_login", "testing123", "tester");
-            if (res != null)
-                fail("Failed to create account: " + res);
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("Failed to create user due to error!");
-        }
 
         //Test logging into that account
         User user = new User();
         try {
-            String res = user.login(prefix + "_testing_acount_account_login", "testing123");
+            String res = user.login(prefix + "_testing_account_login", "testing123");
             if (res != null)
                 fail("Failed to login to account: " + res);
         } catch (IOException e) {
@@ -100,15 +90,15 @@ public class UserTest extends User {
         }
 
         //Check details are correct
-        assertEquals(prefix + "_testing_acount_account_creation", user.getUsername());
+        assertEquals(prefix + "_testing_account_login", user.getUsername());
         assertEquals("tester", user.getNickname());
         assertEquals(1, user.getCostumes().size());
         assertTrue(user.getCostumes().contains(Avatar.DEFAULT));
         assertEquals(0, user.getAchievements().size());
 
-        this.__deleteAccount(user);
+        this.__deleteAccount(createUser);
     }
-
+    
     @Test
     public void testAddingAchievement() {
         //Create Account
@@ -132,7 +122,7 @@ public class UserTest extends User {
         assertTrue(user.getAchievements().contains(achievement));
         this.__deleteAccount(user);
     }
-
+    
     @Test
     public void testAddingScore() {
         //Create account
@@ -180,7 +170,7 @@ public class UserTest extends User {
         //Delete account
         this.__deleteAccount(user);
     }
-
+    
     @Test
     public void testAddingCostume() {
         User user = this.__createAccount("_testing_account_costume");
@@ -212,7 +202,7 @@ public class UserTest extends User {
 
         this.__deleteAccount(user);
     }
-
+    
     @Test
     public void testSettingAvatar() {
         User user = this.__createAccount("_testing_account_set_costume");
@@ -255,7 +245,7 @@ public class UserTest extends User {
         //Cleanup
         this.__deleteAccount(user);
     }
-
+    
     @Test
     public void testChangingNickname() {
         User user = this.__createAccount("_testing_account_change_nickname");
@@ -271,8 +261,9 @@ public class UserTest extends User {
         }
 
         assertEquals("newnickname", user.getNickname());
+        this.__deleteAccount(user);
     }
-
+    
     @Test
     public void testChangingUsername() {
         User user = this.__createAccount("_testing_account_change_username");
@@ -288,5 +279,136 @@ public class UserTest extends User {
         }
 
         assertEquals(prefix + "_newusername123", user.getUsername());
+        this.__deleteAccount(user);
+    }
+
+    @Test
+    public void testResettingAccount() {
+        User user = this.__createAccount("_testing_account_reset_account");
+        //Check baseline
+        assertEquals(Avatar.DEFAULT, user.getSelectedAvatar());
+        assertEquals(1, user.getCostumes().size());
+        assertEquals(0, user.getAchievements().size());
+        assertEquals(0, user.getHighScore());
+        assertEquals(0, user.getNumGamesPlayed());
+
+        //Add achievements, add scores, add costume, set costume
+        try {
+            String res;
+            res = user.unlockAchievement("STUDENT_1");
+            if (res != null)
+                fail("Failed to unlock achievement: " + res);
+            res = user.unlockAchievement("STUDENT_2");
+            if (res != null)
+                fail("Failed to unlock achievement: " + res);
+            res = user.unlockAchievement("STUDENT_3");
+            if (res != null)
+                fail("Failed to unlock achievement: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to add achievements: " + e.toString());
+        }
+
+        try {
+            String res = user.addScore(9999, 10000);
+            if (res != null)
+                fail("Failed to add score: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to add score: " + e.toString());
+        }
+
+        try {
+            String res = user.unlockCostume(Avatar.ALIEN);
+            if (res != null)
+                fail("Failed to unlock costume: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to unlock costume: " + e.toString());
+        }
+
+        try {
+            String res = user.setAvatar(Avatar.ALIEN);
+            if (res != null)
+                fail("Failed to unlock costume: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to set costume: " + e.toString());
+        }
+
+        //Validate things were changed properly
+        assertEquals(Avatar.ALIEN, user.getSelectedAvatar());
+        assertEquals(3, user.getAchievements().size());
+        assertTrue(user.getAchievements().contains("STUDENT_1"));
+        assertTrue(user.getAchievements().contains("STUDENT_2"));
+        assertTrue(user.getAchievements().contains("STUDENT_3"));
+        assertEquals(9999, user.getHighScore());
+        assertEquals(1, user.getNumGamesPlayed());
+        assertEquals(2, user.getCostumes().size());
+
+        //Reset
+        try {
+            String res = user.resetAccount();
+            if (res != null)
+                fail("Failed to reset user: " + res);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Critical failure to reset account: " + e.toString());
+        }
+
+        //Validate back to default
+        assertEquals(Avatar.DEFAULT, user.getSelectedAvatar());
+        assertEquals(0, user.getAchievements().size());
+        assertEquals(0, user.getHighScore());
+        assertEquals(0, user.getNumGamesPlayed());
+        assertEquals(1, user.getCostumes().size());
+
+        this.__deleteAccount(user);
+    }
+
+    @Test
+    public void testSerialization() {
+        //Test Guest Serialization
+        {
+            new File(this.guestSavePath).delete();
+        
+            User user = new User(); //Create guest account
+            assertEquals(0, user.getAchievements().size());
+            try {
+                String res = user.unlockAchievement("STUDENT_1");
+                if (res != null)
+                    fail("Failed to unlock achievement: " + res);
+            } catch (IOException e) {
+                e.printStackTrace();
+                fail("Critical failure to unlock achievement: " + e.toString());
+            }
+    
+            assertTrue(user.getAchievements().contains("STUDENT_1"));
+    
+            User newUser = new User();
+            assertTrue(newUser.getAchievements().contains("STUDENT_1"));
+        }
+
+        //Test User Serialization
+        {
+            new File(this.userSavePath).delete();
+            User user = this.__createAccount("_testing_account_serialize_logged_in");
+            try {
+                String res = user.unlockAchievement("STUDENT_2");
+                if (res != null)
+                    fail("Failed to unlock achievement: " + res);
+            } catch (IOException e) {
+                e.printStackTrace();
+                fail("Critical failure to unlock achievement: " + e.toString());
+            }
+    
+            assertTrue(user.getAchievements().contains("STUDENT_2"));
+    
+            User newUser = new User();
+            assertTrue(newUser.getAchievements().contains("STUDENT_2"));
+            assertTrue(newUser.isLoggedIn());
+    
+            this.__deleteAccount(user);
+        }
     }
 }
