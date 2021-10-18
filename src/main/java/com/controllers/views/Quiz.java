@@ -243,13 +243,19 @@ public class Quiz extends ApplicationController implements Initializable {
             case FAILED:
                 String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
                 messageLabel.setText(incorrectMsg);
+
+                if (speechAvatars.get(MainApp.getUser().getSelectedAvatar()) == null) return;
+
                 avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[1]);
                 speechBubble.setVisible(true);
                 break;
             case MASTERED:
                 String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
-                avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[0]);
                 messageLabel.setText(correctMsg);
+
+                if (speechAvatars.get(MainApp.getUser().getSelectedAvatar()) == null) return;
+
+                avatarMessage.setText(speechAvatars.get(MainApp.getUser().getSelectedAvatar())[0]);
                 speechBubble.setVisible(true);
                 break;
             default:
