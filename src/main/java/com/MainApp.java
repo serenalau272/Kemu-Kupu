@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.components.animations.GlobalTimer;
 import com.enums.Gamemode;
-import com.enums.View;
+import com.enums.Views;
 import com.models.Game;
 import com.models.Setting;
 import com.models.User;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
     private static Stage stage;
-    private static View view;
+    private static Views view;
     private static StackPane stackPane;
     private static Game state;
     private static User user;
@@ -34,14 +34,14 @@ public class MainApp extends Application {
      * @param title the title of the window to be spawned
      * @return a stage which can be set or spawned as a modal
      */
-    private static void __setRoot(View view) {
+    private static void __setRoot(Views view) {
         tts.stopSpeech(); //Clear the queue
         try {
             MainApp.view = view;
             stackPane = new StackPane();
             stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
             Scene scene = new Scene(stackPane);
-            if (view == View.QUIZ) {
+            if (view == Views.QUIZ) {
                 scene.getStylesheets().add(MainApp.class.getResource("/styles/quiz.css").toExternalForm());
             } else {
                 scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
@@ -82,7 +82,7 @@ public class MainApp extends Application {
      * Get the current view
      * @return
      */
-    public static View getBaseView() {
+    public static Views getBaseView() {
         return view;
     }
 
@@ -130,7 +130,7 @@ public class MainApp extends Application {
      * Change which scene the user is looking at.
      * @param view to load
      */
-    public static void setRoot(View view) {
+    public static void setRoot(Views view) {
         __setRoot(view);
     }
     
@@ -139,7 +139,7 @@ public class MainApp extends Application {
     * update music on modal toggle
     */
     public static void updateMusic(){
-        if (view == View.QUIZ) {
+        if (view == Views.QUIZ) {
             if (state.getGameMode() == Gamemode.RANKED){
                 Sounds.playMusic("game");
             } else {
@@ -180,7 +180,7 @@ public class MainApp extends Application {
             System.err.println("Unable to create user stats file");
             e.printStackTrace();
         }
-        setRoot(View.MENU);
+        setRoot(Views.MENU);
     }
 
     /**

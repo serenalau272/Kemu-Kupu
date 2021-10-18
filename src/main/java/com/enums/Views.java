@@ -3,7 +3,7 @@ package com.enums;
 /**
  * Represents the different views that may be loaded as fxml pages, to limit the bugs that may appear
  */
-public enum View {
+public enum Views {
     MENU,
     GAMEMODE,
     TOPIC,

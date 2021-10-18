@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.enums.Modals;
-import com.enums.View;
+import com.enums.Views;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
@@ -50,7 +50,7 @@ public class FxmlTests {
     public void checkAllFxmlAccessible() {
         String[] paths = {"./src/main/resources/fxml/"};
         for (String path : paths) {
-            List<View> views = Arrays.asList(View.values());
+            List<Views> views = Arrays.asList(Views.values());
             List<Modals> modals = Arrays.asList(Modals.values());
 
             List<String> fileNames = new ArrayList<>();

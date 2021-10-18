@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class ViewTest {
+public class ViewsTest {
     @Test
     public void testGetFileName() {
-        List<View> views = Arrays.asList(View.values());
-        for (View view : views) {
+        List<Views> views = Arrays.asList(Views.values());
+        for (Views view : views) {
             String fileName = view.getFileName();
-            if (view == View.MENU) {
+            if (view == Views.MENU) {
                 if (fileName != "Menu") {
                     fail("View.MENU returns incorrect value!");
                 }
@@ -26,10 +26,10 @@ public class ViewTest {
 
     @Test
     public void testGetWindowName() {
-        List<View> views = Arrays.asList(View.values());
-        for (View view : views) {
+        List<Views> views = Arrays.asList(Views.values());
+        for (Views view : views) {
             String windowName = view.getWindowName();
-            if (view == View.MENU) {
+            if (view == Views.MENU) {
                 if (windowName != "Kemu Kupu") {
                     fail("View.MENU returns incorrect value!");
                 }

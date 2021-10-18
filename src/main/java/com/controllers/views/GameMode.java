@@ -12,7 +12,7 @@ import com.util.Sounds;
 import com.MainApp;
 import com.controllers.ApplicationController;
 import com.enums.Gamemode;
-import com.enums.View;
+import com.enums.Views;
 
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
@@ -101,7 +101,7 @@ public class GameMode extends ApplicationController implements Initializable {
             MainApp.getUser().unlockAchievement("EXPLORER_2");
         }
         MainApp.setGameState(game);
-        MainApp.setRoot(View.TOPIC);
+        MainApp.setRoot(Views.TOPIC);
     }
 
     private ColorAdjust setSaturation(double saturation) {
@@ -120,6 +120,6 @@ public class GameMode extends ApplicationController implements Initializable {
 
         setAvatarImage(rankedAvatar);
 
-        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.MENU));
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.MENU));
     }
 }

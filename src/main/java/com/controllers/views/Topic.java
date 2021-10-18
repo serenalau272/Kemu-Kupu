@@ -9,7 +9,7 @@ import com.util.Sounds;
 import com.util.SystemIO;
 import com.MainApp;
 import com.controllers.ApplicationController;
-import com.enums.View;
+import com.enums.Views;
 
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
@@ -50,7 +50,7 @@ public class Topic extends ApplicationController implements Initializable {
                     e.printStackTrace();
                 }
                 Sounds.playSoundEffect("pop");
-                MainApp.setRoot(View.QUIZ);
+                MainApp.setRoot(Views.QUIZ);
             } else {
                 System.err.println("Could not select topic with id: " + listName);
             }
@@ -80,6 +80,6 @@ public class Topic extends ApplicationController implements Initializable {
         __initialiseSelectableTopic(workButton);
         __initialiseSelectableTopic(feelingsButton);
 
-        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.GAMEMODE));
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.GAMEMODE));
     }
 }
