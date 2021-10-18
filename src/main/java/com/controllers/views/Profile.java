@@ -8,7 +8,6 @@ import com.enums.ConfirmModal;
 import com.enums.View;
 import com.models.User;
 import com.util.Modal;
-import com.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

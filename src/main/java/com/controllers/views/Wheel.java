@@ -7,7 +7,6 @@ import com.MainApp;
 import com.components.animations.SpinningWheel;
 import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
-import com.controllers.ModalController;
 import com.enums.View;
 import com.models.User;
 import com.util.Sounds;
@@ -68,7 +67,7 @@ public class Wheel extends ApplicationController implements Initializable {
     }
 
     private void collectReward(){
-        currentUser.changeStarCount(reward);
+        // currentUser.changeStarCount(reward);
 
         MainApp.getGlobalTimer().restart();
         timer.start();
@@ -78,7 +77,7 @@ public class Wheel extends ApplicationController implements Initializable {
     }
 
     private void updateStarLabel(){
-        starLabel.setText(Integer.toString(currentUser.getNumStars()));
+        starLabel.setText(Integer.toString(currentUser.getTotalStars()));
     }
 
     private void spin(){

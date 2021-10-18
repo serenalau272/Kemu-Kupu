@@ -582,4 +582,9 @@ public class User {
         this.nickname = name;
         //TODO: link to backend
     }
+
+    public void changeStars(int delta){
+        //TODO: link to backend
+        this.totalStars += delta;
+    }
 }
