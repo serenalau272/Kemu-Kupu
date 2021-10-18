@@ -10,6 +10,7 @@ import com.controllers.ApplicationController;
 import com.controllers.ModalController;
 import com.enums.View;
 import com.models.User;
+import com.util.Sounds;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
@@ -60,6 +61,7 @@ public class Wheel extends ApplicationController implements Initializable {
         wait.setOnFinished(e -> {
             setPopupVisibility(true);
             starNum.setText(Integer.toString(reward));
+            Sounds.playSoundEffect("reward");
         });
 
         wait.play();        
