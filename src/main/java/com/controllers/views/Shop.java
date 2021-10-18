@@ -63,9 +63,10 @@ public class Shop extends ApplicationController implements Initializable {
 
     private void setTextYellow(Node clickedAvatarName) {
         for (Node avatar : grid.getChildren()) {
-            ((AnchorPane) avatar).getChildren().get(1).setStyle("-fx-text-fill: #FFFFFF");
+            Label label = ((Label)((AnchorPane) avatar).getChildren().get(1));
+            label.getStyleClass().remove("yellow-text");
         }
-        clickedAvatarName.setStyle("-fx-text-fill: #FBB03B");
+        clickedAvatarName.getStyleClass().add("yellow-text");;
     }
 
     private void setChosenAvatar(Node clickedAvatarName) {

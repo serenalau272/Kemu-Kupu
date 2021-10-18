@@ -93,3 +93,37 @@
     -fx-stroke-line-cap: round;
     -fx-font-size: 25px;
 }
+
+.yellow-text .text {
+    -fx-fill: #FBB03B;
+    -fx-stroke: #FBB03B;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #303030;
+    -fx-background-radius: 5em;
+    -fx-background-insets: 2, 0, 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 5px;
+    -fx-border-radius: 5em;
+
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-opacity: 0;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}

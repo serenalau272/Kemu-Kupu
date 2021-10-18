@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Achievements">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Achievements">
     <children>
       <ImageView fitHeight="730.0" fitWidth="1304.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -57,7 +57,7 @@
          <children>
             <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="501.0" prefWidth="1046.0" styleClass="transparent" stylesheets="@../styles/application.css">
                <content>
-                  <GridPane fx:id="grid" prefHeight="4.0" prefWidth="40.0" style="-fx-vgap: 1; -fx-hgap: 0;">
+                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="4.0" prefWidth="40.0" style="-fx-vgap: 1; -fx-hgap: 0;" stylesheets="@../styles/application.css">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
