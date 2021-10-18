@@ -169,12 +169,6 @@ public class MainApp extends Application {
         tts = new TTS();
 
         setUser();
-        try {
-            String res = user.login("joebloggs123", "joebloggs");
-            System.out.println(res);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         try {
             configureStatsFiles();

@@ -107,8 +107,6 @@ public class Profile extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
         currentUser = MainApp.getUser();
-
-        System.out.println(currentUser.getUsername());
         
         nicknameInput.setFocusTraversable(false);
         usernameInput.setFocusTraversable(false);
