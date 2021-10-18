@@ -185,6 +185,10 @@ public class User {
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20)
     );
 
+    public User getUser(){
+        return this;
+    }
+
     /**
      * Resets the entire state of the class to a fresh guest instance
      */

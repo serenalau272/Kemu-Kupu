@@ -166,7 +166,8 @@ public class MainApp extends Application {
 
         setUser();
         try {
-            user.login("joebloggs123", "joebloggs");
+            String res = user.login("joebloggs123", "joebloggs");
+            System.out.println(res);
         } catch (Exception e) {
             e.printStackTrace();
         }

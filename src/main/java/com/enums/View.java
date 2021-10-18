@@ -54,7 +54,7 @@ public enum View {
                 return "Achievements";
             }
             case SIGNIN: {
-                return "Signin";
+                return "SignIn";
             }
             case NEWUSER: {
                 return "NewUser";
