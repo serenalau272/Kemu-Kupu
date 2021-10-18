@@ -32,6 +32,7 @@ import javafx.fxml.Initializable;
  * This class is the controller for the achievements modal.
  */
 public class Achievements extends ApplicationController implements Initializable {
+    
     User currentUser;
 
     @FXML Label numLabel;
@@ -40,17 +41,18 @@ public class Achievements extends ApplicationController implements Initializable
     @FXML GridPane grid;
     
     private List<AchievementItem> types = new ArrayList<>();
-    private ArrayList<String> data = new ArrayList<>();
+    private List<String> data = new ArrayList<>();
 
-    private List<AchievementItem> configureComponents() {
-        List<AchievementItem> types = new ArrayList<>();
-        List<Integer> explorerLevels = new ArrayList<>();
-        List<Integer> studentLevels = new ArrayList<>();
-        List<Integer> achieverLevels = new ArrayList<>();
-        List<Integer> speedyLevels = new ArrayList<>();
-        List<Integer> pocketLevels = new ArrayList<>();
-        List<Integer> stylishLevels = new ArrayList<>();
+    private List<AchievementItem> configureData() {
+        currentUser = MainApp.getUser();
+        data = currentUser.getAchievements();
         
+        List<AchievementItem> types = new ArrayList<>();
+        List<ArrayList<Integer>> levels = new ArrayList<ArrayList<Integer>>();
+        for (int i=0; i<=5; i++) {
+            levels.add(new ArrayList<>());
+        }
+
         AchievementItem item;
 
         for (String achievementLabel : data) {
@@ -58,39 +60,33 @@ public class Achievements extends ApplicationController implements Initializable
 
             switch (Achievement.getAchievementTypeFromString(achievementLabel)){
                 case EXPLORER:
-                    explorerLevels.add(levelNum);
+                    levels.get(0).add(levelNum);
                     continue;
                 case STUDENT:
-                    studentLevels.add(levelNum);
+                    levels.get(1).add(levelNum);
                     continue;
                 case ACHIEVER:
-                    achieverLevels.add(levelNum);
+                    levels.get(2).add(levelNum);
                     continue;
                 case SPEEDY:
-                    speedyLevels.add(levelNum);
+                    levels.get(3).add(levelNum);
                     continue;
                 case POCKETS:
-                    pocketLevels.add(levelNum);
+                    levels.get(4).add(levelNum);
                     continue;
                 case STYLISH:
-                    stylishLevels.add(levelNum);
+                    levels.get(5).add(levelNum);
                     continue;
             }
         }
 
-        item = new AchievementItem(Achievement.EXPLORER, explorerLevels);
-        types.add(0, item);
-        item = new AchievementItem(Achievement.STUDENT, studentLevels);
-        types.add(0, item);
-        item = new AchievementItem(Achievement.ACHIEVER, achieverLevels);
-        types.add(0, item);
-        item = new AchievementItem(Achievement.SPEEDY, speedyLevels);
-        types.add(3, item);
-        item = new AchievementItem(Achievement.POCKETS, pocketLevels);
-        types.add(4, item);
-        item = new AchievementItem(Achievement.STYLISH, stylishLevels);
-        types.add(5, item);
-
+        Achievement[] allTypes = {Achievement.EXPLORER, Achievement.STUDENT, Achievement.ACHIEVER, Achievement.SPEEDY, Achievement.POCKETS, Achievement.STYLISH};
+        int counter = 0;
+        for (ArrayList<Integer> typeLevels : levels) {
+            item = new AchievementItem(allTypes[counter], typeLevels);
+            types.add(item);
+            counter++;
+        }
         return types;
     }
 
@@ -104,9 +100,7 @@ public class Achievements extends ApplicationController implements Initializable
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));
 
-        String[] achievements = Stream.of(new ArrayList<Achievement>(currentUser.getAchievements())).map(x -> x.toString()).toArray(String[]::new);
-        data = new ArrayList<String>(Arrays.asList(achievements));
-        types.addAll(configureComponents());
+        types.addAll(configureData());
 
         int row = 1;
         try {

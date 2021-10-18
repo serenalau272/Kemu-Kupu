@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.components.AvatarItem;
-import com.controllers.ModalController;
+import com.controllers.ApplicationController;
 import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
 import com.enums.View;
@@ -17,6 +17,7 @@ import com.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -29,7 +30,7 @@ import javafx.scene.layout.GridPane;
 /**
  * This class is the controller for the costume shop.
  */
-public class Shop extends ModalController {
+public class Shop extends ApplicationController implements Initializable {
     @FXML private ImageView backButton;
     @FXML private ImageView buyButton;
     @FXML private ImageView notEnough;

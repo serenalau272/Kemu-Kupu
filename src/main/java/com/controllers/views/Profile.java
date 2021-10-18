@@ -79,6 +79,7 @@ public class Profile extends ApplicationController implements Initializable {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+
                 }
                 if (!nicknameInput.getText().equals("")){
                     try {

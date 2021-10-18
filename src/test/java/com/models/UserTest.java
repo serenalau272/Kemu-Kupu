@@ -117,7 +117,7 @@ public class UserTest extends User {
         
         //Add achievement
         //TODO test all achievements in this manner
-        Achievement achievement = Achievement.EXPLORER;
+        String achievement = "EXPLORER_2";
         try {
             String res = user.unlockAchievement(achievement);
             if (res != null)

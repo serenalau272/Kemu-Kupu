@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.models.Game;
+import com.models.User;
 import com.util.Sounds;
 import com.MainApp;
 import com.controllers.ApplicationController;
@@ -19,7 +20,7 @@ import javafx.scene.image.ImageView;
 
 
 public class GameMode extends ApplicationController implements Initializable {
-
+    User currentUser = MainApp.getUser();
 
     @FXML private ImageView practice;
     @FXML private ImageView ranked;
@@ -86,9 +87,11 @@ public class GameMode extends ApplicationController implements Initializable {
         switch (mode) {
             case "practice": 
                 modeEnum = Gamemode.PRACTICE;
+                currentUser.unlockAchievement("EXPLORER_1");
                 break;
             case "ranked":
                 modeEnum = Gamemode.RANKED;
+                currentUser.unlockAchievement("EXPLORER_2");
                 break;
             default: 
                 System.err.println("Mode not valid.");

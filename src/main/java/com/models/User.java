@@ -19,6 +19,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -171,7 +172,7 @@ public class User {
     private Integer highScore;
     private Integer totalStars;
     private Integer numGamesPlayed;
-    private HashSet<Achievement> unlockedAchievements;
+    private List<String> unlockedAchievements;
     private Map<Avatar, Integer> costAvatars = Map.ofEntries(
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.DEFAULT, 0),
         new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 5),
@@ -198,7 +199,7 @@ public class User {
         this.totalStars = 0;
         this.numGamesPlayed = 0;
         this.nickname = "";
-        this.unlockedAchievements = new HashSet<>();
+        this.unlockedAchievements = new ArrayList<String>();
         try {
             this.__updatePrices();
         } catch (IOException e) {
@@ -303,10 +304,10 @@ public class User {
         //Set nickname
         this.nickname = student.nickname;
 
-        //Set username
+         //Set username
         this.username = student.usr;
 
-        //Set selected avatar
+ //Set selected avatar
         this.selectedAvatar = Avatar.fromString(student.current_costume);
         
         //Set unlocked avatars
@@ -319,9 +320,9 @@ public class User {
         this.unlockedAvatars = avatarUpdate;
 
         //Load and Process Achievements
-        HashSet<Achievement> achievementUpdate = new HashSet<>();
+        List<String> achievementUpdate = new ArrayList<String>();
         for (JsonAchievement achievementName : student.achievements) {
-            Achievement newAchievement = Achievement.fromString(achievementName.name);
+            String newAchievement = Achievement.fromString(achievementName.name);
             if (!achievementUpdate.contains(newAchievement))
                 achievementUpdate.add(newAchievement);
         }
@@ -450,7 +451,7 @@ public class User {
      * @param achievement the achievement to unlock
      * @throws IOException throws if unable to complete the request
      */
-    public String unlockAchievement(Achievement achievement) throws IOException {
+    public String unlockAchievement(String achievement) throws IOException {
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + achievement.toString().replace("\"", "\\\"") + "\"}";
             Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
@@ -572,7 +573,7 @@ public class User {
      * Get the users achievements
      * @return a hashset of the users achievements
      */
-    public HashSet<Achievement> getAchievements(){
+    public List<String> getAchievements(){
         return this.unlockedAchievements;
     }
 

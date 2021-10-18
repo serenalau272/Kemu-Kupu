@@ -111,59 +111,93 @@ public enum Achievement {
      * @return an achievement for the user
      * @throws LoadException if the string can't be mapped to an achievement
      */
-    public static Achievement fromString(String s) throws LoadException {
+    public static String fromString(String s) throws LoadException {
         switch (s.strip().toLowerCase()) {
             case "practice":
-                return EXPLORER;
+                return "EXPLORER_1";
             case "play":
-                // return ;
-            case "practiceEvery":
-                // return ;
+                return "EXPLORER_2";
             case "playEvery":
-                // return ;
+                return "EXPLORER_3";
             case "diligence5":
-                // return ;
+                return "STUDENT_1";
             case "diligence10":
-                // return ;
+                return "STUDENT_2";
             case "diligence20":
-                // return ;
+                return "STUDENT_3";
             case "diligence50":
-                // return ;
+                return "STUDENT_4";
             case "diligence100":
-                // return ;
+                return "STUDENT_5";
             case "highscore75":
-                // return ;
+                return "ACHIEVER_1";
             case "highscore90":
-                // return ;
+                return "ACHIEVER_2";
             case "highscore100":
-                // return ;
+                return "ACHIEVER_3";
             case "unlockAll":
-                //return ;
+                return "STYLISH_1";
             case "star10":
-                // return ;
+                return "POCKETS_1";
             case "star50":
-                // return ;
+                return "POCKETS_2";
             case "star100":
-                // return ;
+                return "POCKETS_3";
             case "star200":
-                // return ;
+                return "POCKETS_4";
             case "star300":
-                // return ;
+                return "POCKETS_5";
             default:
                 System.err.println();
-                throw new LoadException("Recieved unknown achievement request from string to avatar! Offending string " + s);
+                throw new LoadException("Recieved unknown achievement request from string to achievement! Offending string " + s);
         }
     }
     
     /**
      * Converts an achievement into a string, this is useful for communication with the api.
      * @return a string representing this achievement
+     * @throws LoadException
      */
-    public String toString() {
-        System.err.println("Tried to convert unknown achievement into a string!");
-        //TODO
-        //Should convert into the *exact* same strings as can be seen above in fromString();
-        return "practice";
+    public String toString(String s) throws LoadException {
+        switch (s) {
+            case "EXPLORER_1":
+                return "practice";
+            case "EXPLORER_2":
+                return "play";
+            case "EXPLORER_3":
+                return "playEver";
+            case "STUDENT_1":
+                return "diligence5";
+            case "STUDENT_2":
+                return "diligence10";
+            case "STUDENT_3":
+                return "diligence20";
+            case "STUDENT_4":
+                return "diligence50";
+            case "STUDENT_5":
+                return "diligence100";
+            case "ACHIEVER_1":
+                return "highscore75";
+            case "ACHIEVER_2":
+                return "highscore90";
+            case "ACHIEVER_3":
+                return "highscore100";
+            case "STYLISH_1":
+                return "unlockAll";
+            case "POCKETS_1":
+                return "star10";
+            case "POCKETS_2":
+                return "star50";
+            case "POCKETS_3":
+                return "star100";
+            case "POCKETS_4":
+                return "star200";
+            case "POCKETS_5":
+                return "star300";
+            default:
+                System.err.println();
+                throw new LoadException("Recieved unknown achievement request from string to avatar! Offending string " + s);
+        }
     }
 
     public String getAchievementLabel(int level) {
@@ -175,7 +209,7 @@ public enum Achievement {
                     case 2:
                         return "Play a Game round";
                     case 3: 
-                        return "Play every topic";
+                        return "Play Game for all topics";
                     default:
                         System.err.println("ERROR: Level not implemented for this type.");
                         return "";
