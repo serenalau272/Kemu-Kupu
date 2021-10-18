@@ -6,7 +6,7 @@ import com.components.animations.Clock;
 import com.controllers.modals.Confirmation;
 import com.enums.ConfirmModal;
 import com.enums.Modals;
-import com.enums.View;
+import com.enums.Views;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -32,7 +32,7 @@ public class Modal {
     public static void showModal(Modals m) {
         try {
             //Duplicate code should be refactored at some point
-            if (MainApp.getBaseView() == View.QUIZ) clock.stop();
+            if (MainApp.getBaseView() == Views.QUIZ) clock.stop();
 
             disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
@@ -74,7 +74,7 @@ public class Modal {
         removeBlur();
         disableScreenNodes(false);
 
-        if (MainApp.getBaseView() == View.QUIZ) {
+        if (MainApp.getBaseView() == Views.QUIZ) {
             clock.resume();
             InputField.recursor();
         }

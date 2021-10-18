@@ -11,7 +11,7 @@ import com.components.AchievementItem;
 import com.controllers.ApplicationController;
 import com.controllers.fxmlComponents.AchievementType;
 import com.enums.Achievement;
-import com.enums.View;
+import com.enums.Views;
 import com.models.User;
 
 import javafx.scene.control.Label;
@@ -96,7 +96,7 @@ public class Achievements extends ApplicationController implements Initializable
 
         numLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/18");
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(View.PROFILE));
+        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
 
         types.addAll(configureData());
 

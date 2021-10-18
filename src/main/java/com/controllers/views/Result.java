@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import com.MainApp;
 import com.components.ResultsList;
 import com.controllers.ApplicationController;
-import com.enums.View;
+import com.enums.Views;
 import com.util.Sounds;
 
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class Result extends ApplicationController implements Initializable{
         
         hiddenField.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                MainApp.setRoot(View.REWARD);
+                MainApp.setRoot(Views.REWARD);
             }
         });
     }

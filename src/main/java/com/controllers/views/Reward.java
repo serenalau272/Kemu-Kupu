@@ -12,7 +12,7 @@ import com.components.animations.OscillatingComponent;
 import com.controllers.ApplicationController;
 import com.enums.Achievement;
 import com.enums.Gamemode;
-import com.enums.View;
+import com.enums.Views;
 import com.util.Sounds;
 import com.models.Game;
 import com.models.User;
@@ -193,12 +193,12 @@ public class Reward extends ApplicationController implements Initializable {
 
         // Set event handlers
         menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
-            MainApp.setRoot(View.MENU);
+            MainApp.setRoot(Views.MENU);
             avatarAnim.stop();
         });
 
         againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
-            MainApp.setRoot(View.GAMEMODE);
+            MainApp.setRoot(Views.GAMEMODE);
             avatarAnim.stop();
         });
 

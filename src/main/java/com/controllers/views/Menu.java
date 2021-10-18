@@ -9,7 +9,7 @@ import com.components.animations.OscillatingComponent;
 import com.components.animations.SlideComponentHorizontal;
 import com.controllers.ApplicationController;
 import com.enums.Modals;
-import com.enums.View;
+import com.enums.Views;
 import com.util.Modal;
 import com.util.Sounds;
 
@@ -75,7 +75,7 @@ public class Menu extends ApplicationController implements Initializable {
 
     private void transition() {
         menuAnimation.stop();
-        MainApp.setRoot(View.GAMEMODE);
+        MainApp.setRoot(Views.GAMEMODE);
         Sounds.playSoundEffect("pop");
     }
 
@@ -100,7 +100,7 @@ public class Menu extends ApplicationController implements Initializable {
         // Set event handlers
         // exiting
         exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            MainApp.setRoot(View.EXIT);
+            MainApp.setRoot(Views.EXIT);
             event.consume();
 
             // pause and exit
@@ -129,9 +129,9 @@ public class Menu extends ApplicationController implements Initializable {
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             if (MainApp.getUser().getUsername() == null){
                 //guest
-                MainApp.setRoot(View.SIGNIN);
+                MainApp.setRoot(Views.SIGNIN);
             } else {
-                MainApp.setRoot(View.PROFILE);
+                MainApp.setRoot(Views.PROFILE);
             }            
         });
 
