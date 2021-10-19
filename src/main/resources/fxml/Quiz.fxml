@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Quiz">
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.views.Quiz">
     <children>
       <!-- Background -->
       <ImageView fitHeight="730.0" fitWidth="1209.0" pickOnBounds="true" preserveRatio="true">
@@ -118,10 +119,14 @@
          <font>
             <Font size="50.0" />
          </font></Label>
-      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="475.0" prefHeight="53.0" prefWidth="543.0" text="Well done!" textAlignment="CENTER" textFill="WHITE" visible="false">
+      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="475.0" prefHeight="53.0" prefWidth="543.0" stylesheets="@../styles/application.css" text="Well done!" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
             <Font size="26.0" />
          </font>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="response-text" />
+         </styleClass>
       </Label>
       <ImageView fx:id="practiceSign" fitHeight="210.0" fitWidth="667.0" layoutX="297.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -135,17 +140,21 @@
       </ImageView>
       <ImageView fx:id="avatar" fitHeight="255.0" fitWidth="282.0" layoutX="927.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/Avatars/B.png" />
+            <Image url="@../assets/Avatars/wizard.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="155.0" fitWidth="231.0" layoutX="806.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="speechBubble" fitHeight="178.0" fitWidth="241.0" layoutX="800.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Game-screen/speech.png" />
          </image>
       </ImageView>
-      <Label fx:id="avatarMessage" alignment="CENTER" layoutX="824.0" layoutY="510.0" prefHeight="100.0" prefWidth="182.0" rotate="-10.3" text="Label" textFill="WHITE">
+      <Label fx:id="avatarMessage" alignment="CENTER" layoutX="837.0" layoutY="492.0" prefHeight="121.0" prefWidth="172.0" rotate="-10.3" stylesheets="@../styles/application.css" text="That’s an A++ from me :)" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="22.0" />
-         </font></Label>
+         </font>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="speech-text" />
+         </styleClass></Label>
     </children>
 </AnchorPane>

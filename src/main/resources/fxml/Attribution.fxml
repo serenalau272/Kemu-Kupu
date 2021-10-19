@@ -11,7 +11,7 @@
             <Image url="@../assets/cartoon-landscape.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="attributionModal" fitHeight="531.0" fitWidth="1080.0" layoutX="75.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="attributionModal" fitHeight="531.0" fitWidth="1080.0" layoutX="78.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/attribution/AttributionsModal.png" />
          </image>
