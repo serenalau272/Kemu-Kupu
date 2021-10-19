@@ -102,7 +102,18 @@ public class Reward extends ApplicationController implements Initializable {
                 System.err.println("String cannot be mapped into an achievement, or unable to make request");
             }
         }
-    } 
+    }
+
+    private void addSpeedyAchievement(int bound, int duration){
+        if (bound == duration){
+            try {
+                String s = Achievement.fromString("speedy" + Integer.toString(bound));
+                user.unlockAchievement(s);
+            } catch (Exception e){
+                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            }
+        }
+    }
 
     private void setStar(int index, int score) {
         if (index >= stars.size()) {
@@ -110,7 +121,14 @@ public class Reward extends ApplicationController implements Initializable {
                 if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE){
                     user.unlockAchievement("EXPLORER_1");
                     return;
-                } 
+                }
+                if (score == 100){
+                    int duration = MainApp.getSetting().getTimerDuration();
+                    addSpeedyAchievement(40, duration);
+                    addSpeedyAchievement(30, duration);
+                    addSpeedyAchievement(15, duration);
+                }
+
                 user.unlockAchievement("EXPLORER_2");
                 user.addScore(score, numStars);
                 int numGamesPlayed = user.getNumGamesPlayed();

@@ -158,6 +158,50 @@ public class MainApp extends Application {
         user = usr;
     }
 
+    private static void prepoluateUser(){
+        User popUser = new User();
+
+        try {
+             //load user
+            String res = popUser.login("team11GOATS", "123");
+            if (res != null){
+                //user does not already exist
+                String s = popUser.signup("team11GOATS", "123", "Team 11");
+                if (s != null){
+                    System.err.println("Sign In Failed");
+                }
+            }
+
+            //reset stats
+            popUser.resetAccount();
+
+            //add stars
+            popUser.addScore(100, 500);
+
+            //unlock achievements
+            popUser.unlockAchievement("EXPLORER_1");
+            popUser.unlockAchievement("EXPLORER_2");
+            popUser.unlockAchievement("STUDENT_1");
+            popUser.unlockAchievement("STUDENT_2");
+            popUser.unlockAchievement("STUDENT_3");
+            popUser.unlockAchievement("STUDENT_4");
+            popUser.unlockAchievement("STUDENT_5");
+            popUser.unlockAchievement("ACHIEVER_1");
+            popUser.unlockAchievement("ACHIEVER_2");
+            popUser.unlockAchievement("ACHIEVER_3");
+            popUser.unlockAchievement("POCKETS_1");
+            popUser.unlockAchievement("POCKETS_2");
+            popUser.unlockAchievement("POCKETS_3");
+            popUser.unlockAchievement("POCKETS_4");
+            popUser.unlockAchievement("POCKETS_5");
+            popUser.unlockAchievement("SPEEDY_1");
+        } catch (IOException e){
+            System.err.println("Unable to make request/s");
+        }
+
+        setUser(popUser);
+    }
+
     public static GlobalTimer getGlobalTimer(){
         return globalTimer;
     }
@@ -173,6 +217,8 @@ public class MainApp extends Application {
         tts = new TTS();
 
         setUser();
+
+        prepoluateUser();   //uncomment when needing to populate a user
 
         try {
             configureStatsFiles();
