@@ -176,7 +176,7 @@ public class MainApp extends Application {
             popUser.resetAccount();
 
             //add stars
-            popUser.addScore(-1, 500);
+            popUser.addScore(100, 500);
 
             //unlock achievements
             popUser.unlockAchievement("EXPLORER_1");

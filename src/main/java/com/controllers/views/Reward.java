@@ -105,7 +105,7 @@ public class Reward extends ApplicationController implements Initializable {
     }
 
     private void addSpeedyAchievement(int bound, int duration){
-        if (bound >= duration){
+        if (bound == duration){
             try {
                 String s = Achievement.fromString("speedy" + Integer.toString(bound));
                 user.unlockAchievement(s);
