@@ -49,7 +49,7 @@ public class Profile extends ApplicationController implements Initializable {
 
     private void configureStaticEntries(){
         starLabel.setText(Integer.toString(currentUser.getTotalStars()));
-        achievementsLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/18");
+        achievementsLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
         setAvatarImage(userAvatar);
     }
 
