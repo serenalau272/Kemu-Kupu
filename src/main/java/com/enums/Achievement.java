@@ -145,7 +145,13 @@ public enum Achievement {
             case "star200":
                 return "POCKETS_4";             //done in Reward.java
             case "star300":
-                return "POCKETS_5";             //done in Reward.java
+                return "POCKETS_5";  
+            case "speedy40":
+                return "SPEEDY_1";
+            case "speedy30":
+                return "SPEEDY_2";
+            case "speedy15":
+                return "SPEEDY_3";           //done in Reward.java
             default:
                 throw new LoadException("Recieved unknown achievement request from string to achievement! Offending string " + s);
         }
@@ -192,6 +198,12 @@ public enum Achievement {
                 return "star200";
             case "POCKETS_5":
                 return "star300";
+            case "SPEEDY_1":
+                return "speedy40";
+            case "SPEEDY_2":
+                return "speedy30";
+            case "SPEEDY_3":
+                return "speedy15";
             default:
                 throw new LoadException("Recieved unknown achievement request from achievement to string! Offending string " + s);
         }
