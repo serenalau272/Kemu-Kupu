@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="730.0" maxWidth="1200.0" prefHeight="730.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.modals.Error">
+    <children>
+      <!-- Static Images -->
+      <ImageView fitHeight="390.0" fitWidth="488.0" layoutX="357.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Error/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitButton" fitHeight="113.0" fitWidth="354.0" layoutX="424.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Error/tryAgain.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="errorMessage" contentDisplay="CENTER" layoutX="411.0" layoutY="258.0" prefHeight="284.0" prefWidth="381.0" stylesheets="@../styles/application.css" text="An account already exists with this username. Please pick another username." textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="47.0" />
+         </font>
+         <styleClass>
+            <String fx:value="poor-story-text" />
+            <String fx:value="error-text" />
+         </styleClass>
+      </Label>
+    </children>
+</AnchorPane>

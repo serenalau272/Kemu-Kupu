@@ -7,6 +7,7 @@ import com.MainApp;
 import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
 import com.enums.ConfirmModal;
+import com.enums.ErrorModal;
 import com.enums.Views;
 import com.util.Modal;
 import com.util.User;
@@ -62,12 +63,16 @@ public class Profile extends ApplicationController implements Initializable {
         usernameInput.setEditable(false);
     }
 
+    private void inputEditing(TextField input) {
+        input.setEditable(true);
+        input.setStyle("-fx-background-color: #7D6B50");
+        input.requestFocus();
+        input.positionCaret(input.getText().length());
+    }
+
     private void addHandlers(ImageView editBtn, TextField input){
         editBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            input.setEditable(true);
-            input.setStyle("-fx-background-color: #7D6B50");
-            input.requestFocus();
-            input.positionCaret(input.getText().length());
+            inputEditing(input);
         });
 
         input.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -79,7 +84,6 @@ public class Profile extends ApplicationController implements Initializable {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
                 }
                 if (!nicknameInput.getText().equals("") && !(nicknameInput.getText().length()>10)){
                     try {
@@ -88,6 +92,9 @@ public class Profile extends ApplicationController implements Initializable {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+                } else {
+                    inputEditing(nicknameInput);
+                    Modal.showGeneralModal(ErrorModal.NICKNAME);
                 }
                 usernameInput.setStyle("-fx-background-color: #DFC49B;");
                 nicknameInput.setStyle("-fx-background-color: #DFC49B;");
@@ -119,17 +126,17 @@ public class Profile extends ApplicationController implements Initializable {
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             //TODO: yet to be fully linked
-            Modal.showConfirmationModal(ConfirmModal.SIGNOUT);
+            Modal.showGeneralModal(ConfirmModal.SIGNOUT);
             // timer.stop();
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             //TODO: endpoint to be created
-            Modal.showConfirmationModal(ConfirmModal.RESET);
+            Modal.showGeneralModal(ConfirmModal.RESET);
             // timer.stop();
         });
 
         this.deleteButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            Modal.showConfirmationModal(ConfirmModal.DELETE);
+            Modal.showGeneralModal(ConfirmModal.DELETE);
             // timer.stop();
         });
 

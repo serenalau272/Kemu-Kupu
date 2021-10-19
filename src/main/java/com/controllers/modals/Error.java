@@ -2,6 +2,7 @@ package com.controllers.modals;
 
 import com.controllers.ModalController;
 import com.enums.ConfirmModal;
+import com.enums.ErrorModal;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,12 +12,11 @@ import javafx.scene.input.MouseEvent;
 /**
  * This class is the controller for the settings modal.
  */
-public class Confirmation extends ModalController {
+public class Error extends ModalController {
 
-    @FXML ImageView yesButton;
-    @FXML Label confirmMessage;
+    @FXML Label errorMessage;
 
-    private ConfirmModal confirmType;
+    private ErrorModal errorType;
 
     //// Private Methods ////
 
@@ -26,14 +26,13 @@ public class Confirmation extends ModalController {
     @Override
     public void initializeModal() {
         super.initializeModal();
-        yesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> confirmType.doAction());
     }
 
     public void setMessage(String s) {
-        this.confirmMessage.setText(s);
+        this.errorMessage.setText(s);
     }
 
-    public void setConfirmType(ConfirmModal confirmType) {
-        this.confirmType = confirmType;
+    public void setErrorType(ErrorModal errorType) {
+        this.errorType = errorType;
     }
 }
