@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import com.MainApp;
 import com.util.Sounds;
-import com.models.generalModal;
+import com.models.GeneralModal;
 
 /**
  * An enum to represent the status of a word being tested.
  */
-public enum ConfirmModal implements generalModal {
+public enum ConfirmModal implements GeneralModal {
     MENU, 
     REPLAY, 
     SIGNOUT, 

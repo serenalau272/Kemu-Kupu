@@ -3,13 +3,13 @@ package com.enums;
 import java.io.IOException;
 
 import com.MainApp;
-import com.models.generalModal;
+import com.models.GeneralModal;
 import com.util.Sounds;
 
 /**
  * An enum to represent the status of a word being tested.
  */
-public enum ErrorModal implements generalModal {
+public enum ErrorModal implements GeneralModal {
     USERNAME,
     NICKNAME;
 
