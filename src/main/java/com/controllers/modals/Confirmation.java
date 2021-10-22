@@ -2,6 +2,7 @@ package com.controllers.modals;
 
 import com.controllers.ModalController;
 import com.enums.ConfirmModal;
+import com.util.Modal;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

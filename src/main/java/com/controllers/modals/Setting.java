@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 
 import com.MainApp;
 import com.controllers.ModalController;
+import com.util.Modal;
 import com.util.Sounds;
 
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ public class Setting extends ModalController {
     @FXML ImageView timeMinusButton;
     @FXML ImageView timePlusButton;
     @FXML ImageView resetButton;
+    @FXML ImageView exitButton;
 
     //// Private Methods ////
 
@@ -66,7 +68,7 @@ public class Setting extends ModalController {
 
     @Override
     public void initializeModal() {
-        super.initializeModal();
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true)); 
         this.settings = MainApp.getSetting();
         this.__update();
 

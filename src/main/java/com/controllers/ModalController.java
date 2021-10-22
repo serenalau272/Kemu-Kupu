@@ -21,7 +21,7 @@ public class ModalController extends ApplicationController implements Initializa
     //// Public Methods ////
 
     public void initializeModal(){
-        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal()); 
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(false)); 
     }
 
     @Override

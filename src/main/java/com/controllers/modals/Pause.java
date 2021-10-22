@@ -16,6 +16,7 @@ public class Pause extends ModalController {
 
     @FXML ImageView menuButton;
     @FXML ImageView replayButton;
+    @FXML ImageView exitButton;
 
     /**
      * Change the mainapp to a new window, and close this modal
@@ -33,7 +34,7 @@ public class Pause extends ModalController {
 
     @Override
     public void initializeModal() {
-        super.initializeModal();
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true)); 
         this.replayButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.replay());
         this.menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.showConfirm());
     }
