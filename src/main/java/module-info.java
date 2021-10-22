@@ -24,4 +24,5 @@ module com {
     exports com.components;
     exports com.enums;
     exports com.components.animations;
+    exports com.models.APIModels;
 }

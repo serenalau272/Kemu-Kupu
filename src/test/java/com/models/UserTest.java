@@ -33,7 +33,7 @@ public class UserTest extends User {
                 fail("Failed to create account: " + res);
         } catch (IOException e) {
             e.printStackTrace();
-            fail("Failed to create user due to error!");
+            fail("Failed to create user due to error: " + e.toString());
         }
         return user;
     }

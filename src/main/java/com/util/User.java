@@ -1,9 +1,5 @@
 package com.util;
 
-import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
-
 import java.util.HashSet;
 import java.util.List;
 
@@ -12,159 +8,23 @@ import com.enums.Achievement;
 import com.enums.Avatar;
 import com.enums.ErrorModal;
 import com.google.gson.Gson;
+import com.models.APIModels.JSONAchievement;
+import com.models.APIModels.JSONCostume;
+import com.models.APIModels.JSONScore;
+import com.models.APIModels.JSONScores;
+import com.models.APIModels.JSONStudent;
+import com.models.APIModels.RequestMethod;
+import com.models.APIModels.Response;
+import com.models.APIModels.ResponseStatus;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-/**
- * Used internally to define allowed interaction methods with the api.
- */
-enum RequestMethod {
-    Post,
-    Get,
-    Delete;
-    public String toString() {
-        switch (this) {
-            case Post:
-                return "POST";
-            case Get:
-                return "GET";
-            case Delete:
-                return "DELETE";
-        }
-        return null;
-    }
-}
-
-/**
- * Used internally to define accepted vs failure from the api.
- */
-enum ResponseStatus {
-    Success,
-    Failure;
-}
-
-/**
- * Represents a simple api response, containing relevant data and methods
- */
-class Response {
-    private String body;
-    private String path;
-    private ResponseStatus status;
-
-    Response(String data, ResponseStatus status, String path) throws IllegalArgumentException {
-        if (data == null) 
-            throw new IllegalArgumentException("Data may not be null");
-        if (path == null)
-            throw new IllegalArgumentException("Path may not be null");
-        this.body = data;
-        this.status = status;
-        this.path = path;
-    }
-
-    /**
-     * Parse the response body from json to it's contents
-     * @return the parsed json data as a string, can be coreced into an object if needed using gson
-     */
-    public String loadJsonData() {
-        return this.body.substring(10, this.body.length()-2);
-    }
-
-    /**
-     * Parse the response as raw json, rather than just the raw string. This shoudl be used if there is a sub
-     * object that needs to be parsed.
-     * @return a string to be parsed.
-     */
-    public String loadJsonDataRaw() {
-        return this.body.substring(9, this.body.length()-1);
-    }
-
-    public String getBody() {
-        return this.body;
-    }
-
-    public String getPath() {
-        return this.path;
-    }
-
-    public ResponseStatus getStatus() {
-        return this.status;
-    }
-}
-
-/**
- * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
- * This one is designed to be constructed to represent a costume from json.
- */
-class JsonCostume {
-    public String name; //Internal name representation
-    public String display_name; //shown to user
-    public String description;
-    public Integer price;
-}
-
-/**
- * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
- * This one is designed to be constructed to represent an achievement from json.
- */
-class JsonAchievement {
-    public String name; //Internal name representation
-    public String display_name; //shown to user
-    public String description;
-}
-/**
- * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
- * This one is designed to be constructed from a 200 response from GET /student endpoint.
- */
-class JsonStudent {
-    public Integer id;
-    public String usr;
-    public String current_costume;
-    public String nickname;
-    public List<JsonCostume> costumes;
-    public List<JsonAchievement> achievements;
-}
-
-/**
- * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
- * This one represents a score from the api
- */
-class JsonScore {
-    public String usr;
-    public Integer score;
-    public Integer num_stars;
-    public Integer usr_id;
-}
-
-/**
- * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
- * This one represents a collection of scores from the api
- */
-class JsonScores {
-    public List<JsonScore> data;    
-}
-
-/**
- * One of many classes, exclusively used by gson to parse from a string into a java class for use internally.
- * This one represents a collection of costumes from the api
- */
-class JsonCostumes {
-    public List<JsonCostume> data;
-}
 
 /**
  * This class handles the storing and retreiving of the current user.
@@ -175,10 +35,9 @@ class JsonCostumes {
 public class User implements Serializable {
     protected final String guestSavePath = "./.user/guest.data";
     protected final String userSavePath = "./.user/token.data";
-    private final String apiPath = "https://kemukupu.com/api/v1";
+    
 
     //// Properties ////
-
     private String JWTToken;
     private String username;
     private String nickname;
@@ -189,18 +48,6 @@ public class User implements Serializable {
     private Integer totalStars;
     private Integer numGamesPlayed;
     private List<String> unlockedAchievements;
-    private Map<Avatar, Integer> costAvatars = Map.ofEntries(
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.DEFAULT, 0),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.SAILOR, 5),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.MAGICIAN, 30),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.WIZARD, 5),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.NINJA, 100),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.QUEEN, 30),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.FAIRY, 80),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.PROFESSOR, 200),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.ALIEN, 50),
-        new AbstractMap.SimpleEntry<Avatar, Integer>(Avatar.CHEF, 20)
-    );
 
     //// Private (Helper) Methods ////
 
@@ -243,107 +90,20 @@ public class User implements Serializable {
         this.nickname = "";
         this.unlockedAchievements = new ArrayList<String>();
         try {
-            this.__updatePrices();
+            this.__saveData();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            this.__saveData();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
     }
 
     /**
-     * A helper method for making http requests to the kemukupu api
-     * Docs: https://kemukupu.com/api/docs
-     * @param method the http method to use
-     * @param path the subpath to request to
-     * @param data the body of the request
-     * @return a response instance.
-     * @throws IllegalArgumentException thrown when one of the input paramaters is incorrect.
-     * @throws IOException thrown when the service is unable to contact the server.
-     */
-    private Response __makeRequest(RequestMethod method, String path, String data) throws IllegalArgumentException, IOException {
-        if (path == null) throw new IllegalArgumentException("Path must be set for request");
-        if (method == null) throw new IllegalArgumentException("Method must be set");
-        if (data == null && method == RequestMethod.Post) throw new IllegalArgumentException("When posting data cannot be null");
-        
-        //Establish connection
-        String url = apiPath + path;
-        HttpsURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
-        connection.setRequestMethod(method.toString());
-        connection.setDoOutput(true);
-
-        //If we have an auth header, set it
-        if (this.JWTToken != null) {
-            connection.addRequestProperty("Authorisation", this.JWTToken);
-        }
-
-        //Add body if post request
-        if (method == RequestMethod.Post) {
-            byte[] out = data.getBytes(StandardCharsets.UTF_8);
-            connection.setFixedLengthStreamingMode(out.length);
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            connection.connect();
-            try (OutputStream os = connection.getOutputStream()) {
-                os.write(out);
-                os.close();
-            }
-        } else {
-            connection.connect();
-        }
-
-        //Process Response
-        int responseCode = connection.getResponseCode();
-        InputStream inputStream;
-        if (200 <= responseCode && responseCode <= 299) {
-            inputStream = connection.getInputStream();
-        } else {
-            inputStream = connection.getErrorStream();
-        }
-        
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-
-        StringBuilder response = new StringBuilder();
-        String currentLine;
-
-        while ((currentLine = in.readLine()) != null) 
-            response.append(currentLine);
-        in.close();
-
-        return new Response(
-            response.toString(), 
-            (200 <= responseCode && responseCode <= 299) ? ResponseStatus.Success : ResponseStatus.Failure, 
-            path
-        );        
-    }
-
-    /**
-     * Update the prices internally from the api
-     * @throws IOException thrown when the service is unable to contact the server.
-     */
-    private void __updatePrices() throws IOException {
-        Response res = this.__makeRequest(RequestMethod.Get, "/costume", null);
-        JsonCostumes costumes = new Gson().fromJson(res.getBody(), JsonCostumes.class);
-        //Load and process price data
-        HashMap<Avatar, Integer> priceUpdate = new HashMap<>();
-        for (JsonCostume avatarName : costumes.data) {
-            Avatar newAvatar = Avatar.fromString(avatarName.name);
-            if (!priceUpdate.containsKey(newAvatar))
-                priceUpdate.put(newAvatar, avatarName.price);
-        }
-        this.costAvatars = priceUpdate;
-    }
-
-    /**
-     * After user has logged in, or been created, this method loads their data from the api.
+     * After user has logged in, or been created, this method loads their data from the API.
      * @throws IOException if unable to contact the api
      */
     private void __loadData() throws IOException {
         //Load response and parse json
-        Response res = this.__makeRequest(RequestMethod.Get, "/student", null);
-        JsonStudent student = new Gson().fromJson("{" + res.loadJsonData() + "}", JsonStudent.class);
+        Response res = API.makeRequest(RequestMethod.Get, "/student", null, this.JWTToken);
+        JSONStudent student = new Gson().fromJson("{" + res.loadJsonData() + "}", JSONStudent.class);
         
         //Set id
         this.id = student.id;
@@ -359,7 +119,7 @@ public class User implements Serializable {
         
         //Set unlocked avatars
         HashSet<Avatar> avatarUpdate = new HashSet<>();
-        for (JsonCostume avatarName : student.costumes) {
+        for (JSONCostume avatarName : student.costumes) {
             Avatar newAvatar = Avatar.fromString(avatarName.name);
             if (!avatarUpdate.contains(newAvatar))
                 avatarUpdate.add(newAvatar);
@@ -368,7 +128,7 @@ public class User implements Serializable {
 
         //Load and Process Achievements
         List<String> achievementUpdate = new ArrayList<String>();
-        for (JsonAchievement achievementName : student.achievements) {
+        for (JSONAchievement achievementName : student.achievements) {
             String newAchievement = Achievement.fromString(achievementName.name);
             if (!achievementUpdate.contains(newAchievement))
                 achievementUpdate.add(newAchievement);
@@ -376,13 +136,13 @@ public class User implements Serializable {
         this.unlockedAchievements = achievementUpdate;
 
         //Load and process score data
-        res = this.__makeRequest(RequestMethod.Get, "/scores?id="+ this.id, null);
-        JsonScores scores = new Gson().fromJson(res.getBody(), JsonScores.class);
+        res = API.makeRequest(RequestMethod.Get, "/scores?id="+ this.id, null, this.JWTToken);
+        JSONScores scores = new Gson().fromJson(res.getBody(), JSONScores.class);
 
         int newGamesPlayed = 0;
         int newHighScore = 0;
         int newTotalStars = 0;
-        for (JsonScore score : scores.data) {
+        for (JSONScore score : scores.data) {
             newTotalStars += score.num_stars;
             if (score.score > newHighScore)
                 newHighScore = score.score;
@@ -433,7 +193,6 @@ public class User implements Serializable {
                     this.totalStars = user.totalStars;
                     this.numGamesPlayed = user.numGamesPlayed;
                     this.unlockedAchievements = user.unlockedAchievements;
-                    this.costAvatars = user.costAvatars;
                     return;
                 }
             } catch (IOException | ClassNotFoundException e) { 
@@ -452,7 +211,7 @@ public class User implements Serializable {
      */
     public String signup(String name, String password, String nickname) throws IOException {
         String body = "{\"usr\":\"" + name.replace("\"", "\\\"") + "\",\"pwd\":\"" + password.replace("\"", "\\\"") + "\",\"nickname\":\"" + nickname.replace("\"", "\\\"") + "\"}";
-        Response res = this.__makeRequest(RequestMethod.Post, "/student/create", body);
+        Response res = API.makeRequest(RequestMethod.Post, "/student/create", body, this.JWTToken);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here.
             this.JWTToken = res.loadJsonData();
@@ -472,7 +231,7 @@ public class User implements Serializable {
      */
     public String login(String name, String password) throws IOException {
         String body = "{\"usr\":\"" + name.replace("\"", "\\\"") + "\",\"pwd\":\"" + password.replace("\"", "\\\"") + "\"}";
-        Response res = this.__makeRequest(RequestMethod.Post, "/student/login", body);
+        Response res = API.makeRequest(RequestMethod.Post, "/student/login", body, this.JWTToken);
         if (res.getStatus() == ResponseStatus.Success) {
             //Succesful login, lets go from here. main
             this.JWTToken = res.loadJsonData();
@@ -494,7 +253,7 @@ public class User implements Serializable {
         if (this.JWTToken != null) {
             //User logged in
             String body = "{\"score\":" + score + ",\"num_stars\":" + numStars + "}";
-            Response res = this.__makeRequest(RequestMethod.Post, "/scores", body);
+            Response res = API.makeRequest(RequestMethod.Post, "/scores", body, this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
                 this.__loadData();
@@ -521,7 +280,7 @@ public class User implements Serializable {
     public String unlockCostume(Avatar avatar) throws IOException {
         //Validate purchase
         if (this.unlockedAvatars.contains(avatar)) return "Avatar already unlocked";
-        if (!this.canPurchase(avatar)) return "Unable to afford avatar";
+        if (!this.canPurchase(avatar)) return "Unable to afford avatar"; 
         
         if (MainApp.getSetting() != null) 
             Sounds.playSoundEffect("cha-ching");
@@ -529,10 +288,10 @@ public class User implements Serializable {
         //Carry out purchase
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + avatar.toString() + "\"}";
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/costumes", body);
+            Response res = API.makeRequest(RequestMethod.Post, "/student/costumes", body, this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
-                String addScoreRes = this.addScore(-1, -this.getPrice(avatar));
+                String addScoreRes = this.addScore(-1, -MainApp.getAPI().getPrice(avatar));
                 this.__loadData();
 
                 //check to see if stylish badge can be awarded
@@ -546,7 +305,7 @@ public class User implements Serializable {
         } else {
             //Guest account
             this.unlockedAvatars.add(avatar);
-            this.totalStars -= this.getPrice(avatar);
+            this.totalStars -= MainApp.getAPI().getPrice(avatar);
             this.__saveData();
             return null;
         }
@@ -564,7 +323,7 @@ public class User implements Serializable {
 
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + Achievement.toString(achievement) + "\"}";
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/achievement", body);
+            Response res = API.makeRequest(RequestMethod.Post, "/student/achievement", body, this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 //Succesfully added score, we should also update our local status now.
                 this.__loadData();
@@ -589,7 +348,7 @@ public class User implements Serializable {
         if (!this.unlockedAvatars.contains(avatar))
             return "Avatar not unlocked!";
         if (this.JWTToken != null) {
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/" + avatar.toString().replace("\"", "\\\""), "");
+            Response res = API.makeRequest(RequestMethod.Post, "/student/" + avatar.toString().replace("\"", "\\\""), "", this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 this.__loadData();
                 return null;
@@ -612,7 +371,7 @@ public class User implements Serializable {
     public String setUsername(String name) throws IOException {
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + name.toString().replace("\"", "\\\"") + "\"}";
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/username", body);
+            Response res = API.makeRequest(RequestMethod.Post, "/student/username", body, this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 this.__loadData();
                 return null;
@@ -635,7 +394,7 @@ public class User implements Serializable {
     public String setNickname(String name) throws IOException {
         if (this.JWTToken != null) {
             String body = "{\"name\":\"" + name.toString().replace("\"", "\\\"") + "\"}";
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/nickname", body);
+            Response res = API.makeRequest(RequestMethod.Post, "/student/nickname", body, this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 this.__loadData();
                 return null;
@@ -666,7 +425,7 @@ public class User implements Serializable {
     public String deleteAccount() throws IOException {
         //If logged in, send deletion request
         if (this.JWTToken != null) {
-            Response res = this.__makeRequest(RequestMethod.Delete, "/student", null);
+            Response res = API.makeRequest(RequestMethod.Delete, "/student", null, this.JWTToken);
             if (res.getStatus() == ResponseStatus.Failure)
                 return res.loadJsonData();
         }
@@ -682,7 +441,7 @@ public class User implements Serializable {
      */
     public String resetAccount() throws IOException {
         if (this.JWTToken != null) {
-            Response res = this.__makeRequest(RequestMethod.Post, "/student/reset", "");
+            Response res = API.makeRequest(RequestMethod.Post, "/student/reset", "", this.JWTToken);
             if (res.getStatus() == ResponseStatus.Success) {
                 this.__loadData();
                 return null;
@@ -700,17 +459,6 @@ public class User implements Serializable {
     public boolean isLoggedIn() {
         return this.JWTToken != null;
     }
-
-    /**
-     * Collects the price of an avatar from the api.
-     * Note that if the user hasn't logged in, this will be the default values.
-     */
-    public Integer getPrice(Avatar avatar) {
-        try {
-            this.__updatePrices();
-        } catch (Exception e) { /* Burn Failures */ }
-        return this.costAvatars.get(avatar);
-    }
     
     /**
      * Get the users achievements
@@ -721,7 +469,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Request this users list of unlocked costumes from the api.
+     * Request this users list of unlocked costumes from the API.
      * @return a hashset containing all of the users bought costumes
      */
     public HashSet<Avatar> getCostumes() {
@@ -739,7 +487,7 @@ public class User implements Serializable {
      * @return a boolean, which is true if the avatar can be afforded and false otherwise.
      */
     public boolean canPurchase(Avatar avatar) {
-        int cost = costAvatars.get(avatar);
+        int cost = MainApp.getAPI().getPrice(avatar);
         return totalStars >= cost;
     }
 

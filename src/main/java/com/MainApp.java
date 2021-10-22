@@ -7,6 +7,7 @@ import com.enums.Gamemode;
 import com.enums.Views;
 import com.models.Game;
 import com.models.Setting;
+import com.util.API;
 import com.util.Sounds;
 import com.util.TTS;
 import com.util.User;
@@ -26,35 +27,9 @@ public class MainApp extends Application {
     private static Setting setting;
     private static TTS tts;
     private static GlobalTimer globalTimer;
+    private static API api;
 
     //// Private (helper) methods ////
-    /**
-     * set a new root application pane
-     * @param fxml the name of the fxml file to load
-     * @param title the title of the window to be spawned
-     * @return a stage which can be set or spawned as a modal
-     */
-    private static void __setRoot(Views view) {
-        tts.stopSpeech(); //Clear the queue
-        try {
-            MainApp.view = view;
-            stackPane = new StackPane();
-            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
-            Scene scene = new Scene(stackPane);
-            if (view == Views.QUIZ) {
-                scene.getStylesheets().add(MainApp.class.getResource("/styles/quiz.css").toExternalForm());
-            } else {
-                scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
-            }
-            stage.setTitle(view.getWindowName());
-            stage.setScene(scene);
-            stage.show();                          
-        } catch (IOException e) {
-            System.err.println("Unable to set root for fxml: " + view.getFileName());
-            e.printStackTrace();
-        }
-    }
-
     private void configureStatsFiles() throws IOException {
         File file = new File("./.user/.userStats.txt");
         file.createNewFile();
@@ -74,7 +49,9 @@ public class MainApp extends Application {
      * Get the current TTS
      * @return
      */
-    public static TTS getTTS(){
+    public static TTS getTTS() {
+        if (tts == null) 
+            tts = new TTS(); //Init TTS
         return tts;
     }
 
@@ -87,35 +64,31 @@ public class MainApp extends Application {
     }
 
     /**
-     * Get user
-     * @return
+     * Get the current active user, automatically initalises user with default value if not exist.
+     * @return a user
      */
     public static User getUser() {
+        if (user == null)
+            user = new User(); //Init with default user
         return user;
     }
 
     /**
-     * Update the game state
-     * @param newState
+     * Update the current user.
+     * @param newUser the user to set
      */
-    public static void setGameState(Game newState) {
-        state = newState;
+    public static void setUser(User newUser) {
+        user = newUser;
     }
 
     /**
-     * Get the current settings.
-     * @return
+     * Get the current settings. Will automatically initalise settings with default values if not exist.
+     * @return settings
      */
     public static Setting getSetting() {
+        if (setting == null)
+            setting = new Setting(); //Init default settings
         return setting;
-    }
-
-    /**
-     * Get the stackpane.
-     * @return
-     */
-    public static StackPane getStackPane() {
-        return stackPane;
     }
 
     /**
@@ -127,20 +100,52 @@ public class MainApp extends Application {
     }
 
     /**
-     * Change which scene the user is looking at.
-     * @param view to load
+     * Update the game state
+     * @param newState
+     */
+    public static void setGameState(Game newState) {
+        state = newState;
+    }
+
+    /**
+     * Get the stackpane.
+     * @return
+     */
+    public static StackPane getStackPane() {
+        return stackPane;
+    }
+
+    /**
+     * Set a new root application pane
+     * @param view the view to load
      */
     public static void setRoot(Views view) {
-        __setRoot(view);
+        tts.stopSpeech(); //Clear the queue
+        try {
+            MainApp.view = view;
+            stackPane = new StackPane();
+            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
+            Scene scene = new Scene(stackPane);
+            if (view == Views.QUIZ) {
+                scene.getStylesheets().add(MainApp.class.getResource("/styles/quiz.css").toExternalForm());
+            } else {
+                scene.getStylesheets().add(MainApp.class.getResource("/styles/application.css").toExternalForm());
+            }
+            stage.setTitle(view.getWindowName());
+            stage.setScene(scene);
+            stage.show();                          
+        } catch (IOException e) {
+            System.err.println("Unable to set root for fxml: " + view.getFileName());
+            e.printStackTrace();
+        }
     }
     
-
     /*
-    * update music on modal toggle
+    * Update music on modal toggle
     */
-    public static void updateMusic(){
+    public static void updateMusic() {
         if (view == Views.QUIZ) {
-            if (state.getGameMode() == Gamemode.RANKED){
+            if (state.getGameMode() == Gamemode.RANKED) {
                 Sounds.playMusic("game");
             } else {
                 Sounds.playMusic("practice");
@@ -150,75 +155,30 @@ public class MainApp extends Application {
         }
     }
 
-    public static void setUser(){
-        user = new User();
-    }
-
-    public static void setUser(User usr){
-        user = usr;
-    }
-
-    private static void prepoluateUser(){
-        User popUser = new User();
-
-        try {
-             //load user
-            String res = popUser.login("team11GOATS", "123");
-            if (res != null){
-                //user does not already exist
-                String s = popUser.signup("team11GOATS", "123", "Team 11");
-                if (s != null){
-                    System.err.println("Sign In Failed");
-                }
-            }
-
-            //reset stats
-            popUser.resetAccount();
-
-            //add stars
-            popUser.addScore(100, 500);
-
-            //unlock achievements
-            popUser.unlockAchievement("EXPLORER_1");
-            popUser.unlockAchievement("EXPLORER_2");
-            popUser.unlockAchievement("STUDENT_1");
-            popUser.unlockAchievement("STUDENT_2");
-            popUser.unlockAchievement("STUDENT_3");
-            popUser.unlockAchievement("STUDENT_4");
-            popUser.unlockAchievement("STUDENT_5");
-            popUser.unlockAchievement("ACHIEVER_1");
-            popUser.unlockAchievement("ACHIEVER_2");
-            popUser.unlockAchievement("ACHIEVER_3");
-            popUser.unlockAchievement("POCKETS_1");
-            popUser.unlockAchievement("POCKETS_2");
-            popUser.unlockAchievement("POCKETS_3");
-            popUser.unlockAchievement("POCKETS_4");
-            popUser.unlockAchievement("POCKETS_5");
-            popUser.unlockAchievement("SPEEDY_1");
-        } catch (IOException e){
-            System.err.println("Unable to make request/s");
-        }
-
-        setUser(popUser);
-    }
-
-    public static GlobalTimer getGlobalTimer(){
+    /**
+     * Collect an instance of a globalTimer, used for the spinning wheel. Will automatically initalise if needed.
+     * @return a globalTimer instance
+     */
+    public static GlobalTimer getGlobalTimer() {
+        if (globalTimer == null)
+            globalTimer = new GlobalTimer(2 * 60);
         return globalTimer;
+    }
+
+    /**
+     * Collect a instance of the api. Will automatically initalise if needed.
+     * @return an api instance
+     */
+    public static API getAPI() {
+        if (api == null)
+            api = new API();
+        return api;
     }
 
     @Override
     public void start(Stage s) {
-        globalTimer = new GlobalTimer(2 * 60);
-        // globalTimer.restart();
-
         stage = s;
-        setting = new Setting();
         stage.setResizable(false);
-        tts = new TTS();
-
-        setUser();
-
-        prepoluateUser();   //uncomment when needing to populate a user
 
         try {
             configureStatsFiles();
