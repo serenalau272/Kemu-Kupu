@@ -196,12 +196,17 @@ public class InputField extends TextField{
         inputItem.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER){
                 submit();
-            }  else if (event.getCode() == KeyCode.BACK_SPACE) {
-                removeCharacter(inputItem);
-            } else  {
+            }  else if (event.getCode() != KeyCode.BACK_SPACE) {
                 insertCharacter(inputItem);
             }
         });
+
+        inputItem.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.BACK_SPACE){
+                removeCharacter(inputItem);
+            }
+        });
+
         inputItem.setOnMouseClicked(e -> {
             cursor = num;
             recursor();
