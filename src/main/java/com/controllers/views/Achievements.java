@@ -92,9 +92,10 @@ public class Achievements extends ApplicationController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
+        scroll.setFitToWidth(true);
         currentUser = MainApp.getUser();
 
-        numLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/18");
+        numLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
 
@@ -109,12 +110,12 @@ public class Achievements extends ApplicationController implements Initializable
                 AchievementType achievementTypeController = fxmlLoader.getController();
                 achievementTypeController.setData(types.get(i));
 
-                grid.add(anchorPane, 1, row);
+                grid.add(anchorPane, 0, row);
                 row++;
                 
-                grid.setMinWidth(1100);
-                grid.setPrefWidth(1100); 
-                grid.setMaxWidth(1100); 
+                // grid.setMinWidth(1100);
+                // grid.setPrefWidth(1100); 
+                // grid.setMaxWidth(1100); 
 
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);

@@ -24,11 +24,11 @@ public class Pause extends ModalController {
      * @param v the view to switch to
      */
     private void replay() {
-        Modal.showConfirmationModal(ConfirmModal.REPLAY);
+        Modal.showGeneralModal(ConfirmModal.REPLAY);
     }
 
     private void showConfirm() {
-        Modal.showConfirmationModal(ConfirmModal.MENU);
+        Modal.showGeneralModal(ConfirmModal.MENU);
     }
 
     //// Public Methods ////

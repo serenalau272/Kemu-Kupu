@@ -40,6 +40,16 @@
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
 }
 
+.error-text .text {
+    -fx-font-size: 35px;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1.3px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
+}
+
 .sign-in {
     -fx-background-color: rgba(255, 226, 183, 0.7);
     -fx-background-radius: 11px;
@@ -66,6 +76,23 @@
     -fx-prompt-text-fill: #676767;
 }
 
+.speech-text .text {
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 20px;
+}
+
+.response-text .text {
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1px;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-join: round;
+    -fx-stroke-line-cap: round;
+    -fx-font-size: 30px;
+}
 .shop-text .text {
     -fx-font-family: 'Poor Story';
     -fx-fill: #FFFFFF;
@@ -92,4 +119,38 @@
     -fx-stroke-line-join: round;
     -fx-stroke-line-cap: round;
     -fx-font-size: 25px;
+}
+
+.yellow-text .text {
+    -fx-fill: #FBB03B;
+    -fx-stroke: #FBB03B;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #303030;
+    -fx-background-radius: 5em;
+    -fx-background-insets: 2, 0, 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 5px;
+    -fx-border-radius: 5em;
+
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-opacity: 0;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
 }

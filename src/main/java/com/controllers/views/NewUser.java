@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.controllers.ApplicationController;
+import com.enums.ErrorModal;
 import com.enums.Views;
+import com.util.Modal;
 import com.util.User;
 
 import javafx.fxml.FXML;
@@ -35,6 +37,10 @@ public class NewUser extends ApplicationController implements Initializable {
 
     private void onCreateAccount(){
         User user = new User();
+        if (nicknameInput.getText().equals("") || (nicknameInput.getText().length()>10)) {
+            Modal.showGeneralModal(ErrorModal.NICKNAME);
+            return;
+        }
         try {
             String res = user.signup(usernameInput.getText(), passwordInput.getText(), nicknameInput.getText());
             if (res == null){
@@ -43,11 +49,9 @@ public class NewUser extends ApplicationController implements Initializable {
                 MainApp.setRoot(Views.PROFILE);
             } else {
                 //duplicate username
-                //TODO: error modal
-                usernameInput.clear();
+                Modal.showGeneralModal(ErrorModal.USERNAME);
                 passwordInput.clear();
-                nicknameInput.clear();
-                nicknameInput.requestFocus();
+                usernameInput.requestFocus();
             }
         } catch (IOException e){
             System.err.println("Unable to complete request");

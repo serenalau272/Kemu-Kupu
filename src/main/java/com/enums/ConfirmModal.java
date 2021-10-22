@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import com.MainApp;
 import com.util.Sounds;
+import com.models.generalModal;
 
 /**
  * An enum to represent the status of a word being tested.
  */
-public enum ConfirmModal {
+public enum ConfirmModal implements generalModal {
     MENU, 
     REPLAY, 
     SIGNOUT, 
@@ -32,7 +33,7 @@ public enum ConfirmModal {
         }
     }
 
-    public void doConfirmedAction() {
+    public void doAction() {
         switch (this) {
             case MENU:
                 MainApp.setRoot(Views.MENU);

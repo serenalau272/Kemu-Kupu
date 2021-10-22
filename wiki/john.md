@@ -235,3 +235,13 @@ This allowed for the refactoring of much code. This was done.
 the implementation of the cosutmes/achievements.
 * Subsequently, we'll need to touch up the remaining GUI interface, including help modal etc., as well
 as prepare to present on Tuesday. A lot to be done! Gah!
+
+- - - -
+**<font size="5">Presented (People's Choice woohoo!) + Pretty much done</font>**
+
+*17~22-Oct, 2021.*
+* Apologies for the lack of logging over the last while.
+* Many late nights and long hours were spent on getting the backend linked up with user creation/deletion/signup all working as well as all of the costumes, avatars functionality.
+* Further, we worked on our presentation, then presented on Tuesday and got the People's Choice award which was really cool!
+* Today, we had a meeting to discuss and outline the user manual, divvying up tasks for that, as well as highlighting what needs to be done to our codebase (refactoring + final implementation of small bits and bobs)
+* Report is now underway as well :)) So, a bit more work to do still!!

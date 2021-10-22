@@ -10,6 +10,7 @@ import java.util.List;
 import com.MainApp;
 import com.enums.Achievement;
 import com.enums.Avatar;
+import com.enums.ErrorModal;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -616,6 +617,7 @@ public class User implements Serializable {
                 this.__loadData();
                 return null;
             }
+            Modal.showGeneralModal(ErrorModal.USERNAME);
             return res.loadJsonData();
         } else {
             this.username = name;

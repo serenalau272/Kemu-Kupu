@@ -63,16 +63,20 @@ public class Shop extends ApplicationController implements Initializable {
 
     private void setTextYellow(Node clickedAvatarName) {
         for (Node avatar : grid.getChildren()) {
-            ((AnchorPane) avatar).getChildren().get(1).setStyle("-fx-text-fill: #FFFFFF");
+            Label label = ((Label)((AnchorPane) avatar).getChildren().get(1));
+            label.getStyleClass().remove("yellow-text");
         }
-        clickedAvatarName.setStyle("-fx-text-fill: #FBB03B");
+        clickedAvatarName.getStyleClass().add("yellow-text");;
     }
 
     private void setChosenAvatar(Node clickedAvatarName) {
         setTextYellow(clickedAvatarName);
         String avatarName = ((Label) clickedAvatarName).getText().replace(" Bee", "");
-
-        setChosenAvatar(Avatar.fromString(avatarName));
+        if (avatarName == "B") {
+            setChosenAvatar(Avatar.fromString("default"));
+        } else {
+            setChosenAvatar(Avatar.fromString(avatarName));
+        }
     }
 
     private void setChosenAvatar(Avatar avatar){
@@ -94,7 +98,7 @@ public class Shop extends ApplicationController implements Initializable {
                 buyButton.setVisible(false);
                 notEnough.setVisible(false);
                 avatarLabel.setVisible(true);
-                avatarLabel.setText(chosenAvatar.toString());
+                avatarLabel.setText(chosenAvatar.getAvatarName());
                 setImage("background", avatarPrice);
             } else {
                 if (currentUser.canPurchase(chosenAvatar)){
@@ -124,6 +128,13 @@ public class Shop extends ApplicationController implements Initializable {
         super.initialize();
         currentUser = MainApp.getUser();
         notEnough.setVisible(false);
+
+        try {
+            setImage(currentUser.getSelectedAvatar().toString(), userAvatar);
+        } catch (FileNotFoundException e){
+            System.err.println("Unable to set avatar on load");
+        }
+        avatarLabel.setText(currentUser.getSelectedAvatar().getAvatarName());
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));  
         setStars();

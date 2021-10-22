@@ -5,7 +5,8 @@ public enum Modals {
     ATTRIBUTION,
     PAUSE,
     HELP,
-    CONFIRMATION;
+    CONFIRMATION,
+    ERROR;
 
     public String getFileName() {
         switch (this) {
@@ -23,6 +24,9 @@ public enum Modals {
             }
             case CONFIRMATION: {
                 return "Confirmation";
+            }
+            case ERROR: {
+                return "Error";
             }
             default: {
                 System.err.println("ERROR (Modals.java): Type not implemented for getting file name!");
@@ -47,6 +51,9 @@ public enum Modals {
             }
             case CONFIRMATION: {
                 return "Confirm";
+            }
+            case ERROR: {
+                return "Error";
             }
             default: {
                 System.err.println("ERROR (modals.java): Type not implemented for getting window name!");

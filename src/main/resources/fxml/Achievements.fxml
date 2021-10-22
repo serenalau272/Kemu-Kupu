@@ -57,7 +57,7 @@
          <children>
             <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="501.0" prefWidth="1046.0" styleClass="transparent" stylesheets="@../styles/application.css">
                <content>
-                  <GridPane fx:id="grid" prefHeight="4.0" prefWidth="40.0" style="-fx-vgap: 1; -fx-hgap: 0;">
+                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="4.0" prefWidth="40.0" style="-fx-vgap: 1; -fx-hgap: 0;" stylesheets="@../styles/application.css">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
