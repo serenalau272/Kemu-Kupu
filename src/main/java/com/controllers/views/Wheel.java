@@ -67,7 +67,6 @@ public class Wheel extends ApplicationController implements Initializable {
         int segment = (int) Math.floor(((rotatedBy + 270) % 360) / 45.0); // should be 0 to 7
 
         reward = rewardStars[segment];
-        System.out.println(reward);
 
         PauseTransition wait = new PauseTransition(new Duration(800));
         wait.setOnFinished(e -> {

@@ -51,6 +51,8 @@ public class NewUser extends ApplicationController implements Initializable {
                 //duplicate username
                 Modal.showGeneralModal(ErrorModal.USERNAME);
                 passwordInput.clear();
+                usernameInput.clear();
+                nicknameInput.clear();
                 usernameInput.requestFocus();
             }
         } catch (IOException e){

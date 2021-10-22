@@ -9,7 +9,7 @@ import com.enums.ConfirmModal;
 import com.enums.ErrorModal;
 import com.enums.Modals;
 import com.enums.Views;
-import com.models.generalModal;
+import com.models.GeneralModal;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -48,12 +48,11 @@ public class Modal {
         }
     }
 
-    public static void showGeneralModal(generalModal type) {
+    public static void showGeneralModal(GeneralModal type) {
         FXMLLoader fxmlLoader;
         Node modal;
         String message;
         String modalType = type.getClass().getName().replace("com.enums.", "");
-        System.out.println(modalType);
         try {
             disableScreenNodes(true);
             switch (modalType) {
