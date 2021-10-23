@@ -114,11 +114,11 @@ public class Menu extends ApplicationController implements Initializable {
         icons.forEach(i -> {
             i.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
                 String labelId = i.getId().replace("Button", "Label");
-                findNodesByID(anchorPane, labelId).setVisible(true);
+                findNodeByID(anchorPane, labelId).setVisible(true);
             });
             i.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
                 String labelId = i.getId().replace("Button", "Label");
-                findNodesByID(anchorPane, labelId).setVisible(false);
+                findNodeByID(anchorPane, labelId).setVisible(false);
             });
         });
 

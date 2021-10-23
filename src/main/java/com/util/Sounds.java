@@ -22,7 +22,7 @@ public class Sounds {
      * Loads information from the underlying OS, acquiring the exact linux distribution we are running on.
      * Modified from: https://stackoverflow.com/questions/15018474/getting-linux-distro-from-java
      * 
-     * HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with javafx 8 This 
+     * HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with javafx 8. This 
      * is unlikely to be fixed in the future, and only updating to a newer version of javafx
      * will fix it. This function is needed to fix this issue.
      * 
@@ -66,11 +66,11 @@ public class Sounds {
     }
 
     public static void playMusic(String music) {
-        //HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with javafx 8 This 
+        //HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with javafx 8. This 
         //is unlikely to be fixed in the future, and only updating to a newer version of javafx
         //will fix it.
         //See https://github.com/javafxports/openjdk-jfx/issues/331 for more information.
-        // if (getOSInformation().contains("ubuntu")) return; 
+        if (getOSInformation().contains("ubuntu")) return; 
 
         if (musicPlayer != null) {
             musicPlayer.stop();
@@ -113,8 +113,8 @@ public class Sounds {
             String path = MainApp.class.getResource("/sound/" + sound + ".wav").toURI().toString();
             //Play sound
             new MediaPlayer(new Media(path)).play();
-        } catch (URISyntaxException exception){
-            System.err.println("Unable to load sound file: " + sound);
+        } catch (Exception e){
+            System.err.println("Unable to load sound file: " + sound + " due to error " + e.toString());
         }
     }
 }

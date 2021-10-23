@@ -31,10 +31,14 @@ public class AchievementType extends ApplicationController {
     @FXML private GridPane grid;
     @FXML private AnchorPane anchorPane;
 
+    //// Private Methods ////
+
     private List<Node> circles;
     private List<Node> labels;
-    private AchievementItem achievementItem;
 
+    /**
+     * 
+     */
     private void setLists() {
         String[] level = {"level"};
         circles = findNodesByID(anchorPane, level);
@@ -43,8 +47,12 @@ public class AchievementType extends ApplicationController {
         labels = findNodesByID(anchorPane, label);
     }
 
+    //// Public Methods ////
+    /**
+     * 
+     * @param achievementItem
+     */
     public void setData(AchievementItem achievementItem) {
-        this.achievementItem = achievementItem;
         String typeName = achievementItem.getTypeName();
         typeLabel.setText(typeName);
 
