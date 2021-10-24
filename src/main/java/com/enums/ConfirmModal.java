@@ -11,6 +11,7 @@ import com.models.GeneralModal;
  */
 public enum ConfirmModal implements GeneralModal {
     MENU, 
+    INSTANTMENU,
     REPLAY, 
     SIGNOUT, 
     DELETE, 
@@ -19,6 +20,7 @@ public enum ConfirmModal implements GeneralModal {
     public String getMessage() {
         switch (this) {
             case MENU:
+            case INSTANTMENU:
             case REPLAY:
                 return "Are you sure you want to exit the game? Current results will be lost.";
             case SIGNOUT:
@@ -35,6 +37,7 @@ public enum ConfirmModal implements GeneralModal {
 
     public void doAction() {
         switch (this) {
+            case INSTANTMENU:
             case MENU:
                 MainApp.setRoot(Views.MENU);
                 break;

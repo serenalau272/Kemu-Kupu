@@ -13,6 +13,7 @@ import com.MainApp;
 import com.components.InputField;
 import com.components.animations.Clock;
 import com.controllers.ApplicationController;
+import com.enums.ConfirmModal;
 import com.enums.Gamemode;
 import com.enums.Language;
 import com.enums.Modals;
@@ -57,6 +58,8 @@ public class Quiz extends ApplicationController implements Initializable {
     private ImageView pauseButton;
     @FXML
     private ImageView helpButton;
+    @FXML
+    private ImageView menuButton;
     @FXML
     private ImageView responseImg;
     @FXML
@@ -418,6 +421,10 @@ public class Quiz extends ApplicationController implements Initializable {
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             // Sounds.playSoundEffect("pop");
             helpClick();
+        });
+
+        menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+            Modal.showGeneralModal(ConfirmModal.INSTANTMENU);
         });
 
         hearButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));

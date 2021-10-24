@@ -11,7 +11,8 @@ import com.util.Sounds;
  */
 public enum ErrorModal implements GeneralModal {
     USERNAME,
-    NICKNAME;
+    NICKNAME,
+    INTERNET;
 
     public String getMessage() {
         switch (this) {
@@ -19,6 +20,8 @@ public enum ErrorModal implements GeneralModal {
                 return "An account already exists with this username. Please pick another username.";
             case NICKNAME:
                 return "Please ensure your nickname is between 1 to 10 characters inclusive.";
+            case INTERNET:
+                return "Unable to connect to the internet. Please connect to an internet connection to play this game!";
             default:
                 System.err.println("ERROR: Error type not implemented.");
                 return "";

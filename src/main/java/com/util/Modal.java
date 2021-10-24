@@ -54,6 +54,7 @@ public class Modal {
         String message;
         String modalType = type.getClass().getName().replace("com.enums.", "");
         try {
+            if (MainApp.getBaseView() == Views.QUIZ) clock.stop();
             disableScreenNodes(true);
             switch (modalType) {
                 case "ConfirmModal":

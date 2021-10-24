@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 public class Confirmation extends ModalController {
 
     @FXML ImageView yesButton;
+    @FXML ImageView exitButton;
     @FXML Label confirmMessage;
 
     private ConfirmModal confirmType;
@@ -26,7 +27,6 @@ public class Confirmation extends ModalController {
 
     @Override
     public void initializeModal() {
-        super.initializeModal();
         yesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> confirmType.doAction());
     }
 
@@ -36,5 +36,11 @@ public class Confirmation extends ModalController {
 
     public void setConfirmType(ConfirmModal confirmType) {
         this.confirmType = confirmType;
+        if (confirmType == ConfirmModal.INSTANTMENU) {
+            this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true)); 
+            System.out.println("setting true!");
+        } else {
+            this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(false)); 
+        }
     }
 }
