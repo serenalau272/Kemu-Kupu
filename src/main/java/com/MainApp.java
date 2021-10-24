@@ -29,12 +29,6 @@ public class MainApp extends Application {
     private static GlobalTimer globalTimer;
     private static API api;
 
-    //// Private (helper) methods ////
-    private void configureStatsFiles() throws IOException {
-        File file = new File("./.user/.userStats.txt");
-        file.createNewFile();
-    }
-
     //// Public Methods ////
 
     /**
@@ -180,13 +174,6 @@ public class MainApp extends Application {
     public void start(Stage s) {
         stage = s;
         stage.setResizable(false);
-
-        try {
-            configureStatsFiles();
-        } catch (IOException e) {
-            System.err.println("Unable to create user stats file");
-            e.printStackTrace();
-        }
         setRoot(Views.MENU);
     }
 
