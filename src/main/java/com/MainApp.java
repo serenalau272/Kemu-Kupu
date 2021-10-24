@@ -120,7 +120,8 @@ public class MainApp extends Application {
      * @param view the view to load
      */
     public static void setRoot(Views view) {
-        tts.stopSpeech(); //Clear the queue
+        if (tts != null) tts.stopSpeech(); //Clear the queue
+
         try {
             MainApp.view = view;
             stackPane = new StackPane();
@@ -194,7 +195,7 @@ public class MainApp extends Application {
      */
     @Override
     public void stop() {
-        tts.stopSpeech();
+        if (tts != null) tts.stopSpeech();
     }
 
     public static void main(String[] args) {
