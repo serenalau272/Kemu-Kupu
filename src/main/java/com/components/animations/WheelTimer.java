@@ -8,7 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 /**
- * WheelTimer allows for the label on ProfileScreen and SpinningWheel to reflect the value of the global timer
+ * WheelTimer allows for the label on ProfileScreen and SpinningWheel to reflect
+ * the value of the global timer
  */
 public class WheelTimer extends ApplicationController {
     private Label timerLabel;
@@ -18,45 +19,63 @@ public class WheelTimer extends ApplicationController {
 
     /**
      * Create wheel timer
+     * 
      * @param timerLabel
      * @param spinButton
      */
     public WheelTimer(Label timerLabel, ImageView spinButton) {
         this.spinButton = spinButton;
         this.timerLabel = timerLabel;
-        timeSeconds = MainApp.getGlobalTimer().getDuration();
+        timeSeconds = MainApp.getGlobalTimer().getDuration(); // retrieve duration from global timer
         timer = new MyTimer();
     }
 
+    /**
+     * start timer
+     */
     public void start() {
-        timeSeconds = MainApp.getGlobalTimer().getDuration();
+        timeSeconds = MainApp.getGlobalTimer().getDuration(); // retrieve duration from global timer
         timer.start();
     }
 
+    /**
+     * stop timer
+     */
     public void stop() {
         timer.stop();
     }
 
+    /**
+     * update label based upon global timer value
+     */
     private void updateLabel() {
+        // if we can spin, update accorindly
         if (timeSeconds <= 0) {
-            if (spinButton == null) {
+            if (spinButton == null) { // as is on profile screen, update text only
                 timerLabel.setText("Spin!");
-            } else {
+            } else { // as is on spin the wheel screen, make button visible
                 timerLabel.setText("");
                 spinButton.setVisible(true);
             }
             return;
         }
 
+        // if time has not reached the end, get the appropriate label, and update
         int numMinutes = timeSeconds / 60;
         int numSeconds = timeSeconds - (numMinutes * 60);
         timerLabel.setText(String.valueOf(numMinutes) + "m " + String.valueOf(numSeconds) + "s");
     }
 
+    /**
+     * Timer class for WheelTimer
+     */
     public class MyTimer extends AnimationTimer {
         private long lastUpdate = 0;
-        private long durationTick = 1_000_000_000;
+        private long durationTick = 1_000_000_000; // every second
 
+        /**
+         * call doHandle() every second to update the GUI accordingly
+         */
         @Override
         public void handle(long now) {
             if (now - lastUpdate >= durationTick) {
@@ -65,6 +84,9 @@ public class WheelTimer extends ApplicationController {
             }
         }
 
+        /**
+         * decreement time every second and update label OR stop if limit reached
+         */
         private void doHandle() {
             if (timeSeconds <= 1) {
                 stop();
