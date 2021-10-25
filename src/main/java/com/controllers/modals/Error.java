@@ -12,8 +12,6 @@ public class Error extends ModalController {
     @FXML
     Label errorMessage;
 
-    //// Private Methods ////
-
     //// Public Methods ////
 
     @Override
