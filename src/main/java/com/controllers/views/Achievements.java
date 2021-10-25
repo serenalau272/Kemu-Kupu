@@ -57,10 +57,10 @@ public class Achievements extends ApplicationController implements Initializable
 
         AchievementItem item;
 
-        for (String achievementLabel : data) {
-            Integer levelNum = Achievement.getLevelFromString(achievementLabel);
+        for (String achievement : data) {
+            Integer levelNum = Achievement.getLevelFromString(achievement);
 
-            switch (Achievement.getAchievementTypeFromString(achievementLabel)) {
+            switch (Achievement.getAchievementTypeFromString(achievement)) {
             case EXPLORER:
                 levels.get(0).add(levelNum);
                 continue;

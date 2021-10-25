@@ -46,13 +46,13 @@ public class Profile extends ApplicationController implements Initializable {
     @FXML
     ImageView achievementsButton;
     @FXML
-    Label nameLabel;
+    Label name;
     @FXML
-    Label starLabel;
+    Label star;
     @FXML
-    Label achievementsLabel;
+    Label achievements;
     @FXML
-    Label scoreLabel;
+    Label score;
     @FXML
     TextField usernameInput;
     @FXML
@@ -62,17 +62,17 @@ public class Profile extends ApplicationController implements Initializable {
     @FXML
     ImageView wheelButton;
     @FXML
-    Label wheelLabel;
+    Label wheel;
 
     private void configureStaticEntries() {
-        starLabel.setText(Integer.toString(currentUser.getTotalStars()));
-        achievementsLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
+        star.setText(Integer.toString(currentUser.getTotalStars()));
+        achievements.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
         setAvatarImage(userAvatar);
     }
 
     private void configureDynamicEntries() {
-        nameLabel.setText("Hello " + currentUser.getNickname() + "!");
-        scoreLabel.setText(Integer.toString(currentUser.getHighScore()));
+        name.setText("Hello " + currentUser.getNickname() + "!");
+        score.setText(Integer.toString(currentUser.getHighScore()));
         nicknameInput.setText(currentUser.getNickname());
         usernameInput.setText(currentUser.getUsername());
         nicknameInput.setEditable(false);
@@ -134,7 +134,7 @@ public class Profile extends ApplicationController implements Initializable {
         configureStaticEntries();
         configureDynamicEntries();
 
-        timer = new WheelTimer(wheelLabel, null);
+        timer = new WheelTimer(wheel, null);
         timer.start();
         // Set event handlers
 

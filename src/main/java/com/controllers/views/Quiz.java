@@ -39,7 +39,7 @@ public class Quiz extends ApplicationController implements Initializable {
     Clock timer;
 
     @FXML
-    private Label messageLabel;
+    private Label message;
     @FXML
     private ImageView topicBanner;
     @FXML
@@ -67,7 +67,7 @@ public class Quiz extends ApplicationController implements Initializable {
     @FXML
     private Arc arc;
     @FXML
-    private Label timerLabel;
+    private Label timerText;
     @FXML
     private ImageView clock;
     @FXML
@@ -145,7 +145,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // show elements
         responseImg.setVisible(true);
         continueLabel.setVisible(true);
-        messageLabel.setVisible(true);
+        message.setVisible(true);
     }
 
     /**
@@ -164,7 +164,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // hide elements
         responseImg.setVisible(false);
         continueLabel.setVisible(false);
-        messageLabel.setVisible(false);
+        message.setVisible(false);
         score.setVisible(false);
         speechBubble.setVisible(false);
     }
@@ -210,11 +210,11 @@ public class Quiz extends ApplicationController implements Initializable {
         Word word = this.game.getWord();
         switch (word.getStatus()) {
         case FAULTED:
-            messageLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
+            message.setText("Hint: Translation is '" + word.getEnglish() + "'");
             break;
         case FAILED:
             String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
-            messageLabel.setText(incorrectMsg);
+            message.setText(incorrectMsg);
 
             if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null)
                 return;
@@ -224,7 +224,7 @@ public class Quiz extends ApplicationController implements Initializable {
             break;
         case MASTERED:
             String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
-            messageLabel.setText(correctMsg);
+            message.setText(correctMsg);
 
             if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null)
                 return;
@@ -233,7 +233,7 @@ public class Quiz extends ApplicationController implements Initializable {
             speechBubble.setVisible(true);
             break;
         default:
-            messageLabel.setText("");
+            message.setText("");
             break;
         }
     }
@@ -381,7 +381,7 @@ public class Quiz extends ApplicationController implements Initializable {
             Sounds.playMusic("practice");
         } else {
             arc.setVisible(true);
-            timerLabel.setVisible(true);
+            timerText.setVisible(true);
             Sounds.playMusic("game");
         }
 
@@ -404,7 +404,7 @@ public class Quiz extends ApplicationController implements Initializable {
         // Load words from the MainApp
         this.__updateWordIndexBanner();
         // configure timer
-        timer = new Clock(arc, timerLabel);
+        timer = new Clock(arc, timerText);
         Modal.setClock(timer);
 
         controller = this;

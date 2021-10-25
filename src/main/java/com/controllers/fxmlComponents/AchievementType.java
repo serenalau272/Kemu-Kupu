@@ -28,17 +28,17 @@ public class AchievementType extends ApplicationController {
     @FXML
     private ImageView level5;
     @FXML
-    private Label label1;
+    private Label message1;
     @FXML
-    private Label label2;
+    private Label message2;
     @FXML
-    private Label label3;
+    private Label message3;
     @FXML
-    private Label label4;
+    private Label message4;
     @FXML
-    private Label label5;
+    private Label message5;
     @FXML
-    private Label typeLabel;
+    private Label type;
     @FXML
     private GridPane grid;
     @FXML
@@ -47,17 +47,17 @@ public class AchievementType extends ApplicationController {
     //// Private Methods ////
 
     private List<Node> circles;
-    private List<Node> labels;
+    private List<Node> messages;
 
     /**
      * 
      */
     private void setLists() {
         String[] level = { "level" };
-        circles = findNodesByID(anchorPane, level);
+        this.circles = findNodesByID(anchorPane, level);
 
-        String[] label = { "label" };
-        labels = findNodesByID(anchorPane, label);
+        String[] label = { "message" };
+        this.messages = findNodesByID(anchorPane, label);
     }
 
     //// Public Methods ////
@@ -67,14 +67,14 @@ public class AchievementType extends ApplicationController {
      */
     public void setData(AchievementItem achievementItem) {
         String typeName = achievementItem.getTypeName();
-        typeLabel.setText(typeName);
+        this.type.setText(typeName);
 
         setLists();
         for (int i = 0; i < achievementItem.getMax(); i++) {
             int level = i + 1;
             ImageView circle = (ImageView) circles.get(i);
             circle.setVisible(true);
-            Label label = (Label) labels.get(i);
+            Label label = (Label) this.messages.get(i);
             label.setText(achievementItem.getAchievement().getAchievementLabel(i + 1));
             label.getStyleClass().add("not-achieved-text");
 
