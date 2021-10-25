@@ -59,7 +59,7 @@ public class AchievementType extends ApplicationController {
         this.circles = findNodesByID(anchorPane, level);
 
         // fetch and store all the labels on this AnchorPane that describe each achievement badge's instructions
-        String[] label = { "label" };
+        String[] label = { "message" };
         this.instructions = findNodesByID(anchorPane, label);
     }
 
