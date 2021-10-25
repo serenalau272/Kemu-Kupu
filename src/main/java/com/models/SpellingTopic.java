@@ -27,16 +27,6 @@ public class SpellingTopic {
     }
 
     /**
-     * Note: unused in A3 implementation but may be useful for Project
-     * 
-     * @return Get the topic of this word list in title case
-     */
-    public String getNameTitleCase() {
-        String s1 = this.name.substring(0, 1).toUpperCase(); // capatalize first letter
-        return s1 + this.name.substring(1).replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"); // convert from camel case
-    }
-
-    /**
      * @return Get the name of this word list - raw as from disk.
      */
     public String getName() {

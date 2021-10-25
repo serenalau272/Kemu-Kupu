@@ -43,6 +43,10 @@ public class Word {
 
     //// Public Methods ////
 
+    /**
+     * Get the response from the word
+     * @return
+     */
     public Word getResponse() {
         return this.response;
     }
@@ -147,6 +151,10 @@ public class Word {
         return this.status;
     }
 
+    /**
+     * Set the status of the spelling word
+     * @param s
+     */
     public void setStatus(Status s) {
         this.status = s;
     }
