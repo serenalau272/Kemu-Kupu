@@ -11,6 +11,11 @@ public class GlobalTimer {
     private MyTimer timer;
     private int duration;
 
+    /**
+     * Construct GlobalTimer
+     * 
+     * @param duration
+     */
     public GlobalTimer(int duration) {
         this.duration = duration;
         timeSeconds = 0;

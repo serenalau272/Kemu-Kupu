@@ -31,6 +31,12 @@ public class Clock {
     private Color endColor = Color.rgb(255, 111, 116);
     private Color color = startColor;
 
+    /**
+     * Construct clock
+     * 
+     * @param sector
+     * @param timerLabel
+     */
     public Clock(Arc sector, Label timerLabel) {
         this.sector = sector;
         this.timerLabel = timerLabel;
