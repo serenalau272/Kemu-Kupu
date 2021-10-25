@@ -14,12 +14,12 @@ import javafx.scene.input.MouseEvent;
  * This class is the base controller for all modals
  */
 public class ModalController extends ApplicationController implements Initializable {
-
     @FXML
     ImageView exitButton;
 
     //// Public Methods ////
 
+    //adds the close modal method to all modal exit buttons
     public void initializeModal() {
         this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(false));
     }

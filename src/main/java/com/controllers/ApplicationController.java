@@ -24,8 +24,6 @@ public class ApplicationController {
     @FXML
     protected Pane anchorPane;
 
-    //// Private (Helper) Functions ////
-
     //// Public API (to be used by child classes internally) ////
 
     /**
@@ -117,6 +115,10 @@ public class ApplicationController {
         __setImage(s, view);
     }
 
+    /**
+     * Set the avatarimage to be updated with the current users selected avatar
+     * @param view
+     */
     protected void setAvatarImage(ImageView view) {
         try {
             setImage(MainApp.getUser().getSelectedAvatar().toString(), view);
@@ -133,7 +135,7 @@ public class ApplicationController {
     }
 
     /**
-     * Runs after initialisation
+     * Method which runs after initialisation and FXML components have loaded
      */
     protected void start() {
     }
