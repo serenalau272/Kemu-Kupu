@@ -1,3 +1,8 @@
+/**
+* This is the CSS styling for quiz screen of the application
+*/
+
+/******** Font and Text Styling *********/
 @font-face {
     font-family: "Poppins";
     src: url("./fonts/Poppins-Bold.ttf");
@@ -20,6 +25,15 @@
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
 }
 
+.timer .text {
+    -fx-font-family: 'Poppins';
+    -fx-font-weight: bold;
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 50px;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
+}
+
+/******** TextField Styling *********/
 .text-field {
     -fx-background-color: #9FE8DC;
     -fx-background-radius: 5px;
@@ -43,10 +57,3 @@
     -fx-background: transparent;
 }
 
-.timer .text {
-    -fx-font-family: 'Poppins';
-    -fx-font-weight: bold;
-    -fx-fill: #FFFFFF;
-    -fx-font-size: 50px;
-    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.4), 12, 0, 0, 6);
-}

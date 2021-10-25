@@ -1,3 +1,8 @@
+/**
+* This is the CSS styling for the achievements screen of the application
+*/
+
+/******** Font and Text Styling *********/
 .number-label .text {
     -fx-stroke: #FFFFFF;
     -fx-stroke-width: 4px;
@@ -34,6 +39,7 @@
     -fx-font-size: 35px;
 }
 
+/******** Component Spacing/Layout Styling *********/
 .hbox-circles {
     -fx-spacing: 27px;
 }

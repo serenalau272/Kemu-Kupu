@@ -1,3 +1,7 @@
+/**
+* This is the CSS styling for the profile screen of the application
+*/
+
 .wheel .text {
     -fx-font-family: 'Poor Story';
     -fx-font-size: 35px;
@@ -42,9 +46,5 @@
     -fx-stroke-type: outside;
     -fx-stroke-line-join: round;
     -fx-stroke-line-cap: round;
-}
-
-.inputField {
-
 }
 

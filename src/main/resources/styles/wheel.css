@@ -1,3 +1,9 @@
+/**
+* This is the CSS styling for Spin to Win screen of the application
+*/
+
+
+/******** Font and Text Styling *********/
 .collectNumber .text {
     -fx-font-family: 'Poor Story';
     -fx-font-size: 55px;
@@ -33,6 +39,7 @@
     -fx-stroke-line-cap: round;
 }
 
+/******** Wheel Component Styling *********/
 .wheel {
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.6), 30, 0, 0, 0);
 }
