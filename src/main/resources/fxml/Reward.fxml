@@ -56,7 +56,7 @@
             <Image url="@../assets/rewardScreen/empty-star.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="newLabel" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="newHighScore" fitHeight="83.0" fitWidth="122.0" layoutX="300.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/rewardScreen/NEW.png" />
          </image>

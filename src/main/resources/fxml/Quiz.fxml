@@ -110,11 +110,11 @@
          </image>
       </ImageView>
       <Arc fx:id="arc" fill="#acf94b" layoutX="632.0" layoutY="189.0" length="360.0" radiusX="46.0" radiusY="46.0" startAngle="45.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" visible="false" />
-      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="564.0" layoutY="154.0" prefHeight="57.0" prefWidth="137.0" styleClass="timer" stylesheets="@../styles/quiz.css" text="49" textAlignment="CENTER" textFill="WHITE" visible="false">
+      <Label fx:id="timerText" alignment="CENTER" contentDisplay="CENTER" layoutX="564.0" layoutY="154.0" prefHeight="57.0" prefWidth="137.0" styleClass="timer" stylesheets="@../styles/quiz.css" text="49" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
             <Font size="50.0" />
          </font></Label>
-      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="475.0" prefHeight="53.0" prefWidth="543.0" stylesheets="@../styles/application.css" text="Well done!" textAlignment="CENTER" textFill="WHITE" visible="false">
+      <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="475.0" prefHeight="53.0" prefWidth="543.0" stylesheets="@../styles/application.css" text="Well done!" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
             <Font size="26.0" />
          </font>

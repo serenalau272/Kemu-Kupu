@@ -109,18 +109,18 @@
             <Image url="@../assets/Avatars/chef.png" />
          </image>
       </ImageView>
-      <Label fx:id="nameLabel" alignment="CENTER" layoutX="158.0" layoutY="-12.0" prefHeight="167.0" prefWidth="891.0" styleClass="heading-style" stylesheets="@../styles/application.css" text="Hello !" />
-      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="484.0" layoutY="275.0" prefHeight="97.0" prefWidth="248.0" styleClass="highScore" stylesheets="@../styles/profile.css" text="80" textAlignment="CENTER" textFill="#fcfcfc">
+      <Label fx:id="name" alignment="CENTER" layoutX="158.0" layoutY="-12.0" prefHeight="167.0" prefWidth="891.0" styleClass="heading-style" stylesheets="@../styles/application.css" text="Hello !" />
+      <Label fx:id="score" alignment="CENTER" layoutX="484.0" layoutY="275.0" prefHeight="97.0" prefWidth="248.0" styleClass="highScore" stylesheets="@../styles/profile.css" text="80" textAlignment="CENTER" textFill="#fcfcfc">
          <font>
             <Font size="46.0" />
          </font>
       </Label>
-      <Label fx:id="starLabel" layoutX="966.0" layoutY="514.0" prefHeight="97.0" prefWidth="153.0" styleClass="stars" stylesheets="@../styles/profile.css" text="10" textAlignment="CENTER" textFill="#fcfcfc">
+      <Label fx:id="star" layoutX="966.0" layoutY="514.0" prefHeight="97.0" prefWidth="153.0" styleClass="stars" stylesheets="@../styles/profile.css" text="10" textAlignment="CENTER" textFill="#fcfcfc">
          <font>
             <Font size="46.0" />
          </font>
       </Label>
-      <Label fx:id="achievementsLabel" alignment="CENTER" layoutX="542.0" layoutY="514.0" prefHeight="97.0" prefWidth="220.0" styleClass="achievements" stylesheets="@../styles/profile.css" text="1/18" textAlignment="CENTER" textFill="#fcfcfc">
+      <Label fx:id="achievements" alignment="CENTER" layoutX="542.0" layoutY="514.0" prefHeight="97.0" prefWidth="220.0" styleClass="achievements" stylesheets="@../styles/profile.css" text="1/18" textAlignment="CENTER" textFill="#fcfcfc">
          <font>
             <Font size="46.0" />
          </font>
@@ -133,7 +133,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Label fx:id="wheelLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="143.0" prefHeight="28.0" prefWidth="124.0" styleClass="wheel" stylesheets="@../styles/profile.css" text="20min" textAlignment="CENTER" />
+      <Label fx:id="wheel" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="143.0" prefHeight="28.0" prefWidth="124.0" styleClass="wheel" stylesheets="@../styles/profile.css" text="20min" textAlignment="CENTER" />
       <TextField fx:id="usernameInput" layoutX="113.0" layoutY="447.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="297.0" styleClass="profile" stylesheets="@../styles/application.css" />
       <TextField fx:id="nicknameInput" layoutX="113.0" layoutY="328.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="297.0" styleClass="profile" stylesheets="@../styles/application.css" />
       <ImageView fx:id="editNickname" fitHeight="39.0" fitWidth="34.0" layoutX="362.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
