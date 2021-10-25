@@ -387,7 +387,6 @@ public class Quiz extends ApplicationController implements Initializable {
 
         __hearWord(1);
         timer.start();
-        // Sounds.playSoundEffect("pop");
         InputField.configureInputField(game.getWord(), controller, submitButton);
     }
 
@@ -411,17 +410,14 @@ public class Quiz extends ApplicationController implements Initializable {
         controller = this;
 
         settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            // Sounds.playSoundEffect("pop");
             super.settingsClick();
         });
 
         pauseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            // Sounds.playSoundEffect("pop");
             pauseClick();
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            // Sounds.playSoundEffect("pop");
             helpClick();
         });
 

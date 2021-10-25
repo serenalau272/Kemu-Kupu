@@ -96,7 +96,6 @@ public class Modal {
      * closes modal
      */
     public static void closeModal(boolean restartTimer) {
-        // Sounds.playSoundEffect("pop");
         int size = MainApp.getStackPane().getChildren().size();
         MainApp.getStackPane().getChildren().remove(size - 1);
         removeBlur();

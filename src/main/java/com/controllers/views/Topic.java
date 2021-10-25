@@ -59,7 +59,6 @@ public class Topic extends ApplicationController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                // Sounds.playSoundEffect("pop");
                 MainApp.setRoot(Views.QUIZ);
             } else {
                 System.err.println("Could not select topic with id: " + listName);
