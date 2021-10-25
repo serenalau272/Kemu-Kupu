@@ -2,9 +2,19 @@ package com.enums;
 
 import javafx.fxml.LoadException;
 
+/**
+ * Represents an achievement by the user. Contains many conversion methods to and from 
+ * string for api interaction.
+ */
 public enum Achievement {
     EXPLORER, STUDENT, ACHIEVER, SPEEDY, POCKETS, STYLISH;
 
+    /**
+     * Convert a provided achievement to a string, for storing in the database.
+     * upon failure returns an empty string, along with printing an error to the console.
+     * @param level the level of the achievement
+     * @return a string, representing this achievement.
+     */
     public String toString(int level) {
         String label;
         switch (this) {
@@ -34,11 +44,24 @@ public enum Achievement {
         return ret;
     }
 
+    /**
+     * Parses the level of the achievement from a string.
+     * Fails with a nullpointer exception in the event that a string without an underscore is provided.
+     * Example: POCKETS_2 -> returns 2
+     * @param s the string to parse
+     * @return an integer representing the level.
+     */
     public static int getLevelFromString(String s) {
         String[] components = s.split("_");
         return Integer.parseInt(components[1]);
     }
 
+    /**
+     * Parse the type of achievement from a string.
+     * Returns null if the provided string is invalid.
+     * @param s the string to parse.
+     * @return an achievement instance representing the type of achievement this is.
+     */
     public static Achievement getAchievementTypeFromString(String s) {
         String[] components = s.split("_");
         switch (components[0].strip().toUpperCase()) {
@@ -60,6 +83,10 @@ public enum Achievement {
         }
     }
 
+    /**
+     * Get the type of an achievement, this is used when displaying data to the user.
+     * @return A string representing the display-name of this achievement.
+     */
     public String getTypeName() {
         switch (this) {
         case EXPLORER:
@@ -80,6 +107,10 @@ public enum Achievement {
         }
     }
 
+    /**
+     * Get the maximum possible level of a given achievement. If that type doesn't have levels, returns -1.
+     * @return The maximum possible level.
+     */
     public int getTypeMax() {
         switch (this) {
         case EXPLORER:
@@ -211,6 +242,12 @@ public enum Achievement {
         }
     }
 
+    /**
+     * Get the label for this achievement, effectively the description.
+     * Returns an empty string upon failure, for example when an invalid level is provided.
+     * @param level the level of the achievement
+     * @return a string which can be displayed to the user.
+     */
     public String getAchievementLabel(int level) {
         switch (this) {
         case EXPLORER:

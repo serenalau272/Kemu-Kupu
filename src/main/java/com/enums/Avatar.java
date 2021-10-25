@@ -1,12 +1,14 @@
 package com.enums;
 
+/**
+ * Represents an avatar to be shown to the user.
+ */
 public enum Avatar {
     DEFAULT, SAILOR, MAGICIAN, WIZARD, NINJA, QUEEN, FAIRY, PROFESSOR, ALIEN, CHEF;
 
     /**
      * Convert a strin ginto an avatar, this is useful for parsing messages from the
      * api into avatars.
-     * 
      * @param s the string to parse to the avatar
      * @return an avatar fro the user
      */
@@ -39,9 +41,8 @@ public enum Avatar {
     }
 
     /**
-     * converts an avatar into a string, this is useful for communication with the
+     * Converts an avatar into a string, this is useful for communication with the
      * api.
-     * 
      * @return a string representing this avatar
      */
     public String toString() {
@@ -72,6 +73,10 @@ public enum Avatar {
         }
     }
 
+    /**
+     * Get the name of an avatar, for display purposes to the user.
+     * @return a string which represents the display name of the avatar.
+     */
     public String getAvatarName() {
         switch (this) {
         case DEFAULT:
@@ -100,6 +105,11 @@ public enum Avatar {
         }
     }
 
+    /**
+     * Get the speech lines for a given avatar, which should be spoken to the user during quizzes.
+     * returns null if no lines exist for the avatar. 
+     * @return a string array with the users lines.
+     */
     public String[] getSpeechLines() {
         switch (this) {
         case DEFAULT:
