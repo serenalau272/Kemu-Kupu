@@ -2,56 +2,45 @@ package com.models;
 
 /**
  * Settings for the GUI application which can be altered in Game Mode. Allows
- * settings for speed speed and enabling of music
+ * settings for speed speed, enabling of music, enabling of sound effects and
+ * setting timer duration
  */
 public class Setting {
-    private boolean music = true;
-    private boolean sounds = true;
+    private boolean hasMusic = true;
+    private boolean hasSound = true;
     private Double speechSpeed = 1.0;
     private int timerDuration = 30;
-
-    /**
-     * Serialize the settings from a file Note: unused in A3 implementation but may
-     * be useful for Project
-     * 
-     * @param p the path to the file
-     */
-    public void load(String p) {
-        // TODO
-    }
-
-    /**
-     * Save the settings to the path Note: unused in A3 implementation but may be
-     * useful for Project
-     * 
-     * @param p the path to save to
-     */
-    public void save(String p) {
-        // TODO
-    }
 
     /**
      * @return whether music is enabled
      */
     public boolean getMusic() {
-        return this.music;
+        return this.hasMusic;
     }
 
     /**
      * Set whether music is available or not
      * 
-     * @param e
+     * @param val
      */
-    public void setMusic(boolean e) {
-        this.music = e;
+    public void setMusic(boolean val) {
+        this.hasMusic = val;
     }
 
+    /**
+     * @return whether sound is enabled
+     */
     public boolean getSounds() {
-        return this.sounds;
+        return this.hasSound;
     }
 
-    public void setSounds(boolean e) {
-        this.sounds = e;
+    /**
+     * Set whether sound is available or not
+     * 
+     * @param val
+     */
+    public void setSounds(boolean val) {
+        this.hasSound = val;
     }
 
     /**
@@ -82,15 +71,26 @@ public class Setting {
         return true;
     }
 
+    /**
+     * get the duration of the quiz timer
+     * 
+     * @return
+     */
     public int getTimerDuration() {
         return this.timerDuration;
     }
 
-    public Boolean setTimerDuration(int s) {
-        if (s < 15 || s > 60)
+    /**
+     * set the duration of the quiz timer
+     * 
+     * @param s
+     * @return
+     */
+    public Boolean setTimerDuration(int val) {
+        if (val < 15 || val > 60)
             return false;
 
-        this.timerDuration = s;
+        this.timerDuration = val;
         return true;
     }
 }
