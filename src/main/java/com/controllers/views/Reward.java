@@ -58,7 +58,7 @@ public class Reward extends ApplicationController implements Initializable {
     @FXML
     private ImageView highScore;
     @FXML
-    private ImageView newLabel;
+    private ImageView newHighScore;
 
     //// Private (helper) methods ////
 
@@ -201,7 +201,7 @@ public class Reward extends ApplicationController implements Initializable {
             if (gameScore > prevHighScore) {
                 // new high score
                 setImage(gameScore, highScore);
-                newLabel.setVisible(true);
+                newHighScore.setVisible(true);
             } else {
                 setImage(prevHighScore, highScore);
             }
@@ -234,7 +234,7 @@ public class Reward extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Inital setup & loading of data
         super.initialize();
-        newLabel.setVisible(false);
+        newHighScore.setVisible(false);
         this.game = MainApp.getGameState();
 
         setAvatarImage(avatarButton);

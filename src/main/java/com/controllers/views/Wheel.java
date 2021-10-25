@@ -32,9 +32,9 @@ public class Wheel extends ApplicationController implements Initializable {
     @FXML
     private ImageView wheel;
     @FXML
-    private Label timerLabel;
+    private Label timerMessage;
     @FXML
-    private Label starLabel;
+    private Label starMessage;
     @FXML
     private ImageView backButton;
     @FXML
@@ -104,13 +104,13 @@ public class Wheel extends ApplicationController implements Initializable {
         MainApp.getGlobalTimer().restart();
         timer.start();
         spinButton.setVisible(false);
-        updateStarLabel();
+        updatestarMessage();
 
         setPopupVisibility(false);
     }
 
-    private void updateStarLabel() {
-        starLabel.setText(Integer.toString(currentUser.getTotalStars()));
+    private void updatestarMessage() {
+        starMessage.setText(Integer.toString(currentUser.getTotalStars()));
     }
 
     private void spin() {
@@ -129,9 +129,9 @@ public class Wheel extends ApplicationController implements Initializable {
     protected void start() {
         setPopupVisibility(false);
 
-        timer = new WheelTimer(timerLabel, spinButton);
+        timer = new WheelTimer(timerMessage, spinButton);
         timer.start();
-        updateStarLabel();
+        updatestarMessage();
 
         anim = new SpinningWheel(wheel).getAnimator();
         anim.setOnFinished(e -> giveReward());

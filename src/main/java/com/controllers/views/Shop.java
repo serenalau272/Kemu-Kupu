@@ -44,7 +44,7 @@ public class Shop extends ApplicationController implements Initializable {
     @FXML
     private ImageView avatarPrice;
     @FXML
-    private Label avatarLabel;
+    private Label avatarMessage;
     @FXML
     private Label starTotal;
     @FXML
@@ -108,8 +108,8 @@ public class Shop extends ApplicationController implements Initializable {
                 // @TODO
                 buyButton.setVisible(false);
                 notEnough.setVisible(false);
-                avatarLabel.setVisible(true);
-                avatarLabel.setText(chosenAvatar.getAvatarName());
+                avatarMessage.setVisible(true);
+                avatarMessage.setText(chosenAvatar.getAvatarName());
                 setImage("background", avatarPrice);
             } else {
                 if (currentUser.canPurchase(chosenAvatar)) {
@@ -120,7 +120,7 @@ public class Shop extends ApplicationController implements Initializable {
                     buyButton.setVisible(false);
                 }
 
-                avatarLabel.setVisible(false);
+                avatarMessage.setVisible(false);
                 setImage(chosenAvatar.toString(), avatarPrice);
             }
 
@@ -145,7 +145,7 @@ public class Shop extends ApplicationController implements Initializable {
         } catch (FileNotFoundException e) {
             System.err.println("Unable to set avatar on load");
         }
-        avatarLabel.setText(currentUser.getSelectedAvatar().getAvatarName());
+        avatarMessage.setText(currentUser.getSelectedAvatar().getAvatarName());
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
         setStars();
