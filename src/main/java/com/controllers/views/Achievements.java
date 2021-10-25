@@ -34,7 +34,7 @@ public class Achievements extends ApplicationController implements Initializable
     User currentUser;
 
     @FXML
-    Label numLabel;
+    Label numMessage;
     @FXML
     ImageView backButton;
     @FXML
@@ -99,7 +99,7 @@ public class Achievements extends ApplicationController implements Initializable
         scroll.setFitToWidth(true);
         currentUser = MainApp.getUser();
 
-        numLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
+     numMessage.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
 

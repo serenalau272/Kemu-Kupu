@@ -17,7 +17,7 @@ import javafx.scene.shape.ArcType;
 public class Clock {
     // javaFX fields to alter
     private Arc sector;
-    private Label timerLabel;
+    private Label timerMessage;
 
     // clock properties
     private float angle;
@@ -35,11 +35,11 @@ public class Clock {
      * Construct clock
      * 
      * @param sector
-     * @param timerLabel
+     * @param timerMessage
      */
-    public Clock(Arc sector, Label timerLabel) {
+    public Clock(Arc sector, Label timerMessage) {
         this.sector = sector;
-        this.timerLabel = timerLabel;
+        this.timerMessage = timerMessage;
         configureArc();
         timer = new MyTimer(duration);
     }
@@ -131,7 +131,7 @@ public class Clock {
      */
     private void updateLabel() {
         int display = duration - (int) (angle * duration / 360);
-        timerLabel.setText(String.valueOf(display));
+        timerMessage.setText(String.valueOf(display));
     }
 
     /**

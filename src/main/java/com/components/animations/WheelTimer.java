@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
  * the value of the global timer
  */
 public class WheelTimer extends ApplicationController {
-    private Label timerLabel;
+    private Label timerMessage;
     private ImageView spinButton = null;
     private int timeSeconds;
     private MyTimer timer;
@@ -20,12 +20,12 @@ public class WheelTimer extends ApplicationController {
     /**
      * Create wheel timer
      * 
-     * @param timerLabel
+     * @param timerMessage
      * @param spinButton
      */
-    public WheelTimer(Label timerLabel, ImageView spinButton) {
+    public WheelTimer(Label timerMessage, ImageView spinButton) {
         this.spinButton = spinButton;
-        this.timerLabel = timerLabel;
+        this.timerMessage = timerMessage;
         timeSeconds = MainApp.getGlobalTimer().getDuration(); // retrieve duration from global timer
         timer = new MyTimer();
     }
@@ -52,9 +52,9 @@ public class WheelTimer extends ApplicationController {
         // if we can spin, update accorindly
         if (timeSeconds <= 0) {
             if (spinButton == null) { // as is on profile screen, update text only
-                timerLabel.setText("Spin!");
+                timerMessage.setText("Spin!");
             } else { // as is on spin the wheel screen, make button visible
-                timerLabel.setText("");
+                timerMessage.setText("");
                 spinButton.setVisible(true);
             }
             return;
@@ -63,7 +63,7 @@ public class WheelTimer extends ApplicationController {
         // if time has not reached the end, get the appropriate label, and update
         int numMinutes = timeSeconds / 60;
         int numSeconds = timeSeconds - (numMinutes * 60);
-        timerLabel.setText(String.valueOf(numMinutes) + "m " + String.valueOf(numSeconds) + "s");
+        timerMessage.setText(String.valueOf(numMinutes) + "m " + String.valueOf(numSeconds) + "s");
     }
 
     /**
