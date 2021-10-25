@@ -99,7 +99,7 @@
 - Progress on backend also made
 
 - - - -
-**Game mode select screen 
+**Game mode select screen**
 
 *10 Oct, 2021*
 - Completed game mode select screen implementation with the hover saturation toggle, might patch up the design later
@@ -107,3 +107,38 @@
 - Implemented score increase labels (instead of on the green correct label)
 - Redesigned start button for the game
 - Fixed many miscellaneous bugs 
+
+- - - -
+**Staggered progress + big strides with stretch goals for competition**
+
+*11 ~ 18 Oct, 2021*
+- Lots of progress with additional features:
+ - Achievements Screen
+ - Costume shop scren 
+ - Spinning wheel 
+ - Profile screen
+ - Login/Sign up 
+ - User backend   
+
+- - - -
+**Competition day + Error modal** 
+
+*19 Oct, 2021*
+- Presented our application for the competition, received People's Choice! 
+- Implemented error modal, mainly for errors in account creation/detail modifications
+
+- - - -
+**Big refactoring session**
+
+*25 Oct, 2021*
+- A large refactoring session of our entire codebase to ensure good code practice 
+- Bugs popping up due to these refactors, hopefully will get fixed soon
+
+- - - -
+**Final Submission + More refactoring + Bug fixing + User manual**
+
+*26 Oct, 2021*
+- More bugs found from the refactors, but all fixed up!
+- Polishing up the application, a few tweaks to achievement screen design
+- User manual 90% complete, more reviewing for the morning
+
