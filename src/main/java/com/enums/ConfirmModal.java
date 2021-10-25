@@ -12,6 +12,10 @@ import com.models.GeneralModal;
 public enum ConfirmModal implements GeneralModal {
     MENU, INSTANTMENU, REPLAY, SIGNOUT, DELETE, RESET;
 
+    /**
+     * Get the string that should be displayed to the user on this modal.
+     * In the event that a string does not exist for this modal, returns an empty string.
+     */
     public String getMessage() {
         switch (this) {
         case MENU:
@@ -30,6 +34,9 @@ public enum ConfirmModal implements GeneralModal {
         }
     }
 
+    /**
+     * The action that should be performed upon the confirm button being clicked for each variant of this modal.
+     */
     public void doAction() {
         switch (this) {
         case INSTANTMENU:
