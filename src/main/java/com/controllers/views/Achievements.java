@@ -45,21 +45,30 @@ public class Achievements extends ApplicationController implements Initializable
     private List<AchievementItem> types = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
+    /**
+     * Retrieve information from the data stored for the current user and dynamically generate the achievement types
+     * accordingly.
+     * @return
+     */
     private List<AchievementItem> configureData() {
         currentUser = MainApp.getUser();
         data = currentUser.getAchievements();
 
+        // set up lists for storing the achievement types and levels unlocked
         List<AchievementItem> types = new ArrayList<>();
         List<ArrayList<Integer>> levels = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i <= 5; i++) {
+            // each ArrayList will correspond to one achievements type
             levels.add(new ArrayList<>());
         }
 
         AchievementItem item;
 
+        // Each 'data string' is stored in the format TYPE_LEVEL. Loop through these strings and process accordingly.
         for (String achievement : data) {
+            // Retrieve just the level number from the data string
             Integer levelNum = Achievement.getLevelFromString(achievement);
-
+            // Add the level number to the list that corresponds to the achievement type
             switch (Achievement.getAchievementTypeFromString(achievement)) {
             case EXPLORER:
                 levels.get(0).add(levelNum);
@@ -82,11 +91,15 @@ public class Achievements extends ApplicationController implements Initializable
             }
         }
 
+        // Loop through the levels list to process each one individually that corresponds to one achievement type
         Achievement[] allTypes = { Achievement.EXPLORER, Achievement.STUDENT, Achievement.ACHIEVER, Achievement.SPEEDY,
                 Achievement.POCKETS, Achievement.STYLISH };
         int counter = 0;
         for (ArrayList<Integer> typeLevels : levels) {
+            // Create a new AchievementItem with a corresponding enum (from looping through the allTypes array) and 
+            // the corresponding levels list
             item = new AchievementItem(allTypes[counter], typeLevels);
+            // Add the item to the types list
             types.add(item);
             counter++;
         }
@@ -108,23 +121,23 @@ public class Achievements extends ApplicationController implements Initializable
         int row = 1;
         try {
             for (int i = 0; i < types.size(); i++) {
+                // Load the AchievementType AnchorPane to retrieve its controller, modify its information and dynamically add to
+                // the Achievements screen
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(MainApp.class.getResource("/fxmlComponents/achievementType.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 AchievementType achievementTypeController = fxmlLoader.getController();
+                // use the AchievementType controller to generate an achievement type component using the retrieved information
+                // and add to the Achievements screen GridPane
                 achievementTypeController.setData(types.get(i));
 
                 grid.add(anchorPane, 0, row);
                 row++;
 
-                // grid.setMinWidth(1100);
-                // grid.setPrefWidth(1100);
-                // grid.setMaxWidth(1100);
-
+                // Set grid size and alignment
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
-
                 grid.setAlignment(Pos.CENTER);
 
             }
@@ -133,3 +146,10 @@ public class Achievements extends ApplicationController implements Initializable
         }
     }
 }
+
+
+/**
+ * Attributions:
+ * Dynamic GridPane design inspired by Mahmoud Hamwi's implementation
+ * GitHub repo: https://github.com/mahmoudhamwi/Fruits-Market
+ */

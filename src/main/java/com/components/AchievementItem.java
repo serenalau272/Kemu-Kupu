@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import com.enums.Achievement;
 
+/**
+ * AchievementItem is an object used to store all the information regarding one achievement type. This information is used 
+ * to create the each type component that is dynamically generated and added to the achievements screen.
+ */
+
 public class AchievementItem {
     private Achievement achievement;
     private String typeName;
@@ -15,7 +20,7 @@ public class AchievementItem {
         this.achievement = achievement;
         this.typeName = achievement.getTypeName();
         this.max = achievement.getTypeMax();
-        this.levels = levels;
+        this.levels = levels; // this List contains the levels that have been unlocked for this achievement type
     }
 
     public Achievement getAchievement() {

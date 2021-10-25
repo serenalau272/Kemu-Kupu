@@ -7,7 +7,7 @@ public enum Avatar {
     DEFAULT, SAILOR, MAGICIAN, WIZARD, NINJA, QUEEN, FAIRY, PROFESSOR, ALIEN, CHEF;
 
     /**
-     * Convert a strin ginto an avatar, this is useful for parsing messages from the
+     * Convert a string into an avatar, this is useful for parsing messages from the
      * api into avatars.
      * @param s the string to parse to the avatar
      * @return an avatar fro the user

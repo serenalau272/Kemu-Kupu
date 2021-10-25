@@ -47,37 +47,48 @@ public class AchievementType extends ApplicationController {
     //// Private Methods ////
 
     private List<Node> circles;
-    private List<Node> messages;
+    private List<Node> instructions;
 
     /**
-     * 
+     * Set up two lists to store the ImageView components of the badge circles and the badge labels,
+     * for later modifications
      */
     private void setLists() {
         String[] level = { "level" };
+        // fetch and store all the ImageView circles (that represent the badge and level colour) on this AnchorPane
         this.circles = findNodesByID(anchorPane, level);
 
-        String[] label = { "message" };
-        this.messages = findNodesByID(anchorPane, label);
+        // fetch and store all the labels on this AnchorPane that describe each achievement badge's instructions
+        String[] label = { "label" };
+        this.instructions = findNodesByID(anchorPane, label);
     }
 
     //// Public Methods ////
     /**
-     * 
+     * Retrieve information from the input AchievementItem object and modify this AchievementType component
+     * accordingly. This component will then be dynamically added to the Achievements screen.
      * @param achievementItem
      */
     public void setData(AchievementItem achievementItem) {
         String typeName = achievementItem.getTypeName();
+        // Set the header label to be the achievement type name
         this.type.setText(typeName);
 
         setLists();
+        // loop through each achievement level, from 1 to the maximum number of levels for this type
         for (int i = 0; i < achievementItem.getMax(); i++) {
+            // levels count starting from 1
             int level = i + 1;
             ImageView circle = (ImageView) circles.get(i);
+            // display the blank achievement circle
             circle.setVisible(true);
-            Label label = (Label) this.messages.get(i);
+            Label label = (Label) this.instructions.get(i);
+            // set the achievement instruction label with the font style for not being achieved
             label.setText(achievementItem.getAchievement().getAchievementLabel(i + 1));
             label.getStyleClass().add("not-achieved-text");
-
+            
+            // retrieve the List of levels that has been achieved for this achievement type and set the badge circle
+            // colour and label font style accordingly
             if (achievementItem.getLevels().contains(level)) {
                 label.getStyleClass().remove("not-achieved-text");
                 label.getStyleClass().add("achieved-text");
