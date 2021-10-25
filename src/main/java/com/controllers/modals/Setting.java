@@ -64,13 +64,16 @@ public class Setting extends ModalController {
      * @param amt the amount to change by
      */
     private void __speed_change(double amt) {
-        // Sounds.playSoundEffect("pop");
         this.settings.setSpeechSpeed(this.settings.getSpeechSpeed() + amt);
         this.__update();
     }
 
+    /**
+     * Change the timer duration
+     * 
+     * @param amt the amount to change by
+     */
     private void __time_change(int amt) {
-        // Sounds.playSoundEffect("pop");
         this.settings.setTimerDuration(this.settings.getTimerDuration() + amt);
         this.__update();
     }
@@ -86,22 +89,24 @@ public class Setting extends ModalController {
         this.musicToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setMusic(!this.settings.getMusic());
             MainApp.updateMusic();
-            // Sounds.playSoundEffect("pop");
             this.__update();
         });
+
         this.soundToggleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings.setSounds(!this.settings.getSounds());
-            // Sounds.playSoundEffect("pop");
             this.__update();
         });
+
         this.speedMinusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(-0.25));
         this.speedPlusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__speed_change(0.25));
+
         this.timeMinusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(-5));
         this.timePlusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> this.__time_change(5));
+
+        //reset settings back to default
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             this.settings = new com.models.Setting();
             MainApp.setSetting(this.settings);
-            // Sounds.playSoundEffect("pop");
             MainApp.updateMusic();
             this.__update();
         });

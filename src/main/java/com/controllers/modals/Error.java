@@ -19,6 +19,10 @@ public class Error extends ModalController {
         super.initializeModal();
     }
 
+    /**
+     * Set message of error label
+     * @param s
+     */
     public void setMessage(String s) {
         this.errorMessage.setText(s);
     }

@@ -12,7 +12,6 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the settings modal.
  */
 public class Help extends ModalController {
-
     @FXML
     ImageView attributionsButton;
     @FXML

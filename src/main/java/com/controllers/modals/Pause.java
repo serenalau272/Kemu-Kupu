@@ -32,6 +32,9 @@ public class Pause extends ModalController {
         Modal.showGeneralModal(ConfirmModal.REPLAY);
     }
 
+    /**
+     * show confirmation model to return to menu
+     */
     private void showConfirm() {
         Modal.showGeneralModal(ConfirmModal.MENU);
     }
