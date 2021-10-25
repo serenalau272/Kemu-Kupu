@@ -31,28 +31,31 @@ import javafx.fxml.Initializable;
  */
 public class Achievements extends ApplicationController implements Initializable {
 
-    User currentUser;
+    //// Properties ////
 
+    private User currentUser;
     @FXML
-    Label numMessage;
+    private Label numMessage;
     @FXML
-    ImageView backButton;
+    private ImageView backButton;
     @FXML
-    ScrollPane scroll;
+    private ScrollPane scroll;
     @FXML
-    GridPane grid;
+    private GridPane grid;
 
     private List<AchievementItem> types = new ArrayList<>();
-    private List<String> data = new ArrayList<>();
+    private List<String> achievementStrings = new ArrayList<>();
 
+    //// Private (helper) Methods ////
     /**
      * Retrieve information from the data stored for the current user and dynamically generate the achievement types
      * accordingly.
      * @return
      */
-    private List<AchievementItem> configureData() {
-        currentUser = MainApp.getUser();
-        data = currentUser.getAchievements();
+    private List<AchievementItem> __configureData() {
+        //Load data from current user
+        this.currentUser = MainApp.getUser();
+        this.achievementStrings = this.currentUser.getAchievements();
 
         // set up lists for storing the achievement types and levels unlocked
         List<AchievementItem> types = new ArrayList<>();
@@ -65,35 +68,40 @@ public class Achievements extends ApplicationController implements Initializable
         AchievementItem item;
 
         // Each 'data string' is stored in the format TYPE_LEVEL. Loop through these strings and process accordingly.
-        for (String achievement : data) {
+        for (String achievement : achievementStrings) {
             // Retrieve just the level number from the data string
             Integer levelNum = Achievement.getLevelFromString(achievement);
             // Add the level number to the list that corresponds to the achievement type
             switch (Achievement.getAchievementTypeFromString(achievement)) {
-            case EXPLORER:
-                levels.get(0).add(levelNum);
-                continue;
-            case STUDENT:
-                levels.get(1).add(levelNum);
-                continue;
-            case ACHIEVER:
-                levels.get(2).add(levelNum);
-                continue;
-            case SPEEDY:
-                levels.get(3).add(levelNum);
-                continue;
-            case POCKETS:
-                levels.get(4).add(levelNum);
-                continue;
-            case STYLISH:
-                levels.get(5).add(levelNum);
-                continue;
+                case EXPLORER: {
+                    levels.get(0).add(levelNum);
+                    continue;
+                }
+                case STUDENT: {
+                    levels.get(1).add(levelNum);
+                    continue;
+                }
+                case ACHIEVER: {
+                    levels.get(2).add(levelNum);
+                    continue;
+                }
+                case SPEEDY: {
+                    levels.get(3).add(levelNum);
+                    continue;
+                }
+                case POCKETS: {
+                    levels.get(4).add(levelNum);
+                    continue;
+                }
+                case STYLISH: {
+                    levels.get(5).add(levelNum);
+                    continue;
+                }
             }
         }
 
         // Loop through the levels list to process each one individually that corresponds to one achievement type
-        Achievement[] allTypes = { Achievement.EXPLORER, Achievement.STUDENT, Achievement.ACHIEVER, Achievement.SPEEDY,
-                Achievement.POCKETS, Achievement.STYLISH };
+        Achievement[] allTypes = Achievement.values();        
         int counter = 0;
         for (ArrayList<Integer> typeLevels : levels) {
             // Create a new AchievementItem with a corresponding enum (from looping through the allTypes array) and 
@@ -106,17 +114,19 @@ public class Achievements extends ApplicationController implements Initializable
         return types;
     }
 
+    //// Public Methods ////
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
         scroll.setFitToWidth(true);
         currentUser = MainApp.getUser();
 
-     numMessage.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
+        numMessage.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
 
-        types.addAll(configureData());
+        types.addAll(this.__configureData());
 
         int row = 1;
         try {
@@ -139,7 +149,6 @@ public class Achievements extends ApplicationController implements Initializable
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
                 grid.setAlignment(Pos.CENTER);
-
             }
         } catch (IOException e) {
             e.printStackTrace();

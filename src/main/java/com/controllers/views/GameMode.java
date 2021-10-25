@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.models.Game;
-import com.models.User;
 import com.util.Sounds;
 import com.MainApp;
 import com.controllers.ApplicationController;
@@ -21,9 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
+/**
+ * The controller for the gamemode select page.
+ */
 public class GameMode extends ApplicationController implements Initializable {
-    User currentUser = MainApp.getUser();
-
+    //// Properties ////
     @FXML
     private ImageView practice;
     @FXML
@@ -37,7 +38,23 @@ public class GameMode extends ApplicationController implements Initializable {
 
     //// Private Methods ////
 
-    private void intialiseMode(Gamemode mode) {
+    /**
+     * A helper method for converting a double representing saturation into a ColorAdjust value
+     * for javafx.
+     * @param saturation a double representing the new saturation.
+     * @return a ColorAdjust instance which can be applied to a node.
+     */
+    private ColorAdjust __setSaturation(double saturation) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setSaturation(saturation);
+        return colorAdjust;
+    }
+
+    /**
+     * Load data for the provided gamemode
+     * @param mode an enum represnting which method to load data for
+     */
+    private void __intialiseMode(Gamemode mode) {
         List<ImageView> imageViews = new ArrayList<ImageView>();
 
         switch (mode) {
@@ -57,7 +74,7 @@ public class GameMode extends ApplicationController implements Initializable {
         for (ImageView view : imageViews) {
             view.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
                 try {
-                    toggleSaturation(imageViews, true);
+                    this.__toggleSaturation(imageViews, true);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -65,7 +82,7 @@ public class GameMode extends ApplicationController implements Initializable {
 
             view.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
                 try {
-                    toggleSaturation(imageViews, false);
+                    this.__toggleSaturation(imageViews, false);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -74,7 +91,7 @@ public class GameMode extends ApplicationController implements Initializable {
             view.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
                     Sounds.playSoundEffect("pop");
-                    selectMode(mode);
+                    this.__selectMode(mode);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -82,32 +99,38 @@ public class GameMode extends ApplicationController implements Initializable {
         }
     }
 
-    private void toggleSaturation(List<ImageView> imageViews, boolean isBright) throws FileNotFoundException {
+    /**
+     * Toggle the saturation of a gamemode option when hovered over.
+     * @param imageViews the list of image views to modify
+     * @param isBright whether to set this to be saturated (bright) or unsaturated (dark)
+     * @throws FileNotFoundException thrown if unable to find the correct file to modify.
+     */
+    private void __toggleSaturation(List<ImageView> imageViews, boolean isBright) throws FileNotFoundException {
         String modeName = imageViews.get(0).getId();
 
         if (isBright) {
-            ColorAdjust colorAdjust = setSaturation(0);
+            ColorAdjust colorAdjust = this.__setSaturation(0);
             imageViews.get(1).setEffect(colorAdjust);
             imageViews.get(1).setOpacity(0.7);
             setImage(modeName + "-bright", imageViews.get(0));
         } else {
-            ColorAdjust colorAdjust = setSaturation(-1);
+            ColorAdjust colorAdjust = this.__setSaturation(-1);
             imageViews.get(1).setEffect(colorAdjust);
             imageViews.get(1).setOpacity(0.3);
             setImage(modeName + "-faded", imageViews.get(0));
         }
     }
 
-    private void selectMode(Gamemode mode) throws IOException {
+    /**
+     * A handler for when one of the gamemodes is selected. When this is called we are changing 
+     * views to the topic select from gamemode select.
+     * @param mode the gamemode that was selected by the user
+     * @throws IOException if unable to load the correct file - shouldn't happen in practice.
+     */
+    private void __selectMode(Gamemode mode) throws IOException {
         Game game = new Game(mode);
         MainApp.setGameState(game);
         MainApp.setRoot(Views.TOPIC);
-    }
-
-    private ColorAdjust setSaturation(double saturation) {
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setSaturation(saturation);
-        return colorAdjust;
     }
 
     //// Public Methods ////
@@ -115,8 +138,8 @@ public class GameMode extends ApplicationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
-        intialiseMode(Gamemode.PRACTICE);
-        intialiseMode(Gamemode.RANKED);
+        this.__intialiseMode(Gamemode.PRACTICE);
+        this.__intialiseMode(Gamemode.RANKED);
 
         setAvatarImage(rankedAvatar);
 

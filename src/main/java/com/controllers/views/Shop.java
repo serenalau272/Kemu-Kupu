@@ -33,6 +33,7 @@ import javafx.scene.layout.GridPane;
  * This class is the controller for the costume shop.
  */
 public class Shop extends ApplicationController implements Initializable {
+    //// Properties ////
     @FXML
     private ImageView backButton;
     @FXML
@@ -57,22 +58,22 @@ public class Shop extends ApplicationController implements Initializable {
 
     private List<AvatarItem> avatars = new ArrayList<>();
 
+    //// Private Methods ////
+
     /**
      * Retrieve information from the data stored for the current user and dynamically generate the costume types
      * accordingly.
      * @return
      */
-    private List<AvatarItem> getData() {
-        List<AvatarItem> avatars = new ArrayList<>();
+    private List<AvatarItem> __getData() {
+        List<AvatarItem> newAvatars = new ArrayList<>();
         AvatarItem avatar;
         // Loop through all the different costume types to create an AvatarItem object to store information from the enum 
         // and add object to the avatars list
-        Avatar[] avatarTypes = { Avatar.DEFAULT, Avatar.WIZARD, Avatar.SAILOR, Avatar.CHEF, Avatar.MAGICIAN,
-                Avatar.QUEEN, Avatar.ALIEN, Avatar.FAIRY, Avatar.NINJA, Avatar.PROFESSOR };
-        for (Avatar type : avatarTypes) {
+        for (Avatar type : Avatar.values()) {
             avatar = new AvatarItem();
             avatar.setAvatar(type);
-            avatars.add(avatar);
+            newAvatars.add(avatar);
         }
 
         return avatars;
@@ -82,28 +83,27 @@ public class Shop extends ApplicationController implements Initializable {
      * Method to set the avatar label text to yellow (using CSS) when it has been clicked on
      * @param clickedAvatarName
      */
-    private void setTextYellow(Node clickedAvatarName) {
+    private void __setTextYellow(Node clickedAvatarName) {
         // Loop through all shop avatars on the screen and set display label to be white
-        for (Node avatar : grid.getChildren()) {
+        for (Node avatar : this.grid.getChildren()) {
             Label label = ((Label) ((AnchorPane) avatar).getChildren().get(1));
             label.getStyleClass().remove("yellow-text");
         }
         // Set the selected shop avatar's display label to be yellow
         clickedAvatarName.getStyleClass().add("yellow-text");
-        ;
     }
 
     /**
      * Method to filter the name of the selected avatar for placing the selected shop avatar on the stage area (when clicked on)
      * @param clickedAvatarName
      */
-    private void setChosenAvatar(Node clickedAvatarName) {
-        setTextYellow(clickedAvatarName);
+    private void __setChosenAvatar(Node clickedAvatarName) {
+        this.__setTextYellow(clickedAvatarName);
         String avatarName = ((Label) clickedAvatarName).getText().replace(" Bee", "");
         if (avatarName == "B") {
-            setChosenAvatar(Avatar.fromString("default"));
+            this.__setChosenAvatar(Avatar.fromString("default"));
         } else {
-            setChosenAvatar(Avatar.fromString(avatarName));
+            this.__setChosenAvatar(Avatar.fromString(avatarName));
         }
     }
 
@@ -111,80 +111,82 @@ public class Shop extends ApplicationController implements Initializable {
      * Method to place the selected shop avatar on the stage area (when clicked on)
      * @param avatar
      */
-    private void setChosenAvatar(Avatar avatar) {
-        chosenAvatar = avatar;
+    private void __setChosenAvatar(Avatar avatar) {
+        this.chosenAvatar = avatar;
         // If the user owns the avatar, then update the current user's avatar to be the one selected
-        if (currentUser.hasBeenPurchased(chosenAvatar)) {
+        if (this.currentUser.hasBeenPurchased(this.chosenAvatar)) {
             try {
-                currentUser.setAvatar(avatar);
+                this.currentUser.setAvatar(avatar);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
 
         try {
-            setImage(chosenAvatar.toString(), userAvatar);
+            this.setImage(this.chosenAvatar.toString(), this.userAvatar);
             // If the user owns the avatar, set the 'stage' label to display only the costume name
-            if (currentUser.hasBeenPurchased(chosenAvatar)) {
-                buyButton.setVisible(false);
-                notEnough.setVisible(false);
-                avatarMessage.setVisible(true);
-                avatarMessage.setText(chosenAvatar.getAvatarName());
-                setImage("background", avatarPrice);
+            if (this.currentUser.hasBeenPurchased(this.chosenAvatar)) {
+                this.buyButton.setVisible(false);
+                this.notEnough.setVisible(false);
+                this.avatarMessage.setVisible(true);
+                this.avatarMessage.setText(this.chosenAvatar.getAvatarName());
+                this.setImage("background", this.avatarPrice);
             } else {
                 // If the user does not own the avatar, set the 'stage' label to display the price and 
                 // whether or not the user has enough stars to purchase it.
-                if (currentUser.canPurchase(chosenAvatar)) {
-                    buyButton.setVisible(true);
-                    notEnough.setVisible(false);
+                if (this.currentUser.canPurchase(this.chosenAvatar)) {
+                    this.buyButton.setVisible(true);
+                    this.notEnough.setVisible(false);
                 } else {
-                    notEnough.setVisible(true);
-                    buyButton.setVisible(false);
+                    this.notEnough.setVisible(true);
+                    this.buyButton.setVisible(false);
                 }
 
-                avatarMessage.setVisible(false);
-                setImage(chosenAvatar.toString(), avatarPrice);
+                this.avatarMessage.setVisible(false);
+                setImage(this.chosenAvatar.toString(), this.avatarPrice);
             }
 
         } catch (FileNotFoundException e) {
-            System.err.println("File for avatar " + chosenAvatar.toString() + " not found.");
+            System.err.println("File for avatar " + this.chosenAvatar.toString() + " not found.");
             e.printStackTrace();
         }
     }
 
     // Update the user's total star count
-    private void setStars() {
-        starTotal.setText(Integer.toString(currentUser.getTotalStars()));
+    private void __setStars() {
+        this.starTotal.setText(Integer.toString(this.currentUser.getTotalStars()));
     }
+
+    //// Public Methods ////
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
-        currentUser = MainApp.getUser();
-        notEnough.setVisible(false);
+        this.currentUser = MainApp.getUser();
+        this.notEnough.setVisible(false);
 
         // Set the stage avatar to be the user's currently set avatar
         try {
-            setImage(currentUser.getSelectedAvatar().toString(), userAvatar);
+            setImage(this.currentUser.getSelectedAvatar().toString(), this.userAvatar);
         } catch (FileNotFoundException e) {
             System.err.println("Unable to set avatar on load");
         }
         // Configure screen information display and components
-        avatarMessage.setText(currentUser.getSelectedAvatar().getAvatarName());
+        this.avatarMessage.setText(currentUser.getSelectedAvatar().getAvatarName());
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
-        setStars();
-        avatars.addAll(getData());
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.PROFILE));
+        this.__setStars();
+        this.avatars.addAll(this.__getData());
 
         // Configure eventHandler for the buy button; allow user to unlock a costume when clicked
-        buyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.buyButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             try {
-                currentUser.unlockCostume(chosenAvatar);
+                this.currentUser.unlockCostume(this.chosenAvatar);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
-            setStars();
-            setChosenAvatar(chosenAvatar);
+            this.__setStars();
+            this.__setChosenAvatar(chosenAvatar);
         });
 
         int column = 0;
@@ -197,7 +199,7 @@ public class Shop extends ApplicationController implements Initializable {
                 fxmlLoader.setLocation(MainApp.class.getResource("/fxmlComponents/shopAvatar.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 anchorPane.addEventHandler(MouseEvent.MOUSE_CLICKED,
-                        _event -> setChosenAvatar(anchorPane.getChildren().get(1)));
+                        _event -> this.__setChosenAvatar(anchorPane.getChildren().get(1)));
                 ShopAvatar shopAvatarController = fxmlLoader.getController();
 
                 // use the ShopAvatar controller to generate an avatar costume type component using the retrieved information

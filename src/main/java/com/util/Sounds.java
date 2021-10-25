@@ -31,7 +31,7 @@ public class Sounds {
      * See https://github.com/javafxports/openjdk-jfx/issues/331 for more
      * information.
      * 
-     * @return the distribution
+     * @return a string representing the distribution
      */
     private static String getOSInformation() {
         // lists all the files ending with -release in the etc folder

@@ -36,6 +36,8 @@ public class MainApp extends Application {
     private static GlobalTimer globalTimer;
     private static API api;
 
+    //// Private Methods ////
+
     //// Public Methods ////
 
     /**
@@ -80,9 +82,6 @@ public class MainApp extends Application {
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
-
-            // Init with default user
-            prepoluateUser2();
         }
 
         return user;
@@ -208,93 +207,6 @@ public class MainApp extends Application {
         stage = s;
         stage.setResizable(false);
         setRoot(Views.MENU);
-    }
-
-    // populate user. to be deleted before submission
-    private static void prepoluateUser() {
-        try {
-            User popUser = new User();
-
-            // load user
-            String res = popUser.login("User1", "123");
-            if (res != null) {
-                // user does not already exist
-                String s = popUser.signup("User1", "123", "Bob Jones");
-                if (s != null) {
-                    System.err.println("Sign In Failed");
-                }
-            }
-
-            // reset stats
-            popUser.resetAccount();
-
-            // add stars
-            popUser.addScore(100, 500);
-
-            // unlock achievements
-            popUser.unlockAchievement("EXPLORER_1");
-            popUser.unlockAchievement("EXPLORER_2");
-            popUser.unlockAchievement("STUDENT_1");
-            popUser.unlockAchievement("STUDENT_2");
-            popUser.unlockAchievement("STUDENT_3");
-            popUser.unlockAchievement("STUDENT_4");
-            popUser.unlockAchievement("STUDENT_5");
-            popUser.unlockAchievement("ACHIEVER_1");
-            popUser.unlockAchievement("ACHIEVER_2");
-            popUser.unlockAchievement("ACHIEVER_3");
-            popUser.unlockAchievement("POCKETS_1");
-            popUser.unlockAchievement("POCKETS_2");
-            popUser.unlockAchievement("POCKETS_3");
-            popUser.unlockAchievement("POCKETS_4");
-            popUser.unlockAchievement("POCKETS_5");
-            popUser.unlockAchievement("SPEEDY_1");
-
-            setUser(popUser);
-        } catch (IOException e) {
-            Modal.showGeneralModal(ErrorModal.INTERNET);
-        }
-    }
-
-    private static void prepoluateUser2() {
-        try {
-
-            User popUser = new User();
-            // load user
-            String res = popUser.login("User2", "123");
-            if (res != null) {
-                // user does not already exist
-                String s = popUser.signup("User2", "123", "Sandra Smith");
-                if (s != null) {
-                    System.err.println("Sign In Failed");
-                }
-            }
-
-            // reset stats
-            popUser.resetAccount();
-
-            // add stars
-            popUser.addScore(95, 250);
-
-            // unlock achievements
-            popUser.unlockAchievement("EXPLORER_1");
-            popUser.unlockAchievement("EXPLORER_2");
-            popUser.unlockAchievement("STUDENT_1");
-            popUser.unlockAchievement("STUDENT_2");
-            popUser.unlockAchievement("STUDENT_3");
-            popUser.unlockAchievement("STUDENT_4");
-            popUser.unlockAchievement("STUDENT_5");
-            popUser.unlockAchievement("ACHIEVER_1");
-            popUser.unlockAchievement("ACHIEVER_2");
-            popUser.unlockAchievement("POCKETS_1");
-            popUser.unlockAchievement("POCKETS_2");
-            popUser.unlockAchievement("POCKETS_3");
-            popUser.unlockAchievement("POCKETS_4");
-            popUser.unlockAchievement("SPEEDY_1");
-
-            setUser(popUser);
-        } catch (IOException e) {
-            Modal.showGeneralModal(ErrorModal.INTERNET);
-        }
     }
 
     /**

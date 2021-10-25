@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the sigin view.
  */
 public class SignIn extends ApplicationController implements Initializable {
+    //// Properties ////
     @FXML
     private ImageView backButton;
     @FXML
@@ -36,7 +37,14 @@ public class SignIn extends ApplicationController implements Initializable {
     @FXML
     private ImageView incorrectMessage;
 
-    private boolean signin() throws IOException {
+    //// Private Methods ////
+
+    /**
+     * Attempts to sign in a user with the provided values from the next fields
+     * @return a boolean indicating which is true if the user was signed in, false otherwise
+     * @throws IOException if unable to contact the API
+     */
+    private boolean __signin() throws IOException {
         String username = usernameInput.getText();
         String pwd = passwordInput.getText();
 
@@ -52,63 +60,68 @@ public class SignIn extends ApplicationController implements Initializable {
         }
     }
 
+    //// Public Methods ////
+
+    /**
+     * Button handler for when the sign in button is clicked.
+     */
     public void onSignIn() {
         try {
-            boolean res = signin();
+            boolean res = this.__signin();
 
             if (res == true) {
                 // signed in!!
-                incorrectMessage.setVisible(false);
+                this.incorrectMessage.setVisible(false);
                 MainApp.setRoot(Views.PROFILE);
             } else {
                 // incorrect
-                incorrectMessage.setVisible(true);
-                usernameInput.clear();
-                passwordInput.clear();
-                usernameInput.requestFocus();
+                this.incorrectMessage.setVisible(true);
+                this.usernameInput.clear();
+                this.passwordInput.clear();
+                this.usernameInput.requestFocus();
             }
 
         } catch (IOException exception) {
             Modal.showGeneralModal(ErrorModal.INTERNET);
-            usernameInput.clear();
-            passwordInput.clear();
-            usernameInput.requestFocus();
+            this.usernameInput.clear();
+            this.passwordInput.clear();
+            this.usernameInput.requestFocus();
         }
     }
 
     @Override
     protected void start() {
-        usernameInput.requestFocus();
+        this.usernameInput.requestFocus();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
-        incorrectMessage.setVisible(false);
-        usernameInput.clear();
-        passwordInput.clear();
+        this.incorrectMessage.setVisible(false);
+        this.usernameInput.clear();
+        this.passwordInput.clear();
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(Views.MENU);
         });
 
-        usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        this.usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                passwordInput.requestFocus();
+                this.passwordInput.requestFocus();
             }
         });
 
-        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        this.passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                onSignIn();
+                this.onSignIn();
             }
         });
 
-        signInButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            onSignIn();
+        this.signInButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            this.onSignIn();
         });
 
-        createAccount.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.createAccount.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(Views.NEWUSER);
         });
     }

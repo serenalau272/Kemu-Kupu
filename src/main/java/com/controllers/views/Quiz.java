@@ -27,16 +27,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
 
+/**
+ * This class is the controller for the quiz
+ */
 public class Quiz extends ApplicationController implements Initializable {
+    //// Constants ////
     private final String[] correctMessages = { "Good Job! You're doing great!", "Ka mau te wehi!",
             "Superb! You're a spelling superstar!", "Bzzzz... Spelling Bee here!", "Do the mahi! Get the treats!" };
     private final String[] incorrectMessages = { "No sweat! Practice makes progress!",
             "You've got this! Try again next time!", "Third times the charm!" };
 
-    private Game game;
-    Quiz controller;
+    //// Properties ////
 
-    Clock timer;
+    private Game game;
+    private Quiz controller;
+
+    private Clock timer;
 
     @FXML
     private Label message;
@@ -119,69 +125,73 @@ public class Quiz extends ApplicationController implements Initializable {
     /**
      * shows appropriate ImageViews based upon whether one is awaiting a response
      */
-    private void toggleLabels() {
-        game.setAwaitingInput(!game.getAwaitingInput());
+    private void __toggleLabels() {
+        this.game.setAwaitingInput(!this.game.getAwaitingInput());
 
-        if (game.getAwaitingInput()) {
-            showElementsForInput();
+        if (this.game.getAwaitingInput()) {
+            this.__showElementsForInput();
         } else {
-            showElementsForResponse();
+            this.__showElementsForResponse();
         }
     }
 
     /**
      * shows appropriate ImageViews when response given, and awaiting 'continue'
      */
-    private void showElementsForResponse() {
-        setResponseImageView();
-        addSubText();
+    private void __showElementsForResponse() {
+        this.__setResponseImageView();
+        this.__addSubText();
 
         // hide elements
-        submitButton.setVisible(false);
-        skipButton.setVisible(false);
-        hearButton.setVisible(false);
-        setMacronVisibility(false);
+        this.submitButton.setVisible(false);
+        this.skipButton.setVisible(false);
+        this.hearButton.setVisible(false);
+        this.__setMacronVisibility(false);
 
         // show elements
-        responseImg.setVisible(true);
-        continueLabel.setVisible(true);
-        message.setVisible(true);
+        this.responseImg.setVisible(true);
+        this.continueLabel.setVisible(true);
+        this.message.setVisible(true);
     }
 
     /**
      * shows appropriate ImageViews when awaiting response
      */
-    private void showElementsForInput() {
-        avatarMessage.setText("");
+    private void __showElementsForInput() {
+        this.avatarMessage.setText("");
 
         // show elements
-        submitButton.setVisible(true);
-        skipButton.setVisible(true);
-        hearButton.setVisible(true);
-        setMacronVisibility(true);
-        wordIndexBanner.setVisible(true);
+        this.submitButton.setVisible(true);
+        this.skipButton.setVisible(true);
+        this.hearButton.setVisible(true);
+        this.__setMacronVisibility(true);
+        this.wordIndexBanner.setVisible(true);
 
         // hide elements
-        responseImg.setVisible(false);
-        continueLabel.setVisible(false);
-        message.setVisible(false);
-        score.setVisible(false);
-        speechBubble.setVisible(false);
+        this.responseImg.setVisible(false);
+        this.continueLabel.setVisible(false);
+        this.message.setVisible(false);
+        this.score.setVisible(false);
+        this.speechBubble.setVisible(false);
     }
 
-    private void setMacronVisibility(boolean isVisible) {
-        aButton.setVisible(isVisible);
-        eButton.setVisible(isVisible);
-        iButton.setVisible(isVisible);
-        oButton.setVisible(isVisible);
-        uButton.setVisible(isVisible);
-        macronBackground.setVisible(isVisible);
+    /**
+     * Change the visibility of the macron buttons
+     * @param isVisible if true, will show the macrons hiding otherwise
+     */
+    private void __setMacronVisibility(boolean isVisible) {
+        this.aButton.setVisible(isVisible);
+        this.eButton.setVisible(isVisible);
+        this.iButton.setVisible(isVisible);
+        this.oButton.setVisible(isVisible);
+        this.uButton.setVisible(isVisible);
+        this.macronBackground.setVisible(isVisible);
     }
 
     /**
      * replaces response image with appropriate image based upon status
      */
-    private void setResponseImageView() {
+    private void __setResponseImageView() {
         try {
             switch (this.game.getWord().getStatus()) {
             case SKIPPED:
@@ -206,41 +216,45 @@ public class Quiz extends ApplicationController implements Initializable {
     /**
      * Add subtext for faulted and failed responses
      */
-    private void addSubText() {
+    private void __addSubText() {
         Word word = this.game.getWord();
         switch (word.getStatus()) {
         case FAULTED:
-            message.setText("Hint: Translation is '" + word.getEnglish() + "'");
+            this.message.setText("Hint: Translation is '" + word.getEnglish() + "'");
             break;
         case FAILED:
             String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
-            message.setText(incorrectMsg);
+            this.message.setText(incorrectMsg);
 
             if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null)
                 return;
 
-            avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[1]);
-            speechBubble.setVisible(true);
+            this.avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[1]);
+            this.speechBubble.setVisible(true);
             break;
         case MASTERED:
             String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
-            message.setText(correctMsg);
+            this.message.setText(correctMsg);
 
             if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null)
                 return;
 
-            avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[0]);
-            speechBubble.setVisible(true);
+            this.avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[0]);
+            this.speechBubble.setVisible(true);
             break;
         default:
-            message.setText("");
+            this.message.setText("");
             break;
         }
     }
 
-    private void setScoreIncrease(int scoreIncrease) {
+    /**
+     * Show the user the feedback for gaining points
+     * @param scoreIncrease the number of points gained, which corresponds to which image will be displayed to the user.
+     */
+    private void __setScoreIncrease(int scoreIncrease) {
         try {
-            setImage(scoreIncrease, this.score);
+            this.setImage(scoreIncrease, this.score);
             this.score.setVisible(true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -257,10 +271,8 @@ public class Quiz extends ApplicationController implements Initializable {
         // SAFTEY: We have already validated that we are at a currently valid word, so a
         // null pointer check isn't needed (or out of bounds check).
         try {
-
             MainApp.getTTS().readWord(this.game.getWord(), repeats, Language.MAORI);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -273,7 +285,7 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void __updateProgressBar(int i) {
         try {
-            setImage(i, progressBar);
+            this.setImage(i, progressBar);
         } catch (FileNotFoundException e) {
             System.err.println("Unable to load progress bar for " + i + " error " + e);
         }
@@ -284,15 +296,18 @@ public class Quiz extends ApplicationController implements Initializable {
      */
     private void __updateWordIndexBanner() {
         try {
-            setImage(this.game.getWordIndex(), wordIndexBanner);
+            this.setImage(this.game.getWordIndex(), wordIndexBanner);
         } catch (FileNotFoundException exception) {
             System.err.println("Unable to load banner for index: " + this.game.getWordIndex());
         }
     }
 
+    /**
+     * Set the topic the user is being tested on
+     */
     private void setTopicBanner() {
         try {
-            setImage(this.game.getTopic().getName(), topicBanner);
+            this.setImage(this.game.getTopic().getName(), topicBanner);
         } catch (FileNotFoundException exception) {
             System.err.println("Unable to load banner for topic: " + this.game.getTopic().getName());
         }
@@ -311,32 +326,32 @@ public class Quiz extends ApplicationController implements Initializable {
             return;
         }
 
-        timer.stop();
+        this.timer.stop();
 
         InputField.setDisableInputs(false);
 
         if (this.game.getWord().isEqualStrict(input)) {
             // Correct i.e. MASTERED. Increment score.
-            this.game.getWord().setScoreMultiplier(timer.getScoreMultiplier());
+            this.game.getWord().setScoreMultiplier(this.timer.getScoreMultiplier());
             Sounds.playSoundEffect("correct");
             this.__updateProgressBar(this.game.getScore());
-            this.setScoreIncrease(timer.getScoreMultiplier() * 5);
+            this.__setScoreIncrease(this.timer.getScoreMultiplier() * 5);
         }
 
-        toggleLabels();
+        this.__toggleLabels();
     }
 
     /**
      * function to continue from response given for word, determined by status
      */
     public void onEnterContinue() {
-        toggleLabels();
-        timer.start();
+        this.__toggleLabels();
+        this.timer.start();
 
         if (this.game.getWord().getStatus() == Status.FAULTED) {
             this.__hearWord(1);
         } else {
-            __loadNextWord();
+            this.__loadNextWord();
         }
     }
 
@@ -344,12 +359,11 @@ public class Quiz extends ApplicationController implements Initializable {
      * Handler for the skip button
      */
     public void skipWordClick() {
-        // required to prevent bug
         this.game.getWord().setStatus(Status.SKIPPED);
         InputField.setDisableInputs(false);
 
-        timer.stop();
-        toggleLabels();
+        this.timer.stop();
+        this.__toggleLabels();
     }
 
     public void pauseClick() {
@@ -361,33 +375,33 @@ public class Quiz extends ApplicationController implements Initializable {
     }
 
     public void onEnter(Word input, boolean isInputEmpty) {
-        if (game.getAwaitingInput()) {
-            checkInput(input, isInputEmpty);
-        } else if (continueLabel.isVisible() && !continueLabel.isDisabled()) {
+        if (this.game.getAwaitingInput()) {
+            this.checkInput(input, isInputEmpty);
+        } else if (this.continueLabel.isVisible() && !this.continueLabel.isDisabled()) {
             InputField.setDisableInputs(true);
             InputField.reconfigureInputField(this.game.getWord());
 
-            onEnterContinue();
+            this.onEnterContinue();
         }
     }
 
     @Override
     protected void start() {
-        showElementsForInput(); // no response given initially
+        this.__showElementsForInput(); // no response given initially
 
-        if (game.getGameMode() == Gamemode.PRACTICE) {
-            practiceSign.setVisible(true);
-            clock.setVisible(false);
+        if (this.game.getGameMode() == Gamemode.PRACTICE) {
+            this.practiceSign.setVisible(true);
+            this.clock.setVisible(false);
             Sounds.playMusic("practice");
         } else {
-            arc.setVisible(true);
-            timerText.setVisible(true);
+            this.arc.setVisible(true);
+            this.timerText.setVisible(true);
             Sounds.playMusic("game");
         }
 
-        __hearWord(1);
-        timer.start();
-        InputField.configureInputField(game.getWord(), controller, submitButton);
+        this.__hearWord(1);
+        this.timer.start();
+        InputField.configureInputField(this.game.getWord(), this.controller, this.submitButton);
     }
 
     @Override
@@ -395,44 +409,44 @@ public class Quiz extends ApplicationController implements Initializable {
         // Inital setup & loading of data
         super.initialize();
 
-        setAvatarImage(avatar);
-        avatarMessage.setWrapText(true);
+        this.setAvatarImage(avatar);
+        this.avatarMessage.setWrapText(true);
 
         this.game = MainApp.getGameState();
-        game.setWordIndex(0);
-        setTopicBanner();
+        this.game.setWordIndex(0);
+        this.setTopicBanner();
         // Load words from the MainApp
         this.__updateWordIndexBanner();
         // configure timer
-        timer = new Clock(arc, timerText);
+        this.timer = new Clock(arc, timerText);
         Modal.setClock(timer);
 
         controller = this;
 
-        settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             super.settingsClick();
         });
 
-        pauseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.pauseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             pauseClick();
         });
 
-        helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             helpClick();
         });
 
-        menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Modal.showGeneralModal(ConfirmModal.INSTANTMENU);
         });
 
-        hearButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
+        this.hearButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> __hearWord(1));
 
-        skipButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
+        this.skipButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> skipWordClick());
 
-        aButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ā"));
-        eButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ē"));
-        iButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ī"));
-        oButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ō"));
-        uButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ū"));
+        this.aButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ā"));
+        this.eButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ē"));
+        this.iButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ī"));
+        this.oButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ō"));
+        this.uButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> InputField.insertMacron("ū"));
     }
 }

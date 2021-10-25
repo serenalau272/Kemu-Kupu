@@ -24,6 +24,8 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the sigin view.
  */
 public class NewUser extends ApplicationController implements Initializable {
+
+    //// Properties ////
     @FXML
     private ImageView backButton;
     @FXML
@@ -35,7 +37,12 @@ public class NewUser extends ApplicationController implements Initializable {
     @FXML
     private ImageView createAccountButton;
 
-    private void onCreateAccount() {
+    //// Private (helper) Methods ////
+
+    /**
+     * A handler for when an account is created.
+     */
+    private void __onCreateAccount() {
         User user;
         try {
             user = new User();
@@ -56,17 +63,17 @@ public class NewUser extends ApplicationController implements Initializable {
             } else {
                 // duplicate username
                 Modal.showGeneralModal(ErrorModal.USERNAME);
-                passwordInput.clear();
-                usernameInput.clear();
-                nicknameInput.clear();
-                usernameInput.requestFocus();
+                this.passwordInput.clear();
+                this.usernameInput.clear();
+                this.nicknameInput.clear();
+                this.usernameInput.requestFocus();
             }
         } catch (IOException e) {
             Modal.showGeneralModal(ErrorModal.INTERNET);
-            passwordInput.clear();
-            usernameInput.clear();
-            nicknameInput.clear();
-            usernameInput.requestFocus();
+            this.passwordInput.clear();
+            this.usernameInput.clear();
+            this.nicknameInput.clear();
+            this.usernameInput.requestFocus();
         }
     }
 
@@ -75,33 +82,35 @@ public class NewUser extends ApplicationController implements Initializable {
         nicknameInput.requestFocus();
     }
 
+    //// Public Methods ////
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(Views.SIGNIN);
         });
 
-        createAccountButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            onCreateAccount();
+        this.createAccountButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            this.__onCreateAccount();
         });
 
-        nicknameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        this.nicknameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 usernameInput.requestFocus();
             }
         });
 
-        usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        this.usernameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 passwordInput.requestFocus();
             }
         });
 
-        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        this.passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                onCreateAccount();
+                this.__onCreateAccount();
             }
         });
 

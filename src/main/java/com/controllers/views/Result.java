@@ -15,9 +15,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * The controller for the results page
+ */
 public class Result extends ApplicationController implements Initializable {
+    //// Properties ////
     @FXML
     TextField hiddenField;
+
+    //// Private Methods ////
+
+    //// Public Methods ////
 
     @Override
     protected void start() {

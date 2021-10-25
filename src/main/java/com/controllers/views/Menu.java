@@ -27,6 +27,9 @@ import javafx.scene.image.ImageView;
  * This class is the controller for the menu screen
  */
 public class Menu extends ApplicationController implements Initializable {
+
+    //// Properties ////
+
     @FXML
     private ImageView exitGameButton;
     @FXML
@@ -49,45 +52,63 @@ public class Menu extends ApplicationController implements Initializable {
     private Animation menuAnimation;
     private ImageView[] animated = new ImageView[4];
 
-    private void onAnimateOut(Duration dur, double delta) {
-        animateImage(dur, delta, 0);
-    }
+    //// Private (helper) Methods ////
 
-    private void animateImage(Duration dur, double delta, int index) {
+    /**
+     * Animate the images on the homescreen to slide them horizontally.
+     * @param dur duration to slide
+     * @param delta total offset of the images inital location (how far to move it)
+     * @param index the index of the image to move
+     */
+    private void __animateImage(Duration dur, double delta, int index) {
         Animation anim;
 
-        if (animated[index].getId().equals("exitGameButton")) {
-            anim = new SlideComponentHorizontal(animated[index], dur, delta).getAnimator();
+        if (this.animated[index].getId().equals("exitGameButton")) {
+            anim = new SlideComponentHorizontal(this.animated[index], dur, delta).getAnimator();
             Animation anim2 = new SlideComponentHorizontal(exitMessage, dur, delta).getAnimator();
             anim2.play();
         } else {
-            anim = new SlideComponentHorizontal(animated[index], dur, delta * -1).getAnimator();
+            anim = new SlideComponentHorizontal(this.animated[index], dur, delta * -1).getAnimator();
         }
 
-        if (index + 1 >= animated.length) {
-            anim.setOnFinished(e -> transition());
+        if (index + 1 >= this.animated.length) {
+            anim.setOnFinished(e -> this.__transition());
         } else {
-            anim.setOnFinished(e -> animateImage(dur, delta, index + 1));
+            anim.setOnFinished(e -> this.__animateImage(dur, delta, index + 1));
         }
 
         anim.play();
     }
 
-    private void transition() {
-        menuAnimation.stop();
+    /**
+     * A proxy method to animate an image.
+     * @param dur duration to move the image.
+     * @param delta how far to move the image.
+     */
+    private void __onAnimateOut(Duration dur, double delta) {
+        this.__animateImage(dur, delta, 0);
+    }
+
+    /**
+     * Create an animation between the current view and a new view.
+     */
+    private void __transition() {
+        this.menuAnimation.stop();
         MainApp.setRoot(Views.GAMEMODE);
     }
-
+    
     @Override
     protected void start() {
-        animated[0] = exitGameButton;
-        animated[3] = helpButton;
-        animated[1] = settingsButton;
-        animated[2] = profileButton;
+        this.animated[0] = exitGameButton;
+        this.animated[3] = helpButton;
+        this.animated[1] = settingsButton;
+        this.animated[2] = profileButton;
 
-        menuAnimation = new OscillatingComponent(playButton).getAnimator();
-        menuAnimation.play();
+        this.menuAnimation = new OscillatingComponent(playButton).getAnimator();
+        this.menuAnimation.play();
     }
+
+    //// Public Methods ////
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,7 +119,7 @@ public class Menu extends ApplicationController implements Initializable {
 
         // Set event handlers
         // exiting
-        exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        this.exitGameButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MainApp.setRoot(Views.EXIT);
             event.consume();
 
@@ -121,13 +142,12 @@ public class Menu extends ApplicationController implements Initializable {
             });
         });
 
-        settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.settingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             super.settingsClick();
         });
 
-        profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             if (MainApp.getUser() == null) {
-                // guest
                 MainApp.setRoot(Views.SIGNIN);
             } else if (MainApp.getUser().getUsername() == null) {
                 MainApp.setRoot(Views.SIGNIN);
@@ -136,12 +156,12 @@ public class Menu extends ApplicationController implements Initializable {
             }
         });
 
-        helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
+        this.helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Modal.showModal(Modals.HELP);
         });
 
-        playButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            onAnimateOut(Duration.millis(100), 120);
+        this.playButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            this.__onAnimateOut(Duration.millis(100), 120);
             event.consume();
         });
     }

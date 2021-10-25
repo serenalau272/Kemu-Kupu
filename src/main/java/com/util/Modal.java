@@ -16,26 +16,18 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.StackPane;
 
 /**
- * This Util class is used to configure the functionality for all modals in our
- * GUI
+ * This Util class is used to configure the functionality for all modals in our GUI
  */
 public class Modal {
-    // for interacting with the quiz timer
     private static Clock clock;
 
-    /**
-     * Set clock
-     * 
-     * @param clock
-     * 
-     */
-    public static void setClock(Clock c) {
-        clock = c;
-    }
+    //// Private Methods ////
+
+
+    //// Public Methods ////
 
     /**
      * Load and show a modal to the user
-     * 
      * @param m the modal to load
      */
     public static void showModal(Modals m) {
@@ -43,7 +35,7 @@ public class Modal {
             if (MainApp.getBaseView() == Views.QUIZ) // stop clock only if we were on quiz screen
                 clock.stop();
 
-            disableScreenNodes(true);
+            toggleDisableScreenNode(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
             Node modal = (Node) fxmlLoader.load();
             MainApp.getStackPane().getChildren().add(modal);
@@ -55,9 +47,8 @@ public class Modal {
     }
 
     /**
-     * Show general modal
-     * 
-     * @param type
+     * Show general modal to the user.
+     * @param type an enum representing the general type of modal to show.
      */
     public static void showGeneralModal(GeneralModal type) {
         FXMLLoader fxmlLoader;
@@ -67,7 +58,7 @@ public class Modal {
         try {
             if (MainApp.getBaseView() == Views.QUIZ) // stop clock only if we were on quiz screen
                 clock.stop();
-            disableScreenNodes(true);
+            toggleDisableScreenNode(true);
 
             switch (modalType) {
             case "ConfirmModal":
@@ -103,13 +94,14 @@ public class Modal {
     }
 
     /**
-     * closes modal
+     * Close a currently open modal.
+     * @param restartTimer if a quiz, whether or not to restart the timer. 
      */
     public static void closeModal(boolean restartTimer) {
         int size = MainApp.getStackPane().getChildren().size();
         MainApp.getStackPane().getChildren().remove(size - 1);
         removeBlur();
-        disableScreenNodes(false);
+        toggleDisableScreenNode(false);
 
         if (MainApp.getBaseView() == Views.QUIZ && restartTimer) {
             clock.resume();
@@ -118,9 +110,10 @@ public class Modal {
     }
 
     /**
-     * Disable all screen nodes
+     * Change whether screen nodes are disabled or not.
+     * @param isDisable if true, disables all nodes, if true enables.
      */
-    public static void disableScreenNodes(boolean isDisable) {
+    public static void toggleDisableScreenNode(boolean isDisable) {
         StackPane stackpane = MainApp.getStackPane();
 
         stackpane.getChildren().get(0).setDisable(isDisable);
@@ -133,7 +126,7 @@ public class Modal {
     }
 
     /**
-     * adds blur from background pane
+     * Adds blur to the background pane.
      */
     public static void addBlur() {
         BoxBlur blur = new BoxBlur();
@@ -142,10 +135,17 @@ public class Modal {
     }
 
     /**
-     * removes blur from background pane
+     * Removes blur from the background pane.
      */
     public static void removeBlur() {
         MainApp.getStackPane().getChildren().get(0).setEffect(null);
     }
 
+    /**
+     * Set clock
+     * @param clock
+     */
+    public static void setClock(Clock c) {
+        clock = c;
+    }
 }

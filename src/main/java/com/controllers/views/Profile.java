@@ -26,8 +26,9 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the settings modal.
  */
 public class Profile extends ApplicationController implements Initializable {
-    User currentUser;
-    WheelTimer timer;
+    //// Properties ////
+    private User currentUser;
+    private WheelTimer timer;
 
     @FXML
     ImageView backButton;
@@ -64,78 +65,97 @@ public class Profile extends ApplicationController implements Initializable {
     @FXML
     Label wheel;
 
-    private void configureStaticEntries() {
-        star.setText(Integer.toString(currentUser.getTotalStars()));
-        achievements.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
+    //// Private (helper) Methods ////
+
+    /**
+     * Load data from the user into labels on the page
+     */
+    private void __configureStaticEntries() {
+        this.star.setText(Integer.toString(this.currentUser.getTotalStars()));
+        this.achievements.setText(Integer.toString(this.currentUser.getNumAchievements()) + "/20");
         setAvatarImage(userAvatar);
     }
 
-    private void configureDynamicEntries() {
-        name.setText("Hello " + currentUser.getNickname() + "!");
-        score.setText(Integer.toString(currentUser.getHighScore()));
-        nicknameInput.setText(currentUser.getNickname());
-        usernameInput.setText(currentUser.getUsername());
-        nicknameInput.setEditable(false);
-        usernameInput.setEditable(false);
+    /**
+     * Set all dynamic labels from the user, such as name, nickname, etc
+     */
+    private void __configureDynamicEntries() {
+        this.name.setText("Hello " + this.currentUser.getNickname() + "!");
+        this.score.setText(Integer.toString(this.currentUser.getHighScore()));
+        this.nicknameInput.setText(this.currentUser.getNickname());
+        this.usernameInput.setText(this.currentUser.getUsername());
+        this.nicknameInput.setEditable(false);
+        this.usernameInput.setEditable(false);
     }
 
-    private void inputEditing(TextField input) {
+    /**
+     * Configure a provided textfield as editable
+     * @param input the textfield to set as editable
+     */
+    private void __inputEditing(TextField input) {
         input.setEditable(true);
         input.setStyle("-fx-background-color: #7D6B50");
         input.requestFocus();
         input.positionCaret(input.getText().length());
     }
 
-    private void addHandlers(ImageView editBtn, TextField input) {
+    /**
+     * Initalise a button with handlers
+     * @param editBtn the button to add handlers to
+     * @param input the text field to link this button to
+     */
+    private void __addHandlers(ImageView editBtn, TextField input) {
         editBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            inputEditing(input);
+            this.__inputEditing(input);
         });
 
         input.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if (!usernameInput.getText().equals("")) {
+                if (!this.usernameInput.getText().equals("")) {
                     try {
-                        currentUser.setUsername(usernameInput.getText());
+                        this.currentUser.setUsername(usernameInput.getText());
                     } catch (IOException e) {
                         Modal.showGeneralModal(ErrorModal.INTERNET);
                     }
                 }
-                if (!nicknameInput.getText().equals("") && !(nicknameInput.getText().length() > 10)) {
+                if (!this.nicknameInput.getText().equals("") && !(this.nicknameInput.getText().length() > 10)) {
                     try {
-                        currentUser.setNickname(nicknameInput.getText());
+                        this.currentUser.setNickname(nicknameInput.getText());
                     } catch (IOException e) {
                         Modal.showGeneralModal(ErrorModal.INTERNET);
                     }
                 } else {
-                    inputEditing(nicknameInput);
+                    this.__inputEditing(this.nicknameInput);
                     Modal.showGeneralModal(ErrorModal.NICKNAME);
                 }
                 usernameInput.setStyle("-fx-background-color: #DFC49B;");
                 nicknameInput.setStyle("-fx-background-color: #DFC49B;");
-                configureDynamicEntries();
+                this.__configureDynamicEntries();
             }
         });
     }
 
+    //// Public Methods ////
+
     @Override
     protected void start() {
         super.start();
-        addHandlers(editNickname, nicknameInput);
-        addHandlers(editUsername, usernameInput);
+        this.__addHandlers(editNickname, nicknameInput);
+        this.__addHandlers(editUsername, usernameInput);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
-        currentUser = MainApp.getUser();
+        this.currentUser = MainApp.getUser();
 
-        nicknameInput.setFocusTraversable(false);
-        usernameInput.setFocusTraversable(false);
-        configureStaticEntries();
-        configureDynamicEntries();
+        this.nicknameInput.setFocusTraversable(false);
+        this.usernameInput.setFocusTraversable(false);
+        this.__configureStaticEntries();
+        this.__configureDynamicEntries();
 
-        timer = new WheelTimer(wheel, null);
-        timer.start();
+        this.timer = new WheelTimer(wheel, null);
+        this.timer.start();
         // Set event handlers
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -151,24 +171,26 @@ public class Profile extends ApplicationController implements Initializable {
 
         this.deleteButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             Modal.showGeneralModal(ConfirmModal.DELETE);
-            // timer.stop();
         });
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             MainApp.setRoot(Views.MENU);
-            timer.stop();
+            this.timer.stop();
         });
+
         this.shopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             MainApp.setRoot(Views.SHOP);
-            timer.stop();
+            this.timer.stop();
         });
+
         this.achievementsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             MainApp.setRoot(Views.ACHIEVEMENT);
-            timer.stop();
+            this.timer.stop();
         });
+
         this.wheelButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             MainApp.setRoot(Views.WHEEL);
-            timer.stop();
+            this.timer.stop();
         });
     }
 }

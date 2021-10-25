@@ -29,6 +29,7 @@ import javafx.util.Duration;
  * This class is the controller for the attributions modal.
  */
 public class Wheel extends ApplicationController implements Initializable {
+    //// Properties ////
     @FXML
     private ImageView wheel;
     @FXML
@@ -52,7 +53,14 @@ public class Wheel extends ApplicationController implements Initializable {
     private int reward;
     private final int[] rewardStars = { 3, 2, 1, 10, 1, 2, 5, 1 };
 
-    private void addPocketAchievement(int bound, int stars) {
+    //// Private (helper) Methods ////
+
+    /**
+     * Attempts to unlock a star achievement for the current user
+     * @param bound the level to compare against
+     * @param stars the stars the user has earned
+     */
+    private void __addPocketAchievement(int bound, int stars) {
         if (stars >= bound) {
             String s;
             try {
@@ -62,93 +70,113 @@ public class Wheel extends ApplicationController implements Initializable {
                 return;
             }
             try {
-                currentUser.unlockAchievement(s);
+                this.currentUser.unlockAchievement(s);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
-    private void giveReward() {
+    /**
+     * Provide a reward to the user in the form of a popup to be collected.
+     */
+    private void __giveReward() {
         double rotation = wheel.getRotate();
         int truncateFactor = ((int) rotation) / 360;
         int rotatedBy = (int) rotation - truncateFactor * 360;
         int segment = (int) Math.floor(((rotatedBy + 270) % 360) / 45.0); // should be 0 to 7
 
-        reward = rewardStars[segment];
+        this.reward = rewardStars[segment];
 
         PauseTransition wait = new PauseTransition(new Duration(800));
         wait.setOnFinished(e -> {
-            setPopupVisibility(true);
-            starNum.setText(Integer.toString(reward) + " stars");
+            this.__setPopupVisibility(true);
+            this.starNum.setText(Integer.toString(this.reward) + " stars");
             Sounds.playSoundEffect("reward");
         });
 
         wait.play();
     }
 
-    private void collectReward() {
+    /**
+     * The user collects their rewards.
+     * This function adds the given stars to their total.
+     */
+    private void __collectReward() {
         try {
-            currentUser.addScore(-1, reward);
-            int totalStars = currentUser.getTotalStars();
-            addPocketAchievement(10, totalStars);
-            addPocketAchievement(50, totalStars);
-            addPocketAchievement(100, totalStars);
-            addPocketAchievement(200, totalStars);
-            addPocketAchievement(300, totalStars);
+            this.currentUser.addScore(-1, this.reward);
+            int totalStars = this.currentUser.getTotalStars();
+            this.__addPocketAchievement(10, totalStars);
+            this.__addPocketAchievement(50, totalStars);
+            this.__addPocketAchievement(100, totalStars);
+            this.__addPocketAchievement(200, totalStars);
+            this.__addPocketAchievement(300, totalStars);
         } catch (IOException exception) {
-            System.err.println("Unable to add stars " + reward);
+            System.err.println("Unable to add stars " + this.reward);
             Modal.showGeneralModal(ErrorModal.INTERNET);
         }
 
         MainApp.getGlobalTimer().restart();
-        timer.start();
-        spinButton.setVisible(false);
-        updatestarMessage();
+        this.timer.start();
+        this.spinButton.setVisible(false);
+        this.__updatestarMessage();
 
-        setPopupVisibility(false);
+        this.__setPopupVisibility(false);
     }
 
-    private void updatestarMessage() {
-        starMessage.setText(Integer.toString(currentUser.getTotalStars()));
+    /**
+     * Update the star label with the number of stars they have been awarded.
+     */
+    private void __updatestarMessage() {
+        this.starMessage.setText(Integer.toString(this.currentUser.getTotalStars()));
     }
 
-    private void spin() {
+    /**
+     * The user has clicked the spin wheel, so this resets the global timer and then 
+     * begins the spinning animation.
+     */
+    private void __spin() {
         if (MainApp.getGlobalTimer().getDuration() <= 0) {
-            anim.play();
+            this.anim.play();
         }
     }
 
-    private void setPopupVisibility(boolean visibility) {
-        popup.setVisible(visibility);
-        collectButton.setVisible(visibility);
-        starNum.setVisible(visibility);
+    /**
+     * Toggle the visibility of the reward popup
+     * @param visibility a boolean, if true shows the popup, hides it otherwise
+     */
+    private void __setPopupVisibility(boolean visibility) {
+        this.popup.setVisible(visibility);
+        this.collectButton.setVisible(visibility);
+        this.starNum.setVisible(visibility);
     }
+
+    //// Public Methods ////
 
     @Override
     protected void start() {
-        setPopupVisibility(false);
+        this.__setPopupVisibility(false);
 
-        timer = new WheelTimer(timerMessage, spinButton);
-        timer.start();
-        updatestarMessage();
+        this.timer = new WheelTimer(this.timerMessage, this.spinButton);
+        this.timer.start();
+        this.__updatestarMessage();
 
-        anim = new SpinningWheel(wheel).getAnimator();
-        anim.setOnFinished(e -> giveReward());
+        this.anim = new SpinningWheel(this.wheel).getAnimator();
+        this.anim.setOnFinished(e -> this.__giveReward());
 
-        spinButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> spin());
-        collectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> collectReward());
+        this.spinButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.__spin());
+        this.collectButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.__collectReward());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize();
 
-        currentUser = MainApp.getUser();
+        this.currentUser = MainApp.getUser();
 
-        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MainApp.setRoot(Views.PROFILE);
-            timer.stop();
+            this.timer.stop();
         });
 
     }

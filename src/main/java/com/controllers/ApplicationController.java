@@ -100,7 +100,7 @@ public class ApplicationController {
      * @throws FileNotFoundException
      */
     protected void setImage(Integer i, ImageView view) throws FileNotFoundException {
-        __setImage(i.toString(), view);
+        this.__setImage(i.toString(), view);
     }
 
     /**
@@ -112,7 +112,7 @@ public class ApplicationController {
      * @throws FileNotFoundException
      */
     protected void setImage(String s, ImageView view) throws FileNotFoundException {
-        __setImage(s, view);
+        this.__setImage(s, view);
     }
 
     /**

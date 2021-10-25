@@ -33,9 +33,11 @@ import javafx.util.Duration;
  * This class is the controller for the rewards modal.
  */
 public class Reward extends ApplicationController implements Initializable {
+    //// Properties ////
     private Game game;
     private User user;
     private Animation avatarAnim;
+
     // The threshold of score for each star to appear
     private final int[] starThreshold = { 20, 60, 100 };
     private List<Node> stars;
@@ -64,17 +66,21 @@ public class Reward extends ApplicationController implements Initializable {
 
     /**
      * Set visibility of stars based on score
-     * 
      * @param score the score for the game
      */
-    private void setStars(int score) {
+    private void __setStars(int score) {
         String[] star = { "star" };
-        stars = findNodesByID(anchorPane, star);
+        this.stars = findNodesByID(anchorPane, star);
 
-        setStar(0, score);
+        this.__setStar(0, score);
     }
 
-    private void addStudentAchievement(int bound, int numGames) {
+    /**
+     * Unlock a dilligence achievement for the current user.
+     * @param bound the level to unlock
+     * @param numGames the number of games this user has played
+     */
+    private void __addStudentAchievement(int bound, int numGames) {
         if (numGames >= bound) {
             String s;
             try {
@@ -84,14 +90,19 @@ public class Reward extends ApplicationController implements Initializable {
                 return;
             }
             try {
-                user.unlockAchievement(s);
+                this.user.unlockAchievement(s);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
-    private void addAchieverAchievement(int bound, int highscore) {
+    /**
+     * Unlock a highscore achievement for the current user.
+     * @param bound the level to unlock
+     * @param highscore the score from this game
+     */
+    private void __addAchieverAchievement(int bound, int highscore) {
         if (highscore >= bound) {
             String s;
             try {
@@ -101,14 +112,19 @@ public class Reward extends ApplicationController implements Initializable {
                 return;
             }
             try {
-                user.unlockAchievement(s);
+                this.user.unlockAchievement(s);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
-    private void addPocketAchievement(int bound, int stars) {
+    /**
+     * Unlock a star achievement for the current user.
+     * @param bound the level to unlock
+     * @param stars the stars from this game
+     */
+    private void __addPocketAchievement(int bound, int stars) {
         if (stars >= bound) {
             String s;
             try {
@@ -118,14 +134,19 @@ public class Reward extends ApplicationController implements Initializable {
                 return;
             }
             try {
-                user.unlockAchievement(s);
+                this.user.unlockAchievement(s);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
-    private void addSpeedyAchievement(int bound, int duration) {
+    /**
+     * Unlock a speedy achievement for the current user.
+     * @param bound the level to unlock
+     * @param duration the duration of this game
+     */
+    private void __addSpeedyAchievement(int bound, int duration) {
         if (bound == duration) {
             String s;
             try {
@@ -135,75 +156,84 @@ public class Reward extends ApplicationController implements Initializable {
                 return;
             }
             try {
-                user.unlockAchievement(s);
+                this.user.unlockAchievement(s);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
-    private void setStar(int index, int score) {
-        if (index >= stars.size()) {
+    /**
+     * Set the number of stars this user achieved
+     * @param index the index of star sto load
+     * @param score the users score
+     */
+    private void __setStar(int index, int score) {
+        if (index >= this.stars.size()) {
             try {
                 if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) {
-                    user.unlockAchievement("EXPLORER_1");
+                    this.user.unlockAchievement("EXPLORER_1");
                     return;
                 }
                 if (score == 100) {
                     int duration = MainApp.getSetting().getTimerDuration();
-                    addSpeedyAchievement(40, duration);
-                    addSpeedyAchievement(30, duration);
-                    addSpeedyAchievement(15, duration);
+                    this.__addSpeedyAchievement(40, duration);
+                    this.__addSpeedyAchievement(30, duration);
+                    this.__addSpeedyAchievement(15, duration);
                 }
 
-                user.unlockAchievement("EXPLORER_2");
-                user.addScore(score, numStars);
-                int numGamesPlayed = user.getNumGamesPlayed();
-                addStudentAchievement(5, numGamesPlayed);
-                addStudentAchievement(10, numGamesPlayed);
-                addStudentAchievement(20, numGamesPlayed);
-                addStudentAchievement(50, numGamesPlayed);
-                addStudentAchievement(100, numGamesPlayed);
-                int highScore = user.getHighScore();
-                addAchieverAchievement(75, highScore);
-                addAchieverAchievement(90, highScore);
-                addAchieverAchievement(100, highScore);
-                int totalStars = user.getTotalStars();
-                addPocketAchievement(10, totalStars);
-                addPocketAchievement(50, totalStars);
-                addPocketAchievement(100, totalStars);
-                addPocketAchievement(200, totalStars);
-                addPocketAchievement(300, totalStars);
+                this.user.unlockAchievement("EXPLORER_2");
+                this.user.addScore(score, this.numStars);
+                int numGamesPlayed = this.user.getNumGamesPlayed();
+                this.__addStudentAchievement(5, numGamesPlayed);
+                this.__addStudentAchievement(10, numGamesPlayed);
+                this.__addStudentAchievement(20, numGamesPlayed);
+                this.__addStudentAchievement(50, numGamesPlayed);
+                this.__addStudentAchievement(100, numGamesPlayed);
+                int highScore = this.user.getHighScore();
+                this.__addAchieverAchievement(75, highScore);
+                this.__addAchieverAchievement(90, highScore);
+                this.__addAchieverAchievement(100, highScore);
+                int totalStars = this.user.getTotalStars();
+                this.__addPocketAchievement(10, totalStars);
+                this.__addPocketAchievement(50, totalStars);
+                this.__addPocketAchievement(100, totalStars);
+                this.__addPocketAchievement(200, totalStars);
+                this.__addPocketAchievement(300, totalStars);
             } catch (IOException e) {
                 Modal.showGeneralModal(ErrorModal.INTERNET);
             }
             return;
         }
 
-        int num = Integer.parseInt(stars.get(index).getId().substring(4));
+        int num = Integer.parseInt(this.stars.get(index).getId().substring(4));
         if (score >= this.starThreshold[num - 1]) {
             Sounds.playSoundEffect("reward");
-            stars.get(2 - index).setVisible(true);
-            numStars++;
+            this.stars.get(2 - index).setVisible(true);
+            this.numStars++;
         }
 
         PauseTransition pause = new PauseTransition(Duration.millis(1000));
         pause.setOnFinished(e -> {
-            setStar(index + 1, score);
+            this.__setStar(index + 1, score);
         });
         pause.play();
     }
 
-    private void setHighScore(int gameScore) {
+    /**
+     * Update the highscore label for this user
+     * @param gameScore the score they achieved
+     */
+    private void __setHighScore(int gameScore) {
         try {
-            int prevHighScore = user.getHighScore();
+            int prevHighScore = this.user.getHighScore();
 
             if (gameScore > prevHighScore) {
                 // new high score
-                setImage(gameScore, highScore);
-                newHighScore.setVisible(true);
+                this.setImage(gameScore, highScore);
+                this.newHighScore.setVisible(true);
             } else {
-                setImage(prevHighScore, highScore);
+                this.setImage(prevHighScore, highScore);
             }
         } catch (FileNotFoundException e) {
             System.err.println("Unable to load score images");
@@ -215,42 +245,42 @@ public class Reward extends ApplicationController implements Initializable {
 
     @Override
     protected void start() {
-        user = MainApp.getUser();
+        this.user = MainApp.getUser();
         int gameScore = this.game.getScore();
 
         try {
-            setStars(gameScore);
-            setImage(gameScore, score);
-            setHighScore(gameScore);
+            this.__setStars(gameScore);
+            this.setImage(gameScore, this.score);
+            this.__setHighScore(gameScore);
         } catch (IOException e) {
             System.err.println(e);
         }
 
-        avatarAnim = new OscillatingComponent(avatarButton).getAnimator();
-        avatarAnim.play();
+        this.avatarAnim = new OscillatingComponent(this.avatarButton).getAnimator();
+        this.avatarAnim.play();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Inital setup & loading of data
         super.initialize();
-        newHighScore.setVisible(false);
+        this.newHighScore.setVisible(false);
         this.game = MainApp.getGameState();
 
-        setAvatarImage(avatarButton);
+        this.setAvatarImage(avatarButton);
 
         // Set event handlers
-        menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+        this.menuButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             MainApp.setRoot(Views.MENU);
-            avatarAnim.stop();
+            this.avatarAnim.stop();
         });
 
-        againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+        this.againButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             MainApp.setRoot(Views.GAMEMODE);
-            avatarAnim.stop();
+            this.avatarAnim.stop();
         });
 
-        avatarButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
+        this.avatarButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             int num = new Random().nextInt(3);
             switch (num) {
             case 0:
@@ -264,6 +294,5 @@ public class Reward extends ApplicationController implements Initializable {
                 break;
             }
         });
-
     }
 }

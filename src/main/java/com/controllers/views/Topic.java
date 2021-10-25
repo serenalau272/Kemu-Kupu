@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
  * This class is the controller for the topic screen
  */
 public class Topic extends ApplicationController implements Initializable {
+    //// Properties ////
     // List of imported topics
     private ArrayList<SpellingTopic> TOPICS;
 
@@ -43,6 +44,7 @@ public class Topic extends ApplicationController implements Initializable {
     private ImageView feelingsButton;
     @FXML
     private ImageView backButton;
+
     //// Private Methods ////
 
     private void __initialiseSelectableTopic(ImageView id) {
@@ -52,7 +54,7 @@ public class Topic extends ApplicationController implements Initializable {
         // add handler
         id.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             SpellingTopic topic = new SpellingTopic(listName, "./words/" + listName);
-            if (TOPICS.contains(topic)) {
+            if (this.TOPICS.contains(topic)) {
                 // if it is a valid topic
                 try {
                     MainApp.getGameState().setTopic(topic);
@@ -73,21 +75,21 @@ public class Topic extends ApplicationController implements Initializable {
         // Inital setup & loading of data
         super.initialize();
         try {
-            TOPICS = (ArrayList<SpellingTopic>) SystemIO.getTopics();
+            this.TOPICS = (ArrayList<SpellingTopic>) SystemIO.getTopics();
         } catch (IOException e) {
             System.err.println("Unable to retrieve spelling word topics " + e);
         }
 
         // add handlers
-        __initialiseSelectableTopic(babiesButton);
-        __initialiseSelectableTopic(compassPointsButton);
-        __initialiseSelectableTopic(coloursButton);
-        __initialiseSelectableTopic(daysOfWeekButton);
-        __initialiseSelectableTopic(monthsOfYearButton);
-        __initialiseSelectableTopic(softwareButton);
-        __initialiseSelectableTopic(weatherButton);
-        __initialiseSelectableTopic(workButton);
-        __initialiseSelectableTopic(feelingsButton);
+        this.__initialiseSelectableTopic(this.babiesButton);
+        this.__initialiseSelectableTopic(this.compassPointsButton);
+        this.__initialiseSelectableTopic(this.coloursButton);
+        this.__initialiseSelectableTopic(this.daysOfWeekButton);
+        this.__initialiseSelectableTopic(this.monthsOfYearButton);
+        this.__initialiseSelectableTopic(this.softwareButton);
+        this.__initialiseSelectableTopic(this.weatherButton);
+        this.__initialiseSelectableTopic(this.workButton);
+        this.__initialiseSelectableTopic(this.feelingsButton);
 
         this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> MainApp.setRoot(Views.GAMEMODE));
     }
