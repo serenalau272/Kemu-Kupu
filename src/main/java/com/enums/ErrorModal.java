@@ -7,7 +7,11 @@ import com.models.GeneralModal;
  */
 public enum ErrorModal implements GeneralModal {
     USERNAME, NICKNAME, INTERNET;
-
+    
+    /**
+     * Get the string that should be displayed to the user on this modal.
+     * In the event that a string does not exist for this modal, returns an empty string.
+     */
     public String getMessage() {
         switch (this) {
         case USERNAME:
