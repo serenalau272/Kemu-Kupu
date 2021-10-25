@@ -159,14 +159,10 @@ public class Profile extends ApplicationController implements Initializable {
         // Set event handlers
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            // TODO: yet to be fully linked
             Modal.showGeneralModal(ConfirmModal.SIGNOUT);
-            // timer.stop();
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            // TODO: endpoint to be created
             Modal.showGeneralModal(ConfirmModal.RESET);
-            // timer.stop();
         });
 
         this.deleteButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {

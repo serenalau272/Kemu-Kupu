@@ -112,7 +112,6 @@ public class UserTest extends User {
         assertEquals(0, user.getAchievements().size());
         
         //Add achievement
-        //TODO test all achievements in this manner
         String achievement = "EXPLORER_2";
         try {
             String res = user.unlockAchievement(achievement);
