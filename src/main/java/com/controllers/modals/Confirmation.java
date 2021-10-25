@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * This class is the controller for the settings modal.
+ * This class is the controller for the confirmation modal.
  */
 public class Confirmation extends ModalController {
     @FXML

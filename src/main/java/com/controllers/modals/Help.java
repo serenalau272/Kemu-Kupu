@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * This class is the controller for the settings modal.
+ * This class is the controller for the help modal.
  */
 public class Help extends ModalController {
     @FXML

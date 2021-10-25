@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
- * This class is the controller for the settings modal.
+ * This class is the controller for the error modal.
  */
 public class Error extends ModalController {
     @FXML
