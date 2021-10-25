@@ -15,6 +15,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class UserTest extends User {
+    public UserTest() throws IOException {
+        super();
+    }
+
     private static String prefix;
 
     //// Helper Methods ////
@@ -24,7 +28,7 @@ public class UserTest extends User {
      * @param name the name of the account
      * @return a logged in account
      */
-    private User __createAccount(String name) {
+    private User __createAccount(String name) throws IOException {
         User user = new User();
         try {
             String res = user.signup(prefix + name, "testing123", "tester");
@@ -62,7 +66,7 @@ public class UserTest extends User {
     }
     
     @Test
-    public void testAccountCreation() {
+    public void testAccountCreation() throws IOException {
         //Create a new account!
         User user = this.__createAccount("_testing_account_creation");
 
@@ -77,7 +81,7 @@ public class UserTest extends User {
     }
     
     @Test
-    public void testAccountLogin() {
+    public void testAccountLogin() throws IOException {
         User createUser = this.__createAccount("_testing_account_login");
 
         //Test logging into that account
@@ -102,7 +106,7 @@ public class UserTest extends User {
     }
     
     @Test
-    public void testAddingAchievement() {
+    public void testAddingAchievement() throws IOException {
         //Create Account
         User user = this.__createAccount("_testing_account_achievements");
         assertEquals(0, user.getAchievements().size());
@@ -133,7 +137,7 @@ public class UserTest extends User {
     }
 
     @Test
-    public void testAddingScore() {
+    public void testAddingScore() throws IOException {
         //Create account
         User user = this.__createAccount("_testing_acount_score");
 
@@ -181,7 +185,7 @@ public class UserTest extends User {
     }
     
     @Test
-    public void testAddingCostume() {
+    public void testAddingCostume() throws IOException {
         User user = this.__createAccount("_testing_account_costume");
         try {
             String res = user.addScore(100000, 100000);
@@ -220,7 +224,7 @@ public class UserTest extends User {
     }
 
     @Test
-    public void testSettingAvatar() {
+    public void testSettingAvatar() throws IOException {
         User user = this.__createAccount("_testing_account_set_costume");
         //Add score to the account
         try {
@@ -263,7 +267,7 @@ public class UserTest extends User {
     }
     
     @Test
-    public void testChangingNickname() {
+    public void testChangingNickname() throws IOException {
         User user = this.__createAccount("_testing_account_change_nickname");
         assertEquals("tester", user.getNickname());
 
@@ -281,7 +285,7 @@ public class UserTest extends User {
     }
     
     @Test
-    public void testChangingUsername() {
+    public void testChangingUsername() throws IOException {
         User user = this.__createAccount("_testing_account_change_username");
         assertEquals(prefix + "_testing_account_change_username", user.getUsername());
         
@@ -299,7 +303,7 @@ public class UserTest extends User {
     }
 
     @Test
-    public void testResettingAccount() {
+    public void testResettingAccount() throws IOException {
         User user = this.__createAccount("_testing_account_reset_account");
         //Check baseline
         assertEquals(Avatar.DEFAULT, user.getSelectedAvatar());
@@ -383,7 +387,7 @@ public class UserTest extends User {
     }
 
     @Test
-    public void testSerialization() {
+    public void testSerialization() throws IOException {
         //HACK these are combined into one file as currently the new User(); method just guesses which to serialize from 
         //which could cause a collision if tested in a bad order. Combining them ensures serial testing.
 

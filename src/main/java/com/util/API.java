@@ -87,52 +87,57 @@ public class API {
             throw new IllegalArgumentException("Method must be set");
         if (data == null && method == RequestMethod.Post)
             throw new IllegalArgumentException("When posting data cannot be null");
+        try {
+            // Establish connection
+            String url = apiPath + path;
+            HttpsURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod(method.toString());
+            connection.setDoOutput(true);
 
-        // Establish connection
-        String url = apiPath + path;
-        HttpsURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
-        connection.setRequestMethod(method.toString());
-        connection.setDoOutput(true);
-
-        // If we have an auth header, set it
-        if (JWTToken != null) {
-            connection.addRequestProperty("Authorisation", JWTToken);
-        }
-
-        // Add body if post request
-        if (method == RequestMethod.Post) {
-            byte[] out = data.getBytes(StandardCharsets.UTF_8);
-            connection.setFixedLengthStreamingMode(out.length);
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            connection.connect();
-            try (OutputStream os = connection.getOutputStream()) {
-                os.write(out);
-                os.close();
+            // If we have an auth header, set it
+            if (JWTToken != null) {
+                connection.addRequestProperty("Authorisation", JWTToken);
             }
-        } else {
-            connection.connect();
+
+            // Add body if post request
+            if (method == RequestMethod.Post) {
+                byte[] out = data.getBytes(StandardCharsets.UTF_8);
+                connection.setFixedLengthStreamingMode(out.length);
+                connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                connection.connect();
+                try (OutputStream os = connection.getOutputStream()) {
+                    os.write(out);
+                    os.close();
+                }
+            } else {
+                connection.connect();
+            }
+
+            // Process Response
+            int responseCode = connection.getResponseCode();
+            InputStream inputStream;
+            if (200 <= responseCode && responseCode <= 299) {
+                inputStream = connection.getInputStream();
+            } else {
+                inputStream = connection.getErrorStream();
+            }
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+
+            StringBuilder response = new StringBuilder();
+            String currentLine;
+
+            while ((currentLine = in.readLine()) != null)
+                response.append(currentLine);
+            in.close();
+
+            return new Response(response.toString(),
+                    (200 <= responseCode && responseCode <= 299) ? ResponseStatus.Success : ResponseStatus.Failure, path);
+        } catch (java.net.UnknownHostException e) {
+            throw new IOException(e.toString());
+        } catch (Exception e) {
+            throw new IOException(e.toString());
         }
-
-        // Process Response
-        int responseCode = connection.getResponseCode();
-        InputStream inputStream;
-        if (200 <= responseCode && responseCode <= 299) {
-            inputStream = connection.getInputStream();
-        } else {
-            inputStream = connection.getErrorStream();
-        }
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-
-        StringBuilder response = new StringBuilder();
-        String currentLine;
-
-        while ((currentLine = in.readLine()) != null)
-            response.append(currentLine);
-        in.close();
-
-        return new Response(response.toString(),
-                (200 <= responseCode && responseCode <= 299) ? ResponseStatus.Success : ResponseStatus.Failure, path);
     }
 
     /**

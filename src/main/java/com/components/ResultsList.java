@@ -61,12 +61,10 @@ public class ResultsList extends TextField {
         elements[1] = icon;
 
         // add word label
-        Label wordLabel = createWordLabel(index, word);
-        elements[2] = wordLabel;
+        elements[2] = createWordLabel(index, word);
 
         // add user input label (only if incorrect)
-        Label inputLabel = createInputLabel(index, word);
-        elements[3] = inputLabel;
+        elements[3] = createInputLabel(index, word);
 
         // add result item to inputs
         inputs[index - 1] = elements;

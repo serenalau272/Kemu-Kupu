@@ -6,7 +6,6 @@ import com.components.animations.Clock;
 import com.controllers.modals.Confirmation;
 import com.controllers.modals.Error;
 import com.enums.ConfirmModal;
-import com.enums.ErrorModal;
 import com.enums.Modals;
 import com.enums.Views;
 import com.models.GeneralModal;

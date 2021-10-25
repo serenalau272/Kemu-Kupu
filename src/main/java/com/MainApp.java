@@ -3,12 +3,14 @@ package com;
 import java.io.IOException;
 
 import com.components.animations.GlobalTimer;
+import com.enums.ErrorModal;
 import com.enums.Gamemode;
 import com.enums.Views;
 import com.models.Game;
 import com.models.Setting;
 import com.models.User;
 import com.util.API;
+import com.util.Modal;
 import com.util.Sounds;
 import com.util.TTS;
 
@@ -68,9 +70,13 @@ public class MainApp extends Application {
      */
     public static User getUser() {
         if (user == null){
-            user = new User(); // Init with default user
-            //preopulate
-            // prepoluateUser();
+            try {
+                user = new User();
+            } catch (IOException e) {
+                Modal.showGeneralModal(ErrorModal.INTERNET);
+            } 
+            
+            // Init with default user
             prepoluateUser2();
         }
             
@@ -201,10 +207,10 @@ public class MainApp extends Application {
 
     // populate user. to be deleted before submission
     private static void prepoluateUser(){
-        User popUser = new User();
-
         try {
-             //load user
+            User popUser = new User();
+
+            //load user
             String res = popUser.login("User1", "123");
             if (res != null){
                 //user does not already exist
@@ -237,18 +243,18 @@ public class MainApp extends Application {
             popUser.unlockAchievement("POCKETS_4");
             popUser.unlockAchievement("POCKETS_5");
             popUser.unlockAchievement("SPEEDY_1");
-        } catch (IOException e){
-            System.err.println("Unable to make request/s");
-        }
 
-        setUser(popUser);
+            setUser(popUser);
+        } catch (IOException e){
+            Modal.showGeneralModal(ErrorModal.INTERNET);
+        }        
     }
 
     private static void prepoluateUser2(){
-        User popUser = new User();
-
         try {
-             //load user
+
+            User popUser = new User();
+            //load user
             String res = popUser.login("User2", "123");
             if (res != null){
                 //user does not already exist
@@ -279,11 +285,11 @@ public class MainApp extends Application {
             popUser.unlockAchievement("POCKETS_3");
             popUser.unlockAchievement("POCKETS_4");
             popUser.unlockAchievement("SPEEDY_1");
-        } catch (IOException e){
-            System.err.println("Unable to make request/s");
-        }
 
-        setUser(popUser);
+            setUser(popUser);
+        } catch (IOException e){
+            Modal.showGeneralModal(ErrorModal.INTERNET);
+        }
     }
 
     /**

@@ -36,7 +36,13 @@ public class NewUser extends ApplicationController implements Initializable {
     private ImageView createAccountButton;
 
     private void onCreateAccount() {
-        User user = new User();
+        User user;
+        try {
+            user = new User();
+        } catch (IOException e1) {
+            Modal.showGeneralModal(ErrorModal.INTERNET);
+            return;
+        }
         if (nicknameInput.getText().equals("") || (nicknameInput.getText().length() > 10)) {
             Modal.showGeneralModal(ErrorModal.NICKNAME);
             return;

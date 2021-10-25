@@ -168,7 +168,7 @@ public class User implements Serializable {
 
     //// Public Methods ////
 
-    public User() {
+    public User() throws IOException {
         if (new File(this.userSavePath).isFile()) {
             //Load from api
             try {
@@ -182,7 +182,7 @@ public class User implements Serializable {
                     this.__loadData();
                     return;
                 }
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else if (new File(this.guestSavePath).isFile()) {
@@ -207,7 +207,7 @@ public class User implements Serializable {
                     this.unlockedAchievements = user.unlockedAchievements;
                     return;
                 }
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
