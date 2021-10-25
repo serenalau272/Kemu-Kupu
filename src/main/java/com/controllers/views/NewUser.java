@@ -63,6 +63,10 @@ public class NewUser extends ApplicationController implements Initializable {
             }
         } catch (IOException e) {
             Modal.showGeneralModal(ErrorModal.INTERNET);
+            passwordInput.clear();
+            usernameInput.clear();
+            nicknameInput.clear();
+            usernameInput.requestFocus();
         }
     }
 

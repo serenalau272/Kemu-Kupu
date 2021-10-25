@@ -78,7 +78,6 @@ public class Modal {
                 addBlur();
 
                 Error errorController = fxmlLoader.getController();
-                // errorController.setErrorType((ErrorModal) type);
                 message = type.getMessage();
                 errorController.setMessage(message);
                 break;
