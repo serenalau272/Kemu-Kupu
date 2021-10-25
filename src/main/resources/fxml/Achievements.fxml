@@ -43,7 +43,7 @@
             <Image url="@../assets/Achievements/Group%20(6).png" />
          </image>
       </ImageView>
-      <Label fx:id="numLabel" layoutX="552.0" layoutY="138.0" prefHeight="29.0" prefWidth="188.0" text="13 of 18">
+      <Label fx:id="numMessage" layoutX="552.0" layoutY="138.0" prefHeight="29.0" prefWidth="188.0" text="13 of 18">
          <stylesheets>
             <URL value="@../styles/achievements.css" />
             <URL value="@../styles/application.css" />
