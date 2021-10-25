@@ -41,9 +41,9 @@
 
 /******** Component Spacing/Layout Styling *********/
 .hbox-circles {
-    -fx-spacing: 27px;
+    -fx-spacing: 47px;
 }
 
 .hbox-labels {
-    -fx-spacing: 66px;
+    -fx-spacing: 85px;
 }

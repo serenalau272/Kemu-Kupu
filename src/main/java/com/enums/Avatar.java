@@ -4,7 +4,7 @@ package com.enums;
  * Represents an avatar to be shown to the user.
  */
 public enum Avatar {
-    DEFAULT, SAILOR, WIZARD, CHEF, MAGICIAN, QUEEN, ALIEN, FAIRY, NINJA, PROFESSOR;
+    DEFAULT, WIZARD, SAILOR, CHEF, MAGICIAN, QUEEN, ALIEN, FAIRY, NINJA, PROFESSOR;
 
     /**
      * Convert a string into an avatar, this is useful for parsing messages from the

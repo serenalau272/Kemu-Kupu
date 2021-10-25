@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="349.0" maxWidth="930.0" minHeight="200.0" minWidth="168.0" prefHeight="250.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.fxmlComponents.AchievementType">
+<AnchorPane fx:id="anchorPane" maxHeight="349.0" maxWidth="1065.0" minHeight="200.0" minWidth="168.0" prefHeight="232.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.fxmlComponents.AchievementType">
     <children>
-      <ImageView fx:id="avatar" fitHeight="45.0" fitWidth="879.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="avatar" fitHeight="48.0" fitWidth="972.0" layoutX="24.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Achievements/titleBackground.png" />
          </image>
       </ImageView>
-      <Label fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="23.0" prefHeight="36.0" prefWidth="879.0" text="Big Explorer" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="18.0" prefHeight="36.0" prefWidth="960.0" text="Big Explorer" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -29,7 +29,7 @@
             <String fx:value="type-label" />
          </styleClass>
       </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="64.0" prefHeight="182.0" prefWidth="879.0" styleClass="hbox-circles" stylesheets="@../styles/achievements.css">
+      <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="79.0" prefHeight="142.0" prefWidth="960.0" styleClass="hbox-circles" stylesheets="@../styles/achievements.css">
          <children>
             <ImageView fx:id="level1" fitHeight="159.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
@@ -58,7 +58,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="26.0" layoutY="79.0" prefHeight="151.0" prefWidth="879.0" styleClass="hbox-labels" stylesheets="@../styles/achievements.css">
+      <HBox alignment="CENTER" layoutX="26.0" layoutY="79.0" prefHeight="151.0" prefWidth="960.0" styleClass="hbox-labels" stylesheets="@../styles/achievements.css">
          <children>
             <Label fx:id="message1" prefHeight="118.0" prefWidth="116.0" textAlignment="CENTER" wrapText="true">
                <stylesheets>
