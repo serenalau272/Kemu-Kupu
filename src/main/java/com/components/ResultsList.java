@@ -19,10 +19,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 /**
- * ResultsList is used to dynamically generating the results list for the results screen
+ * ResultsList is used to dynamically generating the results list for the
+ * results screen
  */
 public class ResultsList extends TextField {
-    private static Node[][] inputs = new Node[5][4];    //an array of size 5 for 5 results, each comprised of 4 elements
+    private static Node[][] inputs = new Node[5][4]; // an array of size 5 for 5 results, each comprised of 4 elements
     private static StackPane root;
 
     /**
@@ -30,48 +31,50 @@ public class ResultsList extends TextField {
      */
     public static void configureEntries() {
         root = MainApp.getStackPane();
-        removeAll();        //remove all current entries if they do exist
+        removeAll(); // remove all current entries if they do exist
 
         int index = 1;
         for (Word word : MainApp.getGameState().getWords()) {
-            createElement(index, word);     //create element
+            createElement(index, word); // create element
             index++;
         }
 
-        addTile(0);         //add the first tile to set off the animation queue
+        addTile(0); // add the first tile to set off the animation queue
     }
 
     /**
      * Create element
+     * 
      * @param index the index of the word to be created
-     * @param word the word to create the element for
+     * @param word  the word to create the element for
      */
     private static void createElement(int index, Word word) {
-        //create result item with the four elements
+        // create result item with the four elements
         Node[] elements = new Node[4];
 
-        //add background
+        // add background
         ImageView bg = createBg(index, word);
         elements[0] = bg;
 
-        //add icon (correct, incorrect, skipped)
+        // add icon (correct, incorrect, skipped)
         ImageView icon = createIcon(index, word);
         elements[1] = icon;
 
-        //add word label
+        // add word label
         Label wordLabel = createWordLabel(index, word);
         elements[2] = wordLabel;
 
-        //add user input label (only if incorrect)
+        // add user input label (only if incorrect)
         Label inputLabel = createInputLabel(index, word);
         elements[3] = inputLabel;
 
-        //add result item to inputs
+        // add result item to inputs
         inputs[index - 1] = elements;
     }
 
     /**
      * create icon element (correct, incorrect, skipped)
+     * 
      * @param index
      * @param word
      */
@@ -90,7 +93,7 @@ public class ResultsList extends TextField {
             break;
         }
 
-        //configure position
+        // configure position
         img.setFitHeight(66);
         img.setFitWidth(74);
         img.setTranslateX(400);
@@ -101,6 +104,7 @@ public class ResultsList extends TextField {
 
     /**
      * create background
+     * 
      * @param index
      * @param word
      */
@@ -119,7 +123,7 @@ public class ResultsList extends TextField {
             break;
         }
 
-        //configure position
+        // configure position
         img.setFitHeight(74);
         img.setFitWidth(902);
         img.setTranslateY(index * 85 - 230);
@@ -129,18 +133,19 @@ public class ResultsList extends TextField {
 
     /**
      * create word element
+     * 
      * @param index
      * @param word
      */
     private static Label createWordLabel(int index, Word word) {
         Label l = new Label(capitaliseFirst(word.getMaori()));
 
-        //configure position
+        // configure position
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(20);
         l.setTextAlignment(TextAlignment.LEFT);
 
-        //configure font
+        // configure font
         l.setPrefSize(900, 47.0);
         l.setTextFill(Color.WHITE);
         Font font = Font.loadFont(MainApp.class.getResource("/styles/fonts/Poppins-Bold.ttf").toExternalForm(), 42);
@@ -151,6 +156,7 @@ public class ResultsList extends TextField {
 
     /**
      * create input label if failed
+     * 
      * @param index
      * @param word
      */
@@ -158,12 +164,12 @@ public class ResultsList extends TextField {
         String txt = (word.getStatus() == Status.FAILED) ? capitaliseFirst(word.getResponse().getMaori()) : "";
         Label l = new Label(txt);
 
-        //set position
+        // set position
         l.setAlignment(Pos.CENTER_RIGHT);
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(200);
 
-        //configure font
+        // configure font
         l.setPrefSize(300, 47.0);
         l.setTextFill(Color.WHITE);
         Font font = Font.loadFont(MainApp.class.getResource("/styles/fonts/Poppins-Regular.ttf").toExternalForm(), 42);
@@ -188,26 +194,27 @@ public class ResultsList extends TextField {
     }
 
     /**
-     * add the input with index num.
-     * this calls the next tile if it does exist after 0.5 seconds
+     * add the input with index num. this calls the next tile if it does exist after
+     * 0.5 seconds
+     * 
      * @param num
      */
     private static void addTile(int num) {
         Sounds.playSoundEffect("drip");
         Node[] els = inputs[num];
 
-        //add elements of this tile
+        // add elements of this tile
         for (Node e : els) {
             if (e != null) {
                 root.getChildren().add(e);
             }
         }
 
-        //endif there's no more tiles to add
+        // endif there's no more tiles to add
         if (num + 1 >= 5)
             return;
 
-        //wait and add next tile
+        // wait and add next tile
         PauseTransition pause = new PauseTransition(Duration.millis(500));
         pause.setOnFinished(e -> addTile(num + 1));
         pause.play();
@@ -215,6 +222,7 @@ public class ResultsList extends TextField {
 
     /**
      * capitalise the first letter of a given string
+     * 
      * @param s
      * @return
      */
