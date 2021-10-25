@@ -6,7 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 /**
- * SlideComponentHorizontal is used to animate the secondary buttons from the menu offscreen before transition
+ * SlideComponentHorizontal is used to animate the secondary buttons from the
+ * menu offscreen before transition
  */
 public class SlideComponentHorizontal {
     private ImageView image;
@@ -18,7 +19,7 @@ public class SlideComponentHorizontal {
     public SlideComponentHorizontal(ImageView image, Duration duration, double delta) {
         this.image = image;
         this.initialX = image.getTranslateX();
-        this.delta = delta;     //delta is the total offset of the image's horizontal position
+        this.delta = delta; // delta is the total offset of the image's horizontal position
         this.duration = duration;
     }
 
@@ -32,7 +33,7 @@ public class SlideComponentHorizontal {
                 setCycleCount(1);
             }
 
-            //move the image along the horizontal axis by a given fraction of delta
+            // move the image along the horizontal axis by a given fraction of delta
             protected void interpolate(double frac) {
                 image.setTranslateX(initialX + frac * delta);
             }
@@ -41,6 +42,7 @@ public class SlideComponentHorizontal {
 
     /**
      * construct the animator and return this
+     * 
      * @return
      */
     public Animation getAnimator() {
