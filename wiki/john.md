@@ -245,3 +245,14 @@ as prepare to present on Tuesday. A lot to be done! Gah!
 * Further, we worked on our presentation, then presented on Tuesday and got the People's Choice award which was really cool!
 * Today, we had a meeting to discuss and outline the user manual, divvying up tasks for that, as well as highlighting what needs to be done to our codebase (refactoring + final implementation of small bits and bobs)
 * Report is now underway as well :)) So, a bit more work to do still!!
+
+
+- - - -
+**<font size="5">Final log + Submission</font>**
+
+*25-Oct, 2021.*
+* Project report has been drafted and submitted. Planning to review again to ensure all required content has been covered.
+* Project User Manual is also well in progress and we should finish by tonight
+* Refactoring the codebase is taking some time with some last minute bug fixes sprouting up yet again. It's at times like these where you slightly regret having so many class files haha. Tends to become a nightmare to comment. But final stretch!
+* Thanks to the late penalty formula ;), we're hoping to submit by tonight but if not really early tmrrw morning
+* Will probably be my final wiki log for this project. Thoroughly enjoyed the process and working with my teammates. Chur!
