@@ -24,8 +24,9 @@ public class Game {
     //// Public Methods /////
     /**
      * Create a new game instance
-     * @param mode the gamemode we are testing in
-     * @param topic the topic to select
+     * 
+     * @param mode     the gamemode we are testing in
+     * @param topic    the topic to select
      * @param numWords optional param for the number of words, defaults to 5
      */
     public Game(Gamemode mode) throws IOException {
@@ -34,6 +35,7 @@ public class Game {
 
     /**
      * Get a word from the wordlist
+     * 
      * @return
      */
     public Word getWord() {
@@ -42,6 +44,7 @@ public class Game {
 
     /**
      * Get the number of words in the word list
+     * 
      * @return an integer representing the number of words
      */
     public int getWordListSize() {
@@ -50,11 +53,12 @@ public class Game {
 
     /**
      * Calculate and return the current total score.
+     * 
      * @return an integer representing the current total score
      */
     public int getScore() {
         int score = 0;
-        for (Word word : this.words)         {
+        for (Word word : this.words) {
             Status status = word.getStatus();
             if (status == Status.MASTERED || status == Status.FAULTED) {
                 score += word.getScoreMultiplier() * 5;
@@ -65,6 +69,7 @@ public class Game {
 
     /**
      * Set the current topic we are going to play
+     * 
      * @param topic the topic selection
      * @throws IOException if unable to read the words from disk
      */
@@ -96,7 +101,7 @@ public class Game {
     public void setAwaitingInput(boolean value) {
         this.awaitingInput = value;
     }
- 
+
     public boolean getAwaitingInput() {
         return this.awaitingInput;
     }

@@ -9,11 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class SpinningWheel {
-    @FXML private ImageView image;
+    @FXML
+    private ImageView image;
     private Animation anim;
     private final int amplitude = 100;
 
-    public SpinningWheel(ImageView image){
+    public SpinningWheel(ImageView image) {
         this.image = image;
 
         anim = new Transition() {
@@ -21,16 +22,16 @@ public class SpinningWheel {
                 setCycleDuration(Duration.millis(2000));
                 setCycleCount(1);
             }
-        
+
             protected void interpolate(double frac) {
                 double currentRotation = image.getRotate();
                 image.setRotate(currentRotation + (Math.sin(frac * Math.PI) * amplitude * new Random().nextInt(3)));
             }
-        
+
         };
     }
 
-    public Animation getAnimator(){
+    public Animation getAnimator() {
         return anim;
     }
 

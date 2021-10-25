@@ -1,4 +1,5 @@
 package com.controllers.views;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -20,33 +21,37 @@ import javafx.fxml.Initializable;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
-
 public class GameMode extends ApplicationController implements Initializable {
     User currentUser = MainApp.getUser();
 
-    @FXML private ImageView practice;
-    @FXML private ImageView ranked;
-    @FXML private ImageView practiceAvatar;    
-    @FXML private ImageView rankedAvatar;
-    @FXML private ImageView backButton;
+    @FXML
+    private ImageView practice;
+    @FXML
+    private ImageView ranked;
+    @FXML
+    private ImageView practiceAvatar;
+    @FXML
+    private ImageView rankedAvatar;
+    @FXML
+    private ImageView backButton;
 
     //// Private Methods ////
 
     private void intialiseMode(Gamemode mode) {
         List<ImageView> imageViews = new ArrayList<ImageView>();
-        
+
         switch (mode) {
-            case PRACTICE:
-                imageViews.add(practice);
-                imageViews.add(practiceAvatar);
-                break;
-            case RANKED:
-                imageViews.add(ranked);
-                imageViews.add(rankedAvatar);
-                break;
-            default:
-                System.err.println("ERROR: Game mode not implemented.");
-                break;
+        case PRACTICE:
+            imageViews.add(practice);
+            imageViews.add(practiceAvatar);
+            break;
+        case RANKED:
+            imageViews.add(ranked);
+            imageViews.add(rankedAvatar);
+            break;
+        default:
+            System.err.println("ERROR: Game mode not implemented.");
+            break;
         }
 
         for (ImageView view : imageViews) {
@@ -77,7 +82,7 @@ public class GameMode extends ApplicationController implements Initializable {
         }
     }
 
-    private void toggleSaturation(List<ImageView> imageViews, boolean isBright) throws FileNotFoundException{
+    private void toggleSaturation(List<ImageView> imageViews, boolean isBright) throws FileNotFoundException {
         String modeName = imageViews.get(0).getId();
 
         if (isBright) {

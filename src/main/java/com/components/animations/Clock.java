@@ -21,7 +21,7 @@ public class Clock {
     private Label timerLabel;
     private int duration;
     private MyTimer timer;
-    
+
     public Clock(Arc sector, Label timerLabel) {
         this.sector = sector;
         this.timerLabel = timerLabel;
@@ -29,69 +29,72 @@ public class Clock {
         timer = new MyTimer(duration);
     }
 
-    public void stop(){
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+    public void stop() {
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE)
+            return;
 
         timer.close();
     }
 
-    public void start(){
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+    public void start() {
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE)
+            return;
 
         angle = 0.0f;
         resume();
     }
 
     public void resume() {
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return;
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE)
+            return;
 
-        if (!MainApp.getGameState().getAwaitingInput()) return;
-        
+        if (!MainApp.getGameState().getAwaitingInput())
+            return;
+
         duration = MainApp.getSetting().getTimerDuration();
         timer = new MyTimer(this.duration);
         timer.start();
     }
 
-
-
     /**
      * 
      * @return the score multiplier based upon time. 4 is maximum and 1 is minimum
      */
-    public int getScoreMultiplier(){
-        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) return 4;
+    public int getScoreMultiplier() {
+        if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE)
+            return 4;
 
         int multiplier = (int) Math.ceil((360 - angle) * 4 / 360);
-        return (multiplier == 0) ? 1 : multiplier; 
+        return (multiplier == 0) ? 1 : multiplier;
     }
 
-    private void updateColor(){
+    private void updateColor() {
         double ratio;
-        if (angle <= 120.0f){
-            //between start and mid1
+        if (angle <= 120.0f) {
+            // between start and mid1
             ratio = angle / 120.0f;
             color = startColor.interpolate(midColor1, ratio);
 
-        } else if (angle <= 240.0f){
-            //between mid1 and mid2
+        } else if (angle <= 240.0f) {
+            // between mid1 and mid2
             ratio = (angle - 120.0f) / 120.0f;
             color = midColor1.interpolate(midColor2, ratio);
 
         } else {
-            //between mid2 and end
+            // between mid2 and end
             ratio = (angle - 240.0f) / 120.0f;
             color = midColor2.interpolate(endColor, ratio);
         }
-        
+
         sector.setFill(color);
     }
 
-    private void updateLabel(){
+    private void updateLabel() {
         int display = duration - (int) (angle * duration / 360);
         timerLabel.setText(String.valueOf(display));
     }
-    
-    private void configureArc(){
+
+    private void configureArc() {
         sector.setStartAngle(90.0f);
         sector.setType(ArcType.ROUND);
         sector.setStrokeWidth(0.0f);
@@ -101,18 +104,18 @@ public class Clock {
         private long lastUpdate = 0;
         private long durationTick;
 
-        public MyTimer(long durationSec){
+        public MyTimer(long durationSec) {
             this.durationTick = durationSec * 1000_000_000 / 720;
         }
 
-        public void close(){
+        public void close() {
             stop();
         }
 
         @Override
         public void handle(long now) {
             if (now - lastUpdate >= durationTick) {
-                lastUpdate = now ;
+                lastUpdate = now;
                 doHandle();
             }
         }
@@ -122,7 +125,6 @@ public class Clock {
             sector.setLength(angle);
             updateColor();
             updateLabel();
-            
 
             if (angle >= 360.0f) {
                 stop();

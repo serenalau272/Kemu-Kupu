@@ -1,11 +1,12 @@
 package com.components.animations;
+
 import javafx.animation.AnimationTimer;
 
 public class GlobalTimer {
     private int timeSeconds;
     private MyTimer timer;
     private int duration;
-    
+
     public GlobalTimer(int duration) {
         this.duration = duration;
         timeSeconds = 0;
@@ -13,16 +14,16 @@ public class GlobalTimer {
         timer.start();
     }
 
-    public void stop(){
+    public void stop() {
         timer.stop();
     }
 
-    public void restart(){
+    public void restart() {
         timeSeconds = duration;
         timer.start();
     }
 
-    public int getDuration(){
+    public int getDuration() {
         return timeSeconds;
     }
 
@@ -33,7 +34,7 @@ public class GlobalTimer {
         @Override
         public void handle(long now) {
             if (now - lastUpdate >= durationTick) {
-                lastUpdate = now ;
+                lastUpdate = now;
                 doHandle();
             }
         }

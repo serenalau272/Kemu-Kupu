@@ -13,16 +13,18 @@ import javafx.scene.image.ImageView;
  * This class is the controller for the costume shop avatar.
  */
 public class ShopAvatar extends ApplicationController {
-    @FXML private ImageView avatar;
-    @FXML private Label avatarName;
+    @FXML
+    private ImageView avatar;
+    @FXML
+    private Label avatarName;
 
     public void setData(AvatarItem avatar) {
         String name = avatar.getName().substring(0, 1).toUpperCase() + avatar.getName().substring(1);
 
-        if (name.equals("Default Bee")){
+        if (name.equals("Default Bee")) {
             name = "B";
         }
-        
+
         avatarName.setText(name);
         try {
             setImage(avatar.getImgName(), this.avatar);

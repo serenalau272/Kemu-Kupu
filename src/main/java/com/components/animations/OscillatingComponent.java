@@ -7,12 +7,13 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class OscillatingComponent {
-    @FXML private ImageView image;
+    @FXML
+    private ImageView image;
     private Animation anim;
     private double initialY;
     private final int amplitude = 10;
 
-    public OscillatingComponent(ImageView image){
+    public OscillatingComponent(ImageView image) {
         this.image = image;
         this.initialY = image.getTranslateY();
 
@@ -21,15 +22,15 @@ public class OscillatingComponent {
                 setCycleDuration(Duration.millis(2000));
                 setCycleCount(Animation.INDEFINITE);
             }
-        
+
             protected void interpolate(double frac) {
                 image.setTranslateY(initialY + (Math.sin(frac * Math.PI * 2) * amplitude));
             }
-        
+
         };
     }
 
-    public Animation getAnimator(){
+    public Animation getAnimator() {
         return anim;
     }
 

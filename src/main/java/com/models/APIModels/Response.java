@@ -9,7 +9,7 @@ public class Response {
     private ResponseStatus status;
 
     public Response(String data, ResponseStatus status, String path) throws IllegalArgumentException {
-        if (data == null) 
+        if (data == null)
             throw new IllegalArgumentException("Data may not be null");
         if (path == null)
             throw new IllegalArgumentException("Path may not be null");
@@ -20,19 +20,22 @@ public class Response {
 
     /**
      * Parse the response body from json to it's contents
-     * @return the parsed json data as a string, can be coreced into an object if needed using gson
+     * 
+     * @return the parsed json data as a string, can be coreced into an object if
+     *         needed using gson
      */
     public String loadJsonData() {
-        return this.body.substring(10, this.body.length()-2);
+        return this.body.substring(10, this.body.length() - 2);
     }
 
     /**
-     * Parse the response as raw json, rather than just the raw string. This shoudl be used if there is a sub
-     * object that needs to be parsed.
+     * Parse the response as raw json, rather than just the raw string. This shoudl
+     * be used if there is a sub object that needs to be parsed.
+     * 
      * @return a string to be parsed.
      */
     public String loadJsonDataRaw() {
-        return this.body.substring(9, this.body.length()-1);
+        return this.body.substring(9, this.body.length() - 1);
     }
 
     public String getBody() {

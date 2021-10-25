@@ -35,27 +35,27 @@ public class NewUser extends ApplicationController implements Initializable {
     @FXML
     private ImageView createAccountButton;
 
-    private void onCreateAccount(){
+    private void onCreateAccount() {
         User user = new User();
-        if (nicknameInput.getText().equals("") || (nicknameInput.getText().length()>10)) {
+        if (nicknameInput.getText().equals("") || (nicknameInput.getText().length() > 10)) {
             Modal.showGeneralModal(ErrorModal.NICKNAME);
             return;
         }
         try {
             String res = user.signup(usernameInput.getText(), passwordInput.getText(), nicknameInput.getText());
-            if (res == null){
-                //success
+            if (res == null) {
+                // success
                 MainApp.setUser(user);
                 MainApp.setRoot(Views.PROFILE);
             } else {
-                //duplicate username
+                // duplicate username
                 Modal.showGeneralModal(ErrorModal.USERNAME);
                 passwordInput.clear();
                 usernameInput.clear();
                 nicknameInput.clear();
                 usernameInput.requestFocus();
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println("Unable to complete request");
         }
     }
@@ -70,11 +70,11 @@ public class NewUser extends ApplicationController implements Initializable {
         super.initialize();
 
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MainApp.setRoot(Views.SIGNIN);    
+            MainApp.setRoot(Views.SIGNIN);
         });
 
         createAccountButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            onCreateAccount(); 
+            onCreateAccount();
         });
 
         nicknameInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -94,7 +94,6 @@ public class NewUser extends ApplicationController implements Initializable {
                 onCreateAccount();
             }
         });
-
 
     }
 

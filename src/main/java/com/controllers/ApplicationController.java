@@ -1,4 +1,5 @@
 package com.controllers;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,19 +29,22 @@ public class ApplicationController {
     //// Public API (to be used by child classes internally) ////
 
     /**
-     * Update an imageview with another imageview in the same folder (makes things much simpler)
-     * Note that this can fail if you provide a filename which doesn't exist!
-     * @param s the name of the image to switch to
+     * Update an imageview with another imageview in the same folder (makes things
+     * much simpler) Note that this can fail if you provide a filename which doesn't
+     * exist!
+     * 
+     * @param s    the name of the image to switch to
      * @param view the view to attach the image on
      * @throws FileNotFoundException fails when s is an invalid image
      */
     private void __setImage(String s, ImageView view) throws FileNotFoundException {
-        if (s.contains(".png")) System.err.println("Warning! Path included `.png`, this is already added " + s);
-        //Parse the current location and set the new value
+        if (s.contains(".png"))
+            System.err.println("Warning! Path included `.png`, this is already added " + s);
+        // Parse the current location and set the new value
         String[] ex = view.getImage().getUrl().split("/");
-        ex[ex.length-1] = s + ".png";
+        ex[ex.length - 1] = s + ".png";
 
-        //Set the image on the frontend
+        // Set the image on the frontend
         view.setImage(new Image(String.join("/", ex)));
     }
 
@@ -48,14 +52,17 @@ public class ApplicationController {
     protected <T> List<T> findElms(Pane p, Class<T> t) {
         List<T> elm = new ArrayList<T>();
         p.getChildren().forEach(c -> {
-            if (c instanceof Pane) elm.addAll(findElms((Pane) c, t));
-            else if (t.isAssignableFrom(c.getClass())) elm.add((T) c);
+            if (c instanceof Pane)
+                elm.addAll(findElms((Pane) c, t));
+            else if (t.isAssignableFrom(c.getClass()))
+                elm.add((T) c);
         });
         return elm;
     }
 
     /**
      * Find all nodes which made a given search term.
+     * 
      * @param pane The pane to search for
      * @param fxid the fxid to match against
      * @return a list of nodes, empty if none are found.
@@ -74,31 +81,35 @@ public class ApplicationController {
 
     /**
      * Find a node on a pane via it's fxid.
+     * 
      * @param pane the pane to search
-     * @param id the fxid to match against
+     * @param id   the fxid to match against
      * @return a node if found, null otherwise.
      */
     protected Node findNodeByID(Pane pane, String fxid) {
-        String [] str = { fxid };
+        String[] str = { fxid };
         return this.findNodesByID(pane, str).get(0);
     }
 
     /**
-     * Update an imageview with another imageview in the same folder (i.e. /some/path/1.png -> /some/path/2.png)
-     * I'd recommend placing a call to this behind a calling function which will throw an error in the event i is out of bounds
-     * (or clamp it to a certain value)
-     * @param i an integer indicating which image we need to load
+     * Update an imageview with another imageview in the same folder (i.e.
+     * /some/path/1.png -> /some/path/2.png) I'd recommend placing a call to this
+     * behind a calling function which will throw an error in the event i is out of
+     * bounds (or clamp it to a certain value)
+     * 
+     * @param i    an integer indicating which image we need to load
      * @param view the view to attach the image on
      * @throws FileNotFoundException
      */
-    protected void setImage(Integer i, ImageView view) throws FileNotFoundException {     
+    protected void setImage(Integer i, ImageView view) throws FileNotFoundException {
         __setImage(i.toString(), view);
     }
 
     /**
-     * Update an imageview with another imageview in the same folder
-     * Note that this can fail if you provide a filename which doesn't exist!
-     * @param s the name of the image to switch to
+     * Update an imageview with another imageview in the same folder Note that this
+     * can fail if you provide a filename which doesn't exist!
+     * 
+     * @param s    the name of the image to switch to
      * @param view the view to attach the image on
      * @throws FileNotFoundException
      */
@@ -106,10 +117,10 @@ public class ApplicationController {
         __setImage(s, view);
     }
 
-    protected void setAvatarImage(ImageView view){
+    protected void setAvatarImage(ImageView view) {
         try {
             setImage(MainApp.getUser().getSelectedAvatar().toString(), view);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.err.println("Unable to load avatar");
         }
     }
@@ -124,7 +135,8 @@ public class ApplicationController {
     /**
      * Runs after initialisation
      */
-    protected void start(){}
+    protected void start() {
+    }
 
     /**
      * Initalize a regular stage
@@ -147,11 +159,11 @@ public class ApplicationController {
             }
         });
 
-        //run start method after initialisation
-        Platform.runLater(new Runnable(){
+        // run start method after initialisation
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                start();                
+                start();
             }
         });
     }

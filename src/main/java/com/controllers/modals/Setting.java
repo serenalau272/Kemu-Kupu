@@ -1,10 +1,10 @@
 package com.controllers.modals;
+
 import java.io.FileNotFoundException;
 
 import com.MainApp;
 import com.controllers.ModalController;
 import com.util.Modal;
-import com.util.Sounds;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,19 +15,29 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the settings modal.
  */
 public class Setting extends ModalController {
-    //The users current settings Selection
+    // The users current settings Selection
     private com.models.Setting settings;
 
-    @FXML Label speedVal;
-    @FXML Label timeVal;
-    @FXML ImageView musicToggleButton;
-    @FXML ImageView soundToggleButton;
-    @FXML ImageView speedMinusButton;
-    @FXML ImageView speedPlusButton;
-    @FXML ImageView timeMinusButton;
-    @FXML ImageView timePlusButton;
-    @FXML ImageView resetButton;
-    @FXML ImageView exitButton;
+    @FXML
+    Label speedVal;
+    @FXML
+    Label timeVal;
+    @FXML
+    ImageView musicToggleButton;
+    @FXML
+    ImageView soundToggleButton;
+    @FXML
+    ImageView speedMinusButton;
+    @FXML
+    ImageView speedPlusButton;
+    @FXML
+    ImageView timeMinusButton;
+    @FXML
+    ImageView timePlusButton;
+    @FXML
+    ImageView resetButton;
+    @FXML
+    ImageView exitButton;
 
     //// Private Methods ////
 
@@ -47,20 +57,21 @@ public class Setting extends ModalController {
     }
 
     /**
-     * Change the speech speed of festival.
-     * Note that we don't have ot do a check here if the speed is out of bounds (< 0), as this is
-     * checked inside of the settinsg class itself.
+     * Change the speech speed of festival. Note that we don't have ot do a check
+     * here if the speed is out of bounds (< 0), as this is checked inside of the
+     * settinsg class itself.
+     * 
      * @param amt the amount to change by
      */
     private void __speed_change(double amt) {
         // Sounds.playSoundEffect("pop");
-        this.settings.setSpeechSpeed(this.settings.getSpeechSpeed()+amt);
+        this.settings.setSpeechSpeed(this.settings.getSpeechSpeed() + amt);
         this.__update();
     }
 
     private void __time_change(int amt) {
         // Sounds.playSoundEffect("pop");
-        this.settings.setTimerDuration(this.settings.getTimerDuration()+amt);
+        this.settings.setTimerDuration(this.settings.getTimerDuration() + amt);
         this.__update();
     }
 
@@ -68,7 +79,7 @@ public class Setting extends ModalController {
 
     @Override
     public void initializeModal() {
-        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true)); 
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true));
         this.settings = MainApp.getSetting();
         this.__update();
 

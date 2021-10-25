@@ -13,8 +13,10 @@ import javafx.scene.input.MouseEvent;
  */
 public class Help extends ModalController {
 
-    @FXML ImageView attributionsButton;
-    @FXML ImageView exitButton;
+    @FXML
+    ImageView attributionsButton;
+    @FXML
+    ImageView exitButton;
 
     //// Private Methods ////
     private void openAttributions() {
@@ -25,7 +27,7 @@ public class Help extends ModalController {
 
     @Override
     public void initializeModal() {
-        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true)); 
+        this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true));
         this.attributionsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> openAttributions());
     }
 }

@@ -1,4 +1,5 @@
 package com;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -33,6 +34,7 @@ public class MainApp extends Application {
 
     /**
      * Get the current gamestate
+     * 
      * @return
      */
     public static Game getGameState() {
@@ -41,16 +43,18 @@ public class MainApp extends Application {
 
     /**
      * Get the current TTS
+     * 
      * @return
      */
     public static TTS getTTS() {
-        if (tts == null) 
-            tts = new TTS(); //Init TTS
+        if (tts == null)
+            tts = new TTS(); // Init TTS
         return tts;
     }
 
     /**
      * Get the current view
+     * 
      * @return
      */
     public static Views getBaseView() {
@@ -58,17 +62,20 @@ public class MainApp extends Application {
     }
 
     /**
-     * Get the current active user, automatically initalises user with default value if not exist.
+     * Get the current active user, automatically initalises user with default value
+     * if not exist.
+     * 
      * @return a user
      */
     public static User getUser() {
         if (user == null)
-            user = new User(); //Init with default user
+            user = new User(); // Init with default user
         return user;
     }
 
     /**
      * Update the current user.
+     * 
      * @param newUser the user to set
      */
     public static void setUser(User newUser) {
@@ -76,17 +83,20 @@ public class MainApp extends Application {
     }
 
     /**
-     * Get the current settings. Will automatically initalise settings with default values if not exist.
+     * Get the current settings. Will automatically initalise settings with default
+     * values if not exist.
+     * 
      * @return settings
      */
     public static Setting getSetting() {
         if (setting == null)
-            setting = new Setting(); //Init default settings
+            setting = new Setting(); // Init default settings
         return setting;
     }
 
     /**
      * Update the settings for this application
+     * 
      * @param newSetting
      */
     public static void setSetting(Setting newSetting) {
@@ -95,6 +105,7 @@ public class MainApp extends Application {
 
     /**
      * Update the game state
+     * 
      * @param newState
      */
     public static void setGameState(Game newState) {
@@ -103,6 +114,7 @@ public class MainApp extends Application {
 
     /**
      * Get the stackpane.
+     * 
      * @return
      */
     public static StackPane getStackPane() {
@@ -111,15 +123,18 @@ public class MainApp extends Application {
 
     /**
      * Set a new root application pane
+     * 
      * @param view the view to load
      */
     public static void setRoot(Views view) {
-        if (tts != null) tts.stopSpeech(); //Clear the queue
+        if (tts != null)
+            tts.stopSpeech(); // Clear the queue
 
         try {
             MainApp.view = view;
             stackPane = new StackPane();
-            stackPane.getChildren().add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());        
+            stackPane.getChildren()
+                    .add(new FXMLLoader(MainApp.class.getResource("/fxml/" + view.getFileName() + ".fxml")).load());
             Scene scene = new Scene(stackPane);
             if (view == Views.QUIZ) {
                 scene.getStylesheets().add(MainApp.class.getResource("/styles/quiz.css").toExternalForm());
@@ -128,16 +143,16 @@ public class MainApp extends Application {
             }
             stage.setTitle(view.getWindowName());
             stage.setScene(scene);
-            stage.show();                          
+            stage.show();
         } catch (IOException e) {
             System.err.println("Unable to set root for fxml: " + view.getFileName());
             e.printStackTrace();
         }
     }
-    
+
     /*
-    * Update music on modal toggle
-    */
+     * Update music on modal toggle
+     */
     public static void updateMusic() {
         if (view == Views.QUIZ) {
             if (state.getGameMode() == Gamemode.RANKED) {
@@ -151,7 +166,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Collect an instance of a globalTimer, used for the spinning wheel. Will automatically initalise if needed.
+     * Collect an instance of a globalTimer, used for the spinning wheel. Will
+     * automatically initalise if needed.
+     * 
      * @return a globalTimer instance
      */
     public static GlobalTimer getGlobalTimer() {
@@ -162,6 +179,7 @@ public class MainApp extends Application {
 
     /**
      * Collect a instance of the api. Will automatically initalise if needed.
+     * 
      * @return an api instance
      */
     public static API getAPI() {
@@ -182,7 +200,8 @@ public class MainApp extends Application {
      */
     @Override
     public void stop() {
-        if (tts != null) tts.stopSpeech();
+        if (tts != null)
+            tts.stopSpeech();
     }
 
     public static void main(String[] args) {

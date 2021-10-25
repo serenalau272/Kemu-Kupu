@@ -1,25 +1,22 @@
 package com.controllers.modals;
 
 import com.controllers.ModalController;
-import com.enums.ConfirmModal;
 import com.enums.ErrorModal;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 /**
  * This class is the controller for the settings modal.
  */
 public class Error extends ModalController {
 
-    @FXML Label errorMessage;
+    @FXML
+    Label errorMessage;
 
     private ErrorModal errorType;
 
     //// Private Methods ////
-
 
     //// Public Methods ////
 

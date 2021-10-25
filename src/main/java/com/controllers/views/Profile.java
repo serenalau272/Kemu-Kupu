@@ -1,4 +1,5 @@
 package com.controllers.views;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,34 +29,49 @@ public class Profile extends ApplicationController implements Initializable {
     User currentUser;
     WheelTimer timer;
 
-    @FXML ImageView backButton;
-    @FXML ImageView editUsername;
-    @FXML ImageView editNickname;
-    @FXML ImageView deleteButton;
-    @FXML ImageView resetButton;
-    @FXML ImageView signoutButton;
-    @FXML ImageView shopButton;
-    @FXML ImageView achievementsButton;
-    @FXML Label nameLabel;
-    @FXML Label starLabel;
-    @FXML Label achievementsLabel;
-    @FXML Label scoreLabel;
-    @FXML TextField usernameInput;
-    @FXML TextField nicknameInput;
-    @FXML ImageView userAvatar;
-    @FXML ImageView wheelButton;
-    @FXML Label wheelLabel;
+    @FXML
+    ImageView backButton;
+    @FXML
+    ImageView editUsername;
+    @FXML
+    ImageView editNickname;
+    @FXML
+    ImageView deleteButton;
+    @FXML
+    ImageView resetButton;
+    @FXML
+    ImageView signoutButton;
+    @FXML
+    ImageView shopButton;
+    @FXML
+    ImageView achievementsButton;
+    @FXML
+    Label nameLabel;
+    @FXML
+    Label starLabel;
+    @FXML
+    Label achievementsLabel;
+    @FXML
+    Label scoreLabel;
+    @FXML
+    TextField usernameInput;
+    @FXML
+    TextField nicknameInput;
+    @FXML
+    ImageView userAvatar;
+    @FXML
+    ImageView wheelButton;
+    @FXML
+    Label wheelLabel;
 
-    
-
-    private void configureStaticEntries(){
+    private void configureStaticEntries() {
         starLabel.setText(Integer.toString(currentUser.getTotalStars()));
         achievementsLabel.setText(Integer.toString(currentUser.getNumAchievements()) + "/20");
         setAvatarImage(userAvatar);
     }
 
-    private void configureDynamicEntries(){
-        nameLabel.setText("Hello " + currentUser.getNickname()+"!");
+    private void configureDynamicEntries() {
+        nameLabel.setText("Hello " + currentUser.getNickname() + "!");
         scoreLabel.setText(Integer.toString(currentUser.getHighScore()));
         nicknameInput.setText(currentUser.getNickname());
         usernameInput.setText(currentUser.getUsername());
@@ -70,14 +86,14 @@ public class Profile extends ApplicationController implements Initializable {
         input.positionCaret(input.getText().length());
     }
 
-    private void addHandlers(ImageView editBtn, TextField input){
+    private void addHandlers(ImageView editBtn, TextField input) {
         editBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             inputEditing(input);
         });
 
         input.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ENTER){
-                if (!usernameInput.getText().equals("")){
+            if (event.getCode() == KeyCode.ENTER) {
+                if (!usernameInput.getText().equals("")) {
                     try {
                         currentUser.setUsername(usernameInput.getText());
                     } catch (IOException e) {
@@ -85,7 +101,7 @@ public class Profile extends ApplicationController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-                if (!nicknameInput.getText().equals("") && !(nicknameInput.getText().length()>10)){
+                if (!nicknameInput.getText().equals("") && !(nicknameInput.getText().length() > 10)) {
                     try {
                         currentUser.setNickname(nicknameInput.getText());
                     } catch (IOException e) {
@@ -99,7 +115,7 @@ public class Profile extends ApplicationController implements Initializable {
                 usernameInput.setStyle("-fx-background-color: #DFC49B;");
                 nicknameInput.setStyle("-fx-background-color: #DFC49B;");
                 configureDynamicEntries();
-            } 
+            }
         });
     }
 
@@ -114,7 +130,7 @@ public class Profile extends ApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize();
         currentUser = MainApp.getUser();
-        
+
         nicknameInput.setFocusTraversable(false);
         usernameInput.setFocusTraversable(false);
         configureStaticEntries();
@@ -122,15 +138,15 @@ public class Profile extends ApplicationController implements Initializable {
 
         timer = new WheelTimer(wheelLabel);
         timer.start();
-        //Set event handlers
+        // Set event handlers
 
         this.signoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //TODO: yet to be fully linked
+            // TODO: yet to be fully linked
             Modal.showGeneralModal(ConfirmModal.SIGNOUT);
             // timer.stop();
         });
         this.resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            //TODO: endpoint to be created
+            // TODO: endpoint to be created
             Modal.showGeneralModal(ConfirmModal.RESET);
             // timer.stop();
         });
@@ -140,7 +156,7 @@ public class Profile extends ApplicationController implements Initializable {
             // timer.stop();
         });
 
-        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event ->{
+        this.backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
             MainApp.setRoot(Views.MENU);
             timer.stop();
         });

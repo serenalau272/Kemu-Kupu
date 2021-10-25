@@ -184,19 +184,19 @@ public class Quiz extends ApplicationController implements Initializable {
     private void setResponseImageView() {
         try {
             switch (this.game.getWord().getStatus()) {
-                case SKIPPED:
-                    setImage("SKIPPED", responseImg);
-                    break;
-                case FAULTED:
-                    setImage("INCORRECT_2", responseImg);
-                    break;
-                case FAILED:
-                    setImage("INCORRECT_3", responseImg);
-                    break;
-                default:
-                    // mastered or none
-                    setImage("CORRECT", responseImg);
-                    break;
+            case SKIPPED:
+                setImage("SKIPPED", responseImg);
+                break;
+            case FAULTED:
+                setImage("INCORRECT_2", responseImg);
+                break;
+            case FAILED:
+                setImage("INCORRECT_3", responseImg);
+                break;
+            default:
+                // mastered or none
+                setImage("CORRECT", responseImg);
+                break;
             }
         } catch (FileNotFoundException exception) {
             System.err.println("File not found");
@@ -209,30 +209,32 @@ public class Quiz extends ApplicationController implements Initializable {
     private void addSubText() {
         Word word = this.game.getWord();
         switch (word.getStatus()) {
-            case FAULTED:
-                messageLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
-                break;
-            case FAILED:
-                String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
-                messageLabel.setText(incorrectMsg);
+        case FAULTED:
+            messageLabel.setText("Hint: Translation is '" + word.getEnglish() + "'");
+            break;
+        case FAILED:
+            String incorrectMsg = incorrectMessages[new Random().nextInt(incorrectMessages.length)];
+            messageLabel.setText(incorrectMsg);
 
-                if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null) return;
+            if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null)
+                return;
 
-                avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[1]);
-                speechBubble.setVisible(true);
-                break;
-            case MASTERED:
-                String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
-                messageLabel.setText(correctMsg);
+            avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[1]);
+            speechBubble.setVisible(true);
+            break;
+        case MASTERED:
+            String correctMsg = correctMessages[new Random().nextInt(correctMessages.length)];
+            messageLabel.setText(correctMsg);
 
-                if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null) return;
+            if (MainApp.getUser().getSelectedAvatar().getSpeechLines() == null)
+                return;
 
-                avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[0]);
-                speechBubble.setVisible(true);
-                break;
-            default:
-                messageLabel.setText("");
-                break;
+            avatarMessage.setText(MainApp.getUser().getSelectedAvatar().getSpeechLines()[0]);
+            speechBubble.setVisible(true);
+            break;
+        default:
+            messageLabel.setText("");
+            break;
         }
     }
 

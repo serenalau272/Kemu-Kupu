@@ -22,12 +22,12 @@ public class TTS {
      * Pull the next word from the queue and read it.
      */
     private void __speakNext() {
-        //If currently speaking, do not begin again
+        // If currently speaking, do not begin again
         if (speaking || festivalQueue.peek() == null)
             return;
         speaking = true;
 
-        //Create speech as new task - goverened by javafx
+        // Create speech as new task - goverened by javafx
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
@@ -43,7 +43,7 @@ public class TTS {
             }
         };
 
-        //Push speech onto new thread to avoid blocking.
+        // Push speech onto new thread to avoid blocking.
         new Thread(task).start();
     }
 
@@ -63,7 +63,7 @@ public class TTS {
      * @throws IllegalArgumentException if paramters are out of range or invalid
      */
     public void readWord(Word word, int repeats, Language language) throws IllegalArgumentException {
-        //Validate word
+        // Validate word
         if (word == null)
             throw new IllegalArgumentException("param `word` may not be null");
         if (language == null)
@@ -71,22 +71,23 @@ public class TTS {
         if (repeats < 1 || repeats > 20)
             throw new IllegalArgumentException("repeats should be between 1 and 20 (inclusive)");
 
-        //Construct the command
+        // Construct the command
         String speedCommand = "\"(Parameter.set 'Duration_Stretch " + MainApp.getSetting().getDurationFactor() + ")\"";
         String langCommand = (language == Language.MAORI) ? "voice_akl_mi_pk06_cg" : "voice_akl_nz_cw_cg_cg";
         String wordRaw = (language == Language.MAORI) ? word.getMaori() : word.getEnglish();
         if (wordRaw == null)
-            throw new IllegalArgumentException("Attempted to read " + ((language == Language.MAORI) ? "maori" : "english") + " word, which was null!");
+            throw new IllegalArgumentException("Attempted to read "
+                    + ((language == Language.MAORI) ? "maori" : "english") + " word, which was null!");
         String wordCommand = "\"(SayText \\\"" + wordRaw + "\\\")\"";
 
-        //Generate and store process builders
+        // Generate and store process builders
         for (int i = 0; i < Integer.max(repeats, 1); i++) {
             ProcessBuilder c = new ProcessBuilder("/bin/bash", "-c",
                     "echo \"(" + langCommand + ")\" " + speedCommand + " " + wordCommand + " | festival");
             festivalQueue.add(c);
         }
 
-        //Begin speaking
+        // Begin speaking
         __speakNext();
     }
 

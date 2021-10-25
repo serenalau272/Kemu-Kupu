@@ -1,4 +1,5 @@
 package com.components.animations;
+
 import com.MainApp;
 import com.controllers.ApplicationController;
 
@@ -12,30 +13,31 @@ public class WheelTimer extends ApplicationController {
     private ImageView spinButton = null;
     private int timeSeconds;
     private MyTimer timer;
-    
+
     public WheelTimer(Label timerLabel, ImageView spinButton) {
         this.timerLabel = timerLabel;
         this.spinButton = spinButton;
-        timeSeconds =  MainApp.getGlobalTimer().getDuration();
+        timeSeconds = MainApp.getGlobalTimer().getDuration();
         timer = new MyTimer();
     }
 
     public WheelTimer(Label timerLabel) {
         this.timerLabel = timerLabel;
-        timeSeconds =  MainApp.getGlobalTimer().getDuration();
+        timeSeconds = MainApp.getGlobalTimer().getDuration();
         timer = new MyTimer();
     }
 
-    public void start(){
-        timeSeconds =  MainApp.getGlobalTimer().getDuration();
+    public void start() {
+        timeSeconds = MainApp.getGlobalTimer().getDuration();
         timer.start();
     }
-    public void stop(){
+
+    public void stop() {
         timer.stop();
     }
 
-    private void updateLabel(){
-        if (timeSeconds <= 0){
+    private void updateLabel() {
+        if (timeSeconds <= 0) {
             if (spinButton == null) {
                 timerLabel.setText("Spin!");
             } else {
@@ -57,7 +59,7 @@ public class WheelTimer extends ApplicationController {
         @Override
         public void handle(long now) {
             if (now - lastUpdate >= durationTick) {
-                lastUpdate = now ;
+                lastUpdate = now;
                 doHandle();
             }
         }

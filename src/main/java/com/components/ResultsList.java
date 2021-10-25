@@ -19,26 +19,26 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
-public class ResultsList extends TextField{
+public class ResultsList extends TextField {
     private static Node[][] inputs = new Node[5][4];
     private static StackPane root;
 
-    public static void configureEntries(){
+    public static void configureEntries() {
         root = MainApp.getStackPane();
         removeAll();
-        
+
         int index = 1;
-        for (Word word : MainApp.getGameState().getWords()){
-            createElement(index, word);            
+        for (Word word : MainApp.getGameState().getWords()) {
+            createElement(index, word);
             index++;
         }
 
         addTile(0);
     }
 
-    private static void createElement(int index, Word word){
+    private static void createElement(int index, Word word) {
         Node[] elements = new Node[4];
-        
+
         ImageView bg = createBg(index, word);
         elements[0] = bg;
 
@@ -51,24 +51,24 @@ public class ResultsList extends TextField{
         Label inputLabel = createInputLabel(index, word);
         elements[3] = inputLabel;
 
-        inputs[index-1] = elements;
+        inputs[index - 1] = elements;
     }
 
-    private static ImageView createIcon(int index, Word word){
+    private static ImageView createIcon(int index, Word word) {
         ImageView img;
 
         switch (word.getStatus()) {
-            case MASTERED:
-                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/tick.png").toString(), true));
-                break;
-            case FAILED:
-                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/cross.png").toString(), true));
-                break;
-            default:
-                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/skip.png").toString(), true));
-                break;
+        case MASTERED:
+            img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/tick.png").toString(), true));
+            break;
+        case FAILED:
+            img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/cross.png").toString(), true));
+            break;
+        default:
+            img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/skip.png").toString(), true));
+            break;
         }
-        
+
         img.setFitHeight(66);
         img.setFitWidth(74);
 
@@ -77,28 +77,28 @@ public class ResultsList extends TextField{
         return img;
     }
 
-    private static ImageView createBg(int index, Word word){
+    private static ImageView createBg(int index, Word word) {
         ImageView img;
 
         switch (word.getStatus()) {
-            case MASTERED:
-                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/green.png").toString(), true));
-                break;
-            case FAILED:
-                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/red.png").toString(), true));
-                break;
-            default:
-                img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/brown.png").toString(), true));
-                break;
+        case MASTERED:
+            img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/green.png").toString(), true));
+            break;
+        case FAILED:
+            img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/red.png").toString(), true));
+            break;
+        default:
+            img = new ImageView(new Image(MainApp.class.getResource("/assets/Results/brown.png").toString(), true));
+            break;
         }
-        
+
         img.setFitHeight(74);
         img.setFitWidth(902);
         img.setTranslateY(index * 85 - 230);
         return img;
     }
 
-    private static Label createWordLabel(int index, Word word){
+    private static Label createWordLabel(int index, Word word) {
         Label l = new Label(capitaliseFirst(word.getMaori()));
         l.setTranslateY(index * 85 - 230);
         l.setTranslateX(20);
@@ -111,7 +111,7 @@ public class ResultsList extends TextField{
         return l;
     }
 
-    private static Label createInputLabel(int index, Word word){
+    private static Label createInputLabel(int index, Word word) {
         String txt = (word.getStatus() == Status.FAILED) ? capitaliseFirst(word.getResponse().getMaori()) : "";
         Label l = new Label(txt);
         l.setAlignment(Pos.CENTER_RIGHT);
@@ -121,33 +121,34 @@ public class ResultsList extends TextField{
         l.setTextFill(Color.WHITE);
         Font font = Font.loadFont(MainApp.class.getResource("/styles/fonts/Poppins-Regular.ttf").toExternalForm(), 42);
         l.setFont(font);
-        
 
         return l;
     }
 
-    private static void removeAll(){
-        if (inputs == null ) return;
-        for (Node[] els : inputs){
-            for (Node e : els){
-                if (e != null){
+    private static void removeAll() {
+        if (inputs == null)
+            return;
+        for (Node[] els : inputs) {
+            for (Node e : els) {
+                if (e != null) {
                     root.getChildren().remove(e);
                 }
             }
-        }     
+        }
     }
 
-    private static void addTile(int num){
+    private static void addTile(int num) {
         Sounds.playSoundEffect("drip");
         Node[] els = inputs[num];
 
-        for (Node e: els){
-            if (e != null){
-                root.getChildren().add(e);         
+        for (Node e : els) {
+            if (e != null) {
+                root.getChildren().add(e);
             }
         }
 
-        if (num + 1 >= 5) return;
+        if (num + 1 >= 5)
+            return;
 
         PauseTransition pause = new PauseTransition(Duration.millis(500));
         pause.setOnFinished(e -> addTile(num + 1));
@@ -155,7 +156,7 @@ public class ResultsList extends TextField{
     }
 
     public static String capitaliseFirst(String s) {
-        String s1 = s.substring(0, 1).toUpperCase(); //capatalize first letter
+        String s1 = s.substring(0, 1).toUpperCase(); // capatalize first letter
         return s1 + s.substring(1);
     }
 

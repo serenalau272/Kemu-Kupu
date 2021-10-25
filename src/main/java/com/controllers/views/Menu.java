@@ -127,12 +127,12 @@ public class Menu extends ApplicationController implements Initializable {
         });
 
         profileButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
-            if (MainApp.getUser().getUsername() == null){
-                //guest
+            if (MainApp.getUser().getUsername() == null) {
+                // guest
                 MainApp.setRoot(Views.SIGNIN);
             } else {
                 MainApp.setRoot(Views.PROFILE);
-            }            
+            }
         });
 
         helpButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> {
@@ -143,11 +143,5 @@ public class Menu extends ApplicationController implements Initializable {
             onAnimateOut(Duration.millis(100), 120);
             event.consume();
         });
-        // open attributions modal
-        // infoButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-        // Sounds.playSoundEffect("pop");
-        // MainApp.showModal(Modals.ATTRIBUTION);
-        // });
-        
-    }    
+    }
 }

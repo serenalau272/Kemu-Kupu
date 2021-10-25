@@ -11,7 +11,6 @@ public class AchievementItem {
     private int max;
     private List<Integer> levels = new ArrayList<>();
 
-
     public AchievementItem(Achievement achievement, List<Integer> levels) {
         this.achievement = achievement;
         this.typeName = achievement.getTypeName();
@@ -26,7 +25,7 @@ public class AchievementItem {
     public int getMax() {
         return max;
     }
-    
+
     public String getTypeName() {
         return typeName;
     }
@@ -34,7 +33,5 @@ public class AchievementItem {
     public List<Integer> getLevels() {
         return levels;
     }
-
-
 
 }

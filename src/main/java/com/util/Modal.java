@@ -21,21 +21,24 @@ public class Modal {
 
     /**
      * Set clock
+     * 
      * @param clock
      * 
      */
-    public static void setClock(Clock c){
+    public static void setClock(Clock c) {
         clock = c;
     }
 
     /**
      * Load and show a modal to the user
+     * 
      * @param m the modal to load
      */
     public static void showModal(Modals m) {
         try {
-            //Duplicate code should be refactored at some point
-            if (MainApp.getBaseView() == Views.QUIZ) clock.stop();
+            // Duplicate code should be refactored at some point
+            if (MainApp.getBaseView() == Views.QUIZ)
+                clock.stop();
 
             disableScreenNodes(true);
             FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + m.getFileName() + ".fxml"));
@@ -43,7 +46,7 @@ public class Modal {
             MainApp.getStackPane().getChildren().add(modal);
             addBlur();
         } catch (Exception e) {
-            System.err.println("Unable to load modal " + m.getFileName() + " due to error " + e.toString()); 
+            System.err.println("Unable to load modal " + m.getFileName() + " due to error " + e.toString());
             return;
         }
     }
@@ -54,37 +57,38 @@ public class Modal {
         String message;
         String modalType = type.getClass().getName().replace("com.enums.", "");
         try {
-            if (MainApp.getBaseView() == Views.QUIZ) clock.stop();
+            if (MainApp.getBaseView() == Views.QUIZ)
+                clock.stop();
             disableScreenNodes(true);
             switch (modalType) {
-                case "ConfirmModal":
-                    fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Confirmation.fxml"));
-                    modal = (Node) fxmlLoader.load();
-                    MainApp.getStackPane().getChildren().add(modal);
-                    addBlur();
-        
-                    Confirmation confirmationController = fxmlLoader.getController();
-                    confirmationController.setConfirmType((ConfirmModal) type);
-                    message = type.getMessage();
-                    confirmationController.setMessage(message);
-                    break;
-                case "ErrorModal": 
-                    fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Error.fxml"));
-                    modal = (Node) fxmlLoader.load();
-                    MainApp.getStackPane().getChildren().add(modal);
-                    addBlur();
+            case "ConfirmModal":
+                fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Confirmation.fxml"));
+                modal = (Node) fxmlLoader.load();
+                MainApp.getStackPane().getChildren().add(modal);
+                addBlur();
 
-                    Error errorController = fxmlLoader.getController();
-                    errorController.setErrorType((ErrorModal) type);
-                    message = type.getMessage();
-                    errorController.setMessage(message);
-                    break;
-                default:
-                    System.err.println("ERROR: General modal type not implemented.");
-                    return;
+                Confirmation confirmationController = fxmlLoader.getController();
+                confirmationController.setConfirmType((ConfirmModal) type);
+                message = type.getMessage();
+                confirmationController.setMessage(message);
+                break;
+            case "ErrorModal":
+                fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Error.fxml"));
+                modal = (Node) fxmlLoader.load();
+                MainApp.getStackPane().getChildren().add(modal);
+                addBlur();
+
+                Error errorController = fxmlLoader.getController();
+                errorController.setErrorType((ErrorModal) type);
+                message = type.getMessage();
+                errorController.setMessage(message);
+                break;
+            default:
+                System.err.println("ERROR: General modal type not implemented.");
+                return;
             }
         } catch (Exception e) {
-            System.err.println("Unable to load confirmation modal due to error " + e.toString()); 
+            System.err.println("Unable to load confirmation modal due to error " + e.toString());
             return;
         }
     }
@@ -95,11 +99,11 @@ public class Modal {
     public static void closeModal(boolean restartTimer) {
         // Sounds.playSoundEffect("pop");
         int size = MainApp.getStackPane().getChildren().size();
-        MainApp.getStackPane().getChildren().remove(size-1);
+        MainApp.getStackPane().getChildren().remove(size - 1);
         removeBlur();
         disableScreenNodes(false);
 
-        if (MainApp.getBaseView() == Views.QUIZ && restartTimer){
+        if (MainApp.getBaseView() == Views.QUIZ && restartTimer) {
             clock.resume();
             InputField.recursor();
         }

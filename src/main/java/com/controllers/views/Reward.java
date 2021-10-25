@@ -71,45 +71,45 @@ public class Reward extends ApplicationController implements Initializable {
         setStar(0, score);
     }
 
-    private void addStudentAchievement(int bound, int numGames){
-        if (numGames >= bound){
+    private void addStudentAchievement(int bound, int numGames) {
+        if (numGames >= bound) {
             try {
                 String s = Achievement.fromString("diligence" + Integer.toString(bound));
                 user.unlockAchievement(s);
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println("String cannot be mapped into an achievement, or unable to make request");
             }
         }
     }
-    
-    private void addAchieverAchievement(int bound, int highscore){
-        if (highscore >= bound){
+
+    private void addAchieverAchievement(int bound, int highscore) {
+        if (highscore >= bound) {
             try {
                 String s = Achievement.fromString("highscore" + Integer.toString(bound));
                 user.unlockAchievement(s);
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println("String cannot be mapped into an achievement, or unable to make request");
             }
         }
     }
 
-    private void addPocketAchievement(int bound, int stars){
-        if (stars >= bound){
+    private void addPocketAchievement(int bound, int stars) {
+        if (stars >= bound) {
             try {
                 String s = Achievement.fromString("star" + Integer.toString(bound));
                 user.unlockAchievement(s);
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println("String cannot be mapped into an achievement, or unable to make request");
             }
         }
     }
 
-    private void addSpeedyAchievement(int bound, int duration){
-        if (bound == duration){
+    private void addSpeedyAchievement(int bound, int duration) {
+        if (bound == duration) {
             try {
                 String s = Achievement.fromString("speedy" + Integer.toString(bound));
                 user.unlockAchievement(s);
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println("String cannot be mapped into an achievement, or unable to make request");
             }
         }
@@ -118,11 +118,11 @@ public class Reward extends ApplicationController implements Initializable {
     private void setStar(int index, int score) {
         if (index >= stars.size()) {
             try {
-                if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE){
+                if (MainApp.getGameState().getGameMode() == Gamemode.PRACTICE) {
                     user.unlockAchievement("EXPLORER_1");
                     return;
                 }
-                if (score == 100){
+                if (score == 100) {
                     int duration = MainApp.getSetting().getTimerDuration();
                     addSpeedyAchievement(40, duration);
                     addSpeedyAchievement(30, duration);
@@ -147,7 +147,7 @@ public class Reward extends ApplicationController implements Initializable {
                 addPocketAchievement(100, totalStars);
                 addPocketAchievement(200, totalStars);
                 addPocketAchievement(300, totalStars);
-            }  catch (IOException e){
+            } catch (IOException e) {
                 System.err.println("Unable to make a request");
             }
             return;
@@ -226,15 +226,15 @@ public class Reward extends ApplicationController implements Initializable {
         avatarButton.addEventHandler(MouseEvent.MOUSE_RELEASED, _e -> {
             int num = new Random().nextInt(3);
             switch (num) {
-                case 0:
-                    Sounds.playSoundEffect("bee-utiful");
-                    break;
-                case 1:
-                    Sounds.playSoundEffect("kapai");
-                    break;
-                default:
-                    Sounds.playSoundEffect("bzz-ness");
-                    break;
+            case 0:
+                Sounds.playSoundEffect("bee-utiful");
+                break;
+            case 1:
+                Sounds.playSoundEffect("kapai");
+                break;
+            default:
+                Sounds.playSoundEffect("bzz-ness");
+                break;
             }
         });
 
