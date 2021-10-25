@@ -15,7 +15,12 @@ import javafx.scene.Node;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.StackPane;
 
+/**
+ * This Util class is used to configure the functionality for all modals in our
+ * GUI
+ */
 public class Modal {
+    // for interacting with the quiz timer
     private static Clock clock;
 
     /**
@@ -35,8 +40,7 @@ public class Modal {
      */
     public static void showModal(Modals m) {
         try {
-            // Duplicate code should be refactored at some point
-            if (MainApp.getBaseView() == Views.QUIZ)
+            if (MainApp.getBaseView() == Views.QUIZ) // stop clock only if we were on quiz screen
                 clock.stop();
 
             disableScreenNodes(true);
@@ -50,15 +54,21 @@ public class Modal {
         }
     }
 
+    /**
+     * Show general modal
+     * 
+     * @param type
+     */
     public static void showGeneralModal(GeneralModal type) {
         FXMLLoader fxmlLoader;
         Node modal;
         String message;
         String modalType = type.getClass().getName().replace("com.enums.", "");
         try {
-            if (MainApp.getBaseView() == Views.QUIZ)
+            if (MainApp.getBaseView() == Views.QUIZ) // stop clock only if we were on quiz screen
                 clock.stop();
             disableScreenNodes(true);
+
             switch (modalType) {
             case "ConfirmModal":
                 fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Confirmation.fxml"));
@@ -85,6 +95,7 @@ public class Modal {
                 System.err.println("ERROR: General modal type not implemented.");
                 return;
             }
+
         } catch (Exception e) {
             System.err.println("Unable to load confirmation modal due to error " + e.toString());
             return;

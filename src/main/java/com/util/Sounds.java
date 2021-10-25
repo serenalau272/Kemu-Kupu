@@ -69,6 +69,10 @@ public class Sounds {
         return "";
     }
 
+    /**
+     * Play music in loop. Stops previous music if there was music playing.
+     * @param music
+     */
     public static void playMusic(String music) {
         // HACK: Ubuntu does not support playing of .mp3s! Is an imcompatability with
         // javafx 8. This
