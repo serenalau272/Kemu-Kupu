@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.models.Game;
+import com.models.User;
 import com.util.Sounds;
-import com.util.User;
 import com.MainApp;
 import com.controllers.ApplicationController;
 import com.enums.Gamemode;

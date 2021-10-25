@@ -11,16 +11,19 @@ import com.MainApp;
 import com.components.animations.OscillatingComponent;
 import com.controllers.ApplicationController;
 import com.enums.Achievement;
+import com.enums.ErrorModal;
 import com.enums.Gamemode;
 import com.enums.Views;
+import com.util.Modal;
 import com.util.Sounds;
-import com.util.User;
 import com.models.Game;
+import com.models.User;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -73,44 +76,68 @@ public class Reward extends ApplicationController implements Initializable {
 
     private void addStudentAchievement(int bound, int numGames) {
         if (numGames >= bound) {
+            String s;
             try {
-                String s = Achievement.fromString("diligence" + Integer.toString(bound));
+                s = Achievement.fromString("diligence" + Integer.toString(bound));
+            } catch (LoadException e) {
+                System.err.println("String cannot be mapped into an achievement");
+                return;
+            }
+            try {
                 user.unlockAchievement(s);
-            } catch (Exception e) {
-                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            } catch (IOException e) {
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
     private void addAchieverAchievement(int bound, int highscore) {
         if (highscore >= bound) {
+            String s;
             try {
-                String s = Achievement.fromString("highscore" + Integer.toString(bound));
+                s = Achievement.fromString("highscore" + Integer.toString(bound));
+            } catch (LoadException e) {
+                System.err.println("String cannot be mapped into an achievement");
+                return;
+            }
+            try {
                 user.unlockAchievement(s);
-            } catch (Exception e) {
-                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            } catch (IOException e) {
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
     private void addPocketAchievement(int bound, int stars) {
         if (stars >= bound) {
+            String s;
             try {
-                String s = Achievement.fromString("star" + Integer.toString(bound));
+                s = Achievement.fromString("star" + Integer.toString(bound));
+            } catch (LoadException e) {
+                System.err.println("String cannot be mapped into an achievement");
+                return;
+            }
+            try {
                 user.unlockAchievement(s);
-            } catch (Exception e) {
-                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            } catch (IOException e) {
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
 
     private void addSpeedyAchievement(int bound, int duration) {
         if (bound == duration) {
+            String s;
             try {
-                String s = Achievement.fromString("speedy" + Integer.toString(bound));
+                s = Achievement.fromString("speedy" + Integer.toString(bound));
+            } catch (LoadException e) {
+                System.err.println("String cannot be mapped into an achievement");
+                return;
+            }
+            try {
                 user.unlockAchievement(s);
-            } catch (Exception e) {
-                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            } catch (IOException e) {
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
@@ -148,7 +175,7 @@ public class Reward extends ApplicationController implements Initializable {
                 addPocketAchievement(200, totalStars);
                 addPocketAchievement(300, totalStars);
             } catch (IOException e) {
-                System.err.println("Unable to make a request");
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
             return;
         }

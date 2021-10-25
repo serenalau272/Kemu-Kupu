@@ -3,6 +3,7 @@ package com.enums;
 import java.io.IOException;
 
 import com.MainApp;
+import com.util.Modal;
 import com.util.Sounds;
 import com.models.GeneralModal;
 
@@ -58,7 +59,7 @@ public enum ConfirmModal implements GeneralModal {
                     MainApp.setRoot(Views.PROFILE);
                 }
             } catch (IOException e) {
-                System.err.println("Unable to make request");
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
             break;
         case DELETE:
@@ -68,7 +69,7 @@ public enum ConfirmModal implements GeneralModal {
                     MainApp.setRoot(Views.MENU);
                 }
             } catch (IOException e) {
-                System.err.println("Unable to make request");
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
             break;
         default:

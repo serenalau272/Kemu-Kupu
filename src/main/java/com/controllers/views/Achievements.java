@@ -12,7 +12,7 @@ import com.controllers.ApplicationController;
 import com.controllers.fxmlComponents.AchievementType;
 import com.enums.Achievement;
 import com.enums.Views;
-import com.util.User;
+import com.models.User;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;

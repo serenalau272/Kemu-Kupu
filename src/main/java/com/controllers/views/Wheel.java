@@ -9,14 +9,17 @@ import com.components.animations.SpinningWheel;
 import com.components.animations.WheelTimer;
 import com.controllers.ApplicationController;
 import com.enums.Achievement;
+import com.enums.ErrorModal;
 import com.enums.Views;
+import com.models.User;
+import com.util.Modal;
 import com.util.Sounds;
-import com.util.User;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,11 +54,17 @@ public class Wheel extends ApplicationController implements Initializable {
 
     private void addPocketAchievement(int bound, int stars) {
         if (stars >= bound) {
+            String s;
             try {
-                String s = Achievement.fromString("star" + Integer.toString(bound));
+                s = Achievement.fromString("star" + Integer.toString(bound));
+            } catch (LoadException e) {
+                System.err.println("String cannot be mapped into an achievement");
+                return;
+            }
+            try {
                 currentUser.unlockAchievement(s);
-            } catch (Exception e) {
-                System.err.println("String cannot be mapped into an achievement, or unable to make request");
+            } catch (IOException e) {
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
     }
@@ -89,6 +98,7 @@ public class Wheel extends ApplicationController implements Initializable {
             addPocketAchievement(300, totalStars);
         } catch (IOException exception) {
             System.err.println("Unable to add stars " + reward);
+            Modal.showGeneralModal(ErrorModal.INTERNET);
         }
 
         MainApp.getGlobalTimer().restart();

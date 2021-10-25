@@ -8,8 +8,8 @@ import com.MainApp;
 import com.controllers.ApplicationController;
 import com.enums.ErrorModal;
 import com.enums.Views;
+import com.models.User;
 import com.util.Modal;
-import com.util.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,7 +56,7 @@ public class NewUser extends ApplicationController implements Initializable {
                 usernameInput.requestFocus();
             }
         } catch (IOException e) {
-            System.err.println("Unable to complete request");
+            Modal.showGeneralModal(ErrorModal.INTERNET);
         }
     }
 

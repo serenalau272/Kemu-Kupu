@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import com.enums.Avatar;
-import com.util.User;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;

@@ -244,7 +244,7 @@ public enum Achievement {
 
     /**
      * Get the label for this achievement, effectively the description.
-     * Returns an empty string upon failure, for example when an invalid level is provided.
+     * Returns an empty string upon failure, for example when an invalid level is provided. 
      * @param level the level of the achievement
      * @return a string which can be displayed to the user.
      */

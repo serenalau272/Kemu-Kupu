@@ -12,8 +12,10 @@ import com.components.AvatarItem;
 import com.controllers.ApplicationController;
 import com.controllers.fxmlComponents.ShopAvatar;
 import com.enums.Avatar;
+import com.enums.ErrorModal;
 import com.enums.Views;
-import com.util.User;
+import com.models.User;
+import com.util.Modal;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,8 +98,7 @@ public class Shop extends ApplicationController implements Initializable {
             try {
                 currentUser.setAvatar(avatar);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
         }
 
@@ -154,8 +155,7 @@ public class Shop extends ApplicationController implements Initializable {
             try {
                 currentUser.unlockCostume(chosenAvatar);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                Modal.showGeneralModal(ErrorModal.INTERNET);
             }
             setStars();
             setChosenAvatar(chosenAvatar);

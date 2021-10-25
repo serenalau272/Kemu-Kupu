@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 
 import com.MainApp;
 import com.controllers.ApplicationController;
+import com.enums.ErrorModal;
 import com.enums.Views;
-import com.util.User;
+import com.models.User;
+import com.util.Modal;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,7 +70,7 @@ public class SignIn extends ApplicationController implements Initializable {
             }
 
         } catch (IOException exception) {
-            System.err.println("Unable to complete request");
+            Modal.showGeneralModal(ErrorModal.INTERNET);
         }
     }
 

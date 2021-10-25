@@ -1,4 +1,4 @@
-package com.util;
+package com.models;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +16,9 @@ import com.models.APIModels.JSONStudent;
 import com.models.APIModels.RequestMethod;
 import com.models.APIModels.Response;
 import com.models.APIModels.ResponseStatus;
+import com.util.API;
+import com.util.Modal;
+import com.util.Sounds;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -167,6 +170,7 @@ public class User implements Serializable {
 
     public User() {
         if (new File(this.userSavePath).isFile()) {
+            //Load from api
             try {
                 FileInputStream f_in = new FileInputStream(this.userSavePath);
                 ObjectInputStream obj_in = new ObjectInputStream(f_in);
@@ -182,6 +186,7 @@ public class User implements Serializable {
                 e.printStackTrace();
             }
         } else if (new File(this.guestSavePath).isFile()) {
+            //Load from disk
             try {
                 FileInputStream f_in = new FileInputStream(this.guestSavePath);
                 ObjectInputStream obj_in = new ObjectInputStream(f_in);
@@ -324,12 +329,11 @@ public class User implements Serializable {
             this.__saveData();
             return null;
         }
-
     }
 
     /**
      * Request the api to unlock an achievement for this user. WARNING: THE API DOES
-     * NO VALIDATION ON IF THEY HAVE ACTUALLY EARNED THIS, THAT NEEDS TO BE DONE
+     * THE API DOES NOT VALIDATE IF THEY HAVE ACTUALLY EARNED THIS, THAT NEEDS TO BE DONE
      * JAVA-SIDE FOR NOW.
      * 
      * @param achievement the achievement to unlock
@@ -550,30 +554,58 @@ public class User implements Serializable {
         return null;
     }
 
+    /**
+     * Get the users currently selected avatar
+     * @return an avatar enum representing the users avatar
+     */
     public Avatar getSelectedAvatar() {
         return this.selectedAvatar;
     }
 
+    /**
+     * Get the number of games this user has played.
+     * @return the number of games played
+     */
     public Integer getNumGamesPlayed() {
         return this.numGamesPlayed;
     }
 
+    /**
+     * Get this users nickname
+     * @return a string representing the current users nickname. Empty if guest.
+     */
     public String getNickname() {
         return this.nickname;
     }
 
+    /**
+     * Get this users username
+     * @return a string representing the current users username. Empty if guest.
+     */
     public String getUsername() {
         return this.username;
     }
 
+    /**
+     * Get this users high score.
+     * @return an integer representing highest score
+     */
     public Integer getHighScore() {
         return this.highScore;
     }
 
+    /**
+     * Get the total number of stars this user has earned.
+     * @return an integer with their total stars
+     */
     public Integer getTotalStars() {
         return this.totalStars;
     }
 
+    /**
+     * Get the number of achievements this user has unlocked.
+     * @return the size of their unlocked achievements array.
+     */
     public Integer getNumAchievements() {
         return this.unlockedAchievements.size();
     }

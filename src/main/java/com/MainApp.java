@@ -7,10 +7,10 @@ import com.enums.Gamemode;
 import com.enums.Views;
 import com.models.Game;
 import com.models.Setting;
+import com.models.User;
 import com.util.API;
 import com.util.Sounds;
 import com.util.TTS;
-import com.util.User;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

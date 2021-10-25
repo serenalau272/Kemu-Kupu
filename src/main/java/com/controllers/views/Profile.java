@@ -10,8 +10,8 @@ import com.controllers.ApplicationController;
 import com.enums.ConfirmModal;
 import com.enums.ErrorModal;
 import com.enums.Views;
+import com.models.User;
 import com.util.Modal;
-import com.util.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -97,16 +97,14 @@ public class Profile extends ApplicationController implements Initializable {
                     try {
                         currentUser.setUsername(usernameInput.getText());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        Modal.showGeneralModal(ErrorModal.INTERNET);
                     }
                 }
                 if (!nicknameInput.getText().equals("") && !(nicknameInput.getText().length() > 10)) {
                     try {
                         currentUser.setNickname(nicknameInput.getText());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        Modal.showGeneralModal(ErrorModal.INTERNET);
                     }
                 } else {
                     inputEditing(nicknameInput);
