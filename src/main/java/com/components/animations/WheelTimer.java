@@ -7,21 +7,22 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+/**
+ * WheelTimer allows for the label on ProfileScreen and SpinningWheel to reflect the value of the global timer
+ */
 public class WheelTimer extends ApplicationController {
-
     private Label timerLabel;
     private ImageView spinButton = null;
     private int timeSeconds;
     private MyTimer timer;
 
+    /**
+     * Create wheel timer
+     * @param timerLabel
+     * @param spinButton
+     */
     public WheelTimer(Label timerLabel, ImageView spinButton) {
-        this.timerLabel = timerLabel;
         this.spinButton = spinButton;
-        timeSeconds = MainApp.getGlobalTimer().getDuration();
-        timer = new MyTimer();
-    }
-
-    public WheelTimer(Label timerLabel) {
         this.timerLabel = timerLabel;
         timeSeconds = MainApp.getGlobalTimer().getDuration();
         timer = new MyTimer();

@@ -136,7 +136,7 @@ public class Profile extends ApplicationController implements Initializable {
         configureStaticEntries();
         configureDynamicEntries();
 
-        timer = new WheelTimer(wheelLabel);
+        timer = new WheelTimer(wheelLabel, null);
         timer.start();
         // Set event handlers
 

@@ -16,10 +16,18 @@ public class SlideComponentHorizontal {
     private double delta;
     private Duration duration;
 
+    /**
+     * Construct SlideComponentHorizontal
+     * 
+     * @param image
+     * @param duration
+     * @param delta    // delta is the total offset of the image's horizontal
+     *                 position
+     */
     public SlideComponentHorizontal(ImageView image, Duration duration, double delta) {
         this.image = image;
         this.initialX = image.getTranslateX();
-        this.delta = delta; // delta is the total offset of the image's horizontal position
+        this.delta = delta;
         this.duration = duration;
     }
 

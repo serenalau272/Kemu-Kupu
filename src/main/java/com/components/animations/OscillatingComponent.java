@@ -14,6 +14,11 @@ public class OscillatingComponent {
     private double initialY;
     private final int amplitude = 10;
 
+    /**
+     * Construct OscillatingComponent
+     * 
+     * @param image
+     */
     public OscillatingComponent(ImageView image) {
         this.initialY = image.getTranslateY();
 

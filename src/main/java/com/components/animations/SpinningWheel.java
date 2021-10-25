@@ -14,6 +14,11 @@ public class SpinningWheel {
     private Animation anim;
     private final int amplitude = 100;
 
+    /**
+     * Construct SpinningWheel
+     * 
+     * @param image
+     */
     public SpinningWheel(ImageView image) {
 
         // create animation transition with a single 2s transition
@@ -36,6 +41,7 @@ public class SpinningWheel {
 
     /**
      * get the animator
+     * 
      * @return
      */
     public Animation getAnimator() {
