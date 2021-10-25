@@ -31,7 +31,7 @@ public class ShopAvatar extends ApplicationController {
         if (name.equals("Default Bee")) {
             name = "B";
         }
-
+        
         // set avatar label to be the retrieved name
         avatarName.setText(name);
         try {

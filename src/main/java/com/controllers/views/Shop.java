@@ -76,7 +76,7 @@ public class Shop extends ApplicationController implements Initializable {
             newAvatars.add(avatar);
         }
 
-        return avatars;
+        return newAvatars;
     }
     
     /**
