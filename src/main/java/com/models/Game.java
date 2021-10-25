@@ -78,30 +78,60 @@ public class Game {
         this.words = SystemIO.getWords(5, topic.getPath());
     }
 
+    /**
+     * Get the current spelling topic for this game.
+     * @return the current topic
+     */
     public SpellingTopic getTopic() {
         return this.topic;
     }
 
+    /**
+     * Get the list of all words that the user has been tested on.
+     * This should only be used for display purposes, not modification.
+     * @return a list of words
+     */
     public List<Word> getWords() {
         return this.words;
     }
 
+    /**
+     * Get the current gamemode for the quiz.
+     * @return
+     */
     public Gamemode getGameMode() {
         return this.gamemode;
     }
 
+    /**
+     * Get the current word we are up to, should be used for display purposes.
+     * @return an integer representing the current word in the wordlist
+     */
     public int getWordIndex() {
         return this.wordIndex;
     }
 
+    /**
+     * Set the current word we are up to.
+     * Note that this doesn't have any validation in terms of being in-bounds.
+     * @param index
+     */
     public void setWordIndex(int index) {
         this.wordIndex = index;
     }
 
+    /**
+     * Set whether we are awaiting input
+     * @param value the boolean to save
+     */
     public void setAwaitingInput(boolean value) {
         this.awaitingInput = value;
     }
 
+    /**
+     * Check whether we are awaiting input or not
+     * @return a boolean representing whether or not we are waiting for input.
+     */
     public boolean getAwaitingInput() {
         return this.awaitingInput;
     }
