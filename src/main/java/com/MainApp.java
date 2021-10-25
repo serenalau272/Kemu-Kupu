@@ -1,6 +1,5 @@
 package com;
 
-import java.io.File;
 import java.io.IOException;
 
 import com.components.animations.GlobalTimer;
