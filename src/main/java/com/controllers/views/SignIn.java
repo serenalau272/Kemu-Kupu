@@ -66,11 +66,13 @@ public class SignIn extends ApplicationController implements Initializable {
                 usernameInput.clear();
                 passwordInput.clear();
                 usernameInput.requestFocus();
-
             }
 
         } catch (IOException exception) {
             Modal.showGeneralModal(ErrorModal.INTERNET);
+            usernameInput.clear();
+            passwordInput.clear();
+            usernameInput.requestFocus();
         }
     }
 
