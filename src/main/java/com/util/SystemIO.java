@@ -10,7 +10,6 @@ import java.util.Random;
 
 import com.models.SpellingTopic;
 import com.models.Word;
-
 /*
     Handles I/O with the underlying system
 */
