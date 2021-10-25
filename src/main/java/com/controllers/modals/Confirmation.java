@@ -13,7 +13,6 @@ import javafx.scene.input.MouseEvent;
  * This class is the controller for the settings modal.
  */
 public class Confirmation extends ModalController {
-
     @FXML
     ImageView yesButton;
     @FXML
@@ -32,15 +31,26 @@ public class Confirmation extends ModalController {
         yesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> confirmType.doAction());
     }
 
+    /**
+     * method to set the message of the confirmation label
+     * 
+     * @param s
+     */
     public void setMessage(String s) {
         this.confirmMessage.setText(s);
     }
 
+    /**
+     * method to set the type of the confirmation
+     * 
+     * @param confirmType
+     */
     public void setConfirmType(ConfirmModal confirmType) {
         this.confirmType = confirmType;
+
+        //overrides the exitButton eventHandler to resume the quiz timer on closing when of enum ConfirmModal.INSTANTMENU
         if (confirmType == ConfirmModal.INSTANTMENU) {
             this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(true));
-            System.out.println("setting true!");
         } else {
             this.exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, _event -> Modal.closeModal(false));
         }
